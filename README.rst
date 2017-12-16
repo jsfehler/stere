@@ -127,7 +127,7 @@ For Text, it will do nothing.
             
 
     def test_stuff():
-        MyPage().my_input.perform('Hello', 'World')
+        MyPage().my_area.perform('Hello', 'World')
             
 
 Reusing Areas
