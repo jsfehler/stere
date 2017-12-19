@@ -10,7 +10,7 @@ from .fields import Area
 
 class Root(Field):
     def find(self):
-        return self.element.find()
+        return self._element.find()
 
 
 class RepeatingArea():
@@ -41,7 +41,7 @@ class RepeatingArea():
         for item in all_roots:
             copy_items = copy.deepcopy(self.items)
             for key, value in copy_items.items():
-                copy_items[key].element.parent_locator = item
+                copy_items[key]._element.parent_locator = item
 
             new_area = Area(**copy_items)
             created_areas.append(new_area)

@@ -6,7 +6,11 @@ class Field():
     def __init__(self, strategy, locator):
         self.strategy = strategy
         self.locator = locator
-        self.element = build_element(strategy, locator)
+        self._element = build_element(strategy, locator)
+
+    @property
+    def element(self):
+        return self._element.find()
 
     def find(self):
         """Find the first matching element.
@@ -17,7 +21,7 @@ class Field():
         Raises:
             ValueError - If more than one element is found.
         """
-        found_elements = self.element.find()
+        found_elements = self._element.find()
         if len(found_elements) > 2:
             raise ValueError("Expected one element, found multiple")
         return found_elements.first
@@ -28,7 +32,7 @@ class Field():
         Returns:
             List
         """
-        return self.element.find()
+        return self._element.find()
 
 
 class Button(Field):
