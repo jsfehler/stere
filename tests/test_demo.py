@@ -27,4 +27,4 @@ def test_stere(browser):
     listings = google.Results().listing.areas
     assert listings[1].items["link"].text == "Winamp - Download"
     assert listings[2].items["link"].text == "Download Winamp - free - latest version"
-    assert listings[5].items["link"].text == "Winamp review and where to download | TechRadar"
+    assert listings[5].items["link"].text == "Winamp's woes: How the greatest MP3 player undid itself | Ars Technica"
