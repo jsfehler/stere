@@ -80,6 +80,7 @@ class Area():
                     'Areas must only be initialized with field objects.'
                 )
             self.items[key] = value
+            setattr(self, key, value)
 
     def perform(self, *args):
         """For every field in the area, sequentially "do the right thing".
