@@ -1,20 +1,7 @@
 import time
 
-
 from stere import Stere, Goto
-from stere.fields import Area, Button, Input
-from pages import google
-
-
-class DummyPage():
-    """A page object for the test page."""
-    
-    def __init__(self):
-        self.button = Button('id', 'test_button')
-        self.area = Area(
-            input = Input('id', 'test_input'),
-            submit_button = Button('id', 'test_input_submit')
-        )
+from pages import google, dummy
 
 
 def test_button(browser):
@@ -26,11 +13,11 @@ def test_button(browser):
 
     browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
     
-    test_page = DummyPage()
+    test_page = dummy.DummyPage()
     test_page.button.click()
     
-    # Clicking the button turns the button's container background colour
-    assert 'red' == test_page.button.element.style.background_color
+    # Clicking changes the button's container background colour
+    assert 'rgb(255, 0, 0)' == test_page.button_container.element.first._element.value_of_css_property('background-color')
 
 
 def test_input(browser):
@@ -42,23 +29,45 @@ def test_input(browser):
 
     browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
     
-    test_page = DummyPage()
+    test_page = dummy.DummyPage()
     test_page.area.input.fill('Winamp')
     
     assert 'Winamp' == test_page.area.input.element.value
 
-
-def test_area_perform(browser):
+    
+    
+def test_link(browser):
+    """
+    When a link is clicked
+    Then the link's action occurs
+    """
     Stere.browser = browser
 
     browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
     
-    test_page = DummyPage()
+    test_page = dummy.DummyPage()
+    test_page.link.click()
+    
+    # The result of clicking should land the user on google.ca
+    assert 'https://www.google.ca' in browser.url
+
+    
+def test_area_perform(browser):
+    """
+    When an area is performed
+    Then each of the Fields inside it is used
+    """
+    Stere.browser = browser
+
+    browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
+    
+    test_page = dummy.DummyPage()
     test_page.area.perform('Winamp')
 
     time.sleep(2)
     
-    assert 'https://google.ca' == browser.url
+    # The result of the perform should land the user on google.ca
+    assert 'https://www.google.ca' in browser.url
 
 
 def test_stere(browser):
