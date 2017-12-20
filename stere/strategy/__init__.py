@@ -1,2 +1,2 @@
-from .strategy import strategy
-from .strategy import strategies
+from .strategy import strategy  # NOQA: F401
+from .strategy import strategies  # NOQA: F401
