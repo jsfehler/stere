@@ -11,11 +11,11 @@ def test_button(browser):
     """
     Stere.browser = browser
 
-    browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
-    
     test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
     test_page.button.click()
-    
+
     # Clicking changes the button's container background colour
     assert 'rgb(255, 0, 0)' == test_page.button_container.element.first._element.value_of_css_property('background-color')
 
@@ -27,15 +27,14 @@ def test_input(browser):
     """
     Stere.browser = browser
 
-    browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
-    
     test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
     test_page.area.input.fill('Winamp')
-    
+
     assert 'Winamp' == test_page.area.input.element.value
 
-    
-    
+
 def test_link(browser):
     """
     When a link is clicked
@@ -43,15 +42,15 @@ def test_link(browser):
     """
     Stere.browser = browser
 
-    browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
-    
     test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
     test_page.link.click()
-    
+
     # The result of clicking should land the user on google.ca
     assert 'https://www.google.ca' in browser.url
 
-    
+
 def test_area_perform(browser):
     """
     When an area is performed
@@ -59,13 +58,13 @@ def test_area_perform(browser):
     """
     Stere.browser = browser
 
-    browser.visit('https://jsfehler.github.io/stere/test_page/test_page.html')
-    
     test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
     test_page.area.perform('Winamp')
 
     time.sleep(2)
-    
+
     # The result of the perform should land the user on google.ca
     assert 'https://www.google.ca' in browser.url
 
@@ -81,7 +80,7 @@ def test_stere(browser):
 
     import time
     time.sleep(5)
-    
+
     listings = google.Results().listing.areas
     assert listings[1].items["link"].text == "Winamp - Download"
     assert listings[2].items["link"].text == "Download Winamp - free - latest version"

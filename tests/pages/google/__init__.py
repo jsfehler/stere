@@ -1,2 +1,2 @@
-from .home import Home
-from .home import Results
+from .home import Home  # NOQA
+from .home import Results  # NOQA
