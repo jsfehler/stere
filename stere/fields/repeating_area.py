@@ -27,7 +27,8 @@ class RepeatingArea():
         for k, v in kwargs.items():
             if type(v) not in [Root, Button, Input, Link, Text]:
                 raise ValueError(
-                    'RepeatingAreas must only be initialized with Field objects.')
+                    'RepeatingArea arguments can only be Field objects.'
+                )
             if k is not "root":
                 self.items[k] = v
 
