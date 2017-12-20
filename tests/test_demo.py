@@ -17,7 +17,7 @@ def test_button(browser):
     test_page.button.click()
 
     # Clicking changes the button's container background colour
-    assert 'rgb(255, 0, 0)' == test_page.button_container.element.first._element.value_of_css_property('background-color')
+    assert 'rgb(255, 0, 0)' == test_page.button_container.element.first._element.value_of_css_property('background-color')  # NOQA: E501
 
 
 def test_input(browser):
@@ -83,5 +83,5 @@ def test_stere(browser):
 
     listings = google.Results().listing.areas
     assert listings[1].items["link"].text == "Winamp - Download"
-    assert listings[2].items["link"].text == "Download Winamp - free - latest version"
-    assert listings[5].items["link"].text == "Winamp's woes: How the greatest MP3 player undid itself | Ars Technica"
+    assert listings[2].items["link"].text == "Download Winamp - free - latest version"  # NOQA: E501
+    assert listings[5].items["link"].text == "Winamp's woes: How the greatest MP3 player undid itself | Ars Technica"  # NOQA: E501
