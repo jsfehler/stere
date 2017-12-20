@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script>
+            function testFunction() {
+              document.getElementById("test_button_div").style.backgroundColor = "red";
+            }
+        </script>
+        <style>
+            #test_button_div {
+                background: blue;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test_button_div">
+            <button id="test_button" onclick="testFunction()">Button</button>
+        </div>
+
+        <div>
+            <form method="get" action="https://www.google.com/search">
+                <input type="text" name="q" id="test_input">
+                <input type="submit" id="test_input_submit">
+            </form>
+        </div>
+
+        <div>
+            <a href="https://google.ca" id="test_link">Link</a>
+        </div>
+        
+        <div id="test_text">
+            Foo bar biz bin bat baz bao
+        </div>
+    </body>
+</html>
