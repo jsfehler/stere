@@ -6,6 +6,6 @@ setup(
     author="Joshua Fehler",
     author_email="jsfehler@gmail.com",
     license="MIT",
-    url="",
+    url="https://github.com/jsfehler/stere",
     packages=find_packages()
 )
