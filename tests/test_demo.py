@@ -53,6 +53,25 @@ def test_link(browser):
     assert 'https://www.google.ca' in browser.url
 
 
+def test_area_items(browser):
+    """
+    When an area is created
+    Then the items in the area can be accessed with dot notation
+    """
+    Stere.browser = browser
+
+    test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
+    test_page.area.input.fill('Winamp')
+    test_page.area.submit_button.click()
+
+    time.sleep(2)
+
+    # The result of the perform should land the user on google.ca
+    assert 'https://www.google.ca' in browser.url
+
+
 def test_area_perform(browser):
     """
     When an area is performed
@@ -84,6 +103,6 @@ def test_repeating_area(browser):
     time.sleep(5)
 
     listings = google.Results().listing.areas
-    assert listings[1].items["link"].text == "Winamp - Download"
-    assert listings[2].items["link"].text == "Download Winamp - free - latest version"  # NOQA: E501
+    assert listings[1].link.text == "Winamp - Download"
+    assert listings[2].link.text == "Download Winamp - free - latest version"  # NOQA: E501
     # assert listings[5].items["link"].text == "Winamp's woes: How the greatest MP3 player undid itself | Ars Technica"  # NOQA: E501

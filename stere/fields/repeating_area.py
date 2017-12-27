@@ -16,7 +16,7 @@ class Root(Field):
 class RepeatingArea():
     def __init__(self, **kwargs):
         if kwargs.get('root') is None:
-            raise ValueError('RepeatingArea requires a root element.')
+            raise ValueError('RepeatingArea requires a Root Field.')
 
         self.root = kwargs['root']
 
