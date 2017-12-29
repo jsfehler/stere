@@ -8,15 +8,64 @@
         <style>
             #test_button_div {
                 background: blue;
-                width: 100px;
+                width: 160px;
                 height: 100px;
             }
+
+            .dropbtn {
+                background-color: #43C59E;
+                min-width: 160px;
+                color: white;
+                padding: 8px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 8px 8px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #43C59E;
+                color: white;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #14453D;
+            }
+
         </style>
     </head>
     <body>
+        <h4> HTML Button </h4>
+
         <div id="test_button_div">
             <button id="test_button" onclick="testFunction()">Button</button>
         </div>
+
+        <h4> HTML Input </h4>
 
         <div>
             <form method="get" action="https://www.google.com/search">
@@ -25,12 +74,39 @@
             </form>
         </div>
 
+        <h4> Link </h4>
         <div>
             <a href="https://google.ca" id="test_link">Link</a>
         </div>
-        
+
+        <h4> Plain Text </h4>
         <div id="test_text">
             Foo bar biz bin bat baz bao
+        </div>
+
+        <h4> HTML Dropdown </h4>
+        <div>
+            <form method="get" action="https://www.google.com/search">
+                <select name="q" id="test_dropdown">
+                    <option value="apple">Apple</option>
+                    <option value="banana">Banana</option>
+                    <option value="cranberry">Cranberry</option>
+                </select>
+                <input type="submit" id="test_dropdown_submit">
+            </form>
+        </div>
+
+        <h4> CSS Dropdown </h4>
+        <div>
+            <div class="dropdown">
+                <button class="dropbtn">Show Options</button>
+                <div id="test_css_dropdown" class="dropdown-content">
+                  <a href="#cat">Cat</a>
+                  <a href="#dog">Dog</a>
+                  <a href="#eel">Eel</a>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
