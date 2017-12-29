@@ -4,6 +4,11 @@ from stere import Stere, Goto
 from pages import google, dummy
 
 
+import logging
+from selenium.webdriver.remote.remote_connection import LOGGER
+LOGGER.setLevel(logging.WARNING)
+
+
 def test_button(browser):
     """
     When a button is clicked
@@ -51,6 +56,33 @@ def test_link(browser):
 
     # The result of clicking should land the user on google.ca
     assert 'https://www.google.ca' in browser.url
+
+
+def test_html_dropdown(browser):
+    Stere.browser = browser
+
+    test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
+    test_page.dropdown_area.dropdown.select('Banana')
+    test_page.dropdown_area.submit.click()
+    time.sleep(2)
+
+    # The result of clicking should land the user on google.ca
+    assert 'https://www.google.ca/search?q=banana' in str.lower(browser.url)
+
+
+def test_css_dropdown(browser):
+    Stere.browser = browser
+
+    test_page = dummy.DummyPage()
+    browser.visit(test_page.url)
+
+    test_page.css_dropdown.select('Dog')
+    time.sleep(2)
+
+    # The result of clicking should land the user on google.ca
+    assert 'test_page.html#dog' in browser.url
 
 
 def test_area_items(browser):

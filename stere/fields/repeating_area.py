@@ -5,7 +5,8 @@ from .fields import Button
 from .fields import Input
 from .fields import Link
 from .fields import Text
-from .fields import Area
+
+from .area import Area
 
 
 class Root(Field):

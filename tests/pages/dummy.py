@@ -1,4 +1,4 @@
-from stere.fields import Area, Button, Input, Link, Root
+from stere.fields import Area, Button, Input, Link, Root, Dropdown
 
 
 class DummyPage():
@@ -14,3 +14,12 @@ class DummyPage():
             submit_button=Button('id', 'test_input_submit')
         )
         self.link = Link('id', 'test_link')
+        self.dropdown_area = Area(
+            dropdown=Dropdown('id', 'test_dropdown'),
+            submit=Button('id', 'test_dropdown_submit')
+        )
+        self.css_dropdown = Dropdown(
+            'id',
+            'test_css_dropdown',
+            option=Link('css', 'a')
+        )
