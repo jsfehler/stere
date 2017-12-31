@@ -1,17 +1,12 @@
 import copy
 
-from .fields import Field
 from .fields import Button
 from .fields import Input
 from .fields import Link
+from .fields import Root
 from .fields import Text
 
 from .area import Area
-
-
-class Root(Field):
-    def find(self):
-        return self._element.find()
 
 
 class RepeatingArea():

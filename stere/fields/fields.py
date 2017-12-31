@@ -58,6 +58,11 @@ class Link(Field):
         return elem.text
 
 
+class Root(Field):
+    def find(self):
+        return self._element.find()
+
+
 class Text(Field):
     """Convenience Class on top of Field."""
     @property
