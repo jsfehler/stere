@@ -131,10 +131,8 @@ def test_repeating_area(browser):
     Goto(google_home)
     google_home.search.perform("Winamp")
 
-    import time
     time.sleep(5)
 
     listings = google.Results().listing.areas
     assert listings[1].link.text == "Winamp - Download"
-    assert listings[2].link.text == "Download Winamp - free - latest version"  # NOQA: E501
-    # assert listings[5].items["link"].text == "Winamp's woes: How the greatest MP3 player undid itself | Ars Technica"  # NOQA: E501
+    assert listings[2].link.text == "Download Winamp - free - latest version"
