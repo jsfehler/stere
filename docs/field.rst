@@ -7,6 +7,7 @@ They model general behaviours, not specific HTML elements.
 The following Fields are available:
 
 - Button: Clickable object.
+- Dropdown: Object with a dropdown menu.
 - Input: Object that accepts keyboard input.
 - Link: Clickable text.
 - Root: Parent container.
@@ -28,11 +29,27 @@ The locator must be a string that matches the strategy chosen.
 
 Every Field exposes the `find()` and `find_all()` methods. These perform the actual search via Splinter.
 
+Dropdown
+--------
+
+By default, the Dropdown field works against HTML Dropdowns.
+However, it's possible to extend Dropdown to work with whatever implementation of a CSS Dropdown you need.
+
+The `option` argument can be provided to override the default implementation.
+This argument expects a Field. The Field should be the individual options in the dropdown you wish to target.
+
+before_select()
+~~~~~~~~~~~~~~~
+
+This method is called automatically before the select() method.
+If an action is required to prepare the dropdown for usage (such as clicking to open it)
+then this method can be overridden with the desired behaviour.
+
 
 Custom Locator Strategies
 -------------------------
 
-Aside from the standard strategies, custom ones can be defined using the @strategy decorator.
+Aside from the standard strategies, custom ones can be defined using the `@strategy` decorator.
 
 Any class can be decorated with @strategy, as long as the _find_all and _find_all_in_parent methods are implemented.
 
