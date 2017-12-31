@@ -10,7 +10,9 @@ addons:
 matrix:
   include:
     - python: 3.6
-      env: TOX_ENV=py36
+      env: TOX_ENV=chrome
+    - python: 3.6
+      env: TOX_ENV=firefox
     - python: 3.6
       env: TOX_ENV=flake8
 
@@ -20,7 +22,10 @@ before_install:
   - tar -xvzf geckodriver-v0.18.0-linux64.tar.gz -C geckodriver
   - chmod +x $PWD/geckodriver/geckodriver
   - export PATH=$PATH:$PWD/geckodriver
-    
+
+  - sudo apt-get update
+  - sudo apt-get install chromium-chromedriver
+
 install:
   - pip install tox coveralls
 
