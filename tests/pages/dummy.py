@@ -1,6 +1,14 @@
 from stere.fields import Area, Button, Input, Link, Root, Dropdown
 
 
+class CSSDropdown(Dropdown):
+    """A Dropdown that's customized to hover over the element before attempting
+    a select.
+    """
+    def before_select(self):
+        self.element.mouse_over()
+
+
 class DummyPage():
     """A page object for the test page."""
 
@@ -18,7 +26,7 @@ class DummyPage():
             dropdown=Dropdown('id', 'test_dropdown'),
             submit=Button('id', 'test_dropdown_submit')
         )
-        self.css_dropdown = Dropdown(
+        self.css_dropdown = CSSDropdown(
             'id',
             'test_css_dropdown',
             option=Link('css', 'a')

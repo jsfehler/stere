@@ -22,7 +22,12 @@ def test_button(browser):
     test_page.button.click()
 
     # Clicking changes the button's container background colour
-    assert 'rgb(255, 0, 0)' == test_page.button_container.element.first._element.value_of_css_property('background-color')  # NOQA: E501
+    browsers = {
+     "Firefox": 'rgb(255, 0, 0)',
+     "Chrome": 'rgba(255, 0, 0, 1)'
+    }
+
+    assert browsers[browser.driver_name] == test_page.button_container.element.first._element.value_of_css_property('background-color')  # NOQA: E501
 
 
 def test_input(browser):
@@ -69,7 +74,7 @@ def test_html_dropdown(browser):
     time.sleep(2)
 
     # The result of clicking should land the user on google.ca
-    assert 'https://www.google.ca/search?q=banana' in str.lower(browser.url)
+    assert 'search?q=banana' in str.lower(browser.url)
 
 
 def test_css_dropdown(browser):
