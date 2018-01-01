@@ -42,8 +42,19 @@ before_select()
 ~~~~~~~~~~~~~~~
 
 This method is called automatically before the select() method.
-If an action is required to prepare the dropdown for usage (such as clicking to open it)
+If an action is required to prepare the dropdown for usage (such as hovering over a button to open it)
 then this method can be overridden with the desired behaviour.
+
+.. code-block:: python
+
+    from stere.fields import Dropdown
+
+    class CSSDropdown(Dropdown):
+        """A Dropdown that's customized to hover over the element before attempting
+        a select.
+        """
+        def before_select(self):
+            self.element.mouse_over()
 
 
 Custom Locator Strategies
