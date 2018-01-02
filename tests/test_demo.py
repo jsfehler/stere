@@ -1,7 +1,7 @@
 import time
 
 from stere import Stere, Goto
-from pages import google, dummy
+from pages import dummy
 
 
 import logging
@@ -131,13 +131,12 @@ def test_repeating_area(browser):
 
     Stere.browser = browser
 
-    google_home = google.Home()
+    test_page = dummy.DummyPage()
 
-    Goto(google_home)
-    google_home.search.perform("Winamp")
+    Goto(test_page)
 
     time.sleep(5)
 
-    listings = google.Results().listing.areas
-    assert listings[1].link.text == "Winamp - Download"
-    assert listings[2].link.text == "Download Winamp - free - latest version"
+    listings = test_page.repeating_area.areas
+    assert listings[0].link.text == "Repeating Link 1"
+    assert listings[1].link.text == "Repeating Link 2"

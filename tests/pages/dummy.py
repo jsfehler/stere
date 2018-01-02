@@ -1,4 +1,13 @@
-from stere.fields import Area, Button, Input, Link, Root, Dropdown
+from stere.fields import (
+    Area,
+    RepeatingArea,
+    Button,
+    Input,
+    Link,
+    Root,
+    Text,
+    Dropdown
+)
 
 
 class CSSDropdown(Dropdown):
@@ -10,7 +19,7 @@ class CSSDropdown(Dropdown):
 
 
 class DummyPage():
-    """A page object for the test page."""
+    """Represents the test page."""
 
     def __init__(self):
         self.url = 'https://jsfehler.github.io/stere/test_page/test_page.html'
@@ -30,4 +39,10 @@ class DummyPage():
             'id',
             'test_css_dropdown',
             option=Link('css', 'a')
+        )
+
+        self.repeating_area = RepeatingArea(
+            root=Root('css', '.test_repeating_area_root'),
+            link=Link('xpath', './/a'),
+            text=Text('css', '.test_repeating_area_test')
         )
