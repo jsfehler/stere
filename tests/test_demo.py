@@ -1,6 +1,6 @@
 import time
 
-from stere import Stere, Goto
+from stere import Stere
 from pages import dummy
 
 
@@ -17,8 +17,7 @@ def test_button(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.button.click()
 
     # Clicking changes the button's container background colour
@@ -38,8 +37,7 @@ def test_input(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.area.input.fill('Winamp')
 
     assert 'Winamp' == test_page.area.input.element.value
@@ -53,8 +51,7 @@ def test_link(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.link.click()
 
     time.sleep(2)
@@ -67,10 +64,10 @@ def test_html_dropdown(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.dropdown_area.dropdown.select('Banana')
     test_page.dropdown_area.submit.click()
+
     time.sleep(2)
 
     # The result of clicking should land the user on google.ca
@@ -81,9 +78,9 @@ def test_css_dropdown(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.css_dropdown.select('Dog')
+
     time.sleep(2)
 
     # The result of clicking should land the user on google.ca
@@ -98,8 +95,7 @@ def test_area_items(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.area.input.fill('Winamp')
     test_page.area.submit_button.click()
 
@@ -117,8 +113,7 @@ def test_area_perform(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-    browser.visit(test_page.url)
-
+    test_page.visit()
     test_page.area.perform('Winamp')
 
     time.sleep(2)
@@ -132,8 +127,7 @@ def test_repeating_area(browser):
     Stere.browser = browser
 
     test_page = dummy.DummyPage()
-
-    Goto(test_page)
+    test_page.visit()
 
     time.sleep(5)
 

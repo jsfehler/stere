@@ -1,16 +1,8 @@
 from .browserenabled import BrowserEnabled
 
 
-class _Goto(BrowserEnabled):
-    def __call__(self, page):
-        self.browser.visit(page.url)
-
-
-Goto = _Goto()
-
-
 class Page(BrowserEnabled):
-    def navigate(self):
+    def visit(self):
         """Opens the page in the browser, based on the url attribute.
         """
         self.browser.visit(self.url)

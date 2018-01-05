@@ -1,3 +1,5 @@
+from stere import Page
+
 from stere.fields import (
     Area,
     RepeatingArea,
@@ -18,7 +20,7 @@ class CSSDropdown(Dropdown):
         self.element.mouse_over()
 
 
-class DummyPage():
+class DummyPage(Page):
     """Represents the test page."""
 
     def __init__(self):
