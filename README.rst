@@ -1,12 +1,26 @@
 Stere
 =====
 
-A modular, Page Object oriented approach to browser based test automation.
+A Page Object oriented approach to test automation.
 
-The goal is to minimize the amount of implementation code visible in Page Objects and reduce
-the need for helper methods.
+Summary
+-------
 
-It uses `Splinter <https://github.com/cobrateam/splinter>`_ under the hood.
+Stere is a DSL on top of your existing automation library.
+No automation abilities are directly built into the project;
+it relies on being hooked into other web automation libraries.
+
+The goals of this project are to:
+
+1 - Minimize the amount of implementation code visible in test functions and
+Page Objects.
+
+2 - Reduce the need for hand-written helper methods.
+
+3 - Provide a useful syntax for writing maintainable Page Objects.
+
+Out of the box, Stere provides an implementation for
+`Splinter <https://github.com/cobrateam/splinter>`_.
 
 
 Requirements
@@ -18,21 +32,24 @@ Python >= 3.6
 Basic Usage
 -----------
 
-A minimal Stere Page Object looks like this:
+Fundementally, a Page Object is just a Python class.
+
+A minimal Stere Page Object should subclass the Page class:
 
 .. code-block:: python
 
+    from stere import Page
     from stere.fields import Input
 
-    class MyPage():
+    class MyPage(Page):
         def __init__(self):
             self.my_input = Input('xpath', '//my_xpath_string')
 
 
-Fundementally, a Page Object is just a Python class.
-Stere provides 2 types of objects to model a web page: Fields and Areas.
+There are 2 types of objects to model a web page: Fields and Areas.
+Fields represent single web elements, Areas represent groups of elements.
 
-It can be called in a test like so:
+A Page Object's fields can be called in a test function like so:
 
 .. code-block:: python
 
