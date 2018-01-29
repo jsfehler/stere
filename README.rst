@@ -59,6 +59,8 @@ A Page Object's fields can be called in a test function like so:
 Documentation
 -------------
 
+`Page <docs/page.rst>`_
+
 `Field <docs/field.rst>`_
 
 `Area <docs/area.rst>`_
