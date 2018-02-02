@@ -2,6 +2,15 @@ from .strategy import strategy
 
 
 class SplinterBase():
+    def is_present(self):
+        func = getattr(self.browser, f'is_element_present_by_{self.strategy}')
+        return func(self.locator)
+
+    def is_not_present(self):
+        func = getattr(
+            self.browser, f'is_element_not_present_by_{self.strategy}')
+        return func(self.locator)
+
     def _find_all(self):
         """Find from page root."""
         func = getattr(self.browser, f'find_by_{self.strategy}')
