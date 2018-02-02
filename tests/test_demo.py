@@ -129,8 +129,6 @@ def test_repeating_area(browser):
     test_page = dummy.DummyPage()
     test_page.visit()
 
-    time.sleep(5)
-
     listings = test_page.repeating_area.areas
     assert listings[0].link.text == "Repeating Link 1"
     assert listings[1].link.text == "Repeating Link 2"
