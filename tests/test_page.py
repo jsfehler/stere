@@ -18,4 +18,5 @@ def test_page_getattr(browser):
     test_page.visit()
 
     expected = 'https://jsfehler.github.io/stere/test_page/test_page.html'
+    # The url attribute belongs to the browser, not Page directly.
     assert expected == test_page.url
