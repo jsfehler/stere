@@ -1,78 +1,48 @@
 from .strategy import strategy
 
 
-@strategy('css')
-class FindByCss():
+class SplinterBase():
     def _find_all(self):
         """Find from page root."""
-        return self.browser.find_by_css(self.locator)
+        func = getattr(self.browser, f'find_by_{self.strategy}')
+        return func(self.locator)
 
     def _find_all_in_parent(self):
         """Find from inside a parent element."""
-        return self.parent_locator.find_by_css(self.locator)
+        func = getattr(self.parent_locator, f'find_by_{self.strategy}')
+        return func(self.locator)
+
+
+@strategy('css')
+class FindByCss(SplinterBase):
+    strategy = 'css'
 
 
 @strategy('xpath')
-class FindByXPath():
-    def _find_all(self):
-        """Find from page root."""
-        return self.browser.find_by_xpath(self.locator)
-
-    def _find_all_in_parent(self):
-        """Find from inside a parent element."""
-        return self.parent_locator.find_by_xpath(self.locator)
+class FindByXPath(SplinterBase):
+    strategy = 'xpath'
 
 
 @strategy('tag')
-class FindByTag():
-    def _find_all(self):
-        """Find from page root."""
-        return self.browser.find_by_tag(self.locator)
-
-    def _find_all_in_parent(self):
-        """Find from inside a parent element."""
-        return self.parent_locator.find_by_tag(self.locator)
+class FindByTag(SplinterBase):
+    strategy = 'tag'
 
 
 @strategy('name')
-class FindByName():
-    def _find_all(self):
-        """Find from page root."""
-        return self.browser.find_by_name(self.locator)
-
-    def _find_all_in_parent(self):
-        """Find from inside a parent element."""
-        return self.parent_locator.find_by_name(self.locator)
+class FindByName(SplinterBase):
+    strategy = 'name'
 
 
 @strategy('text')
-class FindByText():
-    def _find_all(self):
-        """Find from page root."""
-        return self.browser.find_by_text(self.locator)
-
-    def _find_all_in_parent(self):
-        """Find from inside a parent element."""
-        return self.parent_locator.find_by_text(self.locator)
+class FindByText(SplinterBase):
+    strategy = 'text'
 
 
 @strategy('id')
-class FindById():
-    def _find_all(self):
-        """Find from page root."""
-        return self.browser.find_by_id(self.locator)
-
-    def _find_all_in_parent(self):
-        """Find from inside a parent element."""
-        return self.parent_locator.find_by_id(self.locator)
+class FindById(SplinterBase):
+    strategy = 'id'
 
 
 @strategy('value')
-class FindByValue():
-    def _find_all(self):
-        """Find from page root."""
-        return self.browser.find_by_value(self.locator)
-
-    def _find_all_in_parent(self):
-        """Find from inside a parent element."""
-        return self.parent_locator.find_by_value(self.locator)
+class FindByValue(SplinterBase):
+    strategy = 'value'
