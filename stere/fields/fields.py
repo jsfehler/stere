@@ -8,8 +8,23 @@ class Field():
         self.locator = locator
         self._element = build_element(strategy, locator)
 
+    def __getattr__(self, val):
+        """If an attribute doesn't exist, try getting it from the element.
+
+        If it still doesn't exist, do a find() on the element and see if the
+        attribute exists there.
+        """
+        element = super().__getattribute__('_element')
+        try:
+            return getattr(element, val)
+        except AttributeError:
+            # Try getting the attribute from the found element.
+            return getattr(element.find(), val)
+
     @property
     def element(self):
+        """Tries to find the element, the returns the results.
+        """
         return self._element.find()
 
     def find(self):

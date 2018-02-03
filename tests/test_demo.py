@@ -26,7 +26,11 @@ def test_button(browser):
      "Chrome": 'rgba(255, 0, 0, 1)'
     }
 
-    assert browsers[browser.driver_name] == test_page.button_container.element.first._element.value_of_css_property('background-color')  # NOQA: E501
+    # This works because value_of_css_property is gotten from splinter,
+    # which gets it from Selenium
+    actual = test_page.button_container.first._element.value_of_css_property(
+        'background-color')
+    assert browsers[browser.driver_name] == actual
 
 
 def test_input(browser):

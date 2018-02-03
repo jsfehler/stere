@@ -15,7 +15,10 @@ def build_element(desired_strategy, locator, parent_locator=None):
 
 
 class BaseElement(Stere):
-    """Combined with a Strategy to form a Field."""
+    """Combined with a Strategy to form an Element.
+
+    Elements are used by Fields as the source of what finds the DOM element.
+    """
     def __init__(self, strategy, locator, parent_locator=None):
         self.strategy = strategy
         self.locator = locator

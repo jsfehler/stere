@@ -9,9 +9,9 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_page_getattr(browser):
+def test_field_getattr(browser):
     """
-    When I try to access a browser attribute from a Page directly
+    When I try to access an element attribute from a Field directly
     Then the attribute is fetched
     """
     Stere.browser = browser
@@ -19,14 +19,13 @@ def test_page_getattr(browser):
     test_page = dummy.DummyPage()
     test_page.visit()
 
-    expected = 'https://jsfehler.github.io/stere/test_page/test_page.html'
-    # The url attribute belongs to the browser, not Page directly.
-    assert expected == test_page.url
+    # The is_present method belongs to the element, not the Field directly.
+    assert test_page.button.is_present()
 
 
-def test_page_getattr_should_not_exist(browser):
+def test_field_getattr_should_not_exist(browser):
     """
-    When I try to access an attribute that does not exist from a Page directly
+    When I try to access an attribute that does not exist from a Field directly
     Then the attribute is not fetched
     """
     Stere.browser = browser
@@ -35,4 +34,4 @@ def test_page_getattr_should_not_exist(browser):
     test_page.visit()
 
     with pytest.raises(AttributeError):
-        assert test_page.foobar()
+        assert test_page.button.foobar()
