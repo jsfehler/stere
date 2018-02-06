@@ -37,7 +37,7 @@ It can be installed with pip using the following command:
 
 .. code-block:: bash
 
-  `pip install git+git://github.com/jsfehler/stere.git#egg=stere`
+  pip install git+git://github.com/jsfehler/stere.git#egg=stere
 
 
 Setup
