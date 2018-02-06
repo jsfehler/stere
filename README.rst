@@ -29,6 +29,37 @@ Requirements
 Python >= 3.6
 
 
+Installation
+--------------
+
+Stere is currently in a proof-of-concept stage and is not available on pypi.
+It can be installed with pip using the following command: 
+
+.. code-block:: bash
+
+  pip install git+git://github.com/jsfehler/stere.git#egg=stere
+
+
+Setup
+--------
+
+Stere requires a browser (aka driver) to work with.
+This can be any class that ultimately drives automation.
+Pages and Fields inherit their functionality from this browser. 
+
+Here's an example with Splinter:
+
+.. code-block:: python
+  
+  from stere import Stere
+  from splinter import Browser
+
+  Stere.browser = Browser()
+
+
+As long as the base Stere object has the browser set, this passes down to everything else.
+
+
 Basic Usage
 -----------
 
