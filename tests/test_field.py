@@ -1,6 +1,5 @@
 import pytest
 
-from stere import Stere
 from pages import dummy
 
 
@@ -9,12 +8,11 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_field_getattr(browser):
+def test_field_getattr():
     """
     When I try to access an element attribute from a Field directly
     Then the attribute is fetched
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -23,12 +21,11 @@ def test_field_getattr(browser):
     assert test_page.button.is_present()
 
 
-def test_field_getattr_should_not_exist(browser):
+def test_field_getattr_should_not_exist():
     """
     When I try to access an attribute that does not exist from a Field directly
     Then the attribute is not fetched
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()

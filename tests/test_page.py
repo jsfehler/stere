@@ -1,6 +1,5 @@
 import pytest
 
-from stere import Stere
 from pages import dummy
 
 
@@ -9,12 +8,11 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_page_getattr(browser):
+def test_page_getattr():
     """
     When I try to access a browser attribute from a Page directly
     Then the attribute is fetched
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -24,12 +22,11 @@ def test_page_getattr(browser):
     assert expected == test_page.url
 
 
-def test_page_getattr_should_not_exist(browser):
+def test_page_getattr_should_not_exist():
     """
     When I try to access an attribute that does not exist from a Page directly
     Then the attribute is not fetched
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()

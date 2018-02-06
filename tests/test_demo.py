@@ -1,11 +1,10 @@
+import logging
 import time
 
-from stere import Stere
+from selenium.webdriver.remote.remote_connection import LOGGER
+
 from pages import dummy
 
-
-import logging
-from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
@@ -14,7 +13,6 @@ def test_button(browser):
     When a button is clicked
     Then the button's action occurs
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -33,12 +31,11 @@ def test_button(browser):
     assert browsers[browser.driver_name] == actual
 
 
-def test_input(browser):
+def test_input():
     """
     When an input is filled with the text 'Winamp'
     Then the text in the input should be 'Winamp'
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -52,7 +49,6 @@ def test_link(browser):
     When a link is clicked
     Then the link's action occurs
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -65,7 +61,6 @@ def test_link(browser):
 
 
 def test_html_dropdown(browser):
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -79,7 +74,6 @@ def test_html_dropdown(browser):
 
 
 def test_css_dropdown(browser):
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -96,7 +90,6 @@ def test_area_items(browser):
     When an area is created
     Then the items in the area can be accessed with dot notation
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -114,7 +107,6 @@ def test_area_perform(browser):
     When an area is performed
     Then each of the Fields inside it is used
     """
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
@@ -127,8 +119,6 @@ def test_area_perform(browser):
 
 
 def test_repeating_area(browser):
-
-    Stere.browser = browser
 
     test_page = dummy.DummyPage()
     test_page.visit()
