@@ -1,11 +1,6 @@
 Stere
 =====
 
-A Page Object oriented approach to test automation.
-
-Summary
--------
-
 Stere is a DSL on top of your existing automation library.
 No automation abilities are directly built into the project;
 it relies on being hooked into other web automation libraries.
@@ -19,8 +14,7 @@ Page Objects.
 
 3 - Provide a useful syntax for writing maintainable Page Objects.
 
-Out of the box, Stere provides an implementation for
-`Splinter <https://github.com/cobrateam/splinter>`_.
+Although it's designed to work with any library, a default implementation using `Splinter <https://github.com/cobrateam/splinter>`_ is available out of the box.
 
 
 Requirements
@@ -57,7 +51,7 @@ Here's an example with Splinter:
   Stere.browser = Browser()
 
 
-As long as the base Stere object has the browser set, this passes down to everything else.
+As long as the base Stere object has the browser set, the browser's functionality is passed down to everything else.
 
 
 Basic Usage
@@ -84,7 +78,7 @@ A Page Object's fields can be called in a test function like so:
 
 .. code-block:: python
 
-    def test_stuff():
+    def test_all_the_things():
         MyPage().my_input.fill('Hello world')
 
 Documentation
