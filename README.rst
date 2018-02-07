@@ -1,9 +1,9 @@
 Stere
 =====
 
-Stere is a DSL on top of your existing automation library.
-No automation abilities are directly built into the project;
-it relies on being hooked into other web automation libraries.
+Stere is a DSL for writing Page Objects, designed to work on top of your existing automation library.
+No automation abilities are built directly into the project;
+it relies on being hooked into other libraries.
 
 The goals of this project are to:
 
