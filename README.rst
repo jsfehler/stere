@@ -2,8 +2,6 @@ Stere
 =====
 
 Stere is a DSL for writing Page Objects, designed to work on top of your existing automation library.
-No automation abilities are built directly into the project;
-it relies on being hooked into other libraries.
 
 The goals of this project are to:
 
@@ -14,7 +12,7 @@ Page Objects.
 
 3 - Provide a useful syntax for writing maintainable Page Objects.
 
-Although it's designed to work with any library, a default implementation using `Splinter <https://github.com/cobrateam/splinter>`_ is available out of the box.
+No automation abilities are built directly into the project; it completely relies on being hooked into other libraries. However, a default implementation using `Splinter <https://github.com/cobrateam/splinter>`_ is available out of the box.
 
 
 Requirements
