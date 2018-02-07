@@ -1,4 +1,4 @@
-from .fields import Button, Input, Link, Text
+from .fields import Field, Button, Input, Link
 from .dropdown import Dropdown
 
 
@@ -9,13 +9,17 @@ class Area():
         if kwargs.get('items') is not None:
             raise ValueError('"items" is a reserved parameter.')
 
+        self.root = kwargs.get('root')
+
         self.items = {}
         for key, value in kwargs.items():
-            if type(value) not in [Button, Input, Link, Text, Dropdown]:
+            if not isinstance(value, Field):
                 raise ValueError(
                     'Areas must only be initialized with field objects.'
                 )
             self.items[key] = value
+            if self.root is not None and value is not self.root:
+                self.items[key]._element.root = self.root
             setattr(self, key, value)
 
     def perform(self, *args):

@@ -39,9 +39,9 @@ def test_input():
 
     test_page = dummy.DummyPage()
     test_page.visit()
-    test_page.area.input.fill('Winamp')
+    test_page.input_area.input.fill('Winamp')
 
-    assert 'Winamp' == test_page.area.input.element.value
+    assert 'Winamp' == test_page.input_area.input.element.value
 
 
 def test_link(browser):
@@ -93,8 +93,8 @@ def test_area_items(browser):
 
     test_page = dummy.DummyPage()
     test_page.visit()
-    test_page.area.input.fill('Winamp')
-    test_page.area.submit_button.click()
+    test_page.input_area.input.fill('Winamp')
+    test_page.input_area.submit_button.click()
 
     time.sleep(2)
 
@@ -110,12 +110,19 @@ def test_area_perform(browser):
 
     test_page = dummy.DummyPage()
     test_page.visit()
-    test_page.area.perform('Winamp')
+    test_page.input_area.perform('Winamp')
 
     time.sleep(2)
 
     # The result of the perform should land the user on google.ca
     assert 'https://www.google.ca' in browser.url
+
+
+def test_area_with_root(browser):
+    test_page = dummy.DummyPage()
+    test_page.visit()
+
+    test_page.area_with_root.link.click()
 
 
 def test_repeating_area(browser):

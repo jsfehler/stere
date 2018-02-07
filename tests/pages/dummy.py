@@ -29,7 +29,7 @@ class DummyPage(Page):
 
         self.button_container = Root('id', 'test_button_div')
         self.button = Button('id', 'test_button')
-        self.area = Area(
+        self.input_area = Area(
             input=Input('id', 'test_input'),
             submit_button=Button('id', 'test_input_submit')
         )
@@ -52,3 +52,8 @@ class DummyPage(Page):
 
         self.added_container = Field('id', 'added_container')
         self.removed_container = Field('id', 'removed_container')
+
+        self.area_with_root = Area(
+            root=Root('id', 'area_root'),
+            link=Link('xpath', './a')
+        )

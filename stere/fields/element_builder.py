@@ -24,8 +24,14 @@ class BaseElement(Stere):
         self.locator = locator
         self.parent_locator = parent_locator
 
+        # A Field that should be searched for and set as the parent, but only
+        # when .find() is called.
+        self.root = None
+
     def find(self):
-        if self.parent_locator is None:
+        if self.root is None and self.parent_locator is None:
             return self._find_all()
 
+        if self.root:
+            self.parent_locator = self.root.find()
         return self._find_all_in_parent()

@@ -1,10 +1,6 @@
 import copy
 
-from .fields import Button
-from .fields import Input
-from .fields import Link
-from .fields import Root
-from .fields import Text
+from .fields import Field
 
 from .area import Area
 
@@ -21,7 +17,7 @@ class RepeatingArea():
 
         self.items = {}
         for k, v in kwargs.items():
-            if type(v) not in [Root, Button, Input, Link, Text]:
+            if not isinstance(v, Field):
                 raise ValueError(
                     'RepeatingArea arguments can only be Field objects.'
                 )
