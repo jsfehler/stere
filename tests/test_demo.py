@@ -1,7 +1,6 @@
 import logging
 import time
 
-import pytest
 from selenium.webdriver.remote.remote_connection import LOGGER
 
 from pages import dummy
