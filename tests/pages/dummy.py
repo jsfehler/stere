@@ -3,6 +3,7 @@ from stere import Page
 from stere.fields import (
     Area,
     RepeatingArea,
+    Field,
     Button,
     Input,
     Link,
@@ -48,3 +49,6 @@ class DummyPage(Page):
             link=Link('xpath', './/a'),
             text=Text('css', '.test_repeating_area_test')
         )
+
+        self.added_container = Field('id', 'added_container')
+        self.removed_container = Field('id', 'removed_container')

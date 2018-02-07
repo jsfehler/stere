@@ -4,6 +4,30 @@
             function testFunction() {
               document.getElementById("test_button_div").style.backgroundColor = "red";
             }
+
+            function addBox() {
+                setTimeout(function () {
+                    var newDiv = document.createElement('div');
+                    newDiv.id = 'added_container';
+                    newDiv.style.width = '100px';
+                    newDiv.style.height = '100px';
+                    newDiv.style.backgroundColor = "green";
+                    document.getElementById("present_container").appendChild(newDiv);
+                }, 5000);
+            }
+
+            function removeBox() {
+                setTimeout(function () {
+                    var toRemove = document.getElementById("removed_container");
+                    document.getElementById("present_container").removeChild(toRemove);
+                }, 5000);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                addBox();
+                removeBox();
+            }, false);
+
         </script>
         <style>
             #test_button_div {
@@ -124,5 +148,11 @@
                 <div class=test_repeating_area_test>Repeating Area 2</div>
             </div>
         </div>
+
+        <h4> Div will be added after 5 seconds </h4>
+            <div id="present_container">
+                <div id="removed_container"></div>
+            </div>
+
     </body>
 </html>
