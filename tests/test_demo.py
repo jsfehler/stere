@@ -141,7 +141,7 @@ def test_is_present_args():
 
 def test_is_not_present_args():
     """
-    When I send an argument to is_present
+    When I send an argument to is_not_present
     Then it is used by the correct function
     """
     test_page = dummy.DummyPage()
