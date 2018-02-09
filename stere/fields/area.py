@@ -31,13 +31,16 @@ class Area():
         """
         arg_index = 0
         for key, value in self.items.items():
-            if type(value) is Input:
-                value.fill(args[arg_index])
+            result = value.perform(args[arg_index])
+            if result:
                 arg_index += 1
-            elif type(value) is Link:
-                value.click()
-            elif type(value) is Button:
-                value.click()
-            elif type(value) is Dropdown:
-                value.select(args[arg_index])
-                arg_index += 1
+            #if type(value) is Input:
+            #    value.fill(args[arg_index])
+            #    arg_index += 1
+            #elif type(value) is Link:
+            #    value.click()
+            #elif type(value) is Button:
+            #   value.click()
+            #elif type(value) is Dropdown:
+            #    value.select(args[arg_index])
+            #    arg_index += 1
