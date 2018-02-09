@@ -27,6 +27,14 @@ class Field():
         """
         return self._element.find()
 
+    def perform(self, *args, **kwargs):
+        """Will be called by Area.perform()
+
+        Returns:
+            bool: True if the action used an argument, else False
+        """
+        return False
+    
     def find(self):
         """Find the first matching element.
 
