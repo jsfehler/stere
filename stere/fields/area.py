@@ -17,15 +17,17 @@ class Area():
                     'Areas must only be initialized with field objects.'
                 )
             self.items[key] = value
+            # Sets the root for the element, if provided.
             if self.root is not None and value is not self.root:
                 self.items[key]._element.root = self.root
             setattr(self, key, value)
 
     def perform(self, *args):
-        """For every field in the area, sequentially "do the right thing".
+        """For every Field in an Area, sequentially "do the right thing"
+        by calling the Field's perform() method.
 
         Args:
-            args: Array of strings that should be equal to the number of
+            args: Array that should be equal to the number of
                 Fields in the Area that take an argument.
         """
         arg_index = 0
