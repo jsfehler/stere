@@ -1,5 +1,4 @@
-from .fields import Field, Button, Input, Link
-from .dropdown import Dropdown
+from .fields import Field
 
 
 class Area():
@@ -18,26 +17,26 @@ class Area():
                     'Areas must only be initialized with field objects.'
                 )
             self.items[key] = value
+            # Sets the root for the element, if provided.
             if self.root is not None and value is not self.root:
                 self.items[key]._element.root = self.root
             setattr(self, key, value)
 
     def perform(self, *args):
-        """For every field in the area, sequentially "do the right thing".
+        """For every Field in an Area, sequentially "do the right thing"
+        by calling the Field's perform() method.
+
+        Every Field that implements perform() must return True or False.
+        If True, assume the argument has been used. If False,
+        assume the argument is still available.
 
         Args:
-            args: Array of string that should be equal to the number of
-                Input objects in the Area.
+            args: Array that should be equal to the number of
+                Fields in the Area that take an argument.
         """
         arg_index = 0
-        for key, value in self.items.items():
-            if type(value) is Input:
-                value.fill(args[arg_index])
-                arg_index += 1
-            elif type(value) is Link:
-                value.click()
-            elif type(value) is Button:
-                value.click()
-            elif type(value) is Dropdown:
-                value.select(args[arg_index])
+        for field_name, field in self.items.items():
+            result = field.perform(args[arg_index])
+            # If we've run out of arguments, don't increase the index.
+            if result and len(args) < arg_index:
                 arg_index += 1
