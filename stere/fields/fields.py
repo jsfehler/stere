@@ -34,7 +34,7 @@ class Field():
             bool: True if the action used an argument, else False
         """
         return False
-    
+
     def find(self):
         """Find the first matching element.
 
@@ -63,11 +63,19 @@ class Button(Field):
     def click(self):
         self.find().click()
 
+    def perform(self):
+        self.find().click()
+        return False
+
 
 class Input(Field):
     """Convenience Class on top of Field."""
     def fill(self, value):
         self.find().fill(value)
+
+    def perform(self, value):
+        self.find().fill(value)
+        return True
 
 
 class Link(Field):
@@ -79,6 +87,10 @@ class Link(Field):
     def text(self):
         elem = self.find()
         return elem.text
+
+    def perform(self):
+        self.find().click()
+        return False
 
 
 class Root(Field):

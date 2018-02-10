@@ -1,5 +1,4 @@
-from .fields import Field, Button, Input, Link
-from .dropdown import Dropdown
+from .fields import Field
 
 
 class Area():
@@ -26,21 +25,11 @@ class Area():
         """For every field in the area, sequentially "do the right thing".
 
         Args:
-            args: Array of string that should be equal to the number of
-                Input objects in the Area.
+            args: Array of strings that should be equal to the number of
+                Fields in the Area that take an argument.
         """
         arg_index = 0
         for key, value in self.items.items():
             result = value.perform(args[arg_index])
             if result:
                 arg_index += 1
-            #if type(value) is Input:
-            #    value.fill(args[arg_index])
-            #    arg_index += 1
-            #elif type(value) is Link:
-            #    value.click()
-            #elif type(value) is Button:
-            #   value.click()
-            #elif type(value) is Dropdown:
-            #    value.select(args[arg_index])
-            #    arg_index += 1
