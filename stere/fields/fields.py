@@ -27,7 +27,7 @@ class Field():
         """
         return self._element.find()
 
-    def perform(self, *args, **kwargs):
+    def perform(self, value=None):
         """Will be called by Area.perform()
 
         Returns:
@@ -63,7 +63,7 @@ class Button(Field):
     def click(self):
         self.find().click()
 
-    def perform(self):
+    def perform(self, value=None):
         self.find().click()
         return False
 
@@ -73,7 +73,7 @@ class Input(Field):
     def fill(self, value):
         self.find().fill(value)
 
-    def perform(self, value):
+    def perform(self, value=None):
         self.find().fill(value)
         return True
 
@@ -88,7 +88,7 @@ class Link(Field):
         elem = self.find()
         return elem.text
 
-    def perform(self):
+    def perform(self, value=None):
         self.find().click()
         return False
 
