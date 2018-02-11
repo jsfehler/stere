@@ -1,55 +1,24 @@
 Stere
 =====
 
-Stere is a DSL for writing Page Objects, designed to work on top of your existing automation library.
+Stere is a library for writing Page Objects, designed to work on top of your existing automation library.
+
+Design Philosophy
+-----------------
+
+Many implementations of the Page Object model focus on removing the duplication of element locators.
+Stere goes one step further, offering a complete wrapper over the code that drives automation.
 
 The goals of this project are to:
 
-1 - Minimize the amount of implementation code visible in test functions and
-Page Objects.
+1 - Eliminate implementation code in test functions. Tests should read like a set of user actions.
 
-2 - Reduce the need for hand-written helper methods.
+2 - Reduce the need for hand-written helper methods in Page Objects.
 
-3 - Provide a useful syntax for writing maintainable Page Objects.
+3 - Provide a simple pattern for writing maintainable Page Objects.
 
-No automation abilities are built directly into the project; it completely relies on being hooked into other libraries. However, a default implementation using `Splinter <https://github.com/cobrateam/splinter>`_ is available out of the box.
-
-
-Requirements
-------------
-
-Python >= 3.6
-
-
-Installation
---------------
-
-Stere is currently in a proof-of-concept stage and is not available on pypi.
-It can be installed with pip using the following command: 
-
-.. code-block:: bash
-
-  pip install git+git://github.com/jsfehler/stere.git#egg=stere
-
-
-Setup
---------
-
-Stere requires a browser (aka driver) to work with.
-This can be any class that ultimately drives automation.
-Pages and Fields inherit their functionality from this browser. 
-
-Here's an example with Splinter:
-
-.. code-block:: python
-  
-  from stere import Stere
-  from splinter import Browser
-
-  Stere.browser = Browser()
-
-
-As long as the base Stere object has the browser set, the browser's functionality is passed down to everything else.
+No automation abilities are built directly into the project; it completely relies on being hooked into other libraries.
+However, a default implementation using `Splinter <https://github.com/cobrateam/splinter>`_ is available out of the box.
 
 
 Basic Usage
@@ -57,30 +26,75 @@ Basic Usage
 
 Fundementally, a Page Object is just a Python class.
 
-A minimal Stere Page Object should subclass the Page class:
+A minimal Stere Page Object should:
+
+1 - Subclass the Page class
+
+2 - Declare Fields and Areas in the __init__ method
+
+As an example, here's the home page for Wikipedia:
 
 .. code-block:: python
 
     from stere import Page
-    from stere.fields import Input
+    from stere.fields import Area, RepeatingArea, Button, Input, Link, Text
 
-    class MyPage(Page):
+    class WikipediaHome(Page):
         def __init__(self):
-            self.my_input = Input('xpath', '//my_xpath_string')
+            self.search_form = Area(
+                query=Input('id', 'searchInput'),
+                submit=Button('xpath', '//*[@id="search-form"]/fieldset/button')
+            )
 
+            self.other_projects = RepeatingArea(
+                root=Root('xpath', '//*[@class="other-project"]'),
+                title=Link('xpath', '//*[@class="other-project-title"]'),
+                tagline=Text('xpath', '//*[@class="other-project-tagline"]')
+            )
 
-There are 2 types of objects to model a web page: Fields and Areas.
-Fields represent single web elements, Areas represent groups of elements.
+The search form is represented as an Area with 2 Fields inside it.
+An Area represents a unique collection of Fields on the page.
 
-A Page Object's fields can be called in a test function like so:
+The search query and submit button didn't have to be placed inside an Area.
+However, doing so allows you to use Area's perform() method.
+
+The links to other products are represented as a RepeatingArea.
+A RepeatingArea represents a non-unique collection of Fields on the page.
+Using the root argument, RepeatingArea will find all instances of said root,
+then build the appropriate number of Areas with all the other Fields inside.
+
+It's just as valid to declare each of the other products as a separate Area
+one at a time, like so:
 
 .. code-block:: python
 
-    def test_all_the_things():
-        MyPage().my_input.fill('Hello world')
+    self.commons = Area(
+        root=Root('xpath', '//*[@class="other-project"][1]'),
+        title=Link('xpath', '//*[@class="other-project-title"]'),
+        tagline=Text('xpath', '//*[@class="other-project-tagline"]')
+    )
+
+    self.wikivoyage = Area(
+        root=Root('xpath', '//*[@class="other-project"][2]'),
+        title=Link('xpath', '//*[@class="other-project-title"]'),
+        tagline=Text('xpath', '//*[@class="other-project-tagline"]')
+    )
+
+Which style you pick depends entirely on how you want to model the page.
+RepeatingArea does the most good with collections where the number of areas
+can't be predicted, such as inventory lists.
+
+Using a Page Object in a test can be done like so:
+
+.. code-block:: python
+
+    def test_search_wikipedia():
+        WikipediaHome().search_form.perform('kittens')
 
 Documentation
 -------------
+
+`Getting Started <docs/getting_started.rst>`_
 
 `Page <docs/page.rst>`_
 
