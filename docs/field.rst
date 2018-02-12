@@ -1,10 +1,10 @@
 Fields
 ------
 
-Fields represent individual objects on a web page.
-They model general behaviours, not specific HTML elements.
+The Field objects represent individual elements on a web page.
+Conceptually, they represent general behaviours, not specific HTML elements.
 
-The following Fields are available:
+The following Fields are available by default:
 
 - Button: Clickable object.
 - Dropdown: Object with a dropdown menu.
@@ -13,21 +13,30 @@ The following Fields are available:
 - Root: Parent container.
 - Text: Non-interactive text.
 
-Fields take 2 arguments: strategy and locator.
+Fields take 2 arguments: location strategy and locator.
 
-The strategies available by default are:
+.. code-block:: python
 
-- css
-- xpath
-- tag
-- name
-- text
-- id
-- value
+    self.some_text = Text('xpath', '//*[@id="js-link-box-pt"]/small/span')
 
-The locator must be a string that matches the strategy chosen.
 
-Every Field exposes the `find()` and `find_all()` methods. These perform the actual search via Splinter.
+Field.perform()
+~~~~~~~~~~~~~~~
+
+This method is used by the Area class. When Area.perform() is used, it will trigger the perform methods of all its child Fields.
+
+Field.perform() should return a Boolean. If a Field's perform consumes an argument, it should return True. If not, False.
+
+
+Subclassing Field
+~~~~~~~~~~~~~~~~~
+
+Field can be subclassed to suit your own requirements.
+
+If the __init__() method is overwritten, make sure to call super() before your own code.
+
+If your class need specific behaviour when interacting with Areas, it must implement the perform() method.
+
 
 Dropdown
 --------
@@ -45,6 +54,8 @@ This method is called automatically before the select() method.
 If an action is required to prepare the dropdown for usage (such as hovering over a button to open it)
 then this method can be overridden with the desired behaviour.
 
+In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.
+
 .. code-block:: python
 
     from stere.fields import Dropdown
@@ -57,10 +68,28 @@ then this method can be overridden with the desired behaviour.
             self.element.mouse_over()
 
 
+Location Strategies
+-------------------
+
+These represent the way a locator will be searched for.
+
+By default, the strategies available are:
+
+- css
+- xpath
+- tag
+- name
+- text
+- id
+- value
+
+These all use Splinter. If you're using a different automation tool, you must create your strategies. These can override the default strategies. (ie: You can create a custom css strategy to replace the default)
+
+
 Custom Locator Strategies
 -------------------------
 
-Aside from the standard strategies, custom ones can be defined using the `@strategy` decorator.
+Custom strategies can be defined using the `@strategy` decorator on top of a Class.
 
 Any class can be decorated with @strategy, as long as the _find_all and _find_all_in_parent methods are implemented.
 
