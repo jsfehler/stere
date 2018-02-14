@@ -1,6 +1,8 @@
 import logging
+import os
 import time
 
+import pytest
 from selenium.webdriver.remote.remote_connection import LOGGER
 
 from pages import dummy
@@ -20,15 +22,15 @@ def test_button(browser):
 
     # Clicking changes the button's container background colour
     browsers = {
-     "Firefox": 'rgb(255, 0, 0)',
-     "Chrome": 'rgba(255, 0, 0, 1)'
+     "firefox": 'rgb(255, 0, 0)',
+     "chrome": 'rgba(255, 0, 0, 1)'
     }
 
     # This works because value_of_css_property is gotten from splinter,
     # which gets it from Selenium
     actual = test_page.button_container.first._element.value_of_css_property(
         'background-color')
-    assert browsers[browser.driver_name] == actual
+    assert browsers[os.environ["CURRENT_BROWSER_NAME"]] == actual
 
 
 def test_input():
@@ -73,6 +75,8 @@ def test_html_dropdown(browser):
     assert 'search?q=banana' in str.lower(browser.url)
 
 
+# Can't be run on remote
+@pytest.mark.skipif(os.environ["REMOTE_RUN"])
 def test_css_dropdown(browser):
 
     test_page = dummy.DummyPage()
@@ -99,7 +103,7 @@ def test_area_items(browser):
     time.sleep(2)
 
     # The result of the perform should land the user on google.ca
-    assert 'https://www.google.ca' in browser.url
+    assert 'https://www.google.' in browser.url
 
 
 def test_area_perform(browser):
@@ -115,7 +119,7 @@ def test_area_perform(browser):
     time.sleep(2)
 
     # The result of the perform should land the user on google.ca
-    assert 'https://www.google.ca' in browser.url
+    assert 'https://www.google.' in browser.url
 
 
 def test_area_with_root(browser):
