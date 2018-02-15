@@ -1,6 +1,7 @@
 from stere import Page
 
 from stere.fields import (
+    Area,
     RepeatingArea,
     Link,
     Root,
