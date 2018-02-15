@@ -12,14 +12,17 @@ def splinter_driver_kwargs(splinter_webdriver, request):
         version = 'dev'
     else:
         version = '64'
-
-    return {
-         'browserName': os.environ['CURRENT_BROWSER_NAME'],
-         'browser': os.environ['CURRENT_BROWSER_NAME'],
-         'platform': 'Windows 10',
-         'version': version,
-         'tunnel-identifier': os.getenv('X_JOB_NUMBER')
-        }
+    if os.environ['REMOTE_RUN'] == "True":
+        # Sauce Labs settings
+        return {
+             'browserName': os.environ['CURRENT_BROWSER_NAME'],
+             'browser': os.environ['CURRENT_BROWSER_NAME'],
+             'platform': 'Windows 10',
+             'version': version,
+             'tunnel-identifier': os.getenv('X_JOB_NUMBER')
+            }
+    else:
+        return {}
 
 
 @pytest.fixture(scope='function', autouse=True)
