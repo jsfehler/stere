@@ -1,6 +1,7 @@
 from stere import Page
 
 from stere.fields import (
+    Area,
     RepeatingArea,
     Link,
     Root,
@@ -34,6 +35,26 @@ class InvalidDummyPageC(Page):
 
     def __init__(self):
         self.non_field_kwargs = RepeatingArea(
+            root=Root('css', '.test_repeating_area_root'),
+            link="Foobar"
+        )
+
+
+class InvalidDummyPageD(Page):
+    """Represents a page that shouldn't work."""
+
+    def __init__(self):
+        self.non_field_kwargs = Area(
+            root=Root('css', '.test_repeating_area_root'),
+            items=Text('css', '.test_repeating_area_test')
+        )
+
+
+class InvalidDummyPageE(Page):
+    """Represents a page that shouldn't work."""
+
+    def __init__(self):
+        self.non_field_kwargs = Area(
             root=Root('css', '.test_repeating_area_root'),
             link="Foobar"
         )
