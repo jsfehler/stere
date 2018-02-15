@@ -39,7 +39,7 @@ class InvalidDummyPageC(Page):
             link="Foobar"
         )
 
-    
+
 class InvalidDummyPageD(Page):
     """Represents a page that shouldn't work."""
 
@@ -48,8 +48,8 @@ class InvalidDummyPageD(Page):
             root=Root('css', '.test_repeating_area_root'),
             items=Text('css', '.test_repeating_area_test')
         )
-        
-        
+
+
 class InvalidDummyPageE(Page):
     """Represents a page that shouldn't work."""
 
