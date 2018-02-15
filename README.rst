@@ -5,6 +5,11 @@ Stere
      :target: https://pyup.io/repos/github/jsfehler/stere/
      :alt: Updates
 
+.. image:: https://travis-ci.org/jsfehler/stere.svg?branch=master
+    :target: https://travis-ci.org/jsfehler/stere
+    
+    
+
 Stere is a library for writing Page Objects, designed to work on top of your existing automation library.
 
 Design Philosophy
