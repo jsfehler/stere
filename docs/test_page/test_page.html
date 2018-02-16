@@ -23,12 +23,12 @@
                 }, 5000);
             }
 
-            function validateForm() {
-                var form = document.forms["many_area_form"];
-                var first_name = form["first_name"].value + ', ';
-                var last_name = form["last_name"].value + ', ';
-                var email = form["email"].value + ', ';
-                var age = form["age"].value + ', ';
+            function validateForm(form) {
+                inputs = form.getElementsByTagName("input");
+                var first_name = inputs[0].value + ', ';
+                var last_name = inputs[1].value + ', ';
+                var email = inputs[2].value + ', ';
+                var age = inputs[3].value + ', ';
                 var formValues = first_name + last_name + email + age;
                 document.getElementById("many_input_result").innerHTML = formValues;
             }
@@ -115,7 +115,7 @@
         <h4> HTML Many Input </h4>
 
         <div>
-            <form name="many_area_form" onsubmit="validateForm()">
+            <form name="many_area_form">
                 <input type="text" name="a" id="test_input_first_name">
                 <input type="text" name="b" id="test_input_last_name">
                 <input type="text" name="c" id="test_input_email">
@@ -180,6 +180,12 @@
             <div id="present_container">
                 <div id="removed_container"></div>
             </div>
-
+    <script>
+        var form = document.forms["many_area_form"];
+        form.addEventListener("submit", function(event) {
+            validateForm(form);
+            event.preventDefault();
+        });
+    </script>
     </body>
 </html>
