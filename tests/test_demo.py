@@ -91,6 +91,13 @@ def test_css_dropdown(browser):
     assert 'test_page.html#dog' in browser.url
 
 
+def test_dropdown_invalid():
+    test_page = dummy.DummyPage()
+    test_page.visit()
+    test_page.dropdown_area.dropdown.select('Grape')
+    test_page.dropdown_area.submit.click()
+
+
 def test_repeating_area(browser):
 
     test_page = dummy.DummyPage()
