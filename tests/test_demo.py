@@ -98,7 +98,7 @@ def test_dropdown_invalid():
     with pytest.raises(ValueError) as e:
         test_page.dropdown_area.dropdown.select('Grape')
 
-    expected = 'ValueError: Grape was not found in the dropdown.'
+    expected = 'Grape was not found in the dropdown.'
     assert expected == str(e.value)
 
 
