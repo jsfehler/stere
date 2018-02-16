@@ -80,5 +80,5 @@ def test_area_perform_multiple_args():
 
     time.sleep(2)
 
-    expected = 'Fooman, Barson, foobar@binbaz.net, 99, '
+    expected = 'Fooman, Barson, foobar@binbaz.net, 99,'
     assert expected == test_page.many_input_result.text
