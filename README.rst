@@ -10,7 +10,9 @@ Stere
 
 .. image:: https://coveralls.io/repos/github/jsfehler/stere/badge.svg?branch=master
     :target: https://coveralls.io/github/jsfehler/stere?branch=master
-    
+ 
+.. image:: https://saucelabs.com/buildstatus/jsfehler
+    :target: https://saucelabs.com/u/jsfehler
 
 Stere is a library for writing Page Objects, designed to work on top of your existing automation library.
 
