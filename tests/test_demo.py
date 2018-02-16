@@ -91,46 +91,6 @@ def test_css_dropdown(browser):
     assert 'test_page.html#dog' in browser.url
 
 
-def test_area_items(browser):
-    """
-    When an area is created
-    Then the items in the area can be accessed with dot notation
-    """
-
-    test_page = dummy.DummyPage()
-    test_page.visit()
-    test_page.input_area.input.fill('Winamp')
-    test_page.input_area.submit_button.click()
-
-    time.sleep(2)
-
-    # The result of the perform should land the user on google.ca
-    assert 'https://www.google.' in browser.url
-
-
-def test_area_perform(browser):
-    """
-    When an area is performed
-    Then each of the Fields inside it is used
-    """
-
-    test_page = dummy.DummyPage()
-    test_page.visit()
-    test_page.input_area.perform('Winamp')
-
-    time.sleep(2)
-
-    # The result of the perform should land the user on google.ca
-    assert 'https://www.google.' in browser.url
-
-
-def test_area_with_root(browser):
-    test_page = dummy.DummyPage()
-    test_page.visit()
-
-    test_page.area_with_root.link.click()
-
-
 def test_repeating_area(browser):
 
     test_page = dummy.DummyPage()
