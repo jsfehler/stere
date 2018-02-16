@@ -91,6 +91,17 @@ def test_css_dropdown(browser):
     assert 'test_page.html#dog' in browser.url
 
 
+def test_dropdown_invalid():
+    test_page = dummy.DummyPage()
+    test_page.visit()
+
+    with pytest.raises(ValueError) as e:
+        test_page.dropdown_area.dropdown.select('Grape')
+
+    expected = 'Grape was not found in the dropdown.'
+    assert expected == str(e.value)
+
+
 def test_repeating_area(browser):
 
     test_page = dummy.DummyPage()
