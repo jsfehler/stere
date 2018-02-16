@@ -38,5 +38,5 @@ class Area():
         for field_name, field in self.items.items():
             result = field.perform(args[arg_index])
             # If we've run out of arguments, don't increase the index.
-            if result and len(args) < arg_index:
+            if result and len(args) > (arg_index + 1):
                 arg_index += 1
