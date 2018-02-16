@@ -57,3 +57,12 @@ class DummyPage(Page):
             root=Root('id', 'area_root'),
             link=Link('xpath', './a')
         )
+
+        self.many_input_area = Area(
+            first_name=Input('id', 'test_input_first_name'),
+            last_name=Input('id', 'test_input_last_name'),
+            email=Input('id', 'test_input_email'),
+            age=Input('id', 'test_input_age'),
+            submit=Button('id', 'test_many_input_submit')
+        )
+        self.many_input_result = Text('id', 'many_input_result')

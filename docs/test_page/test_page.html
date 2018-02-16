@@ -23,6 +23,16 @@
                 }, 5000);
             }
 
+            function validateForm() {
+                var form = document.forms["many_area_form"];
+                var first_name = form["first_name"].value + ', ';
+                var last_name = form["last_name"].value + ', ';
+                var email = form["email"].value + ', ';
+                var age = form["age"].value + ', ';
+                var formValues = first_name + last_name + email + age;
+                document.getElementById("many_input_result").innerHTML = formValues;
+            }
+
             document.addEventListener('DOMContentLoaded', function() {
                 addBox();
                 removeBox();
@@ -101,6 +111,19 @@
                 <input type="submit" id="test_input_submit">
             </form>
         </div>
+
+        <h4> HTML Many Input </h4>
+
+        <div>
+            <form name="many_area_form" onsubmit="validateForm()">
+                <input type="text" name="a" id="test_input_first_name">
+                <input type="text" name="b" id="test_input_last_name">
+                <input type="text" name="c" id="test_input_email">
+                <input type="text" name="d" id="test_input_age">
+                <input type="submit" id="test_many_input_submit">
+            </form>
+        </div>
+        <div id="many_input_result"></div>
 
         <h4> Link </h4>
         <div>
