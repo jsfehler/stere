@@ -1,7 +1,7 @@
 from .fields import Field
 
 
-class Area():
+class Area:
     """A collection of unique fields."""
 
     def __init__(self, **kwargs):

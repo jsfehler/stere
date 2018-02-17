@@ -5,7 +5,7 @@ from .fields import Field
 from .area import Area
 
 
-class RepeatingArea():
+class RepeatingArea:
     def __init__(self, **kwargs):
         if kwargs.get('root') is None:
             raise ValueError('RepeatingArea requires a Root Field.')

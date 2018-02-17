@@ -1,7 +1,7 @@
 from .strategy import strategy
 
 
-class SplinterBase():
+class SplinterBase:
     def is_present(self, *args, **kwargs):
         func = getattr(self.browser, f'is_element_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)

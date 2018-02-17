@@ -1,7 +1,7 @@
 from .element_builder import build_element
 
 
-class Field():
+class Field:
     """Base class for objects on a page."""
     def __init__(self, strategy, locator, *args, **kwargs):
         self.strategy = strategy
