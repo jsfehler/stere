@@ -1,11 +1,21 @@
 import pytest
 
-from pages import dummy
+from stere.fields import Field
 
+from pages import dummy
 
 import logging
 from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
+
+
+def test_field_empty_perform():
+    """
+    The default implementation of Field.perform() should return False.
+    """
+    field = Field('id', 'foobar')
+
+    assert field.perform() is False
 
 
 def test_field_getattr():

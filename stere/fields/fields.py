@@ -60,9 +60,6 @@ class Field:
 
 class Button(Field):
     """Convenience Class on top of Field."""
-    def click(self):
-        self.find().click()
-
     def perform(self, value=None):
         self.find().click()
         return False
@@ -70,9 +67,6 @@ class Button(Field):
 
 class Input(Field):
     """Convenience Class on top of Field."""
-    def fill(self, value):
-        self.find().fill(value)
-
     def perform(self, value=None):
         self.find().fill(value)
         return True
@@ -80,9 +74,6 @@ class Input(Field):
 
 class Link(Field):
     """Convenience Class on top of Field."""
-    def click(self):
-        self.find().click()
-
     @property
     def text(self):
         elem = self.find()
