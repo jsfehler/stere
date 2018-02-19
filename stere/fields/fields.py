@@ -35,6 +35,11 @@ class Field:
         """
         return False
 
+    def includes(self, value):
+        for item in self.element:
+            if item.value == value:
+                return item
+
     def find(self):
         """Find the first matching element.
 

@@ -21,8 +21,10 @@ class RepeatingArea:
                 raise ValueError(
                     'RepeatingArea arguments can only be Field objects.'
                 )
-            if k is not "root":
+            if k is not 'root':
                 self.items[k] = v
+                # Field (in plural) can be accessed directly.
+                setattr(self, f'{k}s', v)
 
     @property
     def areas(self):

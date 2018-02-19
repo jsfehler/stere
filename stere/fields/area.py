@@ -20,6 +20,8 @@ class Area:
             # Sets the root for the element, if provided.
             if self.root is not None and value is not self.root:
                 self.items[key]._element.root = self.root
+
+            # Field can be called directly.
             setattr(self, key, value)
 
     def perform(self, *args):
