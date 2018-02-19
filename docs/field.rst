@@ -20,12 +20,23 @@ Fields take 2 arguments: location strategy and locator.
     self.some_text = Text('xpath', '//*[@id="js-link-box-pt"]/small/span')
 
 
-Field.perform()
-~~~~~~~~~~~~~~~
+Field.perform(value)
+~~~~~~~~~~~~~~~~~~~~
 
-This method is used by the Area class. When Area.perform() is used, it will trigger the perform methods of all its child Fields.
+This method is used by the Area class. When Area.perform() is called, it will trigger the perform methods of all its child Fields.
 
 Field.perform() should return a Boolean. If a Field's perform consumes an argument, it should return True. If not, False.
+
+
+Field.includes(value)
+~~~~~~~~~~~~~~~~~~~~~
+
+Will search every element found by the Field for a value property that matches the given value.
+
+Useful for when you have non-unique elements and know a value is in one of the elements, but don't know which one. 
+
+.. code-block:: python
+    item = MyPage().inventory_items.includes("Kittens").click()
 
 
 Subclassing Field
