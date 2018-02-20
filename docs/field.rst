@@ -36,6 +36,7 @@ Will search every element found by the Field for a value property that matches t
 Useful for when you have non-unique elements and know a value is in one of the elements, but don't know which one. 
 
 .. code-block:: python
+
     item = MyPage().inventory_items.includes("Kittens").click()
 
 
