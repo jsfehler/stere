@@ -100,24 +100,3 @@ def test_dropdown_invalid():
 
     expected = 'Grape was not found in the dropdown.'
     assert expected == str(e.value)
-
-
-def test_repeating_area(browser):
-
-    test_page = dummy.DummyPage()
-    test_page.visit()
-
-    listings = test_page.repeating_area.areas
-    assert listings[0].link.text == "Repeating Link 1"
-    assert listings[1].link.text == "Repeating Link 2"
-
-
-def test_repeating_area_includes(browser):
-        test_page = dummy.DummyPage()
-        test_page.visit()
-
-        correct_element = test_page.repeating_area.links.includes(
-            "Repeating Link 1"
-        )
-
-        assert correct_element.value == "Repeating Link 1"
