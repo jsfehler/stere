@@ -35,8 +35,8 @@ class RepeatingArea:
         all_roots = self.root.find()
         for item in all_roots:
             copy_items = copy.deepcopy(self.items)
-            for key, value in copy_items.items():
-                copy_items[key]._element.parent_locator = item
+            for field_name in copy_items.keys():
+                copy_items[field_name]._element.parent_locator = item
 
             new_area = Area(**copy_items)
             created_areas.append(new_area)
