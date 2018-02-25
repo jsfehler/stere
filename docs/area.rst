@@ -17,7 +17,8 @@ Each Field must be unique on the Page and only present in one Area.
 
 .. code-block:: python
 
-    from stere.fields import Area, Input
+    from stere.areas import Area
+    from stere.fields import Input
 
     class MyPage():
         def __init__(self):
@@ -47,7 +48,8 @@ The perform method will "Do the right thing" sequentially for every Field inside
 
 .. code-block:: python
 
-    from stere.fields import Area, Input
+    from stere.areas import Area
+    from stere.fields import Input
 
     class MyPage():
         def __init__(self):
@@ -72,7 +74,8 @@ The other Fields will use the Root as a parent.
 
 .. code-block:: python
 
-    from stere.fields import RepeatingArea, Root, Input
+    from stere.areas import RepeatingArea
+    from stere.fields import Root, Input
 
     class MyPage():
         def __init__(self):
