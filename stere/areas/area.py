@@ -1,4 +1,4 @@
-from .fields import Field
+from ..fields import Field
 
 
 class Area:

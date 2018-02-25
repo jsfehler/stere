@@ -1,6 +1,6 @@
 import copy
 
-from .fields import Field
+from ..fields import Field
 
 from .area import Area
 

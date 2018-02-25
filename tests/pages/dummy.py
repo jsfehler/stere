@@ -1,8 +1,7 @@
 from stere import Page
 
+from stere.areas import Area, RepeatingArea
 from stere.fields import (
-    Area,
-    RepeatingArea,
     Field,
     Button,
     Input,
