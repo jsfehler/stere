@@ -1,4 +1,4 @@
-from .fields import Button
+from .splinter_fields import Button
 
 
 class Dropdown(Button):
