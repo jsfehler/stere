@@ -37,7 +37,7 @@ class Area:
                 Fields in the Area that take an argument.
         """
         arg_index = 0
-        for field_name, field in self.items.items():
+        for field in self.items.values():
             result = field.perform(args[arg_index])
             # If we've run out of arguments, don't increase the index.
             if result and len(args) > (arg_index + 1):
