@@ -53,7 +53,8 @@ As an example, here's the home page for Wikipedia:
 .. code-block:: python
 
     from stere import Page
-    from stere.fields import Area, RepeatingArea, Button, Input, Link, Text
+    from stere.areas import Area, RepeatingArea
+    from stere.fields import Button, Input, Link, Text
 
     class WikipediaHome(Page):
         def __init__(self):
