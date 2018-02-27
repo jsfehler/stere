@@ -8,15 +8,18 @@ from stere import Stere
 @pytest.fixture(scope='session')
 def splinter_driver_kwargs(splinter_webdriver, request):
     """Webdriver kwargs."""
-    if os.environ['CURRENT_BROWSER_NAME'] == 'firefox':
+    browser_name = os.environ['CURRENT_BROWSER_NAME']
+
+    if browser_name == 'firefox':
         version = 'dev'
     else:
         version = '64'
+
     if os.environ['REMOTE_RUN'] == "True":
         # Sauce Labs settings
         return {
-             'browserName': os.environ['CURRENT_BROWSER_NAME'],
-             'browser': os.environ['CURRENT_BROWSER_NAME'],
+             'browserName': browser_name,
+             'browser': browser_name,
              'platform': 'Windows 10',
              'version': version,
              'tunnel-identifier': os.getenv('X_JOB_NUMBER')
