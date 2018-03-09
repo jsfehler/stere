@@ -23,21 +23,26 @@ Fields take 2 arguments: location strategy and locator.
 Field.perform(value)
 ~~~~~~~~~~~~~~~~~~~~
 
-This method is used by the Area class. When Area.perform() is called, it will trigger the perform methods of all its child Fields.
+Used by the Area class. When Area.perform() is called, it will trigger the .perform() methods of all its child Fields.
 
-Field.perform() should return a Boolean. If a Field's perform consumes an argument, it should return True. If not, False.
+It should implement a standard action taken by the user. For example, Button.perform() will result in a click.
+
+The base Field.perform() does nothing, but can be extended when creating a custom Field.
+
+When creating a custom Field, implementations of .perform() must return a Boolean. If the Field's perform consumes an argument, it should return True. If not, False.
 
 
 Field.includes(value)
 ~~~~~~~~~~~~~~~~~~~~~
 
 Will search every element found by the Field for a value property that matches the given value.
+If an element with a matching value is found, it's then returned.
 
 Useful for when you have non-unique elements and know a value is in one of the elements, but don't know which one. 
 
 .. code-block:: python
 
-    item = MyPage().inventory_items.includes("Kittens").click()
+    PetStore().inventory_list.includes("Kittens").click()
 
 
 Subclassing Field
@@ -116,6 +121,12 @@ It wraps Splinter's find_by_xpath method to simplify the locator required on the
 
     @strategy('data-test-id')
     class FindByDataTestId():
+        def is_present(self, *args, **kwargs):
+            return self.browser.is_element_present_by_xpath(f'.//*[@data-automation="{self.locator}"]')
+
+        def is_not_present(self, *args, **kwargs):
+            return self.browser.is_element_not_present_by_xpath(f'.//*[@data-automation="{self.locator}"]')
+
         def _find_all(self):
             """Find from page root."""
             return self.browser.find_by_xpath(f'.//*[@data-test-id="{self.locator}"]')
