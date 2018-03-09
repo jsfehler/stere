@@ -122,10 +122,10 @@ It wraps Splinter's find_by_xpath method to simplify the locator required on the
     @strategy('data-test-id')
     class FindByDataTestId():
         def is_present(self, *args, **kwargs):
-            return self.browser.is_element_present_by_xpath(f'.//*[@data-automation="{self.locator}"]')
+            return self.browser.is_element_present_by_xpath(f'.//*[@data-test-id="{self.locator}"]')
 
         def is_not_present(self, *args, **kwargs):
-            return self.browser.is_element_not_present_by_xpath(f'.//*[@data-automation="{self.locator}"]')
+            return self.browser.is_element_not_present_by_xpath(f'.//*[@data-test-id="{self.locator}"]')
 
         def _find_all(self):
             """Find from page root."""
