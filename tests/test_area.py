@@ -4,7 +4,7 @@ import time
 import pytest
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-from pages import dummy, dummy_invalid
+from pages import dummy_invalid
 
 LOGGER.setLevel(logging.WARNING)
 
@@ -27,20 +27,17 @@ def test_area_non_field_kwarg():
     assert str(e.value) == expected_message
 
 
-def test_area_with_root(browser):
-    test_page = dummy.DummyPage()
+def test_area_with_root(test_page):
     test_page.visit()
 
     test_page.area_with_root.link.click()
 
 
-def test_area_items(browser):
+def test_area_items(browser, test_page):
     """
     When an area is created
     Then the items in the area can be accessed with dot notation
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
     test_page.input_area.input.fill('Winamp')
     test_page.input_area.submit_button.click()
@@ -51,13 +48,11 @@ def test_area_items(browser):
     assert 'https://www.google.' in browser.url
 
 
-def test_area_perform(browser):
+def test_area_perform(browser, test_page):
     """
     When an area is performed
     Then each of the Fields inside it is used
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
     test_page.input_area.perform('Winamp')
 
@@ -67,9 +62,7 @@ def test_area_perform(browser):
     assert 'https://www.google.' in browser.url
 
 
-def test_area_perform_multiple_args():
-
-    test_page = dummy.DummyPage()
+def test_area_perform_multiple_args(test_page):
     test_page.visit()
     test_page.many_input_area.perform(
         'Fooman',

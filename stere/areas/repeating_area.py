@@ -41,3 +41,18 @@ class RepeatingArea:
             new_area = Area(**copy_items)
             created_areas.append(new_area)
         return created_areas
+
+    def area_with(self, field_name, field_value):
+        """For every Area found, check if the Field matching field_name has
+        field_value. If so, return the Area.
+
+        Returns:
+            Area
+        """
+        for area in self.areas:
+            field = getattr(area, field_name)
+
+            if field.value == field_value:
+                return area
+
+        raise ValueError(f'Could not find {field_value} in any {field_name}.')

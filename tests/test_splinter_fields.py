@@ -5,18 +5,14 @@ import time
 import pytest
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-from pages import dummy
-
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_button(browser):
+def test_button(browser, test_page):
     """
     When a button is clicked
     Then the button's action occurs
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
     test_page.button.click()
 
@@ -33,26 +29,22 @@ def test_button(browser):
     assert browsers[os.environ["CURRENT_BROWSER_NAME"]] == actual
 
 
-def test_input():
+def test_input(test_page):
     """
     When an input is filled with the text 'Winamp'
     Then the text in the input should be 'Winamp'
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
     test_page.input_area.input.fill('Winamp')
 
     assert 'Winamp' == test_page.input_area.input.element.value
 
 
-def test_link(browser):
+def test_link(browser, test_page):
     """
     When a link is clicked
     Then the link's action occurs
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
     test_page.link.click()
 
@@ -62,9 +54,7 @@ def test_link(browser):
     assert 'https://www.google.ca' in browser.url
 
 
-def test_html_dropdown(browser):
-
-    test_page = dummy.DummyPage()
+def test_html_dropdown(browser, test_page):
     test_page.visit()
     test_page.dropdown_area.dropdown.select('Banana')
     test_page.dropdown_area.submit.click()
@@ -76,12 +66,11 @@ def test_html_dropdown(browser):
 
 
 @pytest.mark.skipif(os.environ["REMOTE_RUN"])
-def test_css_dropdown(browser):
+def test_css_dropdown(browser, test_page):
     # Can't be run on Remote Firefox. mouse_over isn't supported.
     # BUG: Supported in Remote Chrome, but:
     # https://github.com/cobrateam/splinter/pull/423
 
-    test_page = dummy.DummyPage()
     test_page.visit()
     test_page.css_dropdown.select('Dog')
 
@@ -91,8 +80,7 @@ def test_css_dropdown(browser):
     assert 'test_page.html#dog' in browser.url
 
 
-def test_dropdown_invalid():
-    test_page = dummy.DummyPage()
+def test_dropdown_invalid(test_page):
     test_page.visit()
 
     with pytest.raises(ValueError) as e:

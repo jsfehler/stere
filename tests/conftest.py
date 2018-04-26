@@ -4,6 +4,8 @@ import pytest
 
 from stere import Stere
 
+from pages import dummy
+
 
 @pytest.fixture(scope='session')
 def splinter_driver_kwargs(splinter_webdriver, request):
@@ -28,3 +30,8 @@ def splinter_driver_kwargs(splinter_webdriver, request):
 @pytest.fixture(scope='function', autouse=True)
 def setup_stere(browser):
     Stere.browser = browser
+
+
+@pytest.fixture(scope='function')
+def test_page():
+    return dummy.DummyPage()

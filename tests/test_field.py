@@ -2,7 +2,6 @@ import pytest
 
 from stere.fields import Field
 
-from pages import dummy
 
 import logging
 from selenium.webdriver.remote.remote_connection import LOGGER
@@ -18,26 +17,22 @@ def test_field_empty_perform():
     assert field.perform() is False
 
 
-def test_field_getattr():
+def test_field_getattr(test_page):
     """
     When I try to access an element attribute from a Field directly
     Then the attribute is fetched
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
 
     # The is_present method belongs to the element, not the Field directly.
     assert test_page.button.is_present()
 
 
-def test_field_getattr_should_not_exist():
+def test_field_getattr_should_not_exist(test_page):
     """
     When I try to access an attribute that does not exist from a Field directly
     Then the attribute is not fetched
     """
-
-    test_page = dummy.DummyPage()
     test_page.visit()
 
     with pytest.raises(AttributeError):
