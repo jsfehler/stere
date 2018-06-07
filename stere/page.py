@@ -11,9 +11,10 @@ class Page(BrowserEnabled):
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the browser.
         """
+
         return getattr(self.browser, val)
 
-    def visit(self):
-        """Opens the page in the browser, based on the url attribute.
+    def navigate(self):
+        """Opens the page in the browser, based on the page_url attribute.
         """
-        self.browser.visit(self.url)
+        return getattr(self.browser, self.url_navigator)(self.page_url)

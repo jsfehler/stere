@@ -13,7 +13,7 @@ def test_button(browser, test_page):
     When a button is clicked
     Then the button's action occurs
     """
-    test_page.visit()
+    test_page.navigate()
     test_page.button.click()
 
     # Clicking changes the button's container background colour
@@ -34,7 +34,7 @@ def test_input(test_page):
     When an input is filled with the text 'Winamp'
     Then the text in the input should be 'Winamp'
     """
-    test_page.visit()
+    test_page.navigate()
     test_page.input_area.input.fill('Winamp')
 
     assert 'Winamp' == test_page.input_area.input.element.value
@@ -45,7 +45,7 @@ def test_link(browser, test_page):
     When a link is clicked
     Then the link's action occurs
     """
-    test_page.visit()
+    test_page.navigate()
     test_page.link.click()
 
     time.sleep(2)
@@ -55,7 +55,7 @@ def test_link(browser, test_page):
 
 
 def test_html_dropdown(browser, test_page):
-    test_page.visit()
+    test_page.navigate()
     test_page.dropdown_area.dropdown.select('Banana')
     test_page.dropdown_area.submit.click()
 
@@ -71,7 +71,7 @@ def test_css_dropdown(browser, test_page):
     # BUG: Supported in Remote Chrome, but:
     # https://github.com/cobrateam/splinter/pull/423
 
-    test_page.visit()
+    test_page.navigate()
     test_page.css_dropdown.select('Dog')
 
     time.sleep(2)
@@ -81,7 +81,7 @@ def test_css_dropdown(browser, test_page):
 
 
 def test_dropdown_invalid(test_page):
-    test_page.visit()
+    test_page.navigate()
 
     with pytest.raises(ValueError) as e:
         test_page.dropdown_area.dropdown.select('Grape')

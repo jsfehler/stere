@@ -33,6 +33,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
 @pytest.fixture(scope='function', autouse=True)
 def setup_stere(browser):
     Stere.browser = browser
+    Stere.url_navigator = "visit"
 
 
 @pytest.fixture(scope='function')
