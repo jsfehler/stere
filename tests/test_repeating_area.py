@@ -36,7 +36,7 @@ def test_non_field_kwarg():
 
 
 def test_repeating_area(test_page):
-    test_page.visit()
+    test_page.navigate()
 
     listings = test_page.repeating_area.areas
     assert listings[0].link.text == "Repeating Link 1"
@@ -44,7 +44,7 @@ def test_repeating_area(test_page):
 
 
 def test_repeating_area_includes(test_page):
-        test_page.visit()
+        test_page.navigate()
 
         correct_element = test_page.repeating_area.links.includes(
             "Repeating Link 1"
@@ -54,7 +54,7 @@ def test_repeating_area_includes(test_page):
 
 
 def test_repeating_area_area_with(test_page):
-        test_page.visit()
+        test_page.navigate()
 
         found_area = test_page.repeating_area.area_with(
             'link', 'Repeating Link 2'
@@ -64,7 +64,7 @@ def test_repeating_area_area_with(test_page):
 
 
 def test_repeating_area_area_with_invalid_value(test_page):
-        test_page.visit()
+        test_page.navigate()
 
         with pytest.raises(ValueError) as e:
             test_page.repeating_area.area_with('link', 'Repeating Link 3')
@@ -73,7 +73,7 @@ def test_repeating_area_area_with_invalid_value(test_page):
 
 
 def test_repeating_area_area_with_invalid_field_name(test_page):
-        test_page.visit()
+        test_page.navigate()
 
         with pytest.raises(AttributeError) as e:
             test_page.repeating_area.area_with('lunk', 'Repeating Link 2')

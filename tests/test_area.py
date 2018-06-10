@@ -28,7 +28,7 @@ def test_area_non_field_kwarg():
 
 
 def test_area_with_root(test_page):
-    test_page.visit()
+    test_page.navigate()
 
     test_page.area_with_root.link.click()
 
@@ -38,7 +38,7 @@ def test_area_items(browser, test_page):
     When an area is created
     Then the items in the area can be accessed with dot notation
     """
-    test_page.visit()
+    test_page.navigate()
     test_page.input_area.input.fill('Winamp')
     test_page.input_area.submit_button.click()
 
@@ -53,7 +53,7 @@ def test_area_perform(browser, test_page):
     When an area is performed
     Then each of the Fields inside it is used
     """
-    test_page.visit()
+    test_page.navigate()
     test_page.input_area.perform('Winamp')
 
     time.sleep(2)
@@ -63,7 +63,7 @@ def test_area_perform(browser, test_page):
 
 
 def test_area_perform_multiple_args(test_page):
-    test_page.visit()
+    test_page.navigate()
     test_page.many_input_area.perform(
         'Fooman',
         'Barson',
