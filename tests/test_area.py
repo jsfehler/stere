@@ -75,3 +75,18 @@ def test_area_perform_multiple_args(test_page):
 
     expected = 'Fooman, Barson, foobar@binbaz.net, 99,'
     assert expected == test_page.many_input_result.text
+
+
+def test_area_set_workflow(test_page):
+    test_page.many_input_area.workflow('Foobar')
+    assert 'Foobar' == test_page.many_input_area._workflow
+
+
+def test_area_use_workflow(test_page):
+    test_page.navigate()
+    test_page.many_input_area.workflow('workflow_test').perform('Fooman')
+
+    time.sleep(2)
+
+    expected = 'Fooman, , , ,'
+    assert expected == test_page.many_input_result.text

@@ -2,11 +2,19 @@ from .element_builder import build_element
 
 
 class Field:
-    """Base class for objects on a page."""
+    """Base class for objects on a page.
+
+    Arguments:
+        strategy (str):
+        locator (str):
+        workflows (list):
+    """
     def __init__(self, strategy, locator, *args, **kwargs):
         self.strategy = strategy
         self.locator = locator
         self._element = build_element(strategy, locator)
+
+        self.workflows = kwargs.get('workflows') or []
 
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the element.
