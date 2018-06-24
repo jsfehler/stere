@@ -80,9 +80,28 @@ The other Fields will use the Root as a parent.
     class MyPage():
         def __init__(self):
             self.my_repeating_area = RepeatingArea(
-                my_root=Root('xpath', '//my_xpath_string'),
+                root=Root('xpath', '//my_xpath_string'),
                 my_input=Input('xpath', '//my_xpath_string')
             )
+
+
+RepeatingArea().area_with()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Takes two arguments: A Field's name and an expected value.
+Searches the RepeatingArea for a single Area where the Field's value matches the expected value and then returns the entire Area object.
+
+.. code-block:: python
+
+    class Inventory():
+        def __init__(self):
+            self.items = RepeatingArea(
+                root=Root('xpath', '//my_xpath_string'),
+                description=Text('xpath', '//my_xpath_string')
+            )
+
+    def test_stuff():
+        found_area = MyPage().items.area_with("description", "Bananas")
 
 
 RepeatingArea().areas
