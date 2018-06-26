@@ -26,6 +26,10 @@ class Field:
         try:
             return getattr(element, val)
         except AttributeError:
+            # Allows deepcopy not to get into infinite recursion.
+            if val in ['__deepcopy__', '__getstate__']:
+                raise AttributeError
+
             # Try getting the attribute from the found element.
             return getattr(element.find(), val)
 
