@@ -118,3 +118,7 @@ Documentation
 `Field <docs/field.rst>`_
 
 `Area <docs/area.rst>`_
+
+`Workflows <docs/workflows.rst>`_
+
+`Best Practices <docs/best_practices.rst>`_
