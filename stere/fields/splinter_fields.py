@@ -11,6 +11,29 @@ class Button(Field):
         return False
 
 
+class Checkbox(Button):
+    """Class with specific methods for handling checkboxes."""
+    def set_to(self, state):
+        """Set a checkbox to the desired state.
+
+        Args:
+            state (bool): True for check, False for uncheck
+        """
+        if state:
+            self.check()
+        else:
+            self.uncheck()
+
+    def toggle(self):
+        """If the checkbox is checked, uncheck it.
+        If the checkbox is unchecked, check it.
+        """
+        if self.checked():
+            self.uncheck()
+        else:
+            self.check()
+
+
 class Input(Field):
     """Convenience Class on top of Field.
 

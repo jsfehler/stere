@@ -4,6 +4,7 @@ from stere.areas import Area, RepeatingArea
 from stere.fields import (
     Field,
     Button,
+    Checkbox,
     Input,
     Link,
     Root,
@@ -67,3 +68,5 @@ class DummyPage(Page):
                           workflows=['workflow_test'])
         )
         self.many_input_result = Text('id', 'many_input_result')
+
+        self.checkbox = Checkbox('id', 'test_checkbox')
