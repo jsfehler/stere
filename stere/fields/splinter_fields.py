@@ -1,4 +1,4 @@
-from .field import Field
+from .field import Field, use_before, use_after
 
 
 class Button(Field):
@@ -6,6 +6,8 @@ class Button(Field):
 
     Uses Splinter's click method.
     """
+    @use_after
+    @use_before
     def perform(self, value=None):
         self.find().click()
         return False
@@ -16,6 +18,8 @@ class Input(Field):
 
     Uses Splinter's input method.
     """
+    @use_after
+    @use_before
     def perform(self, value=None):
         self.find().fill(value)
         return True
@@ -26,6 +30,8 @@ class Link(Field):
 
     Uses Splinter's click method.
     """
+    @use_after
+    @use_before
     def perform(self, value=None):
         self.find().click()
         return False
