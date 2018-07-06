@@ -1,6 +1,20 @@
 from .element_builder import build_element
 
 
+def use_before(func, *args, **kwargs):
+    def wrapper(obj, *inner_args, **inner_kwargs):
+        obj.before()
+        func(obj, inner_args, inner_kwargs)
+    return wrapper
+
+
+def use_after(func, *args, **kwargs):
+    def wrapper(obj, *inner_args, **inner_kwargs):
+        func(obj, *inner_args, **inner_kwargs)
+        obj.after()
+    return wrapper
+
+
 class Field:
     """Base class for objects on a page.
 
@@ -39,6 +53,18 @@ class Field:
         """
         return self._element.find()
 
+    def before(self):
+        """Called before any function wrapped with @use_before is called.
+        """
+        pass
+    
+    def after(self):
+        """Called after any function wrapped with @use_after is called.
+        """
+        pass
+    
+    @use_after
+    @use_before
     def perform(self, value=None):
         """Will be called by Area.perform()
 
