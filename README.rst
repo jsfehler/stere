@@ -10,10 +10,10 @@ Stere
 
 .. image:: https://coveralls.io/repos/github/jsfehler/stere/badge.svg?branch=master
     :target: https://coveralls.io/github/jsfehler/stere?branch=master
- 
+
 .. image:: https://api.codacy.com/project/badge/Grade/e791ab09e14c4483943a26a2fd180577
-    :target: https://www.codacy.com/app/joshua-fehler_2/stere?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jsfehler/stere&amp;utm_campaign=Badge_Grade 
- 
+    :target: https://www.codacy.com/app/joshua-fehler_2/stere?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jsfehler/stere&amp;utm_campaign=Badge_Grade
+
 .. image:: https://saucelabs.com/buildstatus/jsfehler
     :target: https://saucelabs.com/u/jsfehler
 
@@ -111,14 +111,4 @@ Using a Page Object in a test can be done like so:
 Documentation
 -------------
 
-`Getting Started <docs/getting_started.rst>`_
-
-`Page <docs/page.rst>`_
-
-`Field <docs/field.rst>`_
-
-`Area <docs/area.rst>`_
-
-`Workflows <docs/workflows.rst>`_
-
-`Best Practices <docs/best_practices.rst>`_
+https://stere.readthedocs.io/en/latest/
