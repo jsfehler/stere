@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Areas &mdash; Stere 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Stere 0.0.1 documentation" href="index.html"/>
+        <link rel="next" title="Workflows" href="workflows.html"/>
+        <link rel="prev" title="Fields" href="field.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Stere
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="page.html">Pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="field.html">Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="field.html#dropdown">Dropdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="field.html#location-strategies">Location Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="field.html#custom-locator-strategies">Custom Locator Strategies</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Areas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#area">Area()</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#area-perform">Area.perform()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#repeatingarea">RepeatingArea()</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#repeatingarea-area-with">RepeatingArea().area_with()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#repeatingarea-areas">RepeatingArea().areas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reusing-areas">Reusing Areas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subclassing-areas">Subclassing Areas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="workflows.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Stere</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Areas</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/area.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="areas">
+<h1>Areas<a class="headerlink" href="#areas" title="Permalink to this headline">¶</a></h1>
+<p>Areas represent groupings of Fields on a Page.</p>
+<p>The following Area objects are available:</p>
+<ul class="simple">
+<li>Area: A non-hierarchical, unique group of Fields.</li>
+<li>RepeatingArea: A hierarchical, non-unique group of Areas. They require a Root Field.</li>
+</ul>
+<div class="section" id="area">
+<h2>Area()<a class="headerlink" href="#area" title="Permalink to this headline">¶</a></h2>
+<p>The Area object takes any number of Fields as arguments.
+Each Field must be unique on the Page and only present in one Area.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.areas</span> <span class="kn">import</span> <span class="n">Area</span>
+<span class="kn">from</span> <span class="nn">stere.fields</span> <span class="kn">import</span> <span class="n">Input</span>
+
+<span class="k">class</span> <span class="nc">MyPage</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_area</span> <span class="o">=</span> <span class="n">Area</span><span class="p">(</span>
+            <span class="n">my_input</span><span class="o">=</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<p>Fields in an Area can be called as attributes of the Area:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_stuff</span><span class="p">():</span>
+    <span class="n">MyPage</span><span class="p">()</span><span class="o">.</span><span class="n">my_area</span><span class="o">.</span><span class="n">my_input</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="area-perform">
+<h3>Area.perform()<a class="headerlink" href="#area-perform" title="Permalink to this headline">¶</a></h3>
+<p>The perform method will “Do the right thing” sequentially for every Field inside an Area.</p>
+<ul class="simple">
+<li>For Button and Link, it will click them.</li>
+<li>For Input, it will fill them using the text arguments provided.</li>
+<li>For Text, it will do nothing.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.areas</span> <span class="kn">import</span> <span class="n">Area</span>
+<span class="kn">from</span> <span class="nn">stere.fields</span> <span class="kn">import</span> <span class="n">Input</span>
+
+<span class="k">class</span> <span class="nc">MyPage</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_area</span> <span class="o">=</span> <span class="n">Area</span><span class="p">(</span>
+            <span class="n">my_input</span><span class="o">=</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">),</span>
+            <span class="n">my_input_2</span><span class="o">=</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">),</span>
+            <span class="n">my_button</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_stuff</span><span class="p">():</span>
+    <span class="n">MyPage</span><span class="p">()</span><span class="o">.</span><span class="n">my_area</span><span class="o">.</span><span class="n">perform</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;World&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="repeatingarea">
+<h2>RepeatingArea()<a class="headerlink" href="#repeatingarea" title="Permalink to this headline">¶</a></h2>
+<p>A RepeatingArea represents a collection of Fields that appear multiple times on a Page.</p>
+<p>The RepeatingArea objects requires a Root Field in the arguments, but otherwise takes any number of Fields as arguments.
+The other Fields will use the Root as a parent.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.areas</span> <span class="kn">import</span> <span class="n">RepeatingArea</span>
+<span class="kn">from</span> <span class="nn">stere.fields</span> <span class="kn">import</span> <span class="n">Root</span><span class="p">,</span> <span class="n">Input</span>
+
+<span class="k">class</span> <span class="nc">MyPage</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">my_repeating_area</span> <span class="o">=</span> <span class="n">RepeatingArea</span><span class="p">(</span>
+            <span class="n">root</span><span class="o">=</span><span class="n">Root</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">),</span>
+            <span class="n">my_input</span><span class="o">=</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="repeatingarea-area-with">
+<h3>RepeatingArea().area_with()<a class="headerlink" href="#repeatingarea-area-with" title="Permalink to this headline">¶</a></h3>
+<p>Takes two arguments: A Field’s name and an expected value.
+Searches the RepeatingArea for a single Area where the Field’s value matches the expected value and then returns the entire Area object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Inventory</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">RepeatingArea</span><span class="p">(</span>
+            <span class="n">root</span><span class="o">=</span><span class="n">Root</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">),</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//my_xpath_string&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_stuff</span><span class="p">():</span>
+    <span class="n">found_area</span> <span class="o">=</span> <span class="n">MyPage</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">area_with</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="repeatingarea-areas">
+<h3>RepeatingArea().areas<a class="headerlink" href="#repeatingarea-areas" title="Permalink to this headline">¶</a></h3>
+<p>A list of all the Area objects found can be accessed with the areas attribute.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_stuff</span><span class="p">():</span>
+    <span class="n">listings</span> <span class="o">=</span> <span class="n">MyPage</span><span class="p">()</span><span class="o">.</span><span class="n">my_repeating_area</span><span class="o">.</span><span class="n">areas</span>
+    <span class="n">listings</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">my_input</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reusing-areas">
+<h2>Reusing Areas<a class="headerlink" href="#reusing-areas" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes an identical Area may be present on multiple pages.
+Areas do not need to be created inside a page object, they can be created outside and then called from inside a page.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="n">Area</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Items</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="subclassing-areas">
+<h2>Subclassing Areas<a class="headerlink" href="#subclassing-areas" title="Permalink to this headline">¶</a></h2>
+<p>If an Area appears on many pages and requires many custom methods,
+it may be better to subclass the Area instead of embedding the methods in the Page Object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Header</span><span class="p">(</span><span class="n">Area</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">my_custom_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="o">...</span>
+
+
+<span class="k">class</span> <span class="nc">Main</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Other</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="workflows.html" class="btn btn-neutral float-right" title="Workflows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="field.html" class="btn btn-neutral" title="Fields" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Joshua Fehler.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
