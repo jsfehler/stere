@@ -11,6 +11,41 @@ class Button(Field):
         return False
 
 
+class Checkbox(Field):
+    """Class with specific methods for handling checkboxes."""
+    def __init__(self, *args, default_checked=False, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.default_checked = default_checked
+
+    def set_to(self, state):
+        """Set a checkbox to the desired state.
+
+        Args:
+            state (bool): True for check, False for uncheck
+        """
+        if state:
+            self.check()
+        else:
+            self.uncheck()
+
+    def toggle(self):
+        """If the checkbox is checked, uncheck it.
+        If the checkbox is unchecked, check it.
+        """
+        if self.checked:
+            self.uncheck()
+        else:
+            self.check()
+
+    def perform(self, value=None):
+        if not self.default_checked:
+            self.find().check()
+        else:
+            self.find().uncheck()
+        return False
+
+
 class Input(Field):
     """Convenience Class on top of Field.
 
