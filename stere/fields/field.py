@@ -57,12 +57,12 @@ class Field:
         """Called before any function wrapped with @use_before is called.
         """
         pass
-    
+
     def after(self):
         """Called after any function wrapped with @use_after is called.
         """
         pass
-    
+
     @use_after
     @use_before
     def perform(self, value=None, *args, **kwargs):
