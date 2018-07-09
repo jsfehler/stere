@@ -65,7 +65,7 @@ class Field:
     
     @use_after
     @use_before
-    def perform(self, value=None):
+    def perform(self, value=None, *args, **kwargs):
         """Will be called by Area.perform()
 
         Returns:
