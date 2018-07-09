@@ -11,8 +11,13 @@ class Button(Field):
         return False
 
 
-class Checkbox(Button):
+class Checkbox(Field):
     """Class with specific methods for handling checkboxes."""
+    def __init__(self, *args, default_checked=False, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.default_checked = default_checked
+
     def set_to(self, state):
         """Set a checkbox to the desired state.
 
@@ -32,6 +37,13 @@ class Checkbox(Button):
             self.uncheck()
         else:
             self.check()
+
+    def perform(self, value=None):
+        if not self.default_checked:
+            self.find().check()
+        else:
+            self.find().uncheck()
+        return False
 
 
 class Input(Field):

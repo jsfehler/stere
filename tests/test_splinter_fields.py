@@ -121,3 +121,10 @@ def test_checkbox_toggle_off(test_page):
     test_page.checkbox.toggle()
 
     assert test_page.checkbox.checked is False
+
+
+def test_checkbox_default_checked(test_page):
+    test_page.navigate()
+    test_page.checkbox.perform()
+
+    assert test_page.checkbox.checked
