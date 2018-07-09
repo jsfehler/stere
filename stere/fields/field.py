@@ -4,7 +4,7 @@ from .element_builder import build_element
 def use_before(func, *args, **kwargs):
     def wrapper(obj, *inner_args, **inner_kwargs):
         obj.before()
-        func(obj, inner_args, inner_kwargs)
+        func(obj, *inner_args, **inner_kwargs)
     return wrapper
 
 
