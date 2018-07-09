@@ -28,7 +28,7 @@ class Checkbox(Button):
         """If the checkbox is checked, uncheck it.
         If the checkbox is unchecked, check it.
         """
-        if self.checked():
+        if self.checked:
             self.uncheck()
         else:
             self.check()
