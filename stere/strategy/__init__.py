@@ -8,3 +8,4 @@ from .splinter_strategies import FindByName  # NOQA: F401
 from .splinter_strategies import FindByText  # NOQA: F401
 from .splinter_strategies import FindById  # NOQA: F401
 from .splinter_strategies import FindByValue  # NOQA: F401
+from .splinter_strategies import add_data_star_strategy  # NOQA: F401
