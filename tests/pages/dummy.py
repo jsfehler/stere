@@ -29,6 +29,10 @@ class DummyPage(Page):
 
         self.button_container = Root('id', 'test_button_div')
         self.button = Button('id', 'test_button')
+        
+        # Targets the same button as above, but using a different strategy.
+        self.button_alt_strategy = Button('data-test-id', 'Stere_test_button')
+        
         self.input_area = Area(
             input=Input('id', 'test_input'),
             submit_button=Button('id', 'test_input_submit')
