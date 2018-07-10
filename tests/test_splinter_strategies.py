@@ -23,7 +23,7 @@ def test_is_not_present_args(test_page):
     test_page.navigate()
     assert test_page.removed_container.is_not_present(wait_time=6)
 
-    
+
 def test_button_alt_strategy(browser, test_page):
     """
     When I define a Field using a data-* strategy, it is found.
