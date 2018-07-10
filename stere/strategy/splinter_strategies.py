@@ -55,3 +55,35 @@ class FindById(SplinterBase):
 @strategy('value')
 class FindByValue(SplinterBase):
     strategy = 'value'
+
+
+class FindByDataStarAttribute:
+    """Strategy to find an element by an arbitrary data-* attribute."""
+    def is_present(self, *args, **kwargs):
+        return self.browser.is_element_present_by_xpath(
+            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
+
+    def is_not_present(self, *args, **kwargs):
+        return self.browser.is_element_not_present_by_xpath(
+            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
+
+    def _find_all(self):
+        """Find from page root."""
+        return self.browser.find_by_xpath(
+            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
+
+    def _find_all_in_parent(self):
+        """Find from inside parent element."""
+        return self.parent_locator.find_by_xpath(
+            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
+
+
+def add_data_star_strategy(data_star_attribute):
+    """Adds a new splinter strategy that finds by data_star_attribute.
+    Args:
+        data_star_attribute (str): The data-* attribute to use in the new
+            strategy.
+    """
+    find_by_data_star = copy.deepcopy(FindByDataStarAttribute)
+    find_by_data_star._data_star_attribute = data_star_attribute
+    return strategy(data_star_attribute)(find_by_data_star)
