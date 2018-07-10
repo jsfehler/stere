@@ -1,3 +1,5 @@
+import copy
+
 from .strategy import strategy
 
 
