@@ -3,8 +3,12 @@ import os
 import pytest
 
 from stere import Stere
+from stere.strategy import add_data_star_strategy
 
 from pages import dummy
+
+
+add_data_star_strategy('data-test-id')
 
 
 @pytest.fixture(scope='session')
