@@ -47,12 +47,12 @@ class Checkbox(Field):
     @use_before
     def check(self):
         self.find().check()
-    
+
     @use_after
     @use_before
     def uncheck(self):
         self.find().uncheck()
-    
+
     def perform(self, value=None):
         if not self.default_checked:
             self.check()
