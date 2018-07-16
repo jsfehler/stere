@@ -8,8 +8,11 @@ class Button(Field):
     """
     @use_after
     @use_before
-    def perform(self, value=None):
+    def click(self):
         self.find().click()
+
+    def perform(self, value=None):
+        self.click()
         return False
 
 
@@ -40,11 +43,21 @@ class Checkbox(Field):
         else:
             self.check()
 
+    @use_after
+    @use_before
+    def check(self):
+        self.find().check()
+
+    @use_after
+    @use_before
+    def uncheck(self):
+        self.find().uncheck()
+
     def perform(self, value=None):
         if not self.default_checked:
-            self.find().check()
+            self.check()
         else:
-            self.find().uncheck()
+            self.uncheck()
         return False
 
 
@@ -55,8 +68,11 @@ class Input(Field):
     """
     @use_after
     @use_before
-    def perform(self, value=None):
+    def fill(self, value=None):
         self.find().fill(value)
+
+    def perform(self, value=None):
+        self.fill(value)
         return True
 
 
@@ -67,8 +83,11 @@ class Link(Field):
     """
     @use_after
     @use_before
-    def perform(self, value=None):
+    def click(self):
         self.find().click()
+
+    def perform(self, value=None):
+        self.click()
         return False
 
 
