@@ -8,10 +8,13 @@ def stere_performer(method_name, consumes_arg=False):
     def wrapper(cls):
         class Performer(cls):
             def perform(self, value=None):
-                getattr(self, method_name)(value)
+                performer = getattr(self, method_name)
                 if consumes_arg:
+                    performer(value)
                     return True
-                return False
+                else:
+                    performer()
+                    return False
         return Performer
     return wrapper
 
@@ -24,7 +27,7 @@ class Button(Field):
     """
     @use_after
     @use_before
-    def click(self, *args, **kwargs):
+    def click(self):
         self.find().click()
 
 
