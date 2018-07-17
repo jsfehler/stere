@@ -1,6 +1,22 @@
 from .field import Field, use_before, use_after
 
 
+def stere_performer(method_name, consumes_arg=False):
+    """Wraps a Class that contains a method which should be
+    used by Area.perform().
+    """
+    def wrapper(cls):
+        class Performer(cls):
+            def perform(self, value=None):
+                getattr(self, method_name)(value)
+                if consumes_arg:
+                    return True
+                return False
+        return Performer
+    return wrapper
+
+
+@stere_performer('click', consumes_arg=False)
 class Button(Field):
     """Convenience Class on top of Field.
 
@@ -8,14 +24,11 @@ class Button(Field):
     """
     @use_after
     @use_before
-    def click(self):
+    def click(self, *args, **kwargs):
         self.find().click()
 
-    def perform(self, value=None):
-        self.click()
-        return False
 
-
+@stere_performer('opposite', consumes_arg=False)
 class Checkbox(Field):
     """Class with specific methods for handling checkboxes."""
     def __init__(self, *args, default_checked=False, **kwargs):
@@ -53,7 +66,7 @@ class Checkbox(Field):
     def uncheck(self):
         self.find().uncheck()
 
-    def perform(self, value=None):
+    def opposite(self):
         if not self.default_checked:
             self.check()
         else:
@@ -61,6 +74,7 @@ class Checkbox(Field):
         return False
 
 
+@stere_performer('fill', consumes_arg=True)
 class Input(Field):
     """Convenience Class on top of Field.
 
@@ -71,11 +85,8 @@ class Input(Field):
     def fill(self, value=None):
         self.find().fill(value)
 
-    def perform(self, value=None):
-        self.fill(value)
-        return True
 
-
+@stere_performer('click', consumes_arg=False)
 class Link(Field):
     """Convenience Class on top of Field.
 
@@ -85,10 +96,6 @@ class Link(Field):
     @use_before
     def click(self):
         self.find().click()
-
-    def perform(self, value=None):
-        self.click()
-        return False
 
 
 class Root(Field):
