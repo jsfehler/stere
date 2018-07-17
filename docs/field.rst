@@ -7,7 +7,8 @@ Conceptually, they represent general behaviours, not specific HTML elements.
 The following Fields are available by default:
 
 - Button: Clickable object.
-- Dropdown: Object with multiple options to choose from.
+- :ref:`Checkbox <checkbox>`. Object with a set and unset state.
+- :ref:`Dropdown <dropdown>`. Object with multiple options to choose from.
 - Input: Object that accepts keyboard input.
 - Link: Clickable text.
 - Root: Parent container.
@@ -54,9 +55,28 @@ If the __init__() method is overwritten, make sure to call super() before your o
 
 If your class need specific behaviour when interacting with Areas, it must implement the perform() method.
 
+Checkbox
+~~~~~~~~
+.. _checkbox:
+
+By default, the Checkbox field works against HTML inputs with type="checkbox".
+
+set_to(state)
++++++++++++++
+
+Set a checkbox to the desired state.
+
+Args:
+    state (bool): True for check, False for uncheck
+
+toggle()
+++++++++
+
+If the checkbox is checked, uncheck it. If the checkbox is unchecked, check it.
 
 Dropdown
 ~~~~~~~~
+.. _dropdown:
 
 By default, the Dropdown field works against HTML Dropdowns.
 However, it's possible to extend Dropdown to work with whatever implementation of a CSS Dropdown you need.
