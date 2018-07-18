@@ -1,6 +1,24 @@
 from .element_builder import build_element
 
 
+def stere_performer(method_name, consumes_arg=False):
+    """Wraps a Class that contains a method which should be
+    used by Area.perform().
+    """
+    def wrapper(cls):
+        class Performer(cls):
+            def perform(self, value=None):
+                performer = getattr(self, method_name)
+                if consumes_arg:
+                    performer(value)
+                    return True
+                else:
+                    performer()
+                    return False
+        return Performer
+    return wrapper
+
+
 def use_before(func, *args, **kwargs):
     def wrapper(obj, *inner_args, **inner_kwargs):
         obj.before()
@@ -56,11 +74,17 @@ class Field:
 
     def before(self):
         """Called before any function wrapped with @use_before is called.
+
+        Override this method if an action must be taken before the
+        method being called.
         """
         pass
 
     def after(self):
         """Called after any function wrapped with @use_after is called.
+
+        Override this method if an action must be taken after the
+        method being called.
         """
         pass
 

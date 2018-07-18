@@ -1,22 +1,4 @@
-from .field import Field, use_before, use_after
-
-
-def stere_performer(method_name, consumes_arg=False):
-    """Wraps a Class that contains a method which should be
-    used by Area.perform().
-    """
-    def wrapper(cls):
-        class Performer(cls):
-            def perform(self, value=None):
-                performer = getattr(self, method_name)
-                if consumes_arg:
-                    performer(value)
-                    return True
-                else:
-                    performer()
-                    return False
-        return Performer
-    return wrapper
+from .field import Field, use_before, use_after, stere_performer
 
 
 @stere_performer('click', consumes_arg=False)
