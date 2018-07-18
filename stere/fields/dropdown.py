@@ -1,6 +1,8 @@
+from .field import use_before, use_after, stere_performer
 from .splinter_fields import Button
 
 
+@stere_performer('select', consumes_arg=True)
 class Dropdown(Button):
     """Represents a dropdown menu.
     If the "option" argument is provided with a field,
@@ -29,14 +31,9 @@ class Dropdown(Button):
             rv[item.html] = item
         return rv
 
-    def before_select(self):
-        """Override this method if an action must be taken prior to the
-        dropdown being selectable.
-        """
-        pass
-
+    @use_after
+    @use_before
     def select(self, value):
-        self.before_select()
         for option_name, option_element in self.options.items():
             if option_name == value:
                 option_element.click()

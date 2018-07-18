@@ -46,6 +46,32 @@ Useful for when you have non-unique elements and know a value is in one of the e
     PetStore().inventory_list.includes("Kittens").click()
 
 
+Field.before()
+~~~~~~~~~~~~~~
+
+This method is called automatically before methods with the `@use_before` decorator are called.
+By default it does nothing. It can be overridden to support any desired behaviour.
+
+In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.
+
+.. code-block:: python
+
+    from stere.fields import Dropdown
+
+    class CSSDropdown(Dropdown):
+        """A Dropdown that's customized to hover over the element before attempting
+        a select.
+        """
+        def before(self):
+            self.element.mouse_over()
+
+
+Field.after()
+~~~~~~~~~~~~~
+This method is called automatically after methods with the `@use_after` decorator are called.
+By default it does nothing. It can be overridden to support any desired behaviour.
+
+
 Subclassing Field
 ~~~~~~~~~~~~~~~~~
 
@@ -87,26 +113,6 @@ This argument expects a Field. The Field should be the individual options in the
 .. code-block:: python
 
     self.languages = Dropdown('id', 'langDrop', option=Button('xpath', '/h4/a/strong'))
-
-before_select()
-+++++++++++++++
-
-This method is called automatically before the select() method.
-If an action is required to prepare the dropdown for usage (such as hovering over a button to open it)
-then this method can be overridden with the desired behaviour.
-
-In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.
-
-.. code-block:: python
-
-    from stere.fields import Dropdown
-
-    class CSSDropdown(Dropdown):
-        """A Dropdown that's customized to hover over the element before attempting
-        a select.
-        """
-        def before_select(self):
-            self.element.mouse_over()
 
 
 Location Strategies
