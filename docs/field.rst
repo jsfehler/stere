@@ -81,11 +81,15 @@ If the __init__() method is overwritten, make sure to call super() before your o
 
 If your class need specific behaviour when interacting with Areas, it must implement the perform() method.
 
+
 Checkbox
 ~~~~~~~~
 .. _checkbox:
 
 By default, the Checkbox field works against HTML inputs with type="checkbox".
+
+Can be initialized with the `default_checked` argument. If True, the Field assumes the checkbox's default state is checked. 
+
 
 set_to(state)
 +++++++++++++
@@ -99,6 +103,12 @@ toggle()
 ++++++++
 
 If the checkbox is checked, uncheck it. If the checkbox is unchecked, check it.
+
+opposite()
+++++++++++
+
+Switches the checkbox to the opposite of its default state. Uses the `default_checked` attribute to decide this.
+
 
 Dropdown
 ~~~~~~~~
