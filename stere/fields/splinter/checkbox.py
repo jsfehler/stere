@@ -1,16 +1,4 @@
-from .field import Field, use_before, use_after, stere_performer
-
-
-@stere_performer('click', consumes_arg=False)
-class Button(Field):
-    """Convenience Class on top of Field.
-
-    Uses Splinter's click method.
-    """
-    @use_after
-    @use_before
-    def click(self):
-        self.find().click()
+from ..field import Field, use_before, use_after, stere_performer
 
 
 @stere_performer('opposite', consumes_arg=False)
@@ -57,38 +45,3 @@ class Checkbox(Field):
         else:
             self.uncheck()
         return False
-
-
-@stere_performer('fill', consumes_arg=True)
-class Input(Field):
-    """Convenience Class on top of Field.
-
-    Uses Splinter's input method.
-    """
-    @use_after
-    @use_before
-    def fill(self, value=None):
-        self.find().fill(value)
-
-
-@stere_performer('click', consumes_arg=False)
-class Link(Field):
-    """Convenience Class on top of Field.
-
-    Uses Splinter's click method.
-    """
-    @use_after
-    @use_before
-    def click(self):
-        self.find().click()
-
-
-class Root(Field):
-    """Convenience Class on top of Field."""
-    def find(self):
-        return self._element.find()
-
-
-class Text(Field):
-    """Convenience Class on top of Field."""
-    pass

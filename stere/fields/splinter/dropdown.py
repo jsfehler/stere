@@ -1,5 +1,5 @@
-from .field import use_before, use_after, stere_performer
-from .splinter_fields import Button
+from ..field import use_before, use_after, stere_performer
+from .button import Button
 
 
 @stere_performer('select', consumes_arg=True)
