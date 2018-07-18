@@ -76,7 +76,7 @@ class Field:
         """Called before any function wrapped with @use_before is called.
 
         Override this method if an action must be taken before the
-        method being called.
+        method has been called.
         """
         pass
 
@@ -84,7 +84,7 @@ class Field:
         """Called after any function wrapped with @use_after is called.
 
         Override this method if an action must be taken after the
-        method being called.
+        method has been called.
         """
         pass
 
