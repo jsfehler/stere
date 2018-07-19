@@ -1,9 +1,9 @@
-from ..field import use_before, use_after, stere_performer
+from ..field import Field, use_before, use_after, stere_performer
 from .button import Button
 
 
 @stere_performer('select', consumes_arg=True)
-class Dropdown(Button):
+class Dropdown(Field):
     """Represents a dropdown menu.
     If the "option" argument is provided with a field,
         use that as the dropdown item.
