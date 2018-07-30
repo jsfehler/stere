@@ -124,6 +124,11 @@ This argument expects a Field. The Field should be the individual options in the
 
     self.languages = Dropdown('id', 'langDrop', option=Button('xpath', '/h4/a/strong'))
 
+options
++++++++
+
+Searches for all the options in the dropdown and returns a list of Fields.
+
 
 Location Strategies
 -------------------

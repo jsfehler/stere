@@ -86,8 +86,9 @@ def test_dropdown_invalid(test_page):
     with pytest.raises(ValueError) as e:
         test_page.dropdown_area.dropdown.select('Grape')
 
-    expected = 'Grape was not found in the dropdown.'
-    assert expected == str(e.value)
+    contents = ["Apple", "Banana", "Cranberry"]
+    expected_message = f'Grape was not found. Found values are: {contents}'
+    assert expected_message == str(e.value)
 
 
 def test_checkbox_set_to_true(test_page):
