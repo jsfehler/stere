@@ -20,23 +20,28 @@ class Dropdown(Button):
 
     @property
     def options(self):
-        """Get a dictionary of the options in a Dropdown.
+        """Get all the elements that are an option in the dropdown.
 
         Returns:
-            Dict: option_name: option_element for every option in the dropdown
+            list
         """
         self.option._element.parent_locator = self.find()
-        rv = {}
-        for item in self.option.find_all():
-            rv[item.html] = item
-        return rv
+        return [item for item in self.option.find_all()]
 
     @use_after
     @use_before
     def select(self, value):
-        for option_name, option_element in self.options.items():
-            if option_name == value:
-                option_element.click()
+        """Click an option by its html content.
+
+        Raises:
+            ValueError: The provided value could not be found in the dropdown.
+        """
+        found_options = []
+        for option in self.options:
+            found_options.append(option.html)
+            if option.html == value:
+                option.click()
                 break
         else:
-            raise ValueError(f'{value} was not found in the dropdown.')
+            raise ValueError(
+                f'{value} was not found. Found values are: {found_options}')
