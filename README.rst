@@ -108,7 +108,14 @@ Using a Page Object in a test can be done like so:
     def test_search_wikipedia():
         WikipediaHome().search_form.perform('kittens')
 
+
 Documentation
 -------------
 
 https://stere.readthedocs.io/en/latest/
+
+
+Thanks
+------
+
+Cross-browser Testing Platform and Open Source <3 Provided by `Sauce Labs <https://saucelabs.com>`_
