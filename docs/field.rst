@@ -4,12 +4,12 @@ Fields
 The Field objects represent individual elements on a web page.
 Conceptually, they represent general behaviours, not specific HTML elements.
 
-The following Fields are available by default:
+The following Fields are available with the default Splinter implementation:
 
-- Button: Clickable object.
-- :ref:`Checkbox <checkbox>`. Object with a set and unset state.
-- :ref:`Dropdown <dropdown>`. Object with multiple options to choose from.
-- Input: Object that accepts keyboard input.
+- :ref:`Button <button>`: Clickable object.
+- :ref:`Checkbox <checkbox>`: Object with a set and unset state.
+- :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
+- :ref:`Input <input>`: Object that accepts keyboard input.
 - Link: Clickable text.
 - Root: Parent container.
 - Text: Non-interactive text.
@@ -21,16 +21,38 @@ Fields take 2 arguments: :ref:`location strategy <location_strategies>` and loca
     self.some_text = Text('xpath', '//*[@id="js-link-box-pt"]/small/span')
 
 
-Field.perform(value)
-~~~~~~~~~~~~~~~~~~~~
+Performer method
+~~~~~~~~~~~~~~~~
 
-Used by the Area class. When Area.perform() is called, it will trigger the .perform() methods of all its child Fields.
+A Field can have a single method be designated as a performer.
+This causes the method to be called when the Field is inside an Area and that Area's perform() method is called.
 
-It should implement a standard action taken by the user. For example, Button.perform() will result in a click.
+For example, Input's performer is the fill() method, and Button's performer is the click() method. Given the following:
 
-The base Field.perform() does nothing, but can be extended when creating a custom Field.
+.. code-block:: python
 
-When creating a custom Field, implementations of .perform() must return a Boolean. If the Field's perform consumes an argument, it should return True. If not, False.
+    self.some_area = Area(
+        my_input=Input('id', 'foobar'),
+        my_button=Button('id', 'barfoo'), 
+    )
+    
+When some_area.perform() is called, my_input.fill() is called, followed by my_button.click().
+
+Assigning the performer method
+++++++++++++++++++++++++++++++
+
+When creating a custom Field, the stere_performer class decorator can be used to assign a performer method.
+
+.. code-block:: python
+
+    from stere.fields.field import stere_performer
+
+    @stere_performer('philosophize', consumes_arg=False)
+    class DiogenesButton(Field):
+        def philosophize(self):
+            print("As a matter of self-preservation, a man needs good friends or ardent enemies, for the former instruct him and the latter take him to task.")
+
+The `consumes arg` argument should be used to specify if the method should use an argument provided by Area.perform() or not.
 
 
 Field.includes(value)
@@ -81,6 +103,17 @@ If the __init__() method is overwritten, make sure to call super() before your o
 
 If your class need specific behaviour when interacting with Areas, it must implement the perform() method.
 
+Button
+~~~~~~
+.. _button:
+
+A simple wrapper over Field, it implements `click()` as its performer.
+
+Input
+~~~~~
+.. _input:
+
+A simple wrapper over Field, it implements `fill()` as its performer.
 
 Checkbox
 ~~~~~~~~
