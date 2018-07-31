@@ -10,9 +10,9 @@ The following Fields are available with the default Splinter implementation:
 - :ref:`Checkbox <checkbox>`: Object with a set and unset state.
 - :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
 - :ref:`Input <input>`: Object that accepts keyboard input.
-- Link: Clickable text.
-- Root: Parent container.
-- Text: Non-interactive text.
+- :ref:`Link <link>`:: Clickable text.
+- :ref:`Root <root>`: Parent container.
+- :ref:`Text <text>`: Non-interactive text.
 
 Fields take 2 arguments: :ref:`location strategy <location_strategies>` and locator.
 
@@ -178,7 +178,7 @@ Fills the element with value.
 
 Link
 ~~~~~
-.. _input:
+.. _link:
 
 A simple wrapper over Field, it implements `click()` as its performer.
 
@@ -190,14 +190,14 @@ Clicks the element.
 
 Root
 ~~~~~
-.. _input:
+.. _root:
 
 A simple wrapper over Field, it does not implement a performer method.
 
 
 Text
 ~~~~~
-.. _input:
+.. _text:
 
 A simple wrapper over Field, it does not implement a performer method.
 
