@@ -123,6 +123,7 @@ By default, the Checkbox field works against HTML inputs with type="checkbox".
 
 Can be initialized with the `default_checked` argument. If True, the Field assumes the checkbox's default state is checked. 
 
+It implements `opposite()` as its performer.
 
 set_to(state)
 +++++++++++++
@@ -150,6 +151,8 @@ Dropdown
 By default, the Dropdown field works against HTML Dropdowns.
 However, it's possible to extend Dropdown to work with whatever implementation of a CSS Dropdown you need.
 
+It implements `select()` as its performer.
+
 The `option` argument can be provided to override the default implementation.
 This argument expects a Field. The Field should be the individual options in the dropdown you wish to target.
 
@@ -161,6 +164,11 @@ options
 +++++++
 
 Searches for all the options in the dropdown and returns a list of Fields.
+
+select(value)
++++++++++++++
+
+Searches for an option with value, then clicks it.
 
 
 Input
