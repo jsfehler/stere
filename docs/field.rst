@@ -109,11 +109,11 @@ Button
 
 A simple wrapper over Field, it implements `click()` as its performer.
 
-Input
-~~~~~
-.. _input:
+click()
++++++++
 
-A simple wrapper over Field, it implements `fill()` as its performer.
+Clicks the element.
+
 
 Checkbox
 ~~~~~~~~
@@ -161,6 +161,45 @@ options
 +++++++
 
 Searches for all the options in the dropdown and returns a list of Fields.
+
+
+Input
+~~~~~
+.. _input:
+
+A simple wrapper over Field, it implements `fill()` as its performer.
+
+
+fill(value)
++++++++++++
+
+Fills the element with value.
+
+
+Link
+~~~~~
+.. _input:
+
+A simple wrapper over Field, it implements `click()` as its performer.
+
+click()
++++++++
+
+Clicks the element.
+
+
+Root
+~~~~~
+.. _input:
+
+A simple wrapper over Field, it does not implement a performer method.
+
+
+Text
+~~~~~
+.. _input:
+
+A simple wrapper over Field, it does not implement a performer method.
 
 
 Location Strategies
