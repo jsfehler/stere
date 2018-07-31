@@ -69,13 +69,14 @@ As an example, here's the home page for Wikipedia:
                 tagline=Text('xpath', '//*[@class="other-project-tagline"]')
             )
 
-The search form is represented as an Area with 2 Fields inside it.
-An Area represents a unique collection of Fields on the page.
+The search form is represented as an `Area <https://stere.readthedocs.io/en/latest/area.html>`_ with two `Fields <https://stere.readthedocs.io/en/latest/field.html>`_ inside it. 
 
-The search query and submit button didn't have to be placed inside an Area.
-However, doing so allows you to use Area's perform() method.
+A Field represents a single item, while an Area represents a unique collection of Fields.
 
-The links to other products are represented as a RepeatingArea.
+The query and submit Fields didn't have to be placed inside an Area.
+However, doing so allows you to use Area's `perform() <https://stere.readthedocs.io/en/latest/area.html#area-perform>`_ method.
+
+The links to other products are represented as a `RepeatingArea <https://stere.readthedocs.io/en/latest/area.html#repeatingarea>`_ .
 A RepeatingArea represents a non-unique collection of Fields on the page.
 Using the root argument, RepeatingArea will find all instances of said root,
 then build the appropriate number of Areas with all the other Fields inside.
@@ -98,7 +99,7 @@ one at a time, like so:
     )
 
 Which style you pick depends entirely on how you want to model the page.
-RepeatingArea does the most good with collections where the number of areas
+RepeatingArea does the most good with collections where the number of areas and/or the contents of the areas
 can't be predicted, such as inventory lists.
 
 Using a Page Object in a test can be done like so:
