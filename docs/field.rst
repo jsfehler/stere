@@ -10,7 +10,7 @@ The following Fields are available with the default Splinter implementation:
 - :ref:`Checkbox <checkbox>`: Object with a set and unset state.
 - :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
 - :ref:`Input <input>`: Object that accepts keyboard input.
-- :ref:`Link <link>`:: Clickable text.
+- :ref:`Link <link>`: Clickable text.
 - :ref:`Root <root>`: Parent container.
 - :ref:`Text <text>`: Non-interactive text.
 
