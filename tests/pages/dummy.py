@@ -74,3 +74,6 @@ class DummyPage(Page):
         self.many_input_result = Text('id', 'many_input_result')
 
         self.checkbox = Checkbox('id', 'test_checkbox')
+
+        self.checkbox_checked = Checkbox(
+            'id', 'test_checkbox_checked', default_checked=True)

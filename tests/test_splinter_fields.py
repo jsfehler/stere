@@ -129,3 +129,10 @@ def test_checkbox_default_checked(test_page):
     test_page.checkbox.perform()
 
     assert test_page.checkbox.checked
+
+
+def test_checkbox_opposite_default_unchecked(test_page):
+    test_page.navigate()
+    test_page.checkbox_checked.opposite()
+
+    assert test_page.checkbox.checked is False
