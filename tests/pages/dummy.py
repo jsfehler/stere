@@ -62,6 +62,11 @@ class DummyPage(Page):
             link=Link('xpath', './a')
         )
 
+        self.area_with_root_alt_strategy = Area(
+            root=Root('data-test-id', 'Stere_area_root'),
+            link=Link('data-test-id', 'Stere_area_root_link')
+        )
+
         self.many_input_area = Area(
             first_name=Input('id', 'test_input_first_name',
                              workflows=['workflow_test']),
