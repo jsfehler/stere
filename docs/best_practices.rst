@@ -21,7 +21,7 @@ and call them in Page Objects that reflect the application.
 
     class SpecificSettings(BaseSettings):
         def __init__(self):
-          super()
+            super().__init__()
 
 
 **Composition:**
