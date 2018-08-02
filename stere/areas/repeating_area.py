@@ -30,9 +30,20 @@ class RepeatingArea:
     def areas(self):
         """Find all instances of the root,
         then return an array of Area for each root.
+
+        Returns:
+            list: Collection of every Area that was found.
+
+        Raises:
+            ValueError: If no Areas were found.
         """
         created_areas = []
         all_roots = self.root.find()
+        if 0 == len(all_roots):
+            raise ValueError(
+                f'Could not find any Areas with the root: {self.root.locator}'
+            )
+
         for item in all_roots:
             copy_items = copy.deepcopy(self.items)
             for field_name in copy_items.keys():
