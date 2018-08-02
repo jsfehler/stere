@@ -46,4 +46,9 @@ def test_button_data_star_strategy(browser, test_page):
 
 def test_data_star_staregy_is_present(browser, test_page):
     test_page.navigate()
-    assert test_page.button_alt_strategy.is_present(wait_time=6)
+    assert test_page.button_alt_strategy.is_present(wait_time=3)
+
+
+def test_data_star_staregy_is_not_present(browser, test_page):
+    test_page.navigate()
+    assert test_page.missing_button.is_not_present(wait_time=3)
