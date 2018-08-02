@@ -79,3 +79,18 @@ def test_repeating_area_area_with_invalid_field_name(test_page):
             test_page.repeating_area.area_with('lunk', 'Repeating Link 2')
 
         assert str(e.value) == "'Area' object has no attribute 'lunk'"
+
+
+def test_repeating_area_areas_no_areas_found(test_page):
+    """Given I have a RepeatingArea that finds no Areas on the page,
+       When I call RepeatingArea.areas(),
+       Then I should be informed that no Areas were found.
+    """
+    test_page.navigate()
+    with pytest.raises(ValueError) as e:
+        test_page.repeating_area_missing.areas
+
+    assert str(e.value) == (
+        "Could not find any Areas with the root: "
+        ".test_repeating_area_root_invalid"
+    )

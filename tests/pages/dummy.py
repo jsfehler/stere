@@ -57,6 +57,12 @@ class DummyPage(Page):
             text=Text('css', '.test_repeating_area_test')
         )
 
+        # A Repeating Area that won't find anything.
+        self.repeating_area_missing = RepeatingArea(
+            root=Root('css', '.test_repeating_area_root_invalid'),
+            link=Link('xpath', '//h4'),
+        )
+
         self.added_container = Field('id', 'added_container')
         self.removed_container = Field('id', 'removed_container')
 
