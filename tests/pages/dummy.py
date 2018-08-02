@@ -30,6 +30,9 @@ class DummyPage(Page):
         self.button_container = Root('id', 'test_button_div')
         self.button = Button('id', 'test_button')
 
+        # Field for something that isn't on the page.
+        self.missing_button = Button('data-test-id', 'not_on_the_page')
+
         # Targets the same button as above, but using a different strategy.
         self.button_alt_strategy = Button('data-test-id', 'Stere_test_button')
 
