@@ -83,8 +83,8 @@ def test_repeating_area_area_with_invalid_field_name(test_page):
 
 def test_repeating_area_areas_no_areas_found(test_page):
     """Given I have a RepeatingArea that finds no Areas on the page,
-       When I call RepeatingArea.area_with(),
-       Then I should be informed that the Areas were not found.
+       When I call RepeatingArea.areas(),
+       Then I should be informed that no Areas were found.
     """
     test_page.navigate()
     with pytest.raises(ValueError) as e:
