@@ -13,6 +13,16 @@ class SplinterBase:
             self.browser, f'is_element_not_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
+    def is_visible(self, *args, **kwargs):
+        func = self.browser.is_element_visible_by_xpath
+        xpath = f'.//*[@{self.strategy}="{self.locator}"]'
+        return func(xpath, *args, **kwargs)
+
+    def is_not_visible(self, *args, **kwargs):
+        func = self.browser.is_element_not_visible_by_xpath
+        xpath = f'.//*[@{self.strategy}="{self.locator}"]'
+        return func(xpath, *args, **kwargs)
+
     def _find_all(self):
         """Find from page root."""
         func = getattr(self.browser, f'find_by_{self.strategy}')
