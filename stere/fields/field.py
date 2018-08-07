@@ -38,9 +38,9 @@ class Field:
     """Base class for objects on a page.
 
     Arguments:
-        strategy (str):
-        locator (str):
-        workflows (list):
+        strategy (str): The type of strategy to use when locating an element.
+        locator (str): The locator for the strategy.
+        workflows (list): Any workflows the Field should be included with.
     """
     def __init__(self, strategy, locator, *args, **kwargs):
         self.strategy = strategy
