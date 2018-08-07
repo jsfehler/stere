@@ -31,17 +31,20 @@ For example, Input's performer is the fill() method, and Button's performer is t
 
 .. code-block:: python
 
-    self.some_area = Area(
-        my_input=Input('id', 'foobar'),
-        my_button=Button('id', 'barfoo'), 
+    self.search = Area(
+        query=Input('id', 'xsearch'),
+        submit=Button('id', 'xsubmit'),
     )
-    
-When some_area.perform() is called, my_input.fill() is called, followed by my_button.click().
+
+When search.perform() is called, query.fill() is called, followed by submit.click().
+
+See the documentation for `Area <https://stere.readthedocs.io/en/latest/area.html>`_ for more details.
+
 
 Assigning the performer method
 ++++++++++++++++++++++++++++++
 
-When creating a custom Field, the stere_performer class decorator can be used to assign a performer method.
+When creating a new type of Field, the stere_performer class decorator can be used to assign a performer method.
 
 .. code-block:: python
 
@@ -101,7 +104,7 @@ Field can be subclassed to suit your own requirements.
 
 If the __init__() method is overwritten, make sure to call super() before your own code.
 
-If your class need specific behaviour when interacting with Areas, it must implement the perform() method.
+If your class needs specific behaviour when interacting with Areas, it must implement the perform() method.
 
 Button
 ~~~~~~
@@ -121,7 +124,7 @@ Checkbox
 
 By default, the Checkbox field works against HTML inputs with type="checkbox".
 
-Can be initialized with the `default_checked` argument. If True, the Field assumes the checkbox's default state is checked. 
+Can be initialized with the `default_checked` argument. If True, the Field assumes the checkbox's default state is checked.
 
 It implements `opposite()` as its performer.
 
