@@ -69,7 +69,7 @@ As an example, here's the home page for Wikipedia:
                 tagline=Text('xpath', '//*[@class="other-project-tagline"]')
             )
 
-The search form is represented as an `Area <https://stere.readthedocs.io/en/latest/area.html>`_ with two `Fields <https://stere.readthedocs.io/en/latest/field.html>`_ inside it. 
+The search form is represented as an `Area <https://stere.readthedocs.io/en/latest/area.html>`_ with two `Fields <https://stere.readthedocs.io/en/latest/field.html>`_ inside it.
 
 A Field represents a single item, while an Area represents a unique collection of Fields.
 
@@ -116,7 +116,24 @@ Documentation
 https://stere.readthedocs.io/en/latest/
 
 
+License
+-------
+
+Distributed under the terms of the `MIT`_ license, "Stere" is free and open source software
+
+
+Issues
+------
+
+If you encounter any problems, please `file an issue`_ along with a detailed description.
+
+
 Thanks
 ------
 
-Cross-browser Testing Platform and Open Source <3 Provided by `Sauce Labs <https://saucelabs.com>`_
+Cross-browser Testing Platform and Open Source <3 Provided by `Sauce Labs`_
+
+
+.. _`file an issue`: https://github.com/jsfehler/stere/issues
+.. _`MIT`: http://opensource.org/licenses/MIT
+.. _`Sauce labs`: https://saucelabs.com
