@@ -1,11 +1,25 @@
-from .strategy import strategy  # NOQA: F401
-from .strategy import strategies  # NOQA: F401
+from .strategy import strategy
+from .strategy import strategies
 
-from .splinter_strategies import FindByCss  # NOQA: F401
-from .splinter_strategies import FindByXPath  # NOQA: F401
-from .splinter_strategies import FindByTag  # NOQA: F401
-from .splinter_strategies import FindByName  # NOQA: F401
-from .splinter_strategies import FindByText  # NOQA: F401
-from .splinter_strategies import FindById  # NOQA: F401
-from .splinter_strategies import FindByValue  # NOQA: F401
-from .splinter_strategies import add_data_star_strategy  # NOQA: F401
+from .splinter_strategies import FindByCss
+from .splinter_strategies import FindByXPath
+from .splinter_strategies import FindByTag
+from .splinter_strategies import FindByName
+from .splinter_strategies import FindByText
+from .splinter_strategies import FindById
+from .splinter_strategies import FindByValue
+from .splinter_strategies import add_data_star_strategy
+
+
+__all__ = [
+    'strategy',
+    'strategies',
+    'FindByCss',
+    'FindByXPath',
+    'FindByTag',
+    'FindByName',
+    'FindByText',
+    'FindById',
+    'FindByValue',
+    'add_data_star_strategy'
+]
