@@ -23,10 +23,8 @@ def pytest_runtest_makereport(item, call):
     setattr(item, "rep_" + rep.when, rep)
 
 
-@pytest.fixture
-def browser(browser, request, browser_instance_getter):
-
-    yield browser_instance_getter(request, browser)
+@pytest.fixture(autouse=True)
+def after(request, browser):
 
     def fin():
         # Send result to Sauce labs
