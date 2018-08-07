@@ -20,7 +20,7 @@ def browser(request, browser_instance_getter):
         browser.execute_script("sauce:job-result={}".format(res))
 
     if os.environ.get('REMOTE_RUN') == "True":
-        request.addFinalizer(fin)
+        request.addfinalizer(fin)
 
     return browser_instance_getter(request, browser)
 
