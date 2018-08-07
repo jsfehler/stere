@@ -11,12 +11,11 @@ Python >= 3.6
 Installation
 ============
 
-Stere is currently in a proof-of-concept stage and is not available on pypi.
-It can be installed with pip using the following command:
+Stere can be installed with pip using the following command:
 
 .. code-block:: bash
 
-  pip install git+git://github.com/jsfehler/stere.git#egg=stere
+    pip install stere
 
 
 Setup
