@@ -11,6 +11,30 @@ from pages import dummy
 add_data_star_strategy('data-test-id')
 
 
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    # execute all other hooks to obtain the report object
+    outcome = yield
+    rep = outcome.get_result()
+
+    # set a report attribute for each phase of a call, which can
+    # be "setup", "call", "teardown"
+
+    setattr(item, "rep_" + rep.when, rep)
+
+
+@pytest.fixture(autouse=True)
+def after(request, browser):
+
+    def fin():
+        # Send result to Sauce labs
+        res = str(not request.node.rep_call.failed).lower()
+        browser.execute_script("sauce:job-result={}".format(res))
+
+    if os.environ.get('REMOTE_RUN') == "True":
+        request.addfinalizer(fin)
+
+
 @pytest.fixture(scope='session')
 def splinter_driver_kwargs(splinter_webdriver, request):
     """Webdriver kwargs."""
@@ -19,16 +43,17 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     if browser_name == 'firefox':
         version = 'dev'
     else:
+        # TODO: Test latest Chrome
         version = '64'
 
-    if os.environ['REMOTE_RUN'] == "True":
+    if os.environ.get('REMOTE_RUN') == "True":
         # Sauce Labs settings
         return {
              'browserName': browser_name,
              'browser': browser_name,
              'platform': 'Windows 10',
              'version': version,
-             'tunnel-identifier': os.getenv('X_JOB_NUMBER')
+             'tunnelIdentifier': os.getenv('TRAVIS_JOB_NUMBER')
             }
     else:
         return {}
