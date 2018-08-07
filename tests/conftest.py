@@ -11,6 +11,20 @@ from pages import dummy
 add_data_star_strategy('data-test-id')
 
 
+@pytest.fixture
+def browser(request, browser_instance_getter):
+
+    def fin():
+        # Send result to Sauce labs
+        res = str(not request.node.rep_call.failed).lower()
+        browser.execute_script("sauce:job-result={}".format(res))
+
+    if os.environ.get('REMOTE_RUN') == "True":
+        request.addFinalizer(fin)
+
+    return browser_instance_getter(request, browser)
+
+
 @pytest.fixture(scope='session')
 def splinter_driver_kwargs(splinter_webdriver, request):
     """Webdriver kwargs."""
@@ -19,16 +33,17 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     if browser_name == 'firefox':
         version = 'dev'
     else:
+        # TODO: Test latest Chrome
         version = '64'
 
-    if os.environ['REMOTE_RUN'] == "True":
+    if os.environ.get('REMOTE_RUN') == "True":
         # Sauce Labs settings
         return {
              'browserName': browser_name,
              'browser': browser_name,
              'platform': 'Windows 10',
              'version': version,
-             'tunnel-identifier': os.getenv('X_JOB_NUMBER')
+             'tunnelIdentifier': os.getenv('X_JOB_NUMBER')
             }
     else:
         return {}
