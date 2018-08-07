@@ -24,7 +24,9 @@ def pytest_runtest_makereport(item, call):
 
 
 @pytest.fixture
-def browser(request, browser_instance_getter):
+def browser(browser, request, browser_instance_getter):
+
+    yield browser_instance_getter(request, browser)
 
     def fin():
         # Send result to Sauce labs
@@ -33,8 +35,6 @@ def browser(request, browser_instance_getter):
 
     if os.environ.get('REMOTE_RUN') == "True":
         request.addfinalizer(fin)
-
-    return browser_instance_getter(request, browser)
 
 
 @pytest.fixture(scope='session')
