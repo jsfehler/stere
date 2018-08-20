@@ -41,7 +41,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     browser_name = os.environ['CURRENT_BROWSER_NAME']
 
     if browser_name == 'firefox':
-        version = 'dev'
+        version = '60'
     else:
         # TODO: Test latest Chrome
         version = '64'
@@ -51,6 +51,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
         return {
              'browserName': browser_name,
              'browser': browser_name,
+             'name': browser_name,
              'platform': 'Windows 10',
              'version': version,
              'tunnelIdentifier': os.getenv('TRAVIS_JOB_NUMBER')
