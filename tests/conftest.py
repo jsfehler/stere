@@ -51,8 +51,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
 
     # Set the Sauce Labs job name
     travis_job_number = os.getenv('TRAVIS_JOB_NUMBER')
-    travis_pull_request = os.getenv('TRAVIS_PULL_REQUEST')
-    testrun_name = travis_pull_request or travis_job_number or browser_name
+    testrun_name = travis_job_number or browser_name
 
     if os.environ.get('REMOTE_RUN') == "True":
         # Sauce Labs settings
