@@ -14,6 +14,13 @@ class Page(BrowserEnabled):
 
         return getattr(self.browser, val)
 
+    def __enter__(self):
+        """Page Objects can be used as context managers."""
+        return self
+
+    def __exit__(self, *args):
+        pass
+
     def navigate(self):
         """Opens the page in the browser, based on the page_url attribute.
         """

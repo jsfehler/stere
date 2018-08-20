@@ -27,3 +27,8 @@ def test_page_getattr_should_not_exist(test_page):
 
     with pytest.raises(AttributeError):
         assert test_page.foobar()
+
+
+def test_page_context_manager(test_page):
+    with test_page as t:
+        assert t == test_page
