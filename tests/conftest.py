@@ -40,21 +40,29 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     """Webdriver kwargs."""
     browser_name = os.environ['CURRENT_BROWSER_NAME']
 
-    if browser_name == 'firefox':
-        version = '60'
-    else:
-        # TODO: Test latest Chrome
-        version = '64'
+    browser_versions = {
+        'chrome': '64',
+        'firefox': '60',
+    }
+
+    version = browser_versions.get(browser_name)
+    if version is None:
+        raise ValueError('Unknown browser_name provided')
+
+    # Set the Sauce Labs job name
+    travis_job_number = os.getenv('TRAVIS_JOB_NUMBER')
+    travis_pull_request = os.getenv('TRAVIS_PULL_REQUEST')
+    testrun_name = travis_pull_request or travis_job_number or browser_name
 
     if os.environ.get('REMOTE_RUN') == "True":
         # Sauce Labs settings
         return {
              'browserName': browser_name,
              'browser': browser_name,
-             'name': browser_name,
+             'name': testrun_name,
              'platform': 'Windows 10',
              'version': version,
-             'tunnelIdentifier': os.getenv('TRAVIS_JOB_NUMBER')
+             'tunnelIdentifier': travis_job_number
             }
     else:
         return {}
