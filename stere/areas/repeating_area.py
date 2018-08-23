@@ -1,8 +1,7 @@
 import copy
 
-from ..fields import Field
-
 from .area import Area
+from ..fields import Field
 
 
 class RepeatingArea:
@@ -38,7 +37,7 @@ class RepeatingArea:
         for k, v in kwargs.items():
             if not isinstance(v, Field):
                 raise ValueError(
-                    'RepeatingArea arguments can only be Field objects.'
+                    'RepeatingArea arguments can only be Field objects.',
                 )
             if k is not 'root':
                 self.items[k] = v
@@ -67,7 +66,7 @@ class RepeatingArea:
         all_roots = self.root.find()
         if 0 == len(all_roots):
             raise ValueError(
-                f'Could not find any Areas with the root: {self.root.locator}'
+                f'Could not find any Areas with the root: {self.root.locator}',
             )
 
         for item in all_roots:

@@ -1,10 +1,11 @@
+import logging
+
 import pytest
+
+from selenium.webdriver.remote.remote_connection import LOGGER
 
 from stere.fields import Field
 
-
-import logging
-from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 

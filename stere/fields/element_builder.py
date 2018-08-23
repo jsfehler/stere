@@ -1,5 +1,4 @@
 from stere import Stere
-
 from stere.strategy import strategies
 
 

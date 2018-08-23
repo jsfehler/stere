@@ -1,8 +1,9 @@
+import logging
+
 import pytest
 
-
-import logging
 from selenium.webdriver.remote.remote_connection import LOGGER
+
 LOGGER.setLevel(logging.WARNING)
 
 

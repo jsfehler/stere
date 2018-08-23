@@ -1,10 +1,11 @@
 import logging
 import time
 
-import pytest
-from selenium.webdriver.remote.remote_connection import LOGGER
-
 from pages import dummy_invalid
+
+import pytest
+
+from selenium.webdriver.remote.remote_connection import LOGGER
 
 LOGGER.setLevel(logging.WARNING)
 
@@ -74,7 +75,7 @@ def test_area_perform_multiple_args(test_page):
         'Fooman',
         'Barson',
         'foobar@binbaz.net',
-        '99'
+        '99',
     )
 
     time.sleep(2)

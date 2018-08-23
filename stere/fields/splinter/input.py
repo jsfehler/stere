@@ -1,4 +1,4 @@
-from ..field import Field, use_before, use_after, stere_performer
+from ..field import Field, stere_performer, use_after, use_before
 
 
 @stere_performer('fill', consumes_arg=True)

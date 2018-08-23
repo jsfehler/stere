@@ -35,7 +35,7 @@ class Area:
         for key, value in kwargs.items():
             if not isinstance(value, Field):
                 raise ValueError(
-                    'Areas must only be initialized with field objects.'
+                    'Areas must only be initialized with field objects.',
                 )
             self.items[key] = value
             # Sets the root for the element, if provided.

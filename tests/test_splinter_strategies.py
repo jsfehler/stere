@@ -43,8 +43,8 @@ def test_button_data_star_strategy(browser, test_page):
 
     # Clicking changes the button's container background colour
     browsers = {
-     "firefox": 'rgb(255, 0, 0)',
-     "chrome": 'rgba(255, 0, 0, 1)'
+     'firefox': 'rgb(255, 0, 0)',
+     'chrome': 'rgba(255, 0, 0, 1)',
     }
 
     # This works because value_of_css_property is gotten from splinter,

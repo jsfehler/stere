@@ -1,11 +1,11 @@
 import os
 
+from pages import dummy
+
 import pytest
 
 from stere import Stere
 from stere.strategy import add_data_star_strategy
-
-from pages import dummy
 
 
 add_data_star_strategy('data-test-id')
@@ -61,7 +61,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
              'name': testrun_name,
              'platform': 'Windows 10',
              'version': version,
-             'tunnelIdentifier': travis_job_number
+             'tunnelIdentifier': travis_job_number,
             }
     else:
         return {}

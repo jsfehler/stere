@@ -4,5 +4,5 @@ from .repeating_area import RepeatingArea
 
 __all__ = [
     'Area',
-    'RepeatingArea'
+    'RepeatingArea',
 ]
