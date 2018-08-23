@@ -1,12 +1,12 @@
 Stere
 =====
 
-.. image:: https://img.shields.io/pypi/pyversions/stere.svg
-     :alt: PyPI - Python Version
-
 .. image:: https://img.shields.io/pypi/v/stere.svg
      :target: https://pypi.org/project/stere/
      :alt: PyPI
+
+.. image:: https://img.shields.io/pypi/pyversions/stere.svg
+     :alt: PyPI - Python Version
 
 .. image:: https://pyup.io/repos/github/jsfehler/stere/shield.svg
      :target: https://pyup.io/repos/github/jsfehler/stere/
