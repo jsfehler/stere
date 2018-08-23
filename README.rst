@@ -5,6 +5,7 @@ Stere
      :alt: PyPI - Python Version
 
 .. image:: https://img.shields.io/pypi/v/stere.svg
+     :target: https://pypi.org/project/stere/
      :alt: PyPI
 
 .. image:: https://pyup.io/repos/github/jsfehler/stere/shield.svg
