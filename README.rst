@@ -8,9 +8,11 @@ Stere
 
 .. image:: https://img.shields.io/pypi/pyversions/stere.svg
     :alt: PyPI - Python Version
+    :target:
 
 .. image:: https://img.shields.io/github/license/jsfehler/stere.svg
     :alt: GitHub
+    :target:
 
 .. image:: https://pyup.io/repos/github/jsfehler/stere/shield.svg
     :target: https://pyup.io/repos/github/jsfehler/stere/
