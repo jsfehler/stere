@@ -8,14 +8,14 @@ Stere
 
 .. image:: https://img.shields.io/pypi/pyversions/stere.svg
     :alt: PyPI - Python Version
-    :target:
+    :target: https://github.com/jsfehler/stere/
 
 .. image:: https://img.shields.io/github/license/jsfehler/stere.svg
     :alt: GitHub
-    :target:
+    :target: https://github.com/jsfehler/stere/blob/master/LICENSE
 
 .. image:: https://pyup.io/repos/github/jsfehler/stere/shield.svg
-    :target: https://pyup.io/repos/github/jsfehler/stere/
+    :target: https://pyup.io/repos/github/jsfehler/stere
     :alt: Updates
 
 .. image:: https://travis-ci.org/jsfehler/stere.svg?branch=master
