@@ -1,6 +1,0 @@
-Pages
------
-
-.. autoclass:: stere.Page()
-
-  .. automethod:: stere.Page.navigate()
