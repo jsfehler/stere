@@ -2,7 +2,28 @@ from ..fields import Field
 
 
 class Area:
-    """A collection of unique fields."""
+    """A collection of unique fields.
+
+    The Area object takes any number of Fields as arguments.
+    Each Field must be unique on the Page and only present in one Area.
+
+    Example:
+
+    >>> from stere.areas import Area
+    >>> from stere.fields import Button
+    >>>
+    >>> class Album(Page):
+    >>>     def __init__(self):
+    >>>         self.tracks = Area(
+    >>>             first_track=Button('xpath', '//my_xpath_string'),
+    >>>             second_track=Button('xpath', '//my_xpath_string'),
+    >>>             third_track=Button('xpath', '//my_xpath_string'),
+    >>>         )
+    >>>
+    >>> def test_stuff():
+    >>>     album = Album()
+    >>>     album.tracks.third_track.click()
+    """
 
     def __init__(self, **kwargs):
         if kwargs.get('items') is not None:
@@ -46,9 +67,26 @@ class Area:
         If True, assume the argument has been used. If False,
         assume the argument is still available.
 
-        Args:
+        Arguments:
             args: Array that should be equal to the number of
                 Fields in the Area that take an argument.
+
+        Example:
+            >>> from stere.areas import Area
+            >>> from stere.fields import Button, Input
+            >>>
+            >>> class Login():
+            >>>     def __init__(self):
+            >>>         self.form = Area(
+            >>>             username=Input('xpath', '//my_xpath_string'),
+            >>>             password=Input('xpath', '//my_xpath_string'),
+            >>>             submit=Button('xpath', '//my_xpath_string')
+            >>>         )
+            >>>
+            >>>
+            >>> def test_login():
+            >>>     login = Login()
+            >>>     login.my_area.perform('Sven', 'Hoek')
         """
         arg_index = 0
         workflow = self._workflow

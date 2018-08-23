@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Fields &mdash; Stere 0.0.1 documentation</title>
+  <title>Fields &mdash; Stere 0.2.0 documentation</title>
   
 
   
@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Stere 0.0.1 documentation" href="index.html"/>
-        <link rel="next" title="Areas" href="area.html"/>
-        <link rel="prev" title="Pages" href="page.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Areas" href="area.html" />
+    <link rel="prev" title="Pages" href="page.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +58,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.2.0
               </div>
             
           
@@ -94,13 +86,12 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="page.html">Pages</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Fields</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#field-perform-value">Field.perform(value)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#field-includes-value">Field.includes(value)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#subclassing-field">Subclassing Field</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dropdown">Dropdown</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#before-select">before_select()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performer-method">Performer method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assigning-the-performer-method">Assigning the performer method</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#subclassing-field">Subclassing Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#splinter-fields">Splinter Fields</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#location-strategies">Location Strategies</a></li>
@@ -119,7 +110,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Stere</a>
@@ -127,9 +118,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -173,69 +165,262 @@
             
   <div class="section" id="fields">
 <h1>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h1>
-<p>The Field objects represent individual elements on a web page.
-Conceptually, they represent general behaviours, not specific HTML elements.</p>
-<p>The following Fields are available by default:</p>
-<ul class="simple">
-<li>Button: Clickable object.</li>
-<li>Dropdown: Object with multiple options to choose from.</li>
-<li>Input: Object that accepts keyboard input.</li>
-<li>Link: Clickable text.</li>
-<li>Root: Parent container.</li>
-<li>Text: Non-interactive text.</li>
+<dl class="class">
+<dt id="stere.fields.Field">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Field</code><a class="headerlink" href="#stere.fields.Field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field objects represent individual pieces on a web page.
+Conceptually, they’re modelled after general behaviours, not specific HTML elements.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>strategy</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The type of strategy to use when locating an element.</li>
+<li><strong>locator</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The locator for the strategy.</li>
+<li><strong>workflows</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – Any workflows the Field should be included with.</li>
 </ul>
-<p>Fields take 2 arguments: <a class="reference internal" href="#id1"><span class="std std-ref">location strategy</span></a> and locator.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">some_text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;js-link-box-pt&quot;]/small/span&#39;</span><span class="p">)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stere.fields</span> <span class="k">import</span> <span class="n">Field</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_field</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//*[@id=&quot;js-link-box-pt&quot;]/small/span&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="field-perform-value">
-<h2>Field.perform(value)<a class="headerlink" href="#field-perform-value" title="Permalink to this headline">¶</a></h2>
-<p>Used by the Area class. When Area.perform() is called, it will trigger the .perform() methods of all its child Fields.</p>
-<p>It should implement a standard action taken by the user. For example, Button.perform() will result in a click.</p>
-<p>The base Field.perform() does nothing, but can be extended when creating a custom Field.</p>
-<p>When creating a custom Field, implementations of .perform() must return a Boolean. If the Field’s perform consumes an argument, it should return True. If not, False.</p>
-</div>
-<div class="section" id="field-includes-value">
-<h2>Field.includes(value)<a class="headerlink" href="#field-includes-value" title="Permalink to this headline">¶</a></h2>
-<p>Will search every element found by the Field for a value property that matches the given value.
+<dl class="method">
+<dt id="stere.fields.Field.includes">
+<code class="descname">includes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.Field.includes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Will search every element found by the Field for a value property
+that matches the given value.
 If an element with a matching value is found, it’s then returned.</p>
-<p>Useful for when you have non-unique elements and know a value is in one of the elements, but don’t know which one.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">PetStore</span><span class="p">()</span><span class="o">.</span><span class="n">inventory_list</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="s2">&quot;Kittens&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+<p>Useful for when you have non-unique elements and know a value is in
+one of the elements, but don’t know which one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A text string inside an element you want to find.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">element</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">PetStore</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="bp">self</span><span class="o">.</span><span class="n">inventory_list</span> <span class="o">=</span> <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;//div&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pet_store</span> <span class="o">=</span> <span class="n">PetStore</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pet_store</span><span class="o">.</span><span class="n">inventory_list</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="s2">&quot;Kittens&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
 </pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="stere.fields.Field.before">
+<code class="descname">before</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.Field.before" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called automatically before methods with the <cite>&#64;use_before</cite>
+decorator are called.</p>
+<p>By default it does nothing. Override this method if an action must be
+taken before the method has been called.</p>
+</dd></dl>
+
+<p>In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.fields</span> <span class="kn">import</span> <span class="n">Dropdown</span>
+
+<span class="k">class</span> <span class="nc">CSSDropdown</span><span class="p">(</span><span class="n">Dropdown</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Dropdown that&#39;s customized to hover over the element before attempting</span>
+<span class="sd">    a select.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">before</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">mouse_over</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="stere.fields.Field.after">
+<code class="descname">after</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.Field.after" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called automatically before methods with the <cite>&#64;use_after</cite>
+decorator are called.</p>
+<p>By default it does nothing. Override this method if an action must be
+taken after the method has been called.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="performer-method">
+<h2>Performer method<a class="headerlink" href="#performer-method" title="Permalink to this headline">¶</a></h2>
+<p>A Field can have a single method be designated as a performer.
+This causes the method to be called when the Field is inside an Area and that Area’s perform() method is called.</p>
+<p>For example, Input’s performer is the fill() method, and Button’s performer is the click() method. Given the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">search</span> <span class="o">=</span> <span class="n">Area</span><span class="p">(</span>
+    <span class="n">query</span><span class="o">=</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;xsearch&#39;</span><span class="p">),</span>
+    <span class="n">submit</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;xsubmit&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>When search.perform() is called, query.fill() is called, followed by submit.click().</p>
+<p>See the documentation for <a class="reference external" href="https://stere.readthedocs.io/en/latest/area.html">Area</a> for more details.</p>
+<div class="section" id="assigning-the-performer-method">
+<h3>Assigning the performer method<a class="headerlink" href="#assigning-the-performer-method" title="Permalink to this headline">¶</a></h3>
+<p>When creating a new type of Field, the stere_performer class decorator can be used to assign a performer method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.fields.field</span> <span class="kn">import</span> <span class="n">stere_performer</span>
+
+<span class="nd">@stere_performer</span><span class="p">(</span><span class="s1">&#39;philosophize&#39;</span><span class="p">,</span> <span class="n">consumes_arg</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DiogenesButton</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">philosophize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;As a matter of self-preservation, a man needs good friends or ardent enemies, for the former instruct him and the latter take him to task.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>consumes arg</cite> argument should be used to specify if the method should use an argument provided by Area.perform() or not.</p>
 </div>
 </div>
 <div class="section" id="subclassing-field">
 <h2>Subclassing Field<a class="headerlink" href="#subclassing-field" title="Permalink to this headline">¶</a></h2>
 <p>Field can be subclassed to suit your own requirements.</p>
 <p>If the __init__() method is overwritten, make sure to call super() before your own code.</p>
-<p>If your class need specific behaviour when interacting with Areas, it must implement the perform() method.</p>
+<p>If your class needs specific behaviour when interacting with Areas, it must implement the perform() method.</p>
 </div>
-<div class="section" id="dropdown">
-<h2>Dropdown<a class="headerlink" href="#dropdown" title="Permalink to this headline">¶</a></h2>
-<p>By default, the Dropdown field works against HTML Dropdowns.
+<div class="section" id="splinter-fields">
+<h2>Splinter Fields<a class="headerlink" href="#splinter-fields" title="Permalink to this headline">¶</a></h2>
+<p>Fields that rely on Splinter being connected to Stere.</p>
+<p>The following Fields are available with the default Splinter implementation:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#button"><span class="std std-ref">Button</span></a>: Clickable object.</li>
+<li><a class="reference internal" href="#checkbox"><span class="std std-ref">Checkbox</span></a>: Object with a set and unset state.</li>
+<li><a class="reference internal" href="#dropdown"><span class="std std-ref">Dropdown</span></a>: Object with multiple options to choose from.</li>
+<li><a class="reference internal" href="#input"><span class="std std-ref">Input</span></a>: Object that accepts keyboard input.</li>
+<li><a class="reference internal" href="#link"><span class="std std-ref">Link</span></a>: Clickable text.</li>
+<li><a class="reference internal" href="#root"><span class="std std-ref">Root</span></a>: Parent container.</li>
+<li><a class="reference internal" href="#text"><span class="std std-ref">Text</span></a>: Non-interactive text.</li>
+</ul>
+<span class="target" id="button"></span><dl class="class">
+<dt id="stere.fields.Button">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Button</code><a class="headerlink" href="#stere.fields.Button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience Class on top of Field, it implements <cite>click()</cite> as its performer.</p>
+<dl class="method">
+<dt id="stere.fields.stere.fields.Button.Button.click">
+<code class="descclassname">Button.</code><code class="descname">click</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Button.Button.click" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses Splinter’s click method.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="checkbox"></span><dl class="class">
+<dt id="stere.fields.Checkbox">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Checkbox</code><a class="headerlink" href="#stere.fields.Checkbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default, the Checkbox field works against HTML inputs with type=”checkbox”.</p>
+<p>Can be initialized with the <cite>default_checked</cite> argument. If True, the Field assumes the checkbox’s default state is checked.</p>
+<p>It implements <cite>opposite()</cite> as its performer.</p>
+<dl class="method">
+<dt id="stere.fields.stere.fields.Checkbox.Checkbox.set_to">
+<code class="descclassname">Checkbox.</code><code class="descname">set_to</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Checkbox.Checkbox.set_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a checkbox to the desired state.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – True for check, False for uncheck</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stere.fields.stere.fields.Checkbox.Checkbox.toggle">
+<code class="descclassname">Checkbox.</code><code class="descname">toggle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Checkbox.Checkbox.toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the checkbox is checked, uncheck it.
+If the checkbox is unchecked, check it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stere.fields.stere.fields.Checkbox.Checkbox.opposite">
+<code class="descclassname">Checkbox.</code><code class="descname">opposite</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Checkbox.Checkbox.opposite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Switches the checkbox to the opposite of its default state.
+Uses the <cite>default_checked</cite> attribute to decide this.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="dropdown"></span><dl class="class">
+<dt id="stere.fields.Dropdown">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Dropdown</code><a class="headerlink" href="#stere.fields.Dropdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default, the Dropdown field works against HTML Dropdowns.
 However, it’s possible to extend Dropdown to work with whatever implementation of a CSS Dropdown you need.</p>
+<p>It implements <cite>select()</cite> as its performer.</p>
 <p>The <cite>option</cite> argument can be provided to override the default implementation.
 This argument expects a Field. The Field should be the individual options in the dropdown you wish to target.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">languages</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;langDrop&#39;</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;/h4/a/strong&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">languages</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;langDrop&#39;</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">,</span> <span class="s1">&#39;/h4/a/strong&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="section" id="before-select">
-<h3>before_select()<a class="headerlink" href="#before-select" title="Permalink to this headline">¶</a></h3>
-<p>This method is called automatically before the select() method.
-If an action is required to prepare the dropdown for usage (such as hovering over a button to open it)
-then this method can be overridden with the desired behaviour.</p>
-<p>In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.fields</span> <span class="kn">import</span> <span class="n">Dropdown</span>
+<dl class="method">
+<dt id="stere.fields.stere.fields.Dropdown.Dropdown.options">
+<code class="descclassname">Dropdown.</code><code class="descname">options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Dropdown.Dropdown.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches for all the elements that are an option in the dropdown.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
-<span class="k">class</span> <span class="nc">CSSDropdown</span><span class="p">(</span><span class="n">Dropdown</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A Dropdown that&#39;s customized to hover over the element before attempting</span>
-<span class="sd">    a select.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">before_select</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">mouse_over</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<dl class="method">
+<dt id="stere.fields.stere.fields.Dropdown.Dropdown.select">
+<code class="descclassname">Dropdown.</code><code class="descname">select</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Dropdown.Dropdown.select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches for an option by its html content, then clicks the one that matches.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The option value to select.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a> – The provided value could not be found in the dropdown.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="input"></span><dl class="class">
+<dt id="stere.fields.Input">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Input</code><a class="headerlink" href="#stere.fields.Input" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple wrapper over Field, it implements <cite>fill()</cite> as its performer.</p>
+<dl class="method">
+<dt id="stere.fields.stere.fields.Input.Input.fill">
+<code class="descclassname">Input.</code><code class="descname">fill</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Input.Input.fill" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Fills the element with value.</p>
+</dd></dl>
+
+<span class="target" id="link"></span><dl class="class">
+<dt id="stere.fields.Link">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Link</code><a class="headerlink" href="#stere.fields.Link" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple wrapper over Field, it implements <cite>click()</cite> as its performer.</p>
+<dl class="method">
+<dt id="stere.fields.stere.fields.Link.Link.click">
+<code class="descclassname">Link.</code><code class="descname">click</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.fields.stere.fields.Link.Link.click" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Clicks the element.</p>
+</dd></dl>
+
+<span class="target" id="root"></span><dl class="class">
+<dt id="stere.fields.Root">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Root</code><a class="headerlink" href="#stere.fields.Root" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple wrapper over Field, it does not implement a performer method.</p>
+</dd></dl>
+
+<span class="target" id="text"></span><dl class="class">
+<dt id="stere.fields.Text">
+<em class="property">class </em><code class="descclassname">stere.fields.</code><code class="descname">Text</code><a class="headerlink" href="#stere.fields.Text" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple wrapper over Field, it does not implement a performer method.</p>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="location-strategies">
@@ -259,7 +444,7 @@ then this method can be overridden with the desired behaviour.</p>
 <p>Any class can be decorated with &#64;strategy, as long as the _find_all and _find_all_in_parent methods are implemented.</p>
 <p>In the following example, the ‘data-test-id’ strategy is defined.
 It wraps Splinter’s find_by_xpath method to simplify the locator required on the Page Object.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.strategy</span> <span class="kn">import</span> <span class="n">strategy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stere.strategy</span> <span class="kn">import</span> <span class="n">strategy</span>
 
 
 <span class="nd">@strategy</span><span class="p">(</span><span class="s1">&#39;data-test-id&#39;</span><span class="p">)</span>
@@ -280,16 +465,14 @@ It wraps Splinter’s find_by_xpath method to simplify the locator required on t
 </pre></div>
 </div>
 <p>With this implemented, Fields can now be defined like so:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">my_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="s1">&#39;data-test-id&#39;</span><span class="p">,</span> <span class="s1">&#39;MyButton&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="s1">&#39;data-test-id&#39;</span><span class="p">,</span> <span class="s1">&#39;MyButton&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -311,7 +494,7 @@ It wraps Splinter’s find_by_xpath method to simplify the locator required on t
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -329,7 +512,8 @@ It wraps Splinter’s find_by_xpath method to simplify the locator required on t
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.1',
+            VERSION:'0.2.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -342,19 +526,13 @@ It wraps Splinter’s find_by_xpath method to simplify the locator required on t
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

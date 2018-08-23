@@ -1,3 +1,5 @@
+from functools import wraps
+
 from .element_builder import build_element
 
 
@@ -5,6 +7,7 @@ def stere_performer(method_name, consumes_arg=False):
     """Wraps a Class that contains a method which should be
     used by Area.perform().
     """
+
     def wrapper(cls):
         class Performer(cls):
             def perform(self, value=None):
@@ -20,6 +23,7 @@ def stere_performer(method_name, consumes_arg=False):
 
 
 def use_before(func, *args, **kwargs):
+    @wraps(func)
     def wrapper(obj, *inner_args, **inner_kwargs):
         obj.before()
         return func(obj, *inner_args, **inner_kwargs)
@@ -27,6 +31,7 @@ def use_before(func, *args, **kwargs):
 
 
 def use_after(func, *args, **kwargs):
+    @wraps(func)
     def wrapper(obj, *inner_args, **inner_kwargs):
         result = func(obj, *inner_args, **inner_kwargs)
         obj.after()
@@ -35,12 +40,20 @@ def use_after(func, *args, **kwargs):
 
 
 class Field:
-    """Base class for objects on a page.
+    """Field objects represent individual pieces on a web page.
+    Conceptually, they're modelled after general behaviours, not specific HTML elements.
 
     Arguments:
         strategy (str): The type of strategy to use when locating an element.
         locator (str): The locator for the strategy.
         workflows (list): Any workflows the Field should be included with.
+
+
+    Example:
+
+    >>> from stere.fields import Field
+    >>> my_field = Field('xpath', '//*[@id="js-link-box-pt"]/small/span')
+
     """
     def __init__(self, strategy, locator, *args, **kwargs):
         self.strategy = strategy
@@ -73,18 +86,20 @@ class Field:
         return self._element.find()
 
     def before(self):
-        """Called before any function wrapped with @use_before is called.
+        """Called automatically before methods with the `@use_before`
+        decorator are called.
 
-        Override this method if an action must be taken before the
-        method has been called.
+        By default it does nothing. Override this method if an action must be
+        taken before the method has been called.
         """
         pass
 
     def after(self):
-        """Called after any function wrapped with @use_after is called.
+        """Called automatically before methods with the `@use_after`
+        decorator are called.
 
-        Override this method if an action must be taken after the
-        method has been called.
+        By default it does nothing. Override this method if an action must be
+        taken after the method has been called.
         """
         pass
 
@@ -99,6 +114,29 @@ class Field:
         return False
 
     def includes(self, value):
+        """Will search every element found by the Field for a value property
+        that matches the given value.
+        If an element with a matching value is found, it's then returned.
+
+        Useful for when you have non-unique elements and know a value is in
+        one of the elements, but don't know which one.
+
+        Arguments:
+            value (str): A text string inside an element you want to find.
+
+        Returns:
+            element
+
+        Example:
+
+        >>> class PetStore(Page):
+        >>>     def __init__(self):
+        >>>         self.inventory_list = Link('xpath', '//div')
+        >>>
+        >>> pet_store = PetStore()
+        >>> pet_store.inventory_list.includes("Kittens").click()
+
+        """
         for item in self.element:
             if item.value == value:
                 return item

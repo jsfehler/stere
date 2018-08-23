@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pages &mdash; Stere 0.0.1 documentation</title>
+  <title>Pages &mdash; Stere 0.2.0 documentation</title>
   
 
   
@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Stere 0.0.1 documentation" href="index.html"/>
-        <link rel="next" title="Fields" href="field.html"/>
-        <link rel="prev" title="Getting Started" href="getting_started.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Fields" href="field.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +58,7 @@
             
             
               <div class="version">
-                0.0.1
+                0.2.0
               </div>
             
           
@@ -92,12 +84,8 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Pages</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#page-navigate">Page.navigate()</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="field.html">Fields</a></li>
-<li class="toctree-l1"><a class="reference internal" href="field.html#dropdown">Dropdown</a></li>
 <li class="toctree-l1"><a class="reference internal" href="field.html#location-strategies">Location Strategies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="field.html#custom-locator-strategies">Custom Locator Strategies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="area.html">Areas</a></li>
@@ -114,7 +102,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Stere</a>
@@ -122,9 +110,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -168,45 +157,56 @@
             
   <div class="section" id="pages">
 <h1>Pages<a class="headerlink" href="#pages" title="Permalink to this headline">¶</a></h1>
-<p>The Page class is the base which all Page Objects should inherit from.</p>
-<p>Although inheriting from Page is not required for Fields or Areas to work,
-Page will act as a proxy for calls to the browser attribute.</p>
-<p>Using Splinter’s browser.url method as an example, the following methods are analogous:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">MyPage</span><span class="o">.</span><span class="n">url</span> <span class="o">==</span> <span class="n">MyPage</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">url</span> <span class="o">==</span> <span class="n">browser</span><span class="o">.</span><span class="n">url</span>
+<dl class="class">
+<dt id="stere.Page">
+<em class="property">class </em><code class="descclassname">stere.</code><code class="descname">Page</code><a class="headerlink" href="#stere.Page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a single Web Page. The Page class is the base which all
+Page Objects should inherit from.</p>
+<p>Inheriting from Page is not required for Fields or Areas to work.</p>
+<p>All attribute calls are tried on the browser attribute.
+This allows classes inheriting from Page to act as a proxy to
+whichever browser/driver is being used.</p>
+<p>Using Splinter’s browser.url method as an example, the following methods
+are analogous:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">MyPage</span><span class="o">.</span><span class="n">url</span> <span class="o">==</span> <span class="n">MyPage</span><span class="o">.</span><span class="n">browser</span><span class="o">.</span><span class="n">url</span> <span class="o">==</span> <span class="n">browser</span><span class="o">.</span><span class="n">url</span>
 </pre></div>
 </div>
-<p>The choice of which syntax to use depends on how you want to write your tests.</p>
-<div class="section" id="page-navigate">
-<h2>Page.navigate()<a class="headerlink" href="#page-navigate" title="Permalink to this headline">¶</a></h2>
-<p>When the base Stere object has been given the <cite>url_navigator</cite> attribute, and
-a Page Object has a <cite>page_url</cite> attribute, the <cite>navigate()</cite> method can be called.</p>
-<p>This method will call the method defined in <cite>url_navigator</cite>, with <cite>page_url</cite>
-as the first parameter.</p>
+<p>The choice of which syntax to use depends on how you want to write your
+tests.</p>
+<dl class="method">
+<dt id="stere.Page.navigate">
+<code class="descname">navigate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stere.Page.navigate" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the base Stere object has been given the <cite>url_navigator</cite>
+attribute, and a Page Object has a <cite>page_url</cite> attribute, the
+<cite>navigate()</cite> method can be called.</p>
+<p>This method will call the method defined in <cite>url_navigator</cite>,
+with <a href="#id1"><span class="problematic" id="id2">`</span></a>page_url`as the first parameter.</p>
 <p>In the following example, Stere is initialized with Splinter.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">splinter</span> <span class="kn">import</span> <span class="n">Browser</span>
-<span class="kn">from</span> <span class="nn">stere</span> <span class="kn">import</span> <span class="n">Page</span>
-
-
-<span class="k">class</span> <span class="nc">Home</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">page_url</span> <span class="o">=</span> <span class="s1">&#39;https://en.wikipedia.org/&#39;</span>
-
-
-<span class="n">Stere</span><span class="o">.</span><span class="n">browser</span> <span class="o">=</span> <span class="n">Browser</span><span class="p">()</span>
-<span class="n">Stere</span><span class="o">.</span><span class="n">url_navigator</span> <span class="o">=</span> <span class="s1">&#39;visit&#39;</span>
-
-<span class="n">home_page</span> <span class="o">=</span> <span class="n">Home</span><span class="p">()</span>
-<span class="n">home_page</span><span class="o">.</span><span class="n">navigate</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">splinter</span> <span class="k">import</span> <span class="n">Browser</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stere</span> <span class="k">import</span> <span class="n">Page</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Home</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="bp">self</span><span class="o">.</span><span class="n">page_url</span> <span class="o">=</span> <span class="s1">&#39;https://en.wikipedia.org/&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Stere</span><span class="o">.</span><span class="n">browser</span> <span class="o">=</span> <span class="n">Browser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Stere</span><span class="o">.</span><span class="n">url_navigator</span> <span class="o">=</span> <span class="s1">&#39;visit&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">home_page</span> <span class="o">=</span> <span class="n">Home</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">home_page</span><span class="o">.</span><span class="n">navigate</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -228,7 +228,7 @@ as the first parameter.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -246,7 +246,8 @@ as the first parameter.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.0.1',
+            VERSION:'0.2.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -259,19 +260,13 @@ as the first parameter.</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

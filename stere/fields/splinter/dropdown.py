@@ -20,7 +20,7 @@ class Dropdown(Field):
 
     @property
     def options(self):
-        """Get all the elements that are an option in the dropdown.
+        """Searches for all the elements that are an option in the dropdown.
 
         Returns:
             list
@@ -31,7 +31,10 @@ class Dropdown(Field):
     @use_after
     @use_before
     def select(self, value):
-        """Click an option by its html content.
+        """Searches for an option by its html content, then clicks the one that matches.
+
+        Arguments:
+            value (str): The option value to select.
 
         Raises:
             ValueError: The provided value could not be found in the dropdown.

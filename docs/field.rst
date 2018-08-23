@@ -1,24 +1,26 @@
 Fields
 ------
 
-The Field objects represent individual elements on a web page.
-Conceptually, they represent general behaviours, not specific HTML elements.
+.. autoclass:: stere.fields.Field()
 
-The following Fields are available with the default Splinter implementation:
+  .. automethod:: stere.fields.Field.includes()
 
-- :ref:`Button <button>`: Clickable object.
-- :ref:`Checkbox <checkbox>`: Object with a set and unset state.
-- :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
-- :ref:`Input <input>`: Object that accepts keyboard input.
-- :ref:`Link <link>`: Clickable text.
-- :ref:`Root <root>`: Parent container.
-- :ref:`Text <text>`: Non-interactive text.
+  .. automethod:: stere.fields.Field.before()
 
-Fields take 2 arguments: :ref:`location strategy <location_strategies>` and locator.
+  In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.
 
-.. code-block:: python
+  .. code-block:: python
 
-    self.some_text = Text('xpath', '//*[@id="js-link-box-pt"]/small/span')
+      from stere.fields import Dropdown
+
+      class CSSDropdown(Dropdown):
+          """A Dropdown that's customized to hover over the element before attempting
+          a select.
+          """
+          def before(self):
+              self.element.mouse_over()
+
+  .. automethod:: stere.fields.Field.after()
 
 
 Performer method
@@ -58,45 +60,6 @@ When creating a new type of Field, the stere_performer class decorator can be us
 The `consumes arg` argument should be used to specify if the method should use an argument provided by Area.perform() or not.
 
 
-Field.includes(value)
-~~~~~~~~~~~~~~~~~~~~~
-
-Will search every element found by the Field for a value property that matches the given value.
-If an element with a matching value is found, it's then returned.
-
-Useful for when you have non-unique elements and know a value is in one of the elements, but don't know which one.
-
-.. code-block:: python
-
-    PetStore().inventory_list.includes("Kittens").click()
-
-
-Field.before()
-~~~~~~~~~~~~~~
-
-This method is called automatically before methods with the `@use_before` decorator are called.
-By default it does nothing. It can be overridden to support any desired behaviour.
-
-In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.
-
-.. code-block:: python
-
-    from stere.fields import Dropdown
-
-    class CSSDropdown(Dropdown):
-        """A Dropdown that's customized to hover over the element before attempting
-        a select.
-        """
-        def before(self):
-            self.element.mouse_over()
-
-
-Field.after()
-~~~~~~~~~~~~~
-This method is called automatically after methods with the `@use_after` decorator are called.
-By default it does nothing. It can be overridden to support any desired behaviour.
-
-
 Subclassing Field
 ~~~~~~~~~~~~~~~~~
 
@@ -106,111 +69,99 @@ If the __init__() method is overwritten, make sure to call super() before your o
 
 If your class needs specific behaviour when interacting with Areas, it must implement the perform() method.
 
-Button
-~~~~~~
+
+Splinter Fields
+~~~~~~~~~~~~~~~
+
+Fields that rely on Splinter being connected to Stere.
+
+The following Fields are available with the default Splinter implementation:
+
+- :ref:`Button <button>`: Clickable object.
+- :ref:`Checkbox <checkbox>`: Object with a set and unset state.
+- :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
+- :ref:`Input <input>`: Object that accepts keyboard input.
+- :ref:`Link <link>`: Clickable text.
+- :ref:`Root <root>`: Parent container.
+- :ref:`Text <text>`: Non-interactive text.
+
+
+
 .. _button:
+.. class:: stere.fields.Button()
 
-A simple wrapper over Field, it implements `click()` as its performer.
+  Convenience Class on top of Field, it implements `click()` as its performer.
 
-click()
-+++++++
-
-Clicks the element.
+  .. automethod:: stere.fields.Button.click()
 
 
-Checkbox
-~~~~~~~~
 .. _checkbox:
+.. class:: stere.fields.Checkbox()
 
-By default, the Checkbox field works against HTML inputs with type="checkbox".
+  By default, the Checkbox field works against HTML inputs with type="checkbox".
 
-Can be initialized with the `default_checked` argument. If True, the Field assumes the checkbox's default state is checked.
+  Can be initialized with the `default_checked` argument. If True, the Field assumes the checkbox's default state is checked.
 
-It implements `opposite()` as its performer.
+  It implements `opposite()` as its performer.
 
-set_to(state)
-+++++++++++++
+  .. automethod:: stere.fields.Checkbox.set_to()
 
-Set a checkbox to the desired state.
+  .. automethod:: stere.fields.Checkbox.toggle()
 
-Args:
-    state (bool): True for check, False for uncheck
-
-toggle()
-++++++++
-
-If the checkbox is checked, uncheck it. If the checkbox is unchecked, check it.
-
-opposite()
-++++++++++
-
-Switches the checkbox to the opposite of its default state. Uses the `default_checked` attribute to decide this.
+  .. automethod:: stere.fields.Checkbox.opposite()
 
 
-Dropdown
-~~~~~~~~
 .. _dropdown:
+.. class:: stere.fields.Dropdown()
 
-By default, the Dropdown field works against HTML Dropdowns.
-However, it's possible to extend Dropdown to work with whatever implementation of a CSS Dropdown you need.
+  By default, the Dropdown field works against HTML Dropdowns.
+  However, it's possible to extend Dropdown to work with whatever implementation of a CSS Dropdown you need.
 
-It implements `select()` as its performer.
+  It implements `select()` as its performer.
 
-The `option` argument can be provided to override the default implementation.
-This argument expects a Field. The Field should be the individual options in the dropdown you wish to target.
+  The `option` argument can be provided to override the default implementation.
+  This argument expects a Field. The Field should be the individual options in the dropdown you wish to target.
 
-.. code-block:: python
+  .. code-block:: python
 
-    self.languages = Dropdown('id', 'langDrop', option=Button('xpath', '/h4/a/strong'))
-
-options
-+++++++
-
-Searches for all the options in the dropdown and returns a list of Fields.
-
-select(value)
-+++++++++++++
-
-Searches for an option with value, then clicks it.
+      self.languages = Dropdown('id', 'langDrop', option=Button('xpath', '/h4/a/strong'))
 
 
-Input
-~~~~~
+  .. automethod:: stere.fields.Dropdown.options()
+
+  .. automethod:: stere.fields.Dropdown.select()
+
+
 .. _input:
+.. class:: stere.fields.Input()
 
-A simple wrapper over Field, it implements `fill()` as its performer.
+  A simple wrapper over Field, it implements `fill()` as its performer.
+
+  .. automethod:: stere.fields.Input.fill()
+
+  Fills the element with value.
 
 
-fill(value)
-+++++++++++
-
-Fills the element with value.
-
-
-Link
-~~~~~
 .. _link:
+.. class:: stere.fields.Link()
 
-A simple wrapper over Field, it implements `click()` as its performer.
+  A simple wrapper over Field, it implements `click()` as its performer.
 
-click()
-+++++++
+  .. automethod:: stere.fields.Link.click()
 
-Clicks the element.
+  Clicks the element.
 
 
-Root
-~~~~~
 .. _root:
+.. class:: stere.fields.Root()
 
-A simple wrapper over Field, it does not implement a performer method.
+  A simple wrapper over Field, it does not implement a performer method.
 
 
-Text
-~~~~~
 .. _text:
+.. class:: stere.fields.Text()
 
-A simple wrapper over Field, it does not implement a performer method.
+  A simple wrapper over Field, it does not implement a performer method.
 
 
 Location Strategies

@@ -5,20 +5,24 @@ from .strategy import strategy
 
 class SplinterBase:
     def is_present(self, *args, **kwargs):
+        """Checks if an element is present in the DOM."""
         func = getattr(self.browser, f'is_element_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
     def is_not_present(self, *args, **kwargs):
+        """Checks if an element is not present in the DOM."""
         func = getattr(
             self.browser, f'is_element_not_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
     def is_visible(self, *args, **kwargs):
+        """Checks if an element is present in the DOM and visible."""
         func = self.browser.is_element_visible_by_xpath
         xpath = f'.//*[@{self.strategy}="{self.locator}"]'
         return func(xpath, *args, **kwargs)
 
     def is_not_visible(self, *args, **kwargs):
+        """Checks if an element is present in the DOM but not visible."""
         func = self.browser.is_element_not_visible_by_xpath
         xpath = f'.//*[@{self.strategy}="{self.locator}"]'
         return func(xpath, *args, **kwargs)
