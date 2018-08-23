@@ -9,111 +9,16 @@ The following Area objects are available:
 - RepeatingArea: A hierarchical, non-unique group of Areas. They require a Root Field.
 
 
-Area()
-------
+.. autoclass:: stere.areas.Area()
 
-The Area object takes any number of Fields as arguments.
-Each Field must be unique on the Page and only present in one Area.
-
-.. code-block:: python
-
-    from stere.areas import Area
-    from stere.fields import Input
-
-    class MyPage():
-        def __init__(self):
-            self.my_area = Area(
-                my_input=Input('xpath', '//my_xpath_string')
-            )
-
-Fields in an Area can be called as attributes of the Area:
-
-.. code-block:: python
-
-    def test_stuff():
-        MyPage().my_area.my_input.fill('Hello world')
+  .. automethod:: stere.areas.Area.perform()
 
 
-Area.perform()
-~~~~~~~~~~~~~~
+.. autoclass:: stere.areas.RepeatingArea()
 
-The perform method will "Do the right thing" sequentially for every Field inside an Area.
+  .. automethod:: stere.areas.RepeatingArea.areas()
 
-- For Button and Link, it will click them.
-
-- For Input, it will fill them using the text arguments provided.
-
-- For Text, it will do nothing.
-
-
-.. code-block:: python
-
-    from stere.areas import Area
-    from stere.fields import Input
-
-    class MyPage():
-        def __init__(self):
-            self.my_area = Area(
-                my_input=Input('xpath', '//my_xpath_string'),
-                my_input_2=Input('xpath', '//my_xpath_string'),
-                my_button=Button('xpath', '//my_xpath_string')
-            )
-
-
-    def test_stuff():
-        MyPage().my_area.perform('Hello', 'World')
-
-
-RepeatingArea()
----------------
-
-A RepeatingArea represents a collection of Fields that appear multiple times on a Page.
-
-The RepeatingArea objects requires a Root Field in the arguments, but otherwise takes any number of Fields as arguments.
-The other Fields will use the Root as a parent.
-
-.. code-block:: python
-
-    from stere.areas import RepeatingArea
-    from stere.fields import Root, Input
-
-    class MyPage():
-        def __init__(self):
-            self.my_repeating_area = RepeatingArea(
-                root=Root('xpath', '//my_xpath_string'),
-                my_input=Input('xpath', '//my_xpath_string')
-            )
-
-
-RepeatingArea().area_with()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Takes two arguments: A Field's name and an expected value.
-Searches the RepeatingArea for a single Area where the Field's value matches the expected value and then returns the entire Area object.
-
-.. code-block:: python
-
-    class Inventory():
-        def __init__(self):
-            self.items = RepeatingArea(
-                root=Root('xpath', '//my_xpath_string'),
-                description=Text('xpath', '//my_xpath_string')
-            )
-
-    def test_stuff():
-        found_area = MyPage().items.area_with("description", "Bananas")
-
-
-RepeatingArea().areas
-~~~~~~~~~~~~~~~~~~~~~
-
-A list of all the Area objects found can be accessed with the areas attribute.
-
-.. code-block:: python
-
-    def test_stuff():
-        listings = MyPage().my_repeating_area.areas
-        listings[0].my_input.fill('Hello world')
+  .. automethod:: stere.areas.RepeatingArea.area_with()
 
 
 Reusing Areas

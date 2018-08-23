@@ -12,7 +12,7 @@ class Checkbox(Field):
     def set_to(self, state):
         """Set a checkbox to the desired state.
 
-        Args:
+        Arguments:
             state (bool): True for check, False for uncheck
         """
         if state:
@@ -40,6 +40,9 @@ class Checkbox(Field):
         self.find().uncheck()
 
     def opposite(self):
+        """Switches the checkbox to the opposite of its default state.
+        Uses the `default_checked` attribute to decide this.
+        """
         if not self.default_checked:
             self.check()
         else:
