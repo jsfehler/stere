@@ -31,7 +31,8 @@ class Dropdown(Field):
     @use_after
     @use_before
     def select(self, value):
-        """Searches for an option by its html content, then clicks the one that matches.
+        """Searches for an option by its html content, then clicks the one
+        that matches.
 
         Arguments:
             value (str): The option value to select.

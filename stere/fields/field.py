@@ -41,7 +41,8 @@ def use_after(func, *args, **kwargs):
 
 class Field:
     """Field objects represent individual pieces on a web page.
-    Conceptually, they're modelled after general behaviours, not specific HTML elements.
+    Conceptually, they're modelled after general behaviours, not specific
+    HTML elements.
 
     Arguments:
         strategy (str): The type of strategy to use when locating an element.
