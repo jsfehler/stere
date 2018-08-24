@@ -1,9 +1,11 @@
 import logging
 
+from pages import dummy_invalid
+
 import pytest
+
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-from pages import dummy_invalid
 
 LOGGER.setLevel(logging.WARNING)
 
@@ -45,19 +47,15 @@ def test_repeating_area(test_page):
 
 def test_repeating_area_includes(test_page):
         test_page.navigate()
-
-        correct_element = test_page.repeating_area.links.includes(
-            "Repeating Link 1"
-        )
-
-        assert correct_element.value == "Repeating Link 1"
+        elem = test_page.repeating_area.links.includes("Repeating Link 1")
+        assert elem.value == "Repeating Link 1"
 
 
 def test_repeating_area_area_with(test_page):
         test_page.navigate()
 
         found_area = test_page.repeating_area.area_with(
-            'link', 'Repeating Link 2'
+            'link', 'Repeating Link 2',
         )
 
         assert found_area.text.value == 'Repeating Area 2'

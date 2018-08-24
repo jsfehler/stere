@@ -1,5 +1,4 @@
 from .field import Field
-
 from .splinter.button import Button
 from .splinter.checkbox import Checkbox
 from .splinter.dropdown import Dropdown
@@ -17,5 +16,5 @@ __all__ = [
     'Input',
     'Link',
     'Root',
-    'Text'
+    'Text',
 ]

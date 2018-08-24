@@ -1,5 +1,4 @@
 from stere import Page
-
 from stere.areas import Area, RepeatingArea
 from stere.fields import (
     Link,
@@ -14,7 +13,7 @@ class InvalidDummyPageA(Page):
     def __init__(self):
         self.missing_root = RepeatingArea(
             link=Link('xpath', './/a'),
-            text=Text('css', '.test_repeating_area_test')
+            text=Text('css', '.test_repeating_area_test'),
         )
 
 
@@ -25,7 +24,7 @@ class InvalidDummyPageB(Page):
         self.reserved_kwarg = RepeatingArea(
             root=Root('css', '.test_repeating_area_root'),
             link=Link('xpath', './/a'),
-            items=Text('css', '.test_repeating_area_test')
+            items=Text('css', '.test_repeating_area_test'),
         )
 
 
@@ -35,7 +34,7 @@ class InvalidDummyPageC(Page):
     def __init__(self):
         self.non_field_kwargs = RepeatingArea(
             root=Root('css', '.test_repeating_area_root'),
-            link="Foobar"
+            link="Foobar",
         )
 
 
@@ -45,7 +44,7 @@ class InvalidDummyPageD(Page):
     def __init__(self):
         self.non_field_kwargs = Area(
             root=Root('css', '.test_repeating_area_root'),
-            items=Text('css', '.test_repeating_area_test')
+            items=Text('css', '.test_repeating_area_test'),
         )
 
 
@@ -55,5 +54,5 @@ class InvalidDummyPageE(Page):
     def __init__(self):
         self.non_field_kwargs = Area(
             root=Root('css', '.test_repeating_area_root'),
-            link="Foobar"
+            link="Foobar",
         )

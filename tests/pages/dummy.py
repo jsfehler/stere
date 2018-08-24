@@ -1,15 +1,14 @@
 from stere import Page
-
 from stere.areas import Area, RepeatingArea
 from stere.fields import (
-    Field,
     Button,
     Checkbox,
+    Dropdown,
+    Field,
     Input,
     Link,
     Root,
     Text,
-    Dropdown
 )
 
 
@@ -38,23 +37,23 @@ class DummyPage(Page):
 
         self.input_area = Area(
             input=Input('id', 'test_input'),
-            submit_button=Button('id', 'test_input_submit')
+            submit_button=Button('id', 'test_input_submit'),
         )
         self.link = Link('id', 'test_link')
         self.dropdown_area = Area(
             dropdown=Dropdown('id', 'test_dropdown'),
-            submit=Button('id', 'test_dropdown_submit')
+            submit=Button('id', 'test_dropdown_submit'),
         )
         self.css_dropdown = CSSDropdown(
             'id',
             'test_css_dropdown',
-            option=Link('css', 'a')
+            option=Link('css', 'a'),
         )
 
         self.repeating_area = RepeatingArea(
             root=Root('css', '.test_repeating_area_root'),
             link=Link('xpath', './/a'),
-            text=Text('css', '.test_repeating_area_test')
+            text=Text('css', '.test_repeating_area_test'),
         )
 
         # A Repeating Area that won't find anything.
@@ -68,12 +67,12 @@ class DummyPage(Page):
 
         self.area_with_root = Area(
             root=Root('id', 'area_root'),
-            link=Link('xpath', './a')
+            link=Link('xpath', './a'),
         )
 
         self.area_with_root_alt_strategy = Area(
             root=Root('data-test-id', 'Stere_area_root'),
-            link=Link('data-test-id', 'Stere_area_root_link')
+            link=Link('data-test-id', 'Stere_area_root_link'),
         )
 
         self.many_input_area = Area(
@@ -83,7 +82,7 @@ class DummyPage(Page):
             email=Input('id', 'test_input_email'),
             age=Input('id', 'test_input_age'),
             submit=Button('id', 'test_many_input_submit',
-                          workflows=['workflow_test'])
+                          workflows=['workflow_test']),
         )
         self.many_input_result = Text('id', 'many_input_result')
 
