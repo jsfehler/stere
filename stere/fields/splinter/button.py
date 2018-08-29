@@ -8,5 +8,12 @@ class Button(Field):
     @use_after
     @use_before
     def click(self):
-        """Uses Splinter's click method."""
+        """Uses Splinter's click method.
+
+        Example:
+
+        >>> purchase = Button('id', 'buy_button')
+        >>> purchase.click()
+
+        """
         self.find().click()
