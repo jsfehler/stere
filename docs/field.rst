@@ -74,7 +74,7 @@ Field can be subclassed to suit your own requirements.
 
 If the __init__() method is overwritten, make sure to call super() before your own code.
 
-If your class needs specific behaviour when interacting with Areas, it must implement the perform() method.
+If your class needs specific behaviour when interacting with Areas, it must use the @stere_performer decorator to specify a performer method.
 
 
 Splinter Fields
