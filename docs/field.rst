@@ -29,14 +29,21 @@ Performer method
 A Field can have a single method be designated as a performer.
 This causes the method to be called when the Field is inside an Area and that Area's perform() method is called.
 
-For example, Input's performer is the fill() method, and Button's performer is the click() method. Given the following:
+For example, Input's performer is the fill() method, and Button's performer is the click() method. Given the following Area:
 
 .. code-block:: python
 
-    self.search = Area(
+    search = Area(
         query=Input('id', 'xsearch'),
         submit=Button('id', 'xsubmit'),
     )
+
+and the following script:
+
+.. code-block:: python
+    
+    search.perform()
+
 
 When search.perform() is called, query.fill() is called, followed by submit.click().
 
