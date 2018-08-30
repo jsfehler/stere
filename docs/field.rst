@@ -41,7 +41,7 @@ For example, Input's performer is the fill() method, and Button's performer is t
 and the following script:
 
 .. code-block:: python
-    
+
     search.perform()
 
 
@@ -80,9 +80,8 @@ If your class needs specific behaviour when interacting with Areas, it must use 
 Splinter Fields
 ~~~~~~~~~~~~~~~
 
-Fields that rely on Splinter being connected to Stere.
-
-The following Fields are available with the default Splinter implementation:
+The following Fields are available with the default Splinter implementation.
+Each implements a specific performer method.
 
 - :ref:`Button <button>`: Clickable object.
 - :ref:`Checkbox <checkbox>`: Object with a set and unset state.
@@ -92,6 +91,23 @@ The following Fields are available with the default Splinter implementation:
 - :ref:`Root <root>`: Parent container.
 - :ref:`Text <text>`: Non-interactive text.
 
+All Fields that use Splinter also inherit the following convenience methods:
+
+  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_present()
+  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_not_present()
+  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_visible()
+  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_not_visible()
+
+  Example:
+
+  .. code-block:: python
+
+      class Inventory(Page):
+          def __init__(self):
+              self.price = Link('css', '.priceLink')
+
+
+      assert Inventory().price.is_present(wait_time=6)
 
 
 .. _button:
