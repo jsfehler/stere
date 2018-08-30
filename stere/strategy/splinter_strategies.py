@@ -5,24 +5,40 @@ from .strategy import strategy
 
 class SplinterBase:
     def is_present(self, *args, **kwargs):
-        """Checks if an element is present in the DOM."""
+        """Checks if an element is present in the DOM.
+
+        Takes the same arguments as Splinter's
+        `is_element_present_by_xpath`
+        """
         func = getattr(self.browser, f'is_element_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
     def is_not_present(self, *args, **kwargs):
-        """Checks if an element is not present in the DOM."""
+        """Checks if an element is not present in the DOM.
+
+        Takes the same arguments as Splinter's
+        `is_element_not_present_by_xpath`
+        """
         func = getattr(
             self.browser, f'is_element_not_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
     def is_visible(self, *args, **kwargs):
-        """Checks if an element is present in the DOM and visible."""
+        """Checks if an element is present in the DOM and visible.
+
+        Takes the same arguments as Splinter's
+        `is_element_visible_by_xpath`
+        """
         func = self.browser.is_element_visible_by_xpath
         xpath = f'.//*[@{self.strategy}="{self.locator}"]'
         return func(xpath, *args, **kwargs)
 
     def is_not_visible(self, *args, **kwargs):
-        """Checks if an element is present in the DOM but not visible."""
+        """Checks if an element is present in the DOM but not visible.
+
+        Takes the same arguments as Splinter's
+        `is_element_not_visible_by_xpath`
+        """
         func = self.browser.is_element_not_visible_by_xpath
         xpath = f'.//*[@{self.strategy}="{self.locator}"]'
         return func(xpath, *args, **kwargs)
