@@ -14,6 +14,12 @@ class Checkbox(Field):
 
         Arguments:
             state (bool): True for check, False for uncheck
+
+        Example:
+
+        >>> confirm = Checkbox('id', 'selectme')
+        >>> confirm.set_to(True)
+
         """
         if state:
             self.check()
@@ -23,6 +29,10 @@ class Checkbox(Field):
     def toggle(self):
         """If the checkbox is checked, uncheck it.
         If the checkbox is unchecked, check it.
+
+        >>> confirm = Checkbox('id', 'selectme')
+        >>> confirm.toggle()
+
         """
         if self.checked:
             self.uncheck()
@@ -42,6 +52,10 @@ class Checkbox(Field):
     def opposite(self):
         """Switches the checkbox to the opposite of its default state.
         Uses the `default_checked` attribute to decide this.
+
+        >>> confirm = Checkbox('id', 'selectme')
+        >>> confirm.opposite()
+
         """
         if not self.default_checked:
             self.check()

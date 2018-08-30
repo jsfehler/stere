@@ -10,4 +10,12 @@ class Link(Field):
     @use_after
     @use_before
     def click(self):
+        """Uses Splinter's click method.
+
+        Example:
+
+        >>> login = Link('id', 'loginLink')
+        >>> login.click()
+
+        """
         self.find().click()
