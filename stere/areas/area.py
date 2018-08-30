@@ -59,7 +59,7 @@ class Area:
         self._workflow = value
         return self
 
-    def perform(self, *args):
+    def perform(self, *args, **kwargs):
         """For every Field in an Area, sequentially "do the right thing"
         by calling the Field's perform() method.
 
@@ -68,8 +68,10 @@ class Area:
         assume the argument is still available.
 
         Arguments:
-            args: Array that should be equal to the number of
-                Fields in the Area that take an argument.
+            args: Arguments that will sequentially be sent to Fields
+                in this Area.
+            kwargs: Arguments that will be sent specifically to the Field
+                with a matching name.
 
         Example:
             >>> from stere.areas import Area
@@ -87,15 +89,36 @@ class Area:
             >>> def test_login():
             >>>     login = Login()
             >>>     login.my_area.perform('Sven', 'Hoek')
+
+            >>> from stere.areas import Area
+            >>> from stere.fields import Button, Input
+            >>>
+            >>> class Login():
+            >>>     def __init__(self):
+            >>>         self.form = Area(
+            >>>             username=Input('xpath', '//my_xpath_string'),
+            >>>             password=Input('xpath', '//my_xpath_string'),
+            >>>             submit=Button('xpath', '//my_xpath_string')
+            >>>         )
+            >>>
+            >>>
+            >>> def test_login():
+            >>>     login = Login()
+            >>>     login.my_area.perform(username='Sven', password='Hoek')
+
         """
         arg_index = 0
         workflow = self._workflow
-        for field in self.items.values():
+        for field_name, field in self.items.items():
             if workflow is not None and workflow not in field.workflows:
                 continue
-            result = field.perform(args[arg_index])
-            # If we've run out of arguments, don't increase the index.
-            if result and len(args) > (arg_index + 1):
-                arg_index += 1
+
+            if field_name in kwargs:
+                result = field.perform(kwargs[field_name])
+            else:
+                result = field.perform(args[arg_index])
+                # If we've run out of arguments, don't increase the index.
+                if result and len(args) > (arg_index + 1):
+                    arg_index += 1
 
         self._workflow = None

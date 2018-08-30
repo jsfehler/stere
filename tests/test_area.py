@@ -84,6 +84,23 @@ def test_area_perform_multiple_args(test_page):
     assert expected == test_page.many_input_result.text
 
 
+def test_area_perform_kwargs(test_page):
+    """When perform is called with kwargs, the parameters should be respected.
+    """
+    test_page.navigate()
+    test_page.many_input_area.perform(
+        first_name='Fooman',
+        last_name='Barson',
+        email='foobar@binbaz.net',
+        age='99',
+    )
+
+    time.sleep(2)
+
+    expected = 'Fooman, Barson, foobar@binbaz.net, 99,'
+    assert expected == test_page.many_input_result.text
+
+
 def test_area_set_workflow(test_page):
     test_page.many_input_area.workflow('Foobar')
     assert 'Foobar' == test_page.many_input_area._workflow
