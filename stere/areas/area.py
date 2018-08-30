@@ -116,7 +116,10 @@ class Area:
             if field_name in kwargs:
                 result = field.perform(kwargs[field_name])
             else:
-                result = field.perform(args[arg_index])
+                if args:
+                    result = field.perform(args[arg_index])
+                else:
+                    result = field.perform()
                 # If we've run out of arguments, don't increase the index.
                 if result and len(args) > (arg_index + 1):
                     arg_index += 1
