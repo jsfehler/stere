@@ -1,3 +1,5 @@
 flake8==3.5.0
+flake8-bugbear==18.8.0
 flake8-commas==2.0.0
 flake8-import-order==0.18
+pep8-naming==0.7.0
