@@ -87,9 +87,9 @@ The search form is represented as an `Area <https://stere.readthedocs.io/en/late
 A Field represents a single item, while an Area represents a unique collection of Fields.
 
 The query and submit Fields didn't have to be placed inside an Area.
-However, doing so allows you to use Area's `perform() <https://stere.readthedocs.io/en/latest/area.html#area-perform>`_ method.
+However, doing so allows you to use Area's `perform() <https://stere.readthedocs.io/en/latest/area.html#stere.areas.Area.perform>`_ method.
 
-The links to other products are represented as a `RepeatingArea <https://stere.readthedocs.io/en/latest/area.html#repeatingarea>`_ .
+The links to other products are represented as a `RepeatingArea <https://stere.readthedocs.io/en/latest/area.html#stere.areas.RepeatingArea>`_ .
 A RepeatingArea represents a non-unique collection of Fields on the page.
 Using the root argument, RepeatingArea will find all instances of said root,
 then build the appropriate number of Areas with all the other Fields inside.
