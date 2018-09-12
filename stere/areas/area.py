@@ -60,12 +60,11 @@ class Area:
         return self
 
     def perform(self, *args, **kwargs):
-        """For every Field in an Area, sequentially "do the right thing"
+        """For every Field in an Area, "do the right thing"
         by calling the Field's perform() method.
 
-        Every Field that implements perform() must return True or False.
-        If True, assume the argument has been used. If False,
-        assume the argument is still available.
+        Fields that require an argument can either be given sequentially
+        or with keywords.
 
         Arguments:
             args: Arguments that will sequentially be sent to Fields
@@ -74,38 +73,34 @@ class Area:
                 with a matching name.
 
         Example:
+
+            Given the following Page Object:
+
             >>> from stere.areas import Area
             >>> from stere.fields import Button, Input
             >>>
             >>> class Login():
             >>>     def __init__(self):
             >>>         self.form = Area(
-            >>>             username=Input('xpath', '//my_xpath_string'),
-            >>>             password=Input('xpath', '//my_xpath_string'),
-            >>>             submit=Button('xpath', '//my_xpath_string')
+            >>>             username=Input('id', 'app-user'),
+            >>>             password=Input('id', 'app-pwd'),
+            >>>             submit=Button('id', 'app-submit')
             >>>         )
             >>>
-            >>>
+
+            Any of the following styles are valid:
+
             >>> def test_login():
             >>>     login = Login()
             >>>     login.my_area.perform('Sven', 'Hoek')
 
-            >>> from stere.areas import Area
-            >>> from stere.fields import Button, Input
-            >>>
-            >>> class Login():
-            >>>     def __init__(self):
-            >>>         self.form = Area(
-            >>>             username=Input('xpath', '//my_xpath_string'),
-            >>>             password=Input('xpath', '//my_xpath_string'),
-            >>>             submit=Button('xpath', '//my_xpath_string')
-            >>>         )
-            >>>
-            >>>
             >>> def test_login():
             >>>     login = Login()
             >>>     login.my_area.perform(username='Sven', password='Hoek')
 
+            >>> def test_login():
+            >>>     login = Login()
+            >>>     login.my_area.perform('Sven', password='Hoek')
         """
         arg_index = 0
         workflow = self._workflow
