@@ -17,9 +17,9 @@ matrix:
 install:
 - pip install tox coveralls
 script:
-- if [$TOX_ENV == "chrome_remote"]; then tox -e $TOX_ENV -- --splinter-webdriver='remote' --splinter-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
-- if [$TOX_ENV == "firefox_remote"]; then tox -e $TOX_ENV -- --splinter-webdriver='remote' --splinter-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
-- if [$TOX_ENV == "flake8"]; then tox -e $TOX_ENV; fi
+- if [ $TOX_ENV == "chrome_remote" ]; then tox -e $TOX_ENV -- --splinter-webdriver='remote' --splinter-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
+- if [ $TOX_ENV == "firefox_remote" ]; then tox -e $TOX_ENV -- --splinter-webdriver='remote' --splinter-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
+- if [ $TOX_ENV == "flake8" ]; then tox -e $TOX_ENV; fi
 before_cache:
 - rm -rf $HOME/.cache/pip/log
 cache:
