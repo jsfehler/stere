@@ -80,7 +80,7 @@ class Field:
                 raise AttributeError
 
             # Try getting the attribute from the found element.
-            return getattr(element.find(), val)
+            return getattr(self.find(), val)
 
     def __repr__(self):
         return (

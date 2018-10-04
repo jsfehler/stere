@@ -20,6 +20,7 @@ Documentation
   page
   field
   splinter_fields
+  appium_fields
   area
   workflows
   best_practices

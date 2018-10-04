@@ -1,5 +1,4 @@
 import logging
-import os
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
