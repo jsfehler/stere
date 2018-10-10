@@ -154,7 +154,7 @@ class Field:
         found_elements = self._element.find()
         if len(found_elements) > 2:
             raise ValueError("Expected one element, found multiple")
-        return found_elements.first
+        return found_elements[0]
 
     def find_all(self):
         """Find all matching elements.
