@@ -19,6 +19,7 @@ Documentation
   getting_started
   page
   field
+  splinter_fields
   area
   workflows
   best_practices
