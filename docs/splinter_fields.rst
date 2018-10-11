@@ -14,10 +14,10 @@ Each implements a specific performer method.
 
 All Fields that use Splinter also inherit the following convenience methods:
 
-  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_present()
-  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_not_present()
-  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_visible()
-  .. automethod:: stere.strategy.splinter_strategies.SplinterBase.is_not_visible()
+  .. automethod:: stere.strategy.splinterSplinterBase.is_present()
+  .. automethod:: stere.strategy.splinter.SplinterBase.is_not_present()
+  .. automethod:: stere.strategy.splinter.SplinterBase.is_visible()
+  .. automethod:: stere.strategy.splinter.SplinterBase.is_not_visible()
 
   Example:
 
@@ -145,12 +145,6 @@ It wraps Splinter's find_by_xpath method to simplify the locator required on the
 
     @strategy('data-test-id')
     class FindByDataTestId():
-        def is_present(self, *args, **kwargs):
-            return self.browser.is_element_present_by_xpath(f'.//*[@data-test-id="{self.locator}"]')
-
-        def is_not_present(self, *args, **kwargs):
-            return self.browser.is_element_not_present_by_xpath(f'.//*[@data-test-id="{self.locator}"]')
-
         def _find_all(self):
             """Find from page root."""
             return self.browser.find_by_xpath(f'.//*[@data-test-id="{self.locator}"]')
@@ -165,3 +159,14 @@ With this implemented, Fields can now be defined like so:
 .. code-block:: python
 
     my_button = Button('data-test-id', 'MyButton')
+
+
+Support for data-* attributes is also available via the `add_data_star_strategy` function:
+
+.. code-block:: python
+    from stere.strategy import add_data_star_strategy
+
+
+    add_data_star_strategy('data-test-id')
+
+This will automatically add the desired data-* attribute to the valid Splinter strategies.
