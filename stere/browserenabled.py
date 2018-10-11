@@ -14,9 +14,11 @@ class BrowserEnabled:
     """Base class that stores attributes at the class level,
     shared by every object that inherits from this class.
 
-    Arguments:
+    Attributes:
         browser (object): Pointer to what is driving the automation.
         url_navigation (str): Name of the function that opens a page.
+        library (str): Name of the automation library to use. Default is
+            splinter.
     """
     browser = None
     url_navigator = ''
