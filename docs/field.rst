@@ -45,7 +45,7 @@ and the following script:
     search.perform()
 
 
-When `search.perform()`` is called, `query.fill()`` is called, followed by `submit.click()``.
+When `search.perform()` is called, `query.fill()` is called, followed by `submit.click()`.
 
 See the documentation for `Area <https://stere.readthedocs.io/en/latest/area.html>`_ for more details.
 
