@@ -14,7 +14,7 @@ Each implements a specific performer method.
 
 All Fields that use Splinter also inherit the following convenience methods:
 
-  .. automethod:: stere.strategy.splinterSplinterBase.is_present()
+  .. automethod:: stere.strategy.splinter.SplinterBase.is_present()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_not_present()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_visible()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_not_visible()
