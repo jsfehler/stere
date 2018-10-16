@@ -81,7 +81,8 @@ class Field:
             return getattr(element.find(), val)
 
     def __repr__(self):
-        return (f'{self.__class__.__name__} - '
+        return (
+            f'{self.__class__.__name__} - '
             f'Strategy: {self.strategy}, Locator: {self.locator}')
 
     @property
