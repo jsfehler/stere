@@ -6,23 +6,33 @@ from ..fields import Field
 
 class RepeatingArea:
     """
-    Represents a collection of Fields that appear multiple times on a Page.
+    Represents multiple identical Areas on a page.
 
-    The RepeatingArea objects requires a Root Field in the arguments,
-    but otherwise takes any number of Fields as arguments.
-    The other Fields will use the Root as a parent.
+    A Root Field is required, which is expected to be non-unique on the page.
 
-    Example:
+    A collection of Areas are built from every instance of the root that is
+    found. Every other Field provided in the arguments is populated inside
+    each Area.
+
+    In the following example, there's a table with 15 rows. Each row has
+    two cells. The sixth row in the table should have an item with the
+    name "Banana" and a price of "$7.00"
 
     >>> from stere.areas import RepeatingArea
-    >>> from stere.fields import Root, Input
+    >>> from stere.fields import Root, Link, Text
     >>>
-    >>> class MyPage():
+    >>> class Inventory():
     >>>     def __init__(self):
-    >>>         self.my_repeating_area = RepeatingArea(
-    >>>             root=Root('xpath', '//my_xpath_string'),
-    >>>             my_input=Input('xpath', '//my_xpath_string')
+    >>>         self.inventory_items = RepeatingArea(
+    >>>             root=Root('xpath', '//table/tr'),
+    >>>             name=Link('xpath', './td[1]'),
+    >>>             price=Text('xpath', './td[2]'),
     >>>         )
+
+    >>> inventory = Inventory()
+    >>> assert 15 == len(inventory.areas)
+    >>> assert "Banana" == inventory.areas[5].name
+    >>> assert "$7.00" == inventory.areas[5].price
     """
     def __init__(self, **kwargs):
         if kwargs.get('root') is None:
