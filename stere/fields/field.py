@@ -80,6 +80,10 @@ class Field:
             # Try getting the attribute from the found element.
             return getattr(element.find(), val)
 
+    def __repr__(self):
+        return (f'{self.__class__.__name__} - '
+        f'Strategy: {self.strategy}, Locator: {self.locator}')
+
     @property
     def element(self):
         """Tries to find the element, the returns the results.

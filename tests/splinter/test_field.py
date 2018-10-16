@@ -9,6 +9,13 @@ from stere.fields import Field
 LOGGER.setLevel(logging.WARNING)
 
 
+def test_field_repr():
+    """Fields should have a useful __repr__ method."""
+    field = Field('id', 'foobar')
+
+    assert "Field - Strategy: id, Locator: foobar" == str(field)
+
+
 def test_field_empty_perform():
     """
     The default implementation of Field.perform() should return False.
