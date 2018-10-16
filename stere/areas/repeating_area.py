@@ -67,9 +67,9 @@ class RepeatingArea:
 
         Example:
 
-        >>> def test_stuff():
-        >>>     listings = MyPage().my_repeating_area.areas
-        >>>     listings[0].my_input.fill('Hello world')
+            >>> def test_stuff():
+            >>>     listings = MyPage().my_repeating_area.areas
+            >>>     listings[0].my_input.fill('Hello world')
 
         """
         created_areas = []

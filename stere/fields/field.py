@@ -52,8 +52,8 @@ class Field:
 
     Example:
 
-    >>> from stere.fields import Field
-    >>> my_field = Field('xpath', '//*[@id="js-link-box-pt"]/small/span')
+        >>> from stere.fields import Field
+        >>> my_field = Field('xpath', '//*[@id="js-link-box-pt"]/small/span')
 
     """
     def __init__(self, strategy, locator, *args, **kwargs):
@@ -135,12 +135,12 @@ class Field:
 
         Example:
 
-        >>> class PetStore(Page):
-        >>>     def __init__(self):
-        >>>         self.inventory_list = Link('xpath', '//div')
-        >>>
-        >>> pet_store = PetStore()
-        >>> pet_store.inventory_list.includes("Kittens").click()
+            >>> class PetStore(Page):
+            >>>     def __init__(self):
+            >>>         self.inventory_list = Link('xpath', '//div')
+            >>>
+            >>> pet_store = PetStore()
+            >>> pet_store.inventory_list.includes("Kittens").click()
 
         """
         for item in self.element:
