@@ -86,7 +86,6 @@ class Area:
             >>>             password=Input('id', 'app-pwd'),
             >>>             submit=Button('id', 'app-submit')
             >>>         )
-            >>>
 
             Any of the following styles are valid:
 

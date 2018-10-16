@@ -17,8 +17,8 @@ class Checkbox(Field):
 
         Example:
 
-        >>> confirm = Checkbox('id', 'selectme')
-        >>> confirm.set_to(True)
+            >>> confirm = Checkbox('id', 'selectme')
+            >>> confirm.set_to(True)
 
         """
         if state:

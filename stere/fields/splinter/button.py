@@ -12,8 +12,8 @@ class Button(Field):
 
         Example:
 
-        >>> purchase = Button('id', 'buy_button')
-        >>> purchase.click()
+            >>> purchase = Button('id', 'buy_button')
+            >>> purchase.click()
 
         """
         self.find().click()

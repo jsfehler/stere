@@ -14,8 +14,8 @@ class Link(Field):
 
         Example:
 
-        >>> login = Link('id', 'loginLink')
-        >>> login.click()
+            >>> login = Link('id', 'loginLink')
+            >>> login.click()
 
         """
         self.find().click()

@@ -17,8 +17,8 @@ class Input(Field):
 
         Example:
 
-        >>> first_name = Input('id', 'fillme')
-        >>> first_name.fill('Joseph')
+            >>> first_name = Input('id', 'fillme')
+            >>> first_name.fill('Joseph')
 
         """
         self.find().fill(value)
