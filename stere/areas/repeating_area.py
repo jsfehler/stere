@@ -54,6 +54,10 @@ class RepeatingArea:
                 # Field (in plural) can be accessed directly.
                 setattr(self, f'{k}s', v)
 
+    def __len__(self):
+        all_roots = self.root.find()
+        return len(all_roots)
+                
     @property
     def areas(self):
         """Find all instances of the root,
@@ -73,8 +77,7 @@ class RepeatingArea:
 
         """
         created_areas = []
-        all_roots = self.root.find()
-        if 0 == len(all_roots):
+        if 0 == len(self):
             raise ValueError(
                 f'Could not find any Areas with the root: {self.root.locator}',
             )
