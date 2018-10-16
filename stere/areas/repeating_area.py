@@ -57,7 +57,7 @@ class RepeatingArea:
     def __len__(self):
         all_roots = self.root.find()
         return len(all_roots)
-                
+
     @property
     def areas(self):
         """Find all instances of the root,
