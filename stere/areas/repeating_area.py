@@ -77,7 +77,8 @@ class RepeatingArea:
 
         """
         created_areas = []
-        if 0 == len(self):
+        all_roots = self.root.find()
+        if 0 == len(all_roots):
             raise ValueError(
                 f'Could not find any Areas with the root: {self.root.locator}',
             )
