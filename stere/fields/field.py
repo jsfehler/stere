@@ -82,7 +82,7 @@ class Field:
 
     def __repr__(self):
         return (f'{self.__class__.__name__} - '
-        f'Strategy: {self.strategy}, Locator: {self.locator}')
+            f'Strategy: {self.strategy}, Locator: {self.locator}')
 
     @property
     def element(self):
