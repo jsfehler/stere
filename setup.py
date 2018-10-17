@@ -11,7 +11,7 @@ def read(filename):
 
 setup(
     name="stere",
-    version="0.2.1",
+    version="0.2.2",
     description="A nice way of implementing the Page Object pattern.",
     long_description=read('README.rst'),
     author="Joshua Fehler",
