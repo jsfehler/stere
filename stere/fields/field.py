@@ -18,6 +18,8 @@ def stere_performer(method_name, consumes_arg=False):
                 else:
                     performer()
                     return False
+        # Preserve original class name
+        Performer.__name__ = cls.__name__
         return Performer
     return wrapper
 
