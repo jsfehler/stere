@@ -67,7 +67,7 @@ As an example, here's the home page for Wikipedia:
 
     from stere import Page
     from stere.areas import Area, RepeatingArea
-    from stere.fields import Button, Input, Link, Text
+    from stere.fields import Button, Input, Link, Root, Text
 
     class WikipediaHome(Page):
         def __init__(self):
