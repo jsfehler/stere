@@ -37,6 +37,14 @@ def test_non_field_kwarg():
     assert str(e.value) == expected_message
 
 
+def test_len(test_page):
+    """Calling len() on a RepeatingArea should report back how many Areas were
+    found.
+    """
+    test_page.navigate()
+    assert 2 == len(test_page.repeating_area)
+
+
 def test_repeating_area(test_page):
     test_page.navigate()
 
