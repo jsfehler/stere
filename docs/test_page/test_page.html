@@ -13,14 +13,14 @@
                     newDiv.style.height = '100px';
                     newDiv.style.backgroundColor = "green";
                     document.getElementById("present_container").appendChild(newDiv);
-                }, 5000);
+                }, 10000);
             }
 
             function removeBox() {
                 setTimeout(function () {
                     var toRemove = document.getElementById("removed_container");
                     document.getElementById("present_container").removeChild(toRemove);
-                }, 5000);
+                }, 10000);
             }
 
             function validateForm(form) {
@@ -92,6 +92,12 @@
 
             .test_repeating_area_root {
                 border: 1px solid black;
+            }
+
+            #removed_container {
+              width: 100px;
+              height: 100px;
+              background-color: red;
             }
 
         </style>
@@ -176,7 +182,7 @@
             </div>
         </div>
 
-        <h4> Div will be added after 5 seconds </h4>
+        <h4> Div will be replaced after 5 seconds </h4>
             <div id="present_container">
                 <div id="removed_container"></div>
             </div>
