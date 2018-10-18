@@ -51,10 +51,17 @@ class Area:
         """Sets the current workflow for an Area.
 
         Designed for chaining before a call to perform().
-        ie: my_area.workflow('Foobar').perform()
+
+        Arguments:
+            value (str): The name of the workflow to set.
 
         Returns:
-            self
+            Area: The calling Area
+
+        Example:
+
+        >>> my_area.workflow('Foobar').perform()
+
         """
         self._workflow = value
         return self

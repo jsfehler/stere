@@ -13,6 +13,8 @@ The following Area objects are available:
 
   .. automethod:: stere.areas.Area.perform()
 
+  .. automethod:: stere.areas.Area.workflow()
+
 
 .. autoclass:: stere.areas.RepeatingArea()
 

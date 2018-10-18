@@ -61,7 +61,7 @@ class RepeatingArea:
     @property
     def areas(self):
         """Find all instances of the root,
-        then return an array of Areas for each root.
+        then return a list of Areas: one for each root.
 
         Returns:
             list: Collection of every Area that was found.
