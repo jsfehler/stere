@@ -7,7 +7,8 @@ Fields
 
   .. automethod:: stere.fields.Field.before()
 
-  In this example, Dropdown has been subclassed to hover over the Dropdown before clicking.
+  In this example, Dropdown has been subclassed to hover over the element
+  before clicking.
 
   .. code-block:: python
 

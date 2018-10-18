@@ -6,9 +6,9 @@ A highly opinionated guide. Ignore at your own peril.
 Favour composition over inheritance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When building Page Objects for something with many
-reused pieces (such as a settings menu) don't build an abstract base Page Object. Build each component separately
-and call them in Page Objects that reflect the application.
+When building Page Objects for something with many reused pieces
+(such as a settings menu) don't build an abstract base Page Object.
+Build each component separately and call them in Page Objects that reflect the application.
 
 **Inheritance:**
 
@@ -37,10 +37,11 @@ and call them in Page Objects that reflect the application.
 
 **Explanation:**
 
-Doing so maintains the benefits of reusing code,
-but prevents the creation of Page Objects that don't reflect actual pages in an application.
+Doing so maintains the benefits of reusing code, but prevents the creation of
+Page Objects that don't reflect actual pages in an application.
 
-Creating abstract Page Objects to inherit from can make it confusing as to what Fields are available on a page.
+Creating abstract Page Objects to inherit from can make it confusing as to
+what Fields are available on a page.
 
 
 Single blank line when changing page object
