@@ -139,7 +139,6 @@ def test_checkbox_opposite_default_unchecked(test_page):
     assert test_page.checkbox.checked is False
 
 
-@pytest.mark.doit
 def test_field_name(test_page):
     """Fields should report their intended class name, not 'Performer'
     """
