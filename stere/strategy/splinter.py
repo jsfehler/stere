@@ -1,4 +1,5 @@
 import copy
+import time
 
 from .strategy import strategy
 
@@ -23,25 +24,31 @@ class SplinterBase:
             self.browser, f'is_element_not_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
-    def is_visible(self, *args, **kwargs):
+    def is_visible(self, wait_time=2):
         """Checks if an element is present in the DOM and visible.
 
-        Takes the same arguments as Splinter's
-        `is_element_visible_by_xpath`
+        Arguments:
+            wait_time (int): The number of seconds to wait
         """
-        func = self.browser.is_element_visible_by_xpath
-        xpath = f'.//*[@{self.strategy}="{self.locator}"]'
-        return func(xpath, *args, **kwargs)
+        end_time = time.time() + wait_time
 
-    def is_not_visible(self, *args, **kwargs):
+        while time.time() < end_time:
+            if self.find() and self.find().visible:
+                return True
+        return False
+
+    def is_not_visible(self, wait_time=2):
         """Checks if an element is present in the DOM but not visible.
 
-        Takes the same arguments as Splinter's
-        `is_element_not_visible_by_xpath`
+        Arguments:
+            wait_time (int): The number of seconds to wait
         """
-        func = self.browser.is_element_not_visible_by_xpath
-        xpath = f'.//*[@{self.strategy}="{self.locator}"]'
-        return func(xpath, *args, **kwargs)
+        end_time = time.time() + wait_time
+
+        while time.time() < end_time:
+            if not self.find() or (self.find() and not self.find().visible):
+                return True
+        return False
 
     def _find_all(self):
         """Find from page root."""

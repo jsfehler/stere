@@ -62,8 +62,24 @@ class DummyPage(Page):
             link=Link('xpath', '//h4'),
         )
 
-        self.added_container = Field('id', 'added_container')
-        self.removed_container = Field('id', 'removed_container')
+        # Will only be visible on the page after 5 seconds
+        self.added_container_by_id = Field('id', 'added_container')
+        self.added_container_by_xpath = Field(
+            'xpath', '//div[@id="added_container"]')
+        self.added_container_by_css = Field('css', '#added_container')
+
+        # Will be removed from the page after 5 seconds
+        self.removed_container_by_id = Field('id', 'removed_container')
+        self.removed_container_by_xpath = Field(
+            'xpath', '//div[@id="removed_container"]')
+        self.removed_container_by_css = Field('css', '#removed_container')
+
+        self.to_hide_container_by_id = Field('id', 'to_hide_container')
+        self.to_hide_container_by_xpath = Field(
+            'xpath',
+            '//div[@id="to_hide_container"]')
+        self.to_hide_container_by_css = Field('css', '#to_hide_container')
+
 
         self.area_with_root = Area(
             root=Root('id', 'area_root'),
