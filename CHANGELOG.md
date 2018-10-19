@@ -1,13 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.3] - 2018-10-19
+### Fixed
+- Preserve class name on Fields that implement a performer
+- Fix implementation of is_visible and is_not_visible when using Splinter
+
 ## [0.2.2] - 2018-10-16
 ### Added
 - python 3.7 now supported
-- Splinter specific implementation refactored in Field.find()
 - stere.ini config file can be used to specify automation library
 - Field implements the \__repr__ method
 - RepeatingArea implements the \__len__ method
+
+### Changed
+- Splinter specific implementation refactored in Field.find()
 
 ## [0.2.1] - 2018-09-12
 ### Added
