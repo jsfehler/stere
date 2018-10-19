@@ -11,17 +11,17 @@ def test_is_visible(test_page):
     Then is_visible() returns True if it becomes visible.
     """
     test_page.navigate()
-    assert test_page.added_container_by_id.is_visible(wait_time=6)
+    assert test_page.added_container_by_id.is_visible(wait_time=10)
 
 
 def test_is_visible_by_xpath(test_page):
     test_page.navigate()
-    assert test_page.added_container_by_xpath.is_visible(wait_time=6)
+    assert test_page.added_container_by_xpath.is_visible(wait_time=10)
 
 
 def test_is_visible_by_css(test_page):
     test_page.navigate()
-    assert test_page.added_container_by_css.is_visible(wait_time=6)
+    assert test_page.added_container_by_css.is_visible(wait_time=10)
 
 
 def test_is_not_visible(test_page):
@@ -61,7 +61,7 @@ def test_is_present_args(test_page):
     Then it is used by the correct function
     """
     test_page.navigate()
-    assert test_page.added_container_by_id.is_present(wait_time=6)
+    assert test_page.added_container_by_id.is_present(wait_time=12)
 
 
 def test_is_not_present_args(test_page):
