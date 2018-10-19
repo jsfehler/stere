@@ -7,13 +7,52 @@ LOGGER.setLevel(logging.WARNING)
 
 
 def test_is_visible(test_page):
+    """When I wait for something to be visible on the page
+    Then is_visible() returns True if it becomes visible.
+    """
     test_page.navigate()
-    assert test_page.added_container.is_visible(wait_time=6)
+    assert test_page.added_container_by_id.is_visible(wait_time=10)
+
+
+def test_is_visible_by_xpath(test_page):
+    test_page.navigate()
+    assert test_page.added_container_by_xpath.is_visible(wait_time=10)
+
+
+def test_is_visible_by_css(test_page):
+    test_page.navigate()
+    assert test_page.added_container_by_css.is_visible(wait_time=10)
 
 
 def test_is_not_visible(test_page):
     test_page.navigate()
-    assert test_page.removed_container.is_not_visible(wait_time=6)
+    assert test_page.to_hide_container_by_id.is_not_visible(wait_time=10)
+
+
+def test_is_not_visible_by_xpath(test_page):
+    test_page.navigate()
+    assert test_page.to_hide_container_by_xpath.is_not_visible(wait_time=12)
+
+
+def test_is_not_visible_by_css(test_page):
+    test_page.navigate()
+    assert test_page.to_hide_container_by_css.is_not_visible(wait_time=12)
+
+
+def test_is_visible_fails(test_page):
+    """When I check if something is visible when it is not,
+    Then it should not be found
+    """
+    test_page.navigate()
+    assert not test_page.added_container_by_id.is_visible(wait_time=1)
+
+
+def test_is_not_visible_fails(test_page):
+    """When I check if something is not visible when it is,
+    Then it should be found
+    """
+    test_page.navigate()
+    assert not test_page.removed_container_by_id.is_not_visible(wait_time=1)
 
 
 def test_is_present_args(test_page):
@@ -22,7 +61,7 @@ def test_is_present_args(test_page):
     Then it is used by the correct function
     """
     test_page.navigate()
-    assert test_page.added_container.is_present(wait_time=6)
+    assert test_page.added_container_by_id.is_present(wait_time=12)
 
 
 def test_is_not_present_args(test_page):
@@ -31,7 +70,7 @@ def test_is_not_present_args(test_page):
     Then it is used by the correct function
     """
     test_page.navigate()
-    assert test_page.removed_container.is_not_present(wait_time=12)
+    assert test_page.removed_container_by_id.is_not_present(wait_time=12)
 
 
 def test_button_data_star_strategy(browser, test_page):
