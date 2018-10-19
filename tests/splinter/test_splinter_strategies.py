@@ -31,7 +31,7 @@ def test_is_not_present_args(test_page):
     Then it is used by the correct function
     """
     test_page.navigate()
-    assert test_page.removed_container.is_not_present(wait_time=6)
+    assert test_page.removed_container.is_not_present(wait_time=12)
 
 
 def test_button_data_star_strategy(browser, test_page):
