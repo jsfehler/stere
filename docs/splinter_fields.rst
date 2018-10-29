@@ -9,8 +9,6 @@ Each implements a specific performer method.
 - :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
 - :ref:`Input <input>`: Object that accepts keyboard input.
 - :ref:`Link <link>`: Clickable text.
-- :ref:`Root <root>`: Parent container.
-- :ref:`Text <text>`: Non-interactive text.
 
 All Fields that use Splinter also inherit the following convenience methods:
 
@@ -96,25 +94,13 @@ All Fields that use Splinter also inherit the following convenience methods:
   Clicks the element.
 
 
-.. _root:
-.. class:: stere.fields.Root()
-
-  A simple wrapper over Field, it does not implement a performer method.
-
-
-.. _text:
-.. class:: stere.fields.Text()
-
-  A simple wrapper over Field, it does not implement a performer method.
-
-
 Location Strategies
 -------------------
 .. _location_strategies:
 
-These represent the way a locator will be searched for.
+These represent the way a locator can be searched for.
 
-By default, the strategies available are:
+By default, the strategies available with Splinter are:
 
 - css
 - xpath
@@ -124,7 +110,7 @@ By default, the strategies available are:
 - id
 - value
 
-These all use Splinter. If you're using a different automation tool, you must create your strategies. These can override the default strategies. (ie: You can create a custom css strategy to replace the default)
+These strategies can be overridden with a custom strategy (ie: You can create a custom css strategy with different behaviour).
 
 
 Custom Locator Strategies
@@ -164,6 +150,7 @@ With this implemented, Fields can now be defined like so:
 Support for data-* attributes is also available via the `add_data_star_strategy` function:
 
 .. code-block:: python
+
     from stere.strategy import add_data_star_strategy
 
 

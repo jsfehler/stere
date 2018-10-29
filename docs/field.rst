@@ -1,6 +1,9 @@
 Fields
 ------
 
+Field
+~~~~~
+
 .. autoclass:: stere.fields.Field()
 
   .. automethod:: stere.fields.Field.includes()
@@ -22,6 +25,42 @@ Fields
               self.element.mouse_over()
 
   .. automethod:: stere.fields.Field.after()
+
+
+Root
+~~~~
+
+.. autoclass:: stere.fields.Root()
+
+A simple wrapper over Field, it does not implement a performer method.
+Although Root has no specific behaviour, it can be useful when declaring a root for an Area or RepeatingArea.
+
+.. code-block:: python
+
+    from stere.areas import RepeatingArea
+    from stere.fields import Root
+
+
+    collections = RepeatingArea(
+        root=Root('xpath', '//table/tr'),
+        quantity=Text('css', '.collection_qty'),
+    )
+
+
+Text
+~~~~
+
+.. autoclass:: stere.fields.Text()
+
+A simple wrapper over Field, it does not implement a performer method.
+Although Root has no specific behaviour, it can be useful when declaring that a Field should just be static Text.
+
+.. code-block:: python
+
+    from stere.fields import Text
+
+
+    self.price = Text('id', 'item_price')
 
 
 Performer method
