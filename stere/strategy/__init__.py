@@ -9,7 +9,22 @@ __all = [
     'strategies',
 ]
 
-if Stere.library == 'splinter':
+if Stere.library == 'appium':
+    from .appium import FindByAccessibilityId
+    from .appium import FindByAndroidUIAutomator
+    from .appium import FindByIOSClassChain
+    from .appium import FindByIOSUIPredicate
+    from .appium import FindByIOSUIAutomation
+
+    desired_imports = [
+        'FindByAccessibilityId',
+        'FindByAndroidUIAutomator',
+        'FindByIOSClassChain',
+        'FindByIOSUIPredicate',
+        'FindByIOSUIAutomation',
+    ]
+
+elif Stere.library == 'splinter':
     from .splinter import FindByCss
     from .splinter import FindById
     from .splinter import FindByName

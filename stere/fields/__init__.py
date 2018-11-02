@@ -10,7 +10,16 @@ __all = [
     'Text',
 ]
 
-if Stere.library == 'splinter':
+if Stere.library == 'appium':
+    from .appium.button import Button
+    from .appium.input import Input
+
+    desired_imports = [
+        'Button',
+        'Input',
+    ]
+
+elif Stere.library == 'splinter':
     from .splinter.button import Button
     from .splinter.checkbox import Checkbox
     from .splinter.dropdown import Dropdown

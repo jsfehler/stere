@@ -21,6 +21,22 @@ Stere can be installed with pip using the following command:
 Setup
 =====
 
+Specifying the automation library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Using a `stere.ini` file, the automation library used can be specified.
+This determines which library specific Fields are loaded.
+
+`splinter` is used by default, and `appium` is supported.
+Any other value will be accepted, which will result in no specific Fields
+being loaded.
+
+.. code-block:: ini
+
+  [stere]
+  library = appium
+
+
 Stere.browser
 ~~~~~~~~~~~~~
 
