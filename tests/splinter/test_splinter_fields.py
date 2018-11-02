@@ -9,7 +9,7 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_button(browser, test_page):
+def test_button(browser, request, test_page):
     """
     When a button is clicked
     Then the button's action occurs
@@ -27,7 +27,7 @@ def test_button(browser, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.first._element.value_of_css_property(
         'background-color')
-    assert browsers[os.environ["CURRENT_BROWSER_NAME"]] == actual
+    assert browsers[request.config.option.browser_name] == actual
 
 
 def test_input(test_page):

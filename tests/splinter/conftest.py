@@ -11,6 +11,22 @@ from stere.strategy import add_data_star_strategy
 add_data_star_strategy('data-test-id')
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser-name",
+        action="store",
+        default="",
+        help="Name of the browser used",
+    )
+
+    parser.addoption(
+        "--sauce-remote-url",
+        action="store",
+        default="",
+        help="Remote URL for Sauce Labs",
+    )
+
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     # execute all other hooks to obtain the report object
@@ -31,14 +47,19 @@ def after(request, browser):
         res = str(not request.node.rep_call.failed).lower()
         browser.execute_script("sauce:job-result={}".format(res))
 
-    if os.environ.get('REMOTE_RUN') == "True":
+    if os.getenv('REMOTE_RUN') == "True":
         request.addfinalizer(fin)
+
+
+@pytest.fixture(scope='session')
+def splinter_remote_url(request):
+    return request.config.option.sauce_remote_url
 
 
 @pytest.fixture(scope='session')
 def splinter_driver_kwargs(splinter_webdriver, request):
     """Webdriver kwargs."""
-    browser_name = os.environ['CURRENT_BROWSER_NAME']
+    browser_name = request.config.option.browser_name
 
     browser_versions = {
         'chrome': '64',
