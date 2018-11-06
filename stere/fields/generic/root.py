@@ -17,5 +17,4 @@ class Root(Field):
         >>>     quantity=Text('css', '.collection_qty'),
         >>> )
     """
-    def find(self):
-        return self._element.find()
+    pass

@@ -8,7 +8,8 @@ class RepeatingArea:
     """
     Represents multiple identical Areas on a page.
 
-    A Root Field is required, which is expected to be non-unique on the page.
+    A root argument is required, which is expected to be a non-unique Field
+    on the page.
 
     A collection of Areas are built from every instance of the root that is
     found. Every other Field provided in the arguments is populated inside
@@ -55,7 +56,7 @@ class RepeatingArea:
                 setattr(self, f'{k}s', v)
 
     def __len__(self):
-        all_roots = self.root.find()
+        all_roots = self.root.find_all()
         return len(all_roots)
 
     @property
@@ -77,7 +78,7 @@ class RepeatingArea:
 
         """
         created_areas = []
-        all_roots = self.root.find()
+        all_roots = self.root.find_all()
         if 0 == len(all_roots):
             raise ValueError(
                 f'Could not find any Areas with the root: {self.root.locator}',

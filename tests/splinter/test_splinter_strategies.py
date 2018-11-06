@@ -87,7 +87,7 @@ def test_button_data_star_strategy(browser, request, test_page):
 
     # This works because value_of_css_property is gotten from splinter,
     # which gets it from Selenium
-    actual = test_page.button_container.first._element.value_of_css_property(
+    actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
     assert browsers[request.config.option.browser_name] == actual
 
