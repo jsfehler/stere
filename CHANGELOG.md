@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2018-11-06
+### Added
+- Appium compatibility started
+
+### Changed
+- RepeatingArea can now use any Field as a root
+- Root Field no longer overrides Field.find()
+
 ## [0.2.3] - 2018-10-19
 ### Fixed
 - Preserve class name on Fields that implement a performer
