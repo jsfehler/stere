@@ -9,19 +9,19 @@ Each implements a specific performer method.
 
 
 .. _appium_button:
-.. class:: stere.appium_fields.Button()
+.. class:: stere.fields.Button()
 
   Convenience Class on top of Field, it implements `click()` as its performer.
 
-  .. automethod:: stere.appium_fields.Button.click()
+  .. automethod:: stere.fields.appium.button.Button.click()
 
 
 .. _appium_input:
-.. class:: stere.appium_fields.Input()
+.. class:: stere.fields.Input()
 
   A simple wrapper over Field, it implements `send_keys()` as its performer.
 
-  .. automethod:: stere.appium_fields.Input.send_keys()
+  .. automethod:: stere.fields.appium.input.Input.send_keys()
 
   Fills the element with value.
 
