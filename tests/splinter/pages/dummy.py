@@ -64,12 +64,16 @@ class DummyPage(Page):
 
         # Will only be visible on the page after 10 seconds
         self.added_container_by_id = Field('id', 'added_container')
+
+        # Same Field, different selectors
         self.added_container_by_xpath = Field(
             'xpath', '//div[@id="added_container"]')
         self.added_container_by_css = Field('css', '#added_container')
 
         # Will be removed from the page after 10 seconds
         self.removed_container_by_id = Field('id', 'removed_container')
+
+        # Same Field, different selectors
         self.removed_container_by_xpath = Field(
             'xpath', '//div[@id="removed_container"]')
         self.removed_container_by_css = Field('css', '#removed_container')
@@ -103,6 +107,9 @@ class DummyPage(Page):
         self.many_input_result = Text('id', 'many_input_result')
 
         self.checkbox = Checkbox('id', 'test_checkbox')
-
         self.checkbox_checked = Checkbox(
             'id', 'test_checkbox_checked', default_checked=True)
+
+        # Field for something on the page we know isn't unique.
+        self.purposefully_non_unique_field = Field(
+            'css', '.test_repeating_area_root')
