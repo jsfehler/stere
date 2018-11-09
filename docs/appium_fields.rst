@@ -4,24 +4,24 @@ Appium Fields
 The following Fields are available with the default Appium implementation.
 Each implements a specific performer method.
 
-- :ref:`Button <button>`: Clickable object.
-- :ref:`Input <input>`: Object that accepts keyboard input.
+- :ref:`Button <appium_button>`: Clickable object.
+- :ref:`Input <appium_input>`: Object that accepts keyboard input.
 
 
-.. _button:
+.. _appium_button:
 .. class:: stere.fields.Button()
 
   Convenience Class on top of Field, it implements `click()` as its performer.
 
-  .. automethod:: stere.fields.Button.click()
+  .. automethod:: stere.fields.appium.button.Button.click()
 
 
-.. _input:
+.. _appium_input:
 .. class:: stere.fields.Input()
 
   A simple wrapper over Field, it implements `send_keys()` as its performer.
 
-  .. automethod:: stere.fields.Input.send_keys()
+  .. automethod:: stere.fields.appium.input.Input.send_keys()
 
   Fills the element with value.
 
