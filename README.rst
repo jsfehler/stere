@@ -91,7 +91,7 @@ However, doing so allows you to use Area's `perform() <https://stere.readthedocs
 
 The links to other products are represented as a `RepeatingArea <https://stere.readthedocs.io/en/latest/area.html#stere.areas.RepeatingArea>`_ .
 A RepeatingArea represents a non-unique collection of Fields on the page.
-Using the root argument, RepeatingArea will find all instances of said root,
+Using the root argument as the non-unique selector, RepeatingArea will find all instances of said root,
 then build the appropriate number of Areas with all the other Fields inside.
 
 It's just as valid to declare each of the other products as a separate Area
@@ -120,7 +120,8 @@ Using a Page Object in a test can be done like so:
 .. code-block:: python
 
     def test_search_wikipedia():
-        WikipediaHome().search_form.perform('kittens')
+        home = WikipediaHome()
+        home.search_form.perform('kittens')
 
 
 Documentation
