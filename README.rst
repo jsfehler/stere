@@ -30,24 +30,24 @@ Stere
 .. image:: https://saucelabs.com/buildstatus/jsfehler
     :target: https://saucelabs.com/u/jsfehler
 
-Stere is a library for writing Page Objects, designed to work on top of your existing automation library.
+Stere is a library for writing Page Objects, designed to work on top of an existing automation library.
 
 Design Philosophy
 -----------------
 
-Many implementations of the Page Object model focus on removing the duplication of element locators.
+Many implementations of the Page Object model focus on removing the duplication of element locators inside tests.
 Stere goes one step further, offering a complete wrapper over the code that drives automation.
 
 The goals of this project are to:
 
-1 - Eliminate implementation code in test functions. Tests should read like a set of user actions.
+1 - Eliminate implementation code in test functions. Tests should read like a description of behaviour, not Selenium commands.
 
-2 - Reduce the need for hand-written helper methods in Page Objects.
+2 - Reduce the need for hand-written helper methods in Page Objects. Common actions should have universal solutions.
 
 3 - Provide a simple pattern for writing maintainable Page Objects.
 
 No automation abilities are built directly into the project; it completely relies on being hooked into other libraries.
-However, a default implementation using `Splinter <https://github.com/cobrateam/splinter>`_ is available out of the box.
+However, implementations using `Splinter <https://github.com/cobrateam/splinter>`_ and `Appium <https://github.com/appium/appium>`_ are available out of the box.
 
 
 Basic Usage
@@ -91,7 +91,7 @@ However, doing so allows you to use Area's `perform() <https://stere.readthedocs
 
 The links to other products are represented as a `RepeatingArea <https://stere.readthedocs.io/en/latest/area.html#stere.areas.RepeatingArea>`_ .
 A RepeatingArea represents a non-unique collection of Fields on the page.
-Using the root argument, RepeatingArea will find all instances of said root,
+Using the root argument as the non-unique selector, RepeatingArea will find all instances of said root,
 then build the appropriate number of Areas with all the other Fields inside.
 
 It's just as valid to declare each of the other products as a separate Area
@@ -120,7 +120,8 @@ Using a Page Object in a test can be done like so:
 .. code-block:: python
 
     def test_search_wikipedia():
-        WikipediaHome().search_form.perform('kittens')
+        home = WikipediaHome()
+        home.search_form.perform('kittens')
 
 
 Documentation
