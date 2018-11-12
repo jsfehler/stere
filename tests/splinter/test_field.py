@@ -55,7 +55,6 @@ def test_non_unique_field_find(test_page):
     """
 
     test_page.navigate()
-
     with pytest.raises(ValueError) as e:
         test_page.purposefully_non_unique_field.find()
 
