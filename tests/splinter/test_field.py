@@ -45,3 +45,17 @@ def test_field_getattr_should_not_exist(test_page):
 
     with pytest.raises(AttributeError):
         assert test_page.button.foobar()
+
+
+def test_non_unique_field_find(test_page):
+    """
+    When I try to use find() on a Field that is found multiple times
+     on the page
+    Then a ValueError is thrown
+    """
+
+    test_page.navigate()
+    with pytest.raises(ValueError) as e:
+        test_page.purposefully_non_unique_field.find()
+
+    assert "Expected one element, found multiple" == str(e.value)

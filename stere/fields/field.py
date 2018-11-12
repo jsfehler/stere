@@ -159,7 +159,7 @@ class Field:
             ValueError - If more than one element is found.
         """
         found_elements = self._element.find()
-        if len(found_elements) > 2:
+        if len(found_elements) >= 2:
             raise ValueError("Expected one element, found multiple")
         return found_elements[0]
 
