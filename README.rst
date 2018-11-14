@@ -32,6 +32,7 @@ Stere
 
 Stere is a library for writing Page Objects, designed to work on top of an existing automation library.
 
+
 Design Philosophy
 -----------------
 
@@ -48,6 +49,12 @@ The goals of this project are to:
 
 No automation abilities are built directly into the project; it completely relies on being hooked into other libraries.
 However, implementations using `Splinter <https://github.com/cobrateam/splinter>`_ and `Appium <https://github.com/appium/appium>`_ are available out of the box.
+
+
+Documentation
+-------------
+
+https://stere.readthedocs.io/en/latest/
 
 
 Basic Usage
@@ -122,12 +129,6 @@ Using a Page Object in a test can be done like so:
     def test_search_wikipedia():
         home = WikipediaHome()
         home.search_form.perform('kittens')
-
-
-Documentation
--------------
-
-https://stere.readthedocs.io/en/latest/
 
 
 License
