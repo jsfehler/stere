@@ -53,7 +53,7 @@ However, implementations using `Splinter <https://github.com/cobrateam/splinter>
 Basic Usage
 -----------
 
-Fundementally, a Page Object is just a Python class.
+Fundamentally, a Page Object is just a Python class.
 
 A minimal Stere Page Object should:
 
