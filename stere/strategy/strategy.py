@@ -7,7 +7,7 @@ def strategy(strategy_name):
 
     Strategy Classes are used to build Elements Objects.
 
-    Args:
+    Arguments:
         strategy_name (str): Name of the strategy to be registered.
     """
     def wrapper(finder_class):
