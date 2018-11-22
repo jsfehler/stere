@@ -119,7 +119,8 @@ class FindByDataStarAttribute:
 
 def add_data_star_strategy(data_star_attribute):
     """Adds a new splinter strategy that finds by data_star_attribute.
-    Args:
+
+    Arguments:
         data_star_attribute (str): The data-* attribute to use in the new
             strategy.
     """

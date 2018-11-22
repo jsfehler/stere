@@ -2,12 +2,12 @@ from .browserenabled import BrowserEnabled
 
 
 class Page(BrowserEnabled):
-    """Represents a single Web Page. The Page class is the base which all
-    Page Objects should inherit from.
+    """Represents a single page in an application.
+    The Page class is the base which all Page Objects should inherit from.
 
     Inheriting from Page is not required for Fields or Areas to work.
 
-    All attribute calls are tried on the browser attribute.
+    All attribute calls that fail are then tried on the browser attribute.
     This allows classes inheriting from Page to act as a proxy to
     whichever browser/driver is being used.
 
@@ -17,12 +17,11 @@ class Page(BrowserEnabled):
     >>> MyPage.url == MyPage.browser.url == browser.url
 
     The choice of which syntax to use depends on how you want to write your
-    tests.
+    test suite.
     """
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the browser.
         """
-
         return getattr(self.browser, val)
 
     def __enter__(self):

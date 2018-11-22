@@ -42,7 +42,7 @@ def use_after(func, *args, **kwargs):
 
 
 class Field:
-    """Field objects represent individual pieces on a web page.
+    """Field objects represent individual pieces on a page.
     Conceptually, they're modelled after general behaviours, not specific
     HTML elements.
 
@@ -139,7 +139,7 @@ class Field:
 
             >>> class PetStore(Page):
             >>>     def __init__(self):
-            >>>         self.inventory_list = Link('xpath', '//div')
+            >>>         self.inventory = Link('xpath', '//li[@class="inv"]')
             >>>
             >>> pet_store = PetStore()
             >>> pet_store.inventory_list.includes("Kittens").click()
@@ -167,6 +167,6 @@ class Field:
         """Find all matching elements.
 
         Returns:
-            List
+            list
         """
         return self._element.find()

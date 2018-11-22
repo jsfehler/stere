@@ -76,6 +76,7 @@ As an example, here's the home page for Wikipedia:
     from stere.areas import Area, RepeatingArea
     from stere.fields import Button, Input, Link, Root, Text
 
+
     class WikipediaHome(Page):
         def __init__(self):
             self.search_form = Area(
