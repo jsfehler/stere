@@ -2,12 +2,20 @@ import logging
 
 from pages import dummy_invalid
 
+from stere.areas import Areas
+
 import pytest
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
 
 LOGGER.setLevel(logging.WARNING)
+
+
+def test_areas_len():
+    """Ensure Areas reports length correctly."""
+    a = Areas(['1', '2', '3'])
+    assert 3 == len(a)
 
 
 def test_areas_contain(test_page):
