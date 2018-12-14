@@ -6,8 +6,30 @@ import pytest
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
+from stere.areas import Areas
+
 
 LOGGER.setLevel(logging.WARNING)
+
+
+def test_areas_len():
+    """Ensure Areas reports length correctly."""
+    a = Areas(['1', '2', '3'])
+    assert 3 == len(a)
+
+
+def test_areas_contain(test_page):
+    test_page.navigate()
+
+    assert test_page.repeating_area.areas.contain("link", "Repeating Link 1")
+
+
+def test_areas_contain_not_found(test_page):
+    test_page.navigate()
+
+    assert not test_page.repeating_area.areas.contain(
+        "link", "Repeating Link 666",
+    )
 
 
 def test_missing_root():

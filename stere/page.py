@@ -37,7 +37,7 @@ class Page(BrowserEnabled):
         `navigate()` method can be called.
 
         This method will call the method defined in `url_navigator`,
-        with `page_url`as the first parameter.
+        with `page_url` as the first parameter.
 
         In the following example, Stere is initialized with Splinter.
 
@@ -55,5 +55,6 @@ class Page(BrowserEnabled):
         >>>
         >>> home_page = Home()
         >>> home_page.navigate()
+
         """
         return getattr(self.browser, self.url_navigator)(self.page_url)
