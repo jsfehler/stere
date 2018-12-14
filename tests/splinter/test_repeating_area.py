@@ -4,9 +4,9 @@ from pages import dummy_invalid
 
 import pytest
 
-from stere.areas import Areas
-
 from selenium.webdriver.remote.remote_connection import LOGGER
+
+from stere.areas import Areas
 
 
 LOGGER.setLevel(logging.WARNING)
