@@ -23,6 +23,11 @@ The following Area objects are available:
   .. automethod:: stere.areas.RepeatingArea.area_with()
 
 
+.. autoclass:: stere.areas.Areas()
+
+  .. automethod:: stere.areas.Areas.contain()
+
+
 Reusing Areas
 -------------
 

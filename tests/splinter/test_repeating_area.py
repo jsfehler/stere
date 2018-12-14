@@ -10,6 +10,20 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
+def test_areas_contain(test_page):
+    test_page.navigate()
+
+    assert test_page.repeating_area.areas.contain("link", "Repeating Link 1")
+
+
+def test_areas_contain_not_found(test_page):
+    test_page.navigate()
+
+    assert not test_page.repeating_area.areas.contain(
+        "link", "Repeating Link 666"
+    )
+
+
 def test_missing_root():
     expected_message = 'RepeatingArea requires a Root Field.'
 
