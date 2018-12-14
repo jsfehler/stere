@@ -2,9 +2,9 @@ import logging
 
 from pages import dummy_invalid
 
-from stere.areas import Areas
-
 import pytest
+
+from stere.areas import Areas
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
