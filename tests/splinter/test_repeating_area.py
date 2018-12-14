@@ -20,7 +20,7 @@ def test_areas_contain_not_found(test_page):
     test_page.navigate()
 
     assert not test_page.repeating_area.areas.contain(
-        "link", "Repeating Link 666"
+        "link", "Repeating Link 666",
     )
 
 
