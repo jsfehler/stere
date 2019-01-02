@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2019-01-02
+### Added
+- Added RepeatingArea.areas.contain() method
+
+### Changed
+- RepeatingArea.areas now returns a list-like object instead of a list
+- Page.navigate() returns the Page instance
+
+### Fixed
+- If a Field is found multiple times, ensure an error is thrown when Field.find() is used
+
 ## [0.3.0] - 2018-11-06
 ### Added
 - Appium compatibility started
