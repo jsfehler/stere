@@ -7,6 +7,16 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
+def test_page_navigate_return_value(test_page):
+    """
+    When I use Page.navigate()
+    Then the returned value from the method is the Page instance
+    """
+    rv = test_page.navigate()
+
+    assert rv == test_page
+
+
 def test_page_getattr(test_page):
     """
     When I try to access a browser attribute from a Page directly

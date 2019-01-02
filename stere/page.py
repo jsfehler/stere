@@ -39,22 +39,26 @@ class Page(BrowserEnabled):
         This method will call the method defined in `url_navigator`,
         with `page_url` as the first parameter.
 
-        In the following example, Stere is initialized with Splinter.
+        Returns:
+            Page: The instance where navigate() was called from.
 
-        >>> from splinter import Browser
-        >>> from stere import Page
-        >>>
-        >>>
-        >>> class Home(Page):
-        >>>     def __init__(self):
-        >>>         self.page_url = 'https://en.wikipedia.org/'
-        >>>
-        >>>
-        >>> Stere.browser = Browser()
-        >>> Stere.url_navigator = 'visit'
-        >>>
-        >>> home_page = Home()
-        >>> home_page.navigate()
+        Example:
+
+            >>> from splinter import Browser
+            >>> from stere import Page
+            >>>
+            >>>
+            >>> class Home(Page):
+            >>>     def __init__(self):
+            >>>         self.page_url = 'https://en.wikipedia.org/'
+            >>>
+            >>>
+            >>> Stere.browser = Browser()
+            >>> Stere.url_navigator = 'visit'
+            >>>
+            >>> home_page = Home()
+            >>> home_page.navigate()
 
         """
-        return getattr(self.browser, self.url_navigator)(self.page_url)
+        getattr(self.browser, self.url_navigator)(self.page_url)
+        return self
