@@ -1,6 +1,23 @@
+import time
 from functools import wraps
 
 from .element_builder import build_element
+
+
+def _try_until_timeout(func=None, wait_time=0):
+    """Try to get a True value from a function and return it. Once the
+    timeout is hit, then return False instead.
+
+    Arguments:
+        func (function): The function to try to execute
+        wait_time (int): Number of seconds to wait
+    """
+    end_time = time.time() + wait_time
+    while time.time() < end_time:
+        if func():
+            return True
+
+    return False
 
 
 def stere_performer(method_name, consumes_arg=False):
@@ -50,7 +67,6 @@ class Field:
         strategy (str): The type of strategy to use when locating an element.
         locator (str): The locator for the strategy.
         workflows (list): Any workflows the Field should be included with.
-
 
     Example:
 
@@ -148,6 +164,54 @@ class Field:
         for item in self.element:
             if item.value == value:
                 return item
+
+    def value_contains(self, expected, wait_time=2):
+        """Check if the value of the Field contains an expected value.
+
+        Arguments:
+            expected (str): The expected value of the Field
+            wait_time (int): The number of seconds to wait
+
+        Returns:
+            bool: True if the value was found, else False
+
+        Example:
+
+            >>> class PetStore(Page):
+            >>>     def __init__(self):
+            >>>         self.price = Link('xpath', '//li[@class="price"]')
+            >>>
+            >>> pet_store = PetStore()
+            >>> assert pet_store.price.value_contains("19.19", wait_time=6)
+        """
+        return _try_until_timeout(
+            func=lambda: expected in self.value,
+            wait_time=wait_time,
+        )
+
+    def value_equals(self, expected, wait_time=2):
+        """Check if the value of the Field equals an expected value.
+
+        Arguments:
+            expected (str): The expected value of the Field
+            wait_time (int): The number of seconds to wait
+
+        Returns:
+            bool: True if the value was found, else False
+
+        Example:
+
+            >>> class PetStore(Page):
+            >>>     def __init__(self):
+            >>>         self.price = Link('xpath', '//li[@class="price"]')
+            >>>
+            >>> pet_store = PetStore()
+            >>> assert pet_store.price.value_equals("$19.19", wait_time=6)
+        """
+        return _try_until_timeout(
+            func=lambda: expected == self.value,
+            wait_time=wait_time,
+        )
 
     def find(self):
         """Find the first matching element.

@@ -26,6 +26,10 @@ Field
 
   .. automethod:: stere.fields.Field.after()
 
+  .. automethod:: stere.fields.Field.value_contains()
+
+  .. automethod:: stere.fields.Field.value_equals()
+
 
 Root
 ~~~~
