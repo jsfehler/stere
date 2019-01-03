@@ -1,12 +1,72 @@
 import logging
+import time
 
 import pytest
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
 from stere.fields import Field
+from stere.fields.field import _try_until_timeout
 
 LOGGER.setLevel(logging.WARNING)
+
+
+def test_try_until_timeout():
+    """When I call _try_until_timeout
+    Then a function is called until it returns a True value
+    """
+    now = time.time()
+
+    result = _try_until_timeout(
+        func=lambda: True if time.time() == (now + 6) else False,
+        wait_time=8,
+    )
+
+    assert result
+
+
+def test_try_until_timeout_fails():
+    """When I call _try_until_timeout
+    And the timeout is hit
+    Then it returns False
+    """
+    now = time.time()
+
+    result = _try_until_timeout(
+        func=lambda: True if time.time() == (now + 6) else False,
+        wait_time=4,
+    )
+
+    assert not result
+
+
+def test_value_equals(test_page):
+    test_page.navigate()
+
+    assert not test_page.many_input_area.first_name.value_equals('aabbaa')
+
+    test_page.many_input_area.perform(
+        "aabbaa",
+        "bbccbb",
+        "ccddcc",
+        "ddeedd",
+    )
+
+    assert test_page.many_input_area.first_name.value_equals('aabbaa')
+
+
+def test_value_contains(test_page):
+    test_page.navigate()
+
+    assert not test_page.many_input_area.first_name.value_contains('bbaa')
+
+    test_page.many_input_area.perform(
+        "aabbaa",
+        "bbccbb",
+        "ccddcc",
+        "ddeedd",
+    )
+    assert test_page.many_input_area.first_name.value_contains('bbaa')
 
 
 def test_field_repr():
