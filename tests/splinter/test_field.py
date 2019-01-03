@@ -18,7 +18,7 @@ def test_try_until_timeout():
     now = time.time()
 
     result = _try_until_timeout(
-        func=lambda: True if time.time() == (now + 6) else False,
+        func=lambda: True if time.time() >= (now + 6) else False,
         wait_time=8,
     )
 
