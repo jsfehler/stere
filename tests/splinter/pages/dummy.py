@@ -24,7 +24,10 @@ class DummyPage(Page):
     """Represents the test page."""
 
     def __init__(self):
-        self.page_url = 'https://jsfehler.github.io/stere/test_page/test_page.html' # NOQA
+        self.page_url = (
+            'https://jsfehler.github.io/stere/'
+            'test_page/test_page.html'
+        )
 
         self.button_container = Root('id', 'test_button_div')
         self.button = Button('id', 'test_button')
