@@ -1,2 +1,7 @@
-from .browserenabled import BrowserEnabled as Stere  # NOQA: F401
-from .page import Page  # NOQA: F401
+from .browserenabled import BrowserEnabled as Stere
+from .page import Page
+
+__all__ = [
+    "Stere",
+    "Page",
+]
