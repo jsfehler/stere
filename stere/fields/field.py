@@ -73,6 +73,18 @@ class Field:
         >>> from stere.fields import Field
         >>> my_field = Field('xpath', '//*[@id="js-link-box-pt"]/small/span')
 
+    Attributes:
+        element: The result of a search operation on the page.
+            All attribute calls on the Field that fail are then tried on the
+            element.
+
+            This allows classes inheriting from Field to act as a proxy to the
+            underlying automation library.
+
+            Using Splinter's `visible` attribute as an example, the following
+            methods are analogous:
+
+            >>> Field.visible == Field.find().visible == Field.element.visible
     """
     def __init__(self, strategy, locator, *args, **kwargs):
         self.strategy = strategy

@@ -17,6 +17,12 @@ class BaseElement(Stere):
     """Combined with a Strategy to form an Element.
 
     Elements are used by Fields as the source of what finds the DOM element.
+
+    Arguments:
+        strategy (str): The type of strategy to use when locating an element.
+        locator (str): The locator for the strategy.
+        parent_locator: A parent object to search from. If None,
+            search will occur from top of page.
     """
     def __init__(self, strategy, locator, parent_locator=None):
         self.strategy = strategy
