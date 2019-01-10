@@ -26,6 +26,7 @@ def test_areas_containing_type(test_page):
 
     assert isinstance(found_areas, Areas)
 
+
 def test_areas_containing(test_page):
     """Ensure Areas.containing() returns valid results."""
     test_page.navigate()
