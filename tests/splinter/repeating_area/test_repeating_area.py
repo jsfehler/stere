@@ -75,7 +75,7 @@ def test_repeating_area_area_with_warnings(test_page):
         test_page.navigate()
 
         with warnings.catch_warnings(record=True) as w:
-            found_area = test_page.repeating_area.area_with(
+            test_page.repeating_area.area_with(
                 'link', 'Repeating Link 2',
             )
 
