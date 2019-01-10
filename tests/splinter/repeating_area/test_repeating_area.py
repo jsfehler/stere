@@ -1,4 +1,5 @@
 import logging
+import warnings
 
 from pages import dummy_invalid
 
@@ -6,30 +7,8 @@ import pytest
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-from stere.areas import Areas
-
 
 LOGGER.setLevel(logging.WARNING)
-
-
-def test_areas_len():
-    """Ensure Areas reports length correctly."""
-    a = Areas(['1', '2', '3'])
-    assert 3 == len(a)
-
-
-def test_areas_contain(test_page):
-    test_page.navigate()
-
-    assert test_page.repeating_area.areas.contain("link", "Repeating Link 1")
-
-
-def test_areas_contain_not_found(test_page):
-    test_page.navigate()
-
-    assert not test_page.repeating_area.areas.contain(
-        "link", "Repeating Link 666",
-    )
 
 
 def test_missing_root():
@@ -89,6 +68,21 @@ def test_repeating_area_area_with(test_page):
         )
 
         assert found_area.text.value == 'Repeating Area 2'
+
+
+def test_repeating_area_area_with_warnings(test_page):
+        """Ensure a warning is generated when areas_with() is used."""
+        test_page.navigate()
+
+        with warnings.catch_warnings(record=True) as w:
+            found_area = test_page.repeating_area.area_with(
+                'link', 'Repeating Link 2',
+            )
+
+            assert str(w[-1].message) == (
+                'RepeatingArea.areas_with() is deprecated.'
+                ' Use RepeatingArea.areas.containing() instead.'
+            )
 
 
 def test_repeating_area_area_with_invalid_value(test_page):
