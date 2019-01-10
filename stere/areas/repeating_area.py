@@ -1,11 +1,12 @@
 import copy
+import warnings
 
 from .area import Area
 from ..fields import Field
 
 
 class Areas:
-    """Collection of Areas. Used by RepeatingArea.areas to store results.
+    """Searchable collection of Areas.
 
     Behaves like a list.
     """
@@ -20,6 +21,44 @@ class Areas:
 
     def __getitem__(self, item):
         return self._container[item]
+
+    def containing(self, field_name, field_value):
+        """Searches for Areas where the Field's value
+        matches the expected value and then returns an Areas object with all
+        matches.
+
+        Arguments:
+            field_name (str): The name of the Field object.
+            field_value (str): The value of the Field object.
+
+        Returns:
+            Area
+
+        Example:
+
+            >>> class Inventory(Page):
+            >>>     def __init__(self):
+            >>>         self.items = RepeatingArea(
+            >>>             root=Root('xpath', '//my_xpath_string'),
+            >>>             description=Text('xpath', '//my_xpath_string')
+            >>>         )
+            >>>
+            >>> def test_stuff():
+            >>>     # Ensure 10 items have a price of $9.99
+            >>>     inventory = Inventory()
+            >>>     found_areas = inventory.items.areas.containing(
+            >>>         "price", "$9.99")
+            >>>     assert 10 == len(found_areas)
+
+        """
+        containing = Areas()
+        for area in self:
+            field = getattr(area, field_name)
+
+            if field.value == field_value:
+                containing.append(area)
+
+        return containing
 
     def contain(self, field_name, field_value):
         """Check if a Field in any Area contains a specific value.
@@ -171,6 +210,11 @@ class RepeatingArea:
             >>>         "description", "Bananas")
 
         """
+        warnings.warn(
+            'RepeatingArea.areas_with() is deprecated.'
+            ' Use RepeatingArea.areas.containing() instead.',
+            FutureWarning,
+        )
         for area in self.areas:
             field = getattr(area, field_name)
 

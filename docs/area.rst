@@ -25,6 +25,8 @@ The following Area objects are available:
 
 .. autoclass:: stere.areas.Areas()
 
+  .. automethod:: stere.areas.Areas.containing()
+
   .. automethod:: stere.areas.Areas.contain()
 
 
