@@ -22,7 +22,7 @@ class Areas:
         if not isinstance(item, Area):
             raise TypeError(
                 f"{item} is not an Area. "
-                "Only Area objects can be inside Areas."
+                "Only Area objects can be inside Areas.",
             )
 
         self._container.append(item)

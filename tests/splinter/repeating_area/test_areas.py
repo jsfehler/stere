@@ -4,7 +4,7 @@ import pytest
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-from stere.areas import Areas, Area
+from stere.areas import Area, Areas
 
 
 LOGGER.setLevel(logging.WARNING)
@@ -22,7 +22,7 @@ def test_areas_append_wrong_type():
     )
 
 
-def test_areas_len():
+def test_areas_append():
     """Ensure Area objects can be appended to an Areas."""
     a = Areas()
 
