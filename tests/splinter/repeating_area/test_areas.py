@@ -32,6 +32,17 @@ def test_areas_append():
     assert 1 == len(a)
 
 
+def test_areas_remove():
+    """Ensure Areas.remove() behaves like list.remove()."""
+    a = Areas()
+
+    area = Area()
+    a.append(area)
+    a.remove(area)
+
+    assert 0 == len(a)
+
+
 def test_areas_len():
     """Ensure Areas reports length correctly."""
     a = Areas(['1', '2', '3'])
