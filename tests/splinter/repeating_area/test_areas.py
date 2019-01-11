@@ -4,10 +4,32 @@ import pytest
 
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-from stere.areas import Areas
+from stere.areas import Areas, Area
 
 
 LOGGER.setLevel(logging.WARNING)
+
+
+def test_areas_append_wrong_type():
+    """Ensure a TypeError is raised when non-Area objects are appended
+    to an Areas."""
+    a = Areas()
+    with pytest.raises(TypeError) as e:
+        a.append('1')
+
+    assert str(e.value) == (
+        '1 is not an Area. Only Area objects can be inside Areas.'
+    )
+
+
+def test_areas_len():
+    """Ensure Area objects can be appended to an Areas."""
+    a = Areas()
+
+    area = Area()
+    a.append(area)
+
+    assert 1 == len(a)
 
 
 def test_areas_len():
