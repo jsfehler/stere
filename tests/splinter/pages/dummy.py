@@ -1,5 +1,5 @@
 from stere import Page
-from stere.areas import Area, RepeatingArea
+from stere.areas import Area, Repeating, RepeatingArea
 from stere.fields import (
     Button,
     Checkbox,
@@ -54,7 +54,7 @@ class DummyPage(Page):
         )
 
         self.repeating_area = RepeatingArea(
-            root=Root('css', '.test_repeating_area_root'),
+            root=Root('css', '.test_repeating_area_root_a'),
             link=Link('xpath', './/a'),
             text=Text('css', '.test_repeating_area_test'),
         )
@@ -63,6 +63,16 @@ class DummyPage(Page):
         self.repeating_area_missing = RepeatingArea(
             root=Root('css', '.test_repeating_area_root_invalid'),
             link=Link('xpath', '//h4'),
+        )
+
+        # A Repeating Area that repeats
+        self.repeating = Repeating(
+            root=Root('css', '.repeatingRepeating'),
+            repeater=RepeatingArea(
+                root=Root('css', '.test_repeating_area_root'),
+                link=Link('xpath', './/a'),
+                text=Text('css', '.test_repeating_area_test'),
+            ),
         )
 
         # Will only be visible on the page after 10 seconds

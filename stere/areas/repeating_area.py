@@ -3,10 +3,11 @@ import warnings
 
 from .area import Area
 from .areas import Areas
+from .repeating import Repeating
 from ..fields import Field
 
 
-class RepeatingArea:
+class RepeatingArea(Repeating):
     """
     Represents multiple identical Areas on a page.
 
@@ -57,20 +58,22 @@ class RepeatingArea:
                 # Field (in plural) can be accessed directly.
                 setattr(self, f'{k}s', v)
 
-    def __len__(self):
-        all_roots = self.root.find_all()
-        return len(all_roots)
+        self.repeater = Area
+        self.repeater_name = self.repeater.__name__
+
+    def new_container(self):
+        return Areas()
 
     @property
     def areas(self):
+        return self.children()
+
+    def children(self):
         """Find all instances of the root,
         then return a list of Areas: one for each root.
 
         Returns:
             Areas: list-like collection of every Area that was found.
-
-        Raises:
-            ValueError: If no Areas were found.
 
         Example:
 
@@ -79,22 +82,18 @@ class RepeatingArea:
             >>>     listings[0].my_input.fill('Hello world')
 
         """
-        created_areas = Areas()
 
-        all_roots = self.root.find_all()
-        if 0 == len(all_roots):
-            raise ValueError(
-                f'Could not find any Areas with the root: {self.root.locator}',
-            )
+        all_roots = self._all_roots()
+        container = self.new_container()
 
         for item in all_roots:
             copy_items = copy.deepcopy(self.items)
             for field_name in copy_items.keys():
                 copy_items[field_name]._element.parent_locator = item
 
-            new_area = Area(**copy_items)
-            created_areas.append(new_area)
-        return created_areas
+            new_area = self.repeater(**copy_items)
+            container.append(new_area)
+        return container
 
     def area_with(self, field_name, field_value):
         """Searches the RepeatingArea for a single Area where the Field's value
