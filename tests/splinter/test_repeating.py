@@ -17,6 +17,23 @@ def test_all_roots(test_page):
     assert 2 == len(all_roots)
 
 
+def test_children(test_page):
+    """Given I have a Repeating RepeatingArea,
+    Then I can search for content inside the Repeating's children."""
+    test_page.navigate()
+    r = test_page.repeating
+    children = r.children()
+    assert 2 == len(children)
+
+    first_repeating_area = children[0]
+    assert 2 == len(first_repeating_area)
+    assert first_repeating_area.areas.contain('text', 'Repeating Area A1')
+
+    second_repeating_area = children[1]
+    assert 2 == len(second_repeating_area)
+    assert second_repeating_area.areas.contain('text', 'Repeating Area B1')
+
+
 def test_all_roots_not_found(test_page):
     test_page.navigate()
 
