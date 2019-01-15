@@ -3,8 +3,62 @@ Best Practices
 
 A highly opinionated guide. Ignore at your own peril.
 
-Favour composition over inheritance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Favour adding methods to Fields and Areas over Page Objects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If a new method is acting on a specific Field, subclass the Field and add the
+method there instead of adding the method to the Page Object.
+
+
+**Wrong:**
+
+.. code-block:: python
+
+    class Inventory(Page):
+        def __init__(self):
+            self.medals = Field('id', 'medals')
+
+        def count_the_medals(self):
+            return len(self.medals.find())
+
+
+    def test_you_got_the_medals():
+        inventory = Inventory()
+        assert 3 == inventory.count_the_medals()
+
+
+**Right:**
+
+.. code-block:: python
+
+    class Medals(Field):
+        def count(self):
+            return len(self.find())
+
+
+    class Inventory(Page):
+        def __init__(self):
+            self.medals = Medals('id', 'medals')
+
+
+    def test_you_got_the_medals():
+        inventory = Inventory()
+        assert 3 == inventory.medals.count()
+
+
+**Explanation:**
+
+Even if a Field or Area initially appears on only one page, subclassing will
+lead to code that is more easily reused and/or moved.
+
+In this example, inventory.count_the_medals() may look easier to read than
+inventory.medals.count(). However, creating methods with long names and
+specific verbiage makes your Page Objects less predictable and more prone to
+inconsistency.
+
+
+Favour page composition over inheritance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When building Page Objects for something with many reused pieces
 (such as a settings menu) don't build an abstract base Page Object.
@@ -16,7 +70,7 @@ Build each component separately and call them in Page Objects that reflect the a
 
     class BaseSettings(Page):
         def __init__(self):
-            self.menu = Area(...)
+            self.settings_menu = Area(...)
 
 
     class SpecificSettings(BaseSettings):
@@ -52,11 +106,14 @@ Single blank line when changing page object
 .. code-block:: python
 
   def test_the_widgets():
-      Knicknacks.menu.gadgets.click()
-      Knicknacks.gadgets.click()
-      Gadgets.add_widgets.click()
+      knicknacks = Knicknacks()
+      knicknacks.menu.gadgets.click()
+      knicknacks.gadgets.click()
+      gadgets = Gadgets()
+      gadgets.navigate()
 
-      Gadgets.add_sprocket.click()
+      gadgets.add_widgets.click()
+      gadgets.add_sprocket.click()
 
 
 **Right:**
@@ -64,11 +121,14 @@ Single blank line when changing page object
 .. code-block:: python
 
   def test_the_widgets():
-      Knicknacks.menu.gadgets.click()
-      Knicknacks.gadgets.click()
+      knicknacks = Knicknacks()
+      knicknacks.menu.gadgets.click()
+      knicknacks.gadgets.click()
 
-      Gadgets.add_widgets.click()
-      Gadgets.add_sprocket.click()
+      gadgets = Gadgets()
+      gadgets.navigate()
+      gadgets.add_widgets.click()
+      gadgets.add_sprocket.click()
 
 
 **Explanation:**

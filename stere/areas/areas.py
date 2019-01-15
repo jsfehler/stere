@@ -37,7 +37,7 @@ class Areas:
             field_value (str): The value of the Field object.
 
         Returns:
-            Area
+            Areas: A new Areas object with matching results
 
         Example:
 

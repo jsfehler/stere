@@ -18,7 +18,7 @@ The following Area objects are available:
 
 .. autoclass:: stere.areas.RepeatingArea()
 
-  .. automethod:: stere.areas.RepeatingArea.areas()
+  .. autoattribute:: stere.areas.RepeatingArea.areas()
 
   .. automethod:: stere.areas.RepeatingArea.area_with()
 

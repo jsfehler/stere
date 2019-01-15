@@ -22,6 +22,7 @@ Documentation
   splinter_fields
   appium_fields
   area
+  repeating
   workflows
   best_practices
 
