@@ -96,7 +96,7 @@ class FindByValue(SplinterBase):
     strategy = 'value'
 
 
-class FindByDataStarAttribute:
+class FindByDataStarAttribute(SplinterBase):
     """Strategy to find an element by an arbitrary data-* attribute."""
     def is_present(self, *args, **kwargs):
         return self.browser.is_element_present_by_xpath(
