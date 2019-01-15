@@ -4,13 +4,22 @@ import copy
 class Repeating:
     """
     Arguments:
+        root (Field): A non-unique root to search for.
         repeater (Repeating): An object that inherits from Repeating.
 
     Represents abstract non-unique collections that repeat,
     based on a common root.
 
-    Repeating are inherintly confusing and should only be used if something is
-    truly non-unique and cannot be predicted.
+    This can be used to identify anything that not only appears multiple times,
+    but also contains things which appear multiple times.
+
+    Repeating are inherintly confusing and should only be used if something
+    appears multiple times, contains something else that appears multiple
+    times, and is truly non-unique with no other way to target it.
+
+    The last object in a chain of Repeating must be a RepeatingArea.
+    This is because ultimately, there must be an end to the number of things
+    that repeat.
 
     Example:
 
@@ -46,6 +55,8 @@ class Repeating:
     def new_container(self):
         """Must return an object to contain results from Repeater.children()
 
+        By default a list is returned.
+
         Returns:
             list
         """
@@ -80,7 +91,7 @@ class Repeating:
         then return a collection containing children built from those roots.
 
         Returns:
-            list-like collection of every Area that was found.
+            list-like collection of every repeater that was found.
         """
 
         all_roots = self._all_roots()

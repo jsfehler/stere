@@ -66,6 +66,19 @@ class RepeatingArea(Repeating):
 
     @property
     def areas(self):
+        """Find all instances of the root,
+        then return a list of Areas: one for each root.
+
+        Returns:
+            Areas: list-like collection of every Area that was found.
+
+        Example:
+
+            >>> def test_stuff():
+            >>>     listings = MyPage().my_repeating_area.areas
+            >>>     listings[0].my_input.fill('Hello world')
+
+        """
         return self.children()
 
     def children(self):
@@ -82,7 +95,6 @@ class RepeatingArea(Repeating):
             >>>     listings[0].my_input.fill('Hello world')
 
         """
-
         all_roots = self._all_roots()
         container = self.new_container()
 
@@ -104,7 +116,7 @@ class RepeatingArea(Repeating):
             field_value (str): The value of the Field object.
 
         Returns:
-            Area
+            Area: The Area object that matches the search.
 
         Example:
 
