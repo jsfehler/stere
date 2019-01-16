@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 2019-01-05
+### Added
+- Add Field.value_equals() and Field.value_contains() methods
+- Add Areas.containing()
+- Add Repeating class to handle ridiculously nested collections
+
+### Changed
+- Deprecated RepeatingArea.area_with()
+- Areas container only accepts Area objects inside it
+
+### Fixed
+- FindByDataStarAttribute inherits from SplinterBase 
+
 ## [0.4.0] - 2019-01-02
 ### Added
 - Added RepeatingArea.areas.contain() method
