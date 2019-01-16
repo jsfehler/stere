@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.5.0] - 2019-01-05
+## [0.5.0] - 2019-01-15
 ### Added
 - Add Field.value_equals() and Field.value_contains() methods
 - Add Areas.containing()
