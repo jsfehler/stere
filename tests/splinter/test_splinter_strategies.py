@@ -1,8 +1,51 @@
 import logging
 
+import pytest
+
 from selenium.webdriver.remote.remote_connection import LOGGER
 
+from stere.fields import Field
+from stere.strategy.splinter import (
+    FindByCss,
+    FindByDataStarAttribute,
+    FindById,
+    FindByName,
+    FindByTag,
+    FindByText,
+    FindByValue,
+    FindByXPath,
+)
+from stere.strategy.strategy import strategies
+
 LOGGER.setLevel(logging.WARNING)
+
+
+def test_unregistered_strategy():
+    """Given an unregistered strategy is used
+    Then a ValueError should be thrown
+    """
+    with pytest.raises(ValueError) as e:
+        Field('fail', 'foobar')
+
+    assert 'The strategy "fail" is undefined.' == str(e.value)
+
+
+def test_unexpected_strategy():
+    """Given Stere's default splinter strategies,
+    When an unexpected strategy is found
+    Then this test should fail
+    """
+    assert strategies == {
+        'css': FindByCss,
+        # data-test-id is present because of unit tests
+        'data-test-id': FindByDataStarAttribute,
+        'xpath': FindByXPath,
+        'tag': FindByTag,
+        'name': FindByName,
+        'text': FindByText,
+        'id': FindById,
+        'value': FindByValue,
+    }
 
 
 def test_is_visible(test_page):
