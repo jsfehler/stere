@@ -37,6 +37,18 @@ def test_link(browser, test_page):
     assert 'https://www.google.ca' in browser.url
 
 
+def test_perform_return_value(test_page):
+    """
+    When Link's perform() method is called
+    And Link does not consume an argument
+    Then Link's performer method should return False
+    """
+    test_page.navigate()
+    res = test_page.link.perform()
+
+    assert not res
+
+
 def test_before_fill(test_page, dummy_link):
     """Given I have an Link with a before method defined
     When I call Link.click()

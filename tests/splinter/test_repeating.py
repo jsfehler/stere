@@ -10,6 +10,15 @@ from stere.fields import Root, Text
 LOGGER.setLevel(logging.WARNING)
 
 
+def test_repeater_name(test_page):
+    """The repeater_name attribute should be the class name of the repeater.
+    """
+    test_page.navigate()
+    r = test_page.repeating
+
+    assert type(r.repeater).__name__ == r.repeater_name
+
+
 def test_all_roots(test_page):
     test_page.navigate()
     r = test_page.repeating
