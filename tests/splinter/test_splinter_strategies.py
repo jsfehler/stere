@@ -21,7 +21,7 @@ LOGGER.setLevel(logging.WARNING)
 
 
 def test_unregistered_strategy():
-    """Given an unregistered strategy is used
+    """When an unregistered strategy is used
     Then a ValueError should be thrown
     """
     with pytest.raises(ValueError) as e:
@@ -48,6 +48,17 @@ def test_unexpected_strategy():
     }
 
 
+def test_strategy_attribute_correct():
+    """The strategy attribute on each Strategy class should be correct"""
+    assert 'css' == FindByCss.strategy
+    assert 'id' == FindById.strategy
+    assert 'name' == FindByName.strategy
+    assert 'tag' == FindByTag.strategy
+    assert 'text' == FindByText.strategy
+    assert 'value' == FindByValue.strategy
+    assert 'xpath' == FindByXPath.strategy
+
+
 def test_is_visible(test_page):
     """When I wait for something to be visible on the page
     Then is_visible() returns True if it becomes visible.
@@ -68,7 +79,7 @@ def test_is_visible_by_css(test_page):
 
 def test_is_not_visible(test_page):
     test_page.navigate()
-    assert test_page.to_hide_container_by_id.is_not_visible(wait_time=10)
+    assert test_page.to_hide_container_by_id.is_not_visible(wait_time=12)
 
 
 def test_is_not_visible_by_xpath(test_page):

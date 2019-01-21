@@ -47,6 +47,12 @@ class DummyPage(Page):
             dropdown=Dropdown('id', 'test_dropdown'),
             submit=Button('id', 'test_dropdown_submit'),
         )
+
+        # Override the option Field with a bad locator.
+        self.dropdown_with_override_option = Dropdown(
+            'id', 'test_dropdown', option=Field('id', 'foobar'),
+        )
+
         self.css_dropdown = CSSDropdown(
             'id',
             'test_css_dropdown',
