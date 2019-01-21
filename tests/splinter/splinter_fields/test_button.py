@@ -60,3 +60,33 @@ def test_after_click(test_page, dummy_button):
     dummy_button.click()
 
     assert 'bar' == button_after_str
+
+
+def test_performer_returns_attribute_not_present(test_page):
+    """Given a Button has a returns attribute set
+    When the Button's performer method is called
+    Then it returns the returns attribute
+    """
+    harpoon = Button('id', 'test_button')
+
+    test_page.navigate()
+    result = harpoon.perform()
+
+    assert result is None
+
+
+def test_performer_returns_attribute_present(test_page):
+    """Given a Button has a returns attribute set
+    When the Button's performer method is called
+    Then it returns the returns attribute
+    """
+    class GetOverHere:
+        def __init__(self, target):
+            self.target = target
+
+    harpoon = Button('id', 'test_button', returns=GetOverHere('sub-zero'))
+
+    test_page.navigate()
+    result = harpoon.perform()
+
+    assert result.target == 'sub-zero'
