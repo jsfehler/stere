@@ -20,12 +20,13 @@ def test_html_dropdown_default_option_field(test_page):
 def test_html_dropdown_perform_return_value(test_page):
     """When Dropdown's perform() method is called
     And Dropdown consumes an argument
-    Then Dropdown's performer method should return True
+    And Dropdown does not return anything
+    Then Dropdown's performer method should return None
     """
     test_page.navigate()
     res = test_page.dropdown_area.dropdown.perform('Banana')
 
-    assert res
+    assert res is None
 
 
 def test_html_dropdown(browser, test_page):

@@ -111,6 +111,7 @@ class Area:
         arg_index = 0
         workflow = self._workflow
         for field_name, field in self.items.items():
+            # If the Field isn't in the current workflow, skip it entirely.
             if workflow is not None and workflow not in field.workflows:
                 continue
 
@@ -121,8 +122,11 @@ class Area:
                     result = field.perform(args[arg_index])
                 else:
                     result = field.perform()
+
                 # If we've run out of arguments, don't increase the index.
-                if result and len(args) > (arg_index + 1):
+                if field.consumes_arg and len(args) > (arg_index + 1):
                     arg_index += 1
 
         self._workflow = None
+
+        return result

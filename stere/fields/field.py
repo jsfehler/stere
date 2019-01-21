@@ -24,19 +24,20 @@ def stere_performer(method_name, consumes_arg=False):
     """Wraps a Class that contains a method which should be
     used by Area.perform().
     """
-
     def wrapper(cls):
         class Performer(cls):
             def perform(self, value=None):
+                """Run the method designated as the performer"""
                 performer = getattr(self, method_name)
                 if consumes_arg:
                     performer(value)
-                    return True
                 else:
                     performer()
-                    return False
+                return self.returns
+
         # Preserve original class name
         Performer.__name__ = cls.__name__
+        Performer.consumes_arg = consumes_arg
         return Performer
     return wrapper
 
@@ -92,6 +93,7 @@ class Field:
         self._element = build_element(strategy, locator)
 
         self.workflows = kwargs.get('workflows') or []
+        self.returns = kwargs.get('returns') or None
 
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the element.
