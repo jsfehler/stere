@@ -1,6 +1,6 @@
 import time
-from functools import wraps
 
+from .decorators import use_after, use_before
 from .element_builder import build_element
 
 
@@ -18,45 +18,6 @@ def _try_until_timeout(func=None, wait_time=0):
             return True
 
     return False
-
-
-def stere_performer(method_name, consumes_arg=False):
-    """Wraps a Class that contains a method which should be
-    used by Area.perform().
-    """
-    def wrapper(cls):
-        class Performer(cls):
-            def perform(self, value=None):
-                """Run the method designated as the performer"""
-                performer = getattr(self, method_name)
-                if consumes_arg:
-                    performer(value)
-                else:
-                    performer()
-                return self.returns
-
-        # Preserve original class name
-        Performer.__name__ = cls.__name__
-        Performer.consumes_arg = consumes_arg
-        return Performer
-    return wrapper
-
-
-def use_before(func, *args, **kwargs):
-    @wraps(func)
-    def wrapper(obj, *inner_args, **inner_kwargs):
-        obj.before()
-        return func(obj, *inner_args, **inner_kwargs)
-    return wrapper
-
-
-def use_after(func, *args, **kwargs):
-    @wraps(func)
-    def wrapper(obj, *inner_args, **inner_kwargs):
-        result = func(obj, *inner_args, **inner_kwargs)
-        obj.after()
-        return result
-    return wrapper
 
 
 class Field:

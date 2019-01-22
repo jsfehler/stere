@@ -1,5 +1,6 @@
 from .button import Button
-from ..field import Field, stere_performer, use_after, use_before
+from ..decorators import stere_performer, use_after, use_before
+from ..field import Field
 
 
 @stere_performer('select', consumes_arg=True)

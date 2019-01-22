@@ -1,4 +1,5 @@
-from ..field import Field, stere_performer, use_after, use_before
+from ..decorators import stere_performer, use_after, use_before
+from ..field import Field
 
 
 @stere_performer('send_keys', consumes_arg=True)
