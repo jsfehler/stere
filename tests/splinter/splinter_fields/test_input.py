@@ -50,3 +50,11 @@ def test_after_fill(test_page, dummy_input):
     dummy_input.fill('Input this')
 
     assert 'bar' == input_after_str
+
+
+def test_input_call(test_page):
+    test_page.navigate()
+
+    i = Input('id', 'test_input_first_name', returns=10)
+
+    assert 10 == i.perform()

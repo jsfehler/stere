@@ -12,12 +12,12 @@ LOGGER.setLevel(logging.WARNING)
 
 
 def test_call():
- """When a Field instance is called
- Then the Field's perform method is executed
- """
- # Field.perform returns False
- f = Field('id', 'foobar')
- assert f() is False
+    """When a Field instance is called
+    Then the Field's perform method is executed
+    """
+    # Field.perform returns False
+    f = Field('id', 'foobar')
+    assert f() is False
 
 
 def test_try_until_timeout():
