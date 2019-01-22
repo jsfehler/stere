@@ -95,6 +95,10 @@ class Field:
         self.workflows = kwargs.get('workflows') or []
         self.returns = kwargs.get('returns') or None
 
+    def __call__(self, *args, **kwargs):
+        """When a Field instance is called, run the perform() method."""
+        return self.perform(args, kwargs)
+
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the element.
 

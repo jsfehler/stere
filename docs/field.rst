@@ -70,6 +70,35 @@ When `search.perform()` is called, `query.fill()` is called, followed by `submit
 See the documentation for `Area <https://stere.readthedocs.io/en/latest/area.html>`_ for more details.
 
 
+Calling the performer method explicitly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The performer method is available as `Field.perform()`.
+
+Using the splinter Button Field as an example, the only difference between
+`Button.click()` and `Button.perform()` is that perform will return the object
+set in the `Field.returns` attribute.
+See `Returning Objects <https://stere.readthedocs.io/en/latest/returning_objects.html>`_ for more details.
+
+Calling the performer method implicitly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When a page instance is called directly, the `perform()` method will be executed.
+
+The following code will produce the same results:
+
+.. code-block:: python
+
+    button = Button()
+    button.perform()
+
+
+.. code-block:: python
+
+    button = Button()
+    button()
+
+
 Subclassing Field
 ~~~~~~~~~~~~~~~~~
 
