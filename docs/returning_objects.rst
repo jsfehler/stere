@@ -26,6 +26,7 @@ object for the last Field in the Area will be returned.
 
 
 .. code-block:: python
+
     class Address(Page):
         def __init__(self):
             self.form = Area(
