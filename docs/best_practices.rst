@@ -128,17 +128,17 @@ the field or a description of what the field does:
 At the outset, either option can seem appropriate. Consider the usage inside
 a test:
 
- .. code-block:: python
+  .. code-block:: python
 
-    nav_page = Navigation()
-    nav_page.settings_button.click()
+      nav_page = Navigation()
+      nav_page.settings_button.click()
 
-VS
+  VS
 
-.. code-block:: python
+  .. code-block:: python
 
-     nav_page = Navigation()
-     nav_page.goto_settings.click()
+       nav_page = Navigation()
+       nav_page.goto_settings.click()
 
 
 However, consider what happens when a Field returns a Page:
@@ -179,8 +179,8 @@ Or, calling the perform method implicitly:
     nav_page = Navigation()
     settings_page = nav_page.goto_settings()
 
-In the end, naming Fields will depend on what they do, and how your tests use
- them.
+
+In the end, naming Fields will depend on what they do and how your tests use them.
 
 
 Single blank line when changing page object

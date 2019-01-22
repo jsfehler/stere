@@ -22,7 +22,7 @@ Fields inside an Area
 +++++++++++++++++++++
 
 When a Field is inside an Area and has the returns argument set, only the
-object for the last Field in the Area will be returned.
+object for the last Field in the Area will be returned when `Area.perform()` is called.
 
 
 .. code-block:: python
@@ -31,7 +31,7 @@ object for the last Field in the Area will be returned.
         def __init__(self):
             self.form = Area(
                 address=Input('id', 'formAddress'),
-                city=Input('id', 'formCity'),
+                city=Input('id', 'formCity', returns=FooPage()),
                 submit=Button('id', 'formsubmit', returns=NextPage()),
             )
 
