@@ -57,4 +57,4 @@ def test_input_call(test_page):
 
     i = Input('id', 'test_input_first_name', returns=10)
 
-    assert 10 == i.perform()
+    assert 10 == i.perform('alpha')
