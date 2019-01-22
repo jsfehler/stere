@@ -11,6 +11,15 @@ from stere.fields.field import _try_until_timeout
 LOGGER.setLevel(logging.WARNING)
 
 
+def test_call():
+    """When a Field instance is called
+    Then the Field's perform method is executed
+    """
+    # Field.perform returns False
+    f = Field('id', 'foobar')
+    assert f() is False
+
+
 def test_try_until_timeout():
     """When I call _try_until_timeout
     Then a function is called until it returns a True value

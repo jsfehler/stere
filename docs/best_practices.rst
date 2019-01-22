@@ -98,6 +98,91 @@ Creating abstract Page Objects to inherit from can make it confusing as to
 what Fields are available on a page.
 
 
+Naming Fields
+~~~~~~~~~~~~~
+
+Describing the Field VS Describing the Field's Action
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+When naming a field instance, the choice is usually between a description of
+the field or a description of what the field does:
+
+**Describing the Field:**
+
+.. code-block:: python
+
+    class Navigation(Page):
+        def __init__(self):
+            self.settings_button = Button('id', 'settingsLink')
+
+
+**Describing the Action:**
+
+.. code-block:: python
+
+    class Navigation(Page):
+        def __init__(self):
+            self.goto_settings = Button('id', 'settingsLink')
+
+
+At the outset, either option can seem appropriate. Consider the usage inside
+a test:
+
+  .. code-block:: python
+
+      nav_page = Navigation()
+      nav_page.settings_button.click()
+
+  VS
+
+  .. code-block:: python
+
+       nav_page = Navigation()
+       nav_page.goto_settings.click()
+
+
+However, consider what happens when a Field returns a Page:
+
+.. code-block:: python
+
+    class Navigation(Page):
+        def __init__(self):
+            self.settings_page = Button('id', 'settingsLink', returns=NextPage())
+
+.. code-block:: python
+
+    class Navigation(Page):
+        def __init__(self):
+            self.goto_settings = Button('id', 'settingsLink', returns=NextPage())
+
+.. code-block:: python
+
+    nav_page = Navigation()
+    settings_page = nav_page.settings_button.perform()
+
+.. code-block:: python
+
+    nav_page = Navigation()
+    settings_page = nav_page.goto_settings.perform()
+
+
+Or, calling the perform method implicitly:
+
+.. code-block:: python
+
+    nav_page = Navigation()
+    settings_page = nav_page.settings_button()
+
+
+.. code-block:: python
+
+    nav_page = Navigation()
+    settings_page = nav_page.goto_settings()
+
+
+In the end, naming Fields will depend on what they do and how your tests use them.
+
+
 Single blank line when changing page object
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

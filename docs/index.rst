@@ -24,6 +24,7 @@ Documentation
   area
   repeating
   workflows
+  returning_objects
   best_practices
 
 
