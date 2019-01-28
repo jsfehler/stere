@@ -90,6 +90,9 @@ class Repeating:
         """Find all instances of the root,
         then return a collection containing children built from those roots.
 
+        The type of collection is determined by the Repeating.new_container()
+        method.
+
         Returns:
             list-like collection of every repeater that was found.
         """
