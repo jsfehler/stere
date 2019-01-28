@@ -116,7 +116,7 @@ When creating a new type of Field, the stere_performer class decorator can be us
 
 .. code-block:: python
 
-    from stere.fields.field import stere_performer
+    from stere.fields.decorators import stere_performer
 
     @stere_performer('philosophize', consumes_arg=False)
     class DiogenesButton(Field):

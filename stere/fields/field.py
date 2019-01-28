@@ -92,6 +92,8 @@ class Field:
         """Called automatically before methods with the `@use_before`
         decorator are called.
 
+        Performer methods are decorated with @use_before.
+
         By default it does nothing. Override this method if an action must be
         taken before the method has been called.
         """
@@ -100,6 +102,8 @@ class Field:
     def after(self):
         """Called automatically before methods with the `@use_after`
         decorator are called.
+
+        Performer methods are decorated with @use_after.
 
         By default it does nothing. Override this method if an action must be
         taken after the method has been called.
