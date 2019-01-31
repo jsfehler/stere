@@ -72,13 +72,13 @@ def test_areas_containing(test_page):
 
 
 def test_areas_containing_invalid_field_name(test_page):
-        test_page.navigate()
+    test_page.navigate()
 
-        with pytest.raises(AttributeError) as e:
-            test_page.repeating_area.areas.containing(
-                'lunk', 'Repeating Link 2')
+    with pytest.raises(AttributeError) as e:
+        test_page.repeating_area.areas.containing(
+            'lunk', 'Repeating Link 2')
 
-        assert str(e.value) == "'Area' object has no attribute 'lunk'"
+    assert str(e.value) == "'Area' object has no attribute 'lunk'"
 
 
 def test_areas_contain(test_page):
