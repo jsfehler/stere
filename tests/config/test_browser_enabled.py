@@ -14,4 +14,4 @@ def test_browserenabled_url_navigator():
     Then the url navigator attribute should be an empty string."""
     browser_enabled = BrowserEnabled()
 
-    assert browser_enabled.urlnavigator == ''
+    assert browser_enabled.url_navigator == ''
