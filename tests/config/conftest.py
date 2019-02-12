@@ -1,1 +1,1 @@
-pytest_plugs = ['.sauce_option']
+pytest_plugins = ['tests.sauce_option']
