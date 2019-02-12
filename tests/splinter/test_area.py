@@ -10,6 +10,14 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
+def test_area_root_available(test_page):
+    """Given an area has a root Field set,
+    Then the root should be accessible.
+    """
+    test_page.navigate()
+    assert test_page.area_with_root.root is not None
+
+
 def test_area_used_reserved_keyword():
     expected_message = '"items" is a reserved parameter.'
 

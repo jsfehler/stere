@@ -24,7 +24,9 @@ class BrowserEnabled:
     url_navigator = ''
     library = 'splinter'
 
+    stere_section_name = 'stere'
+
     parser = _parse_config()
-    if parser.has_section('stere'):
-        if parser.has_option('stere', 'library'):
-            library = parser.get('stere', 'library')
+    if parser.has_section(stere_section_name):
+        if parser.has_option(stere_section_name, 'library'):
+            library = parser.get(stere_section_name, 'library')
