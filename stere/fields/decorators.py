@@ -2,8 +2,38 @@ from functools import wraps
 
 
 def stere_performer(method_name, consumes_arg=False):
-    """Wraps a Class that contains a method which should be
-    used by Area.perform().
+    """Wrapper for classes that contain a method which should be used by
+    Area.perform().
+
+    Associating a method with perform allows the class to be fully used
+    by Area objects.
+
+    Arguments:
+        method_name (str): The name of the method to perform
+        consumes_args (bool): True if the method takes an argument, else False
+
+    In the following example, when ``Philosophers().diogenes_area.perform()``
+    is called, ``DiogenesButton.philosophize()`` is called.
+
+    Example:
+
+        >>> @stere_performer('philosophize', consumes_arg=False)
+        >>> class DiogenesButton(Field):
+        >>>     def philosophize(self):
+        >>>         print("As a matter of self-preservation, ")
+        >>>         print("a man needs good friends or ardent enemies, ")
+        >>>         print("for the former instruct him and the latter take him to task.")
+        >>>
+        >>>
+        >>> class Philosophers(Page):
+        >>>     def __init__(self):
+        >>>         self.diogenes_area = Area(
+        >>>             quote_button=DiogenesButton('id', 'idDio'),
+        >>>             next_button=Button('id', 'idNext'),
+        >>>         )
+        >>>
+        >>>
+        >>> Philosophers().diogenes_area.perform()
     """
     def wrapper(cls):
         class Performer(cls):
@@ -29,14 +59,19 @@ def use_before(func, *args, **kwargs):
 
     Example:
 
-    class TransformingButton(Field):
-        def before(self):
-            print('Autobots! Transform and...')
-
-        @use_before
-        def roll_out(self):
-            print('roll out!')
-
+        >>> class TransformingButton(Field):
+        >>>     def before(self):
+        >>>         print('Autobots! Transform and...')
+        >>>
+        >>>     @use_before
+        >>>     def roll_out(self):
+        >>>         print('roll out!')
+        >>>
+        >>> tf = TransformingButton()
+        >>> tf.roll_out()
+        >>>
+        >>> "Autobots! Transform and..."
+        >>> "roll out!"
     """
     @wraps(func)
     def wrapper(obj, *inner_args, **inner_kwargs):
@@ -51,14 +86,19 @@ def use_after(func, *args, **kwargs):
 
     Example:
 
-    class TransformingButton(Field):
-        def after(self):
-            print('roll out!')
-
-        @use_after
-        def autobots(self):
-            print('Autobots! Transform and...')
-
+        >>> class TransformingButton(Field):
+        >>>     def after(self):
+        >>>         print('rise up!')
+        >>>
+        >>>     @use_after
+        >>>     def transform_and(self):
+        >>>         print('Decepticons, transform and...')
+        >>>
+        >>> tf = TransformingButton()
+        >>> tf.transform_and()
+        >>>
+        >>> 'Decepticons, transform and...'
+        >>> "rise up!"
     """
     @wraps(func)
     def wrapper(obj, *inner_args, **inner_kwargs):
