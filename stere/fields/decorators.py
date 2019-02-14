@@ -22,7 +22,8 @@ def stere_performer(method_name, consumes_arg=False):
         >>>     def philosophize(self):
         >>>         print("As a matter of self-preservation, ")
         >>>         print("a man needs good friends or ardent enemies, ")
-        >>>         print("for the former instruct him and the latter take him to task.")
+        >>>         print("for the former instruct him and the latter ")
+        >>>         print("take him to task.")
         >>>
         >>>
         >>> class Philosophers(Page):
