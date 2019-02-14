@@ -95,7 +95,18 @@ class Field:
         Performer methods are decorated with @use_before.
 
         By default it does nothing. Override this method if an action must be
-        taken before the method has been called.
+        taken before a method is called.
+
+        In the following example, Dropdown has been subclassed to hover over
+        the element before clicking.
+
+        Example:
+
+            >>> from stere.fields import Dropdown
+            >>>
+            >>> class CSSDropdown(Dropdown):
+            >>>     def before(self):
+            >>>         self.element.mouse_over()
         """
         pass
 
@@ -142,7 +153,6 @@ class Field:
             >>>
             >>> pet_store = PetStore()
             >>> pet_store.inventory_list.includes("Kittens").click()
-
         """
         for item in self.element:
             if item.value == value:
