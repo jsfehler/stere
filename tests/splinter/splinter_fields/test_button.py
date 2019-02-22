@@ -21,9 +21,17 @@ def dummy_button():
     return Dummy('id', 'test_button')
 
 
+def test_button_call(test_page):
+    """When a Button is called
+    Then the Button's perform method is called
+    """
+    test_page.navigate()
+    test_page.button()
+
+
 def test_button(browser, request, test_page):
-    """When a button is clicked
-    Then the button's action occurs
+    """When a Button is clicked
+    Then the correct action is sent to Splinter
     """
     test_page.navigate()
     test_page.button.click()

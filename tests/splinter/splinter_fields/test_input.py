@@ -21,6 +21,14 @@ def dummy_input():
     return Dummy('id', 'test_input_first_name')
 
 
+def test_input_implicit_call(test_page):
+    """When an Input is called
+    Then the Input's perform method is called
+    """
+    test_page.navigate()
+    test_page.input_area.input('Winamp')
+
+
 def test_input(test_page):
     """When an input is filled with the text 'Winamp'
     Then the text in the input should be 'Winamp'
