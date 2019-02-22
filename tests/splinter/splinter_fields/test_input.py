@@ -21,7 +21,7 @@ def dummy_input():
     return Dummy('id', 'test_input_first_name')
 
 
-def test_input_call(test_page):
+def test_input_implicit_call(test_page):
     """When an Input is called
     Then the Input's perform method is called
     """
