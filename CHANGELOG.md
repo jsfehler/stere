@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 2019-02-22
+### Added
+- Field can take the keyword argument "returns". The object given will be returned after Field.perform() is called
+- Field now executes Field.perform() when called
+
+### Changed
+- Stere decorators can now be used by importing Field.decorators
+
 ## [0.5.0] - 2019-01-15
 ### Added
 - Add Field.value_equals() and Field.value_contains() methods
@@ -12,7 +20,7 @@ All notable changes to this project will be documented in this file.
 - Areas container only accepts Area objects inside it
 
 ### Fixed
-- FindByDataStarAttribute inherits from SplinterBase 
+- FindByDataStarAttribute inherits from SplinterBase
 
 ## [0.4.0] - 2019-01-02
 ### Added
