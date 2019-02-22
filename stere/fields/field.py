@@ -1,6 +1,6 @@
 import time
 
-from .decorators import use_after, use_before
+from .decorators import stere_performer, use_after, use_before
 from .element_builder import build_element
 
 
@@ -20,6 +20,7 @@ def _try_until_timeout(func=None, wait_time=0):
     return False
 
 
+@stere_performer('null_action', consumes_arg=False)
 class Field:
     """Field objects represent individual pieces on a page.
     Conceptually, they're modelled after general behaviours, not specific
@@ -58,7 +59,7 @@ class Field:
 
     def __call__(self, *args, **kwargs):
         """When a Field instance is called, run the perform() method."""
-        return self.perform(args, kwargs)
+        return self.perform(*args, **kwargs)
 
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the element.
@@ -87,6 +88,13 @@ class Field:
         """Tries to find the element, the returns the results.
         """
         return self._element.find()
+
+    def null_action(self):
+        """An empty method used as the performer for Field.
+
+        Allows the base Field object to be used in an Area.
+        """
+        pass
 
     def before(self):
         """Called automatically before methods with the `@use_before`
@@ -120,16 +128,6 @@ class Field:
         taken after the method has been called.
         """
         pass
-
-    @use_after
-    @use_before
-    def perform(self, value=None, *args, **kwargs):
-        """Will be called by Area.perform()
-
-        Returns:
-            bool: True if the action used an argument, else False
-        """
-        return False
 
     def includes(self, value):
         """Will search every element found by the Field for a value property
