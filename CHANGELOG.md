@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.6.1] - 2019-02-22
+### Changed
+- Base Field, Root, and Text now use @stere_performer instead of a custom perform method
+
+### Fixed
+- Implicit Field calls now work with all Fields
+
 ## [0.6.0] - 2019-02-22
 ### Added
 - Field can take the keyword argument "returns". The object given will be returned after Field.perform() is called
