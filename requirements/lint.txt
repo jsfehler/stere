@@ -1,4 +1,4 @@
-flake8==3.7.6
+flake8==3.7.7
 flake8-bugbear==18.8.0
 flake8-commas==2.0.0
 flake8-per-file-ignores==0.8.1
