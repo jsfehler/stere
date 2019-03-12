@@ -11,7 +11,7 @@ def test_browserenabled_default_browser():
 
 def test_browserenabled_default_url_navigator():
     """Given stere has not been configured at all
-    Then the url navigator attribute should be an empty string."""
+    Then the url navigator attribute should be the default for splinter."""
     browser_enabled = BrowserEnabled()
 
-    assert browser_enabled.url_navigator == ''
+    assert browser_enabled.url_navigator == 'visit'
