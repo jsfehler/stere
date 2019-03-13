@@ -24,10 +24,15 @@ def test_unregistered_strategy():
     """When an unregistered strategy is used
     Then a ValueError should be thrown
     """
+    strategies = [
+        'css', 'xpath', 'tag', 'name', 'text', 'id', 'value', 'data-test-id',
+    ]
+
     with pytest.raises(ValueError) as e:
         Field('fail', 'foobar')
 
-    assert 'The strategy "fail" is undefined.' == str(e.value)
+    expected_message = f'The strategy "fail" is not in {strategies}.'
+    assert expected_message == str(e.value)
 
 
 def test_unexpected_strategy():
