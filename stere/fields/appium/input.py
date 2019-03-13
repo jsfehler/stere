@@ -15,7 +15,7 @@ class Input(Field):
     def __init__(self, *args, default_value=None, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.default_value = default_value or None
+        self.default_value = default_value
 
     @use_after
     @use_before
