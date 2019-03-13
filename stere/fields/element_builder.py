@@ -4,13 +4,15 @@ from stere.strategy import strategies
 
 def build_element(desired_strategy, locator, parent_locator=None):
     """Build a Field Object out of a BaseElement and a Strategy."""
+    known = strategies.keys()
 
-    if desired_strategy in strategies.keys():
+    if desired_strategy in known:
         bases = (BaseElement, strategies[desired_strategy])
         element_class = type('Element', bases, dict())
         return element_class(desired_strategy, locator, parent_locator)
 
-    raise ValueError(f'The strategy "{desired_strategy}" is undefined.')
+    raise ValueError(
+        f'The strategy "{desired_strategy}" is not in {list(known)}.')
 
 
 class BaseElement(Stere):
