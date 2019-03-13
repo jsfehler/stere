@@ -4,7 +4,7 @@ from .strategy import strategies
 from .strategy import strategy
 
 
-__all = [
+__all__ = [
     'strategy',
     'strategies',
 ]
@@ -16,7 +16,7 @@ if Stere.library == 'appium':
     from .appium import FindByIOSUIPredicate
     from .appium import FindByIOSUIAutomation
 
-    desired_imports = [
+    __all__ += [
         'FindByAccessibilityId',
         'FindByAndroidUIAutomator',
         'FindByIOSClassChain',
@@ -34,7 +34,7 @@ elif Stere.library == 'splinter':
     from .splinter import FindByXPath
     from .splinter import add_data_star_strategy
 
-    desired_imports = [
+    __all__ += [
         'FindByCss',
         'FindByXPath',
         'FindByTag',
@@ -44,8 +44,3 @@ elif Stere.library == 'splinter':
         'FindByValue',
         'add_data_star_strategy',
     ]
-
-else:
-    desired_imports = []
-
-__all__ = __all + desired_imports
