@@ -4,7 +4,7 @@ from .field import Field
 from .generic.root import Root
 from .generic.text import Text
 
-__all = [
+__all__ = [
     'Field',
     'Root',
     'Text',
@@ -14,7 +14,7 @@ if Stere.library == 'appium':
     from .appium.button import Button
     from .appium.input import Input
 
-    desired_imports = [
+    __all__ += [
         'Button',
         'Input',
     ]
@@ -26,15 +26,10 @@ elif Stere.library == 'splinter':
     from .splinter.input import Input
     from .splinter.link import Link
 
-    desired_imports = [
+    __all__ += [
         'Button',
         'Checkbox',
         'Dropdown',
         'Input',
         'Link',
     ]
-
-else:
-    desired_imports = []
-
-__all__ = __all + desired_imports
