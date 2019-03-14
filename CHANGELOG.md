@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.7.0] - 2019-03-14
+### Added
+- Splinter and Appium Input Fields can now take a default_value parameter
+- Stere.url_navigator has a default value when Splinter is used
+
+### Changed
+- If an invalid locator strategy is used, the error message now reports valid strategies
+
 ## [0.6.1] - 2019-02-22
 ### Changed
 - Base Field, Root, and Text now use @stere_performer instead of a custom perform method
