@@ -1,16 +1,11 @@
-Splinter Fields
-~~~~~~~~~~~~~~~
+Splinter Integration
+--------------------
 
-The following Fields are available with the default Splinter implementation.
+Stere contains Fields designed specifically for when Splinter is connected.
 Each implements a specific performer method.
 
-- :ref:`Button <button>`: Clickable object.
-- :ref:`Checkbox <checkbox>`: Object with a set and unset state.
-- :ref:`Dropdown <dropdown>`: Object with multiple options to choose from.
-- :ref:`Input <input>`: Object that accepts keyboard input.
-- :ref:`Link <link>`: Clickable text.
 
-All Fields that use Splinter also inherit the following convenience methods:
+All Fields designed for Splinter also inherit the following convenience methods:
 
   .. automethod:: stere.strategy.splinter.SplinterBase.is_present()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_not_present()
@@ -29,7 +24,12 @@ All Fields that use Splinter also inherit the following convenience methods:
       assert Inventory().price.is_present(wait_time=6)
 
 
-.. _button:
+Fields
+~~~~~~
+
+Button
+++++++
+
 .. class:: stere.fields.Button()
 
   Convenience Class on top of Field, it implements `click()` as its performer.
@@ -37,7 +37,9 @@ All Fields that use Splinter also inherit the following convenience methods:
   .. automethod:: stere.fields.Button.click()
 
 
-.. _checkbox:
+Checkbox
+++++++++
+
 .. class:: stere.fields.Checkbox()
 
   By default, the Checkbox field works against HTML inputs with type="checkbox".
@@ -53,7 +55,9 @@ All Fields that use Splinter also inherit the following convenience methods:
   .. automethod:: stere.fields.Checkbox.opposite()
 
 
-.. _dropdown:
+Dropdown
+++++++++
+
 .. class:: stere.fields.Dropdown()
 
   By default, the Dropdown field works against HTML Dropdowns.
@@ -74,7 +78,9 @@ All Fields that use Splinter also inherit the following convenience methods:
   .. automethod:: stere.fields.Dropdown.select()
 
 
-.. _input:
+Input
++++++
+
 .. class:: stere.fields.Input()
 
   A simple wrapper over Field, it implements `fill()` as its performer.
@@ -84,7 +90,9 @@ All Fields that use Splinter also inherit the following convenience methods:
   Fills the element with value.
 
 
-.. _link:
+Link
+++++
+
 .. class:: stere.fields.Link()
 
   A simple wrapper over Field, it implements `click()` as its performer.
@@ -94,9 +102,9 @@ All Fields that use Splinter also inherit the following convenience methods:
   Clicks the element.
 
 
-Location Strategies
--------------------
-.. _location_strategies:
+Locator Strategies
+~~~~~~~~~~~~~~~~~~
+.. _locator_strategies:
 
 These represent the way a locator can be searched for.
 
@@ -114,7 +122,7 @@ These strategies can be overridden with a custom strategy (ie: You can create a 
 
 
 Custom Locator Strategies
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Custom strategies can be defined using the `@strategy` decorator on top of a Class.
 
