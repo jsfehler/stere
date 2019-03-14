@@ -85,6 +85,12 @@ Input
 
   A simple wrapper over Field, it implements `fill()` as its performer.
 
+  The `default_value` argument can be provided, which will be used if fill() is called with no arguments.
+
+  .. code-block:: python
+
+      self.quantity = Dropdown('id', 'qty', default_value='555')
+
   .. automethod:: stere.fields.Input.fill()
 
   Fills the element with value.
