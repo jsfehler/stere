@@ -1,14 +1,16 @@
-Appium Fields
-~~~~~~~~~~~~~~~
+Appium Integration
+------------------
 
-The following Fields are available with the default Appium implementation.
+Stere contains Fields designed specifically for when Appium is connected.
 Each implements a specific performer method.
 
-- :ref:`Button <appium_button>`: Clickable object.
-- :ref:`Input <appium_input>`: Object that accepts keyboard input.
 
+Fields
+~~~~~~
 
-.. _appium_button:
+Button
+++++++
+
 .. class:: stere.fields.Button()
 
   Convenience Class on top of Field, it implements `click()` as its performer.
@@ -16,7 +18,9 @@ Each implements a specific performer method.
   .. automethod:: stere.fields.appium.button.Button.click()
 
 
-.. _appium_input:
+Input
++++++
+
 .. class:: stere.fields.Input()
 
   A simple wrapper over Field, it implements `send_keys()` as its performer.
@@ -26,9 +30,9 @@ Each implements a specific performer method.
   Fills the element with value.
 
 
-Location Strategies
--------------------
-.. _location_strategies:
+Locator Strategies
+~~~~~~~~~~~~~~~~~~
+.. _locator_strategies:
 
 These represent the way a locator will be searched for.
 
