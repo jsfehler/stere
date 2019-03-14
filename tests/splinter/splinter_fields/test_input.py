@@ -49,6 +49,19 @@ def test_before_fill(test_page, dummy_input):
     assert 'foo' == input_before_str
 
 
+def test_input_default_value(test_page):
+    """Given I have an Input with a default value
+    When I call Input.fill() with no arguments
+    Then the default value is filled in
+    """
+    test_page.navigate()
+
+    i = Input('id', 'test_input_first_name', default_value='Ampwin')
+    i.fill()
+
+    assert 'Ampwin' == i.value
+
+
 def test_after_fill(test_page, dummy_input):
     """Given I have an Input with an after method defined
     When I call Input.fill()

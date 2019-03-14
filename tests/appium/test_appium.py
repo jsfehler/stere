@@ -22,3 +22,15 @@ def test_input(test_app_main_page):
     test_app_main_page.build_robot.click()
 
     assert 'Number of Robots: 1' == test_app_main_page.number_of_robots.text
+
+
+def test_input_default_value(test_app_main_page):
+    """Given I have an Input with a default value
+    When I call Input.send_keys() with no arguments
+    Then the default value is filled in
+    """
+    from stere.fields import Input
+    i = Input('accessibility_id', 'build_robot_input', default_value='5')
+    i.send_keys()
+
+    assert '05' == i.text

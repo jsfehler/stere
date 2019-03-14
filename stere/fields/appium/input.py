@@ -7,7 +7,16 @@ class Input(Field):
     """Convenience Class on top of Field.
 
     Uses Appium's send_keys method.
+
+    Arguments:
+        default_value (str): When Input.send_keys() is called with no
+            arguments, this value will be used instead.
     """
+    def __init__(self, *args, default_value=None, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.default_value = default_value
+
     @use_after
     @use_before
     def send_keys(self, value=None):
@@ -22,4 +31,6 @@ class Input(Field):
         >>> first_name.send_keys('Joseph')
 
         """
+        if value is None and self.default_value:
+            value = self.default_value
         self.find().send_keys(value)
