@@ -57,6 +57,12 @@ Documentation
 https://stere.readthedocs.io/en/latest/
 
 
+Requirements
+------------
+
+Stere requires Python 3.6 or later to run.
+
+
 Basic Usage
 -----------
 
