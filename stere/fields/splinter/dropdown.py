@@ -10,6 +10,7 @@ class Dropdown(Field):
         use that as the dropdown item.
     Else, assume a standard HTML Dropdown and use the option tag.
     """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -25,6 +26,7 @@ class Dropdown(Field):
 
         Returns:
             list
+
         """
         self.option._element.parent_locator = self.find()
         return [item for item in self.option.find_all()]
@@ -40,6 +42,7 @@ class Dropdown(Field):
 
         Raises:
             ValueError: The provided value could not be found in the dropdown.
+
         """
         found_options = []
         for option in self.options:

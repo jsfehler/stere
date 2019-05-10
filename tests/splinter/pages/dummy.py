@@ -16,6 +16,7 @@ class CSSDropdown(Dropdown):
     """A Dropdown that's customized to hover over the element before attempting
     a select.
     """
+
     def before(self):
         self.element.mouse_over()
 

@@ -12,7 +12,8 @@ LOGGER.setLevel(logging.WARNING)
 
 def test_areas_append_wrong_type():
     """Ensure a TypeError is raised when non-Area objects are appended
-    to an Areas."""
+    to an Areas.
+    """
     a = Areas()
     with pytest.raises(TypeError) as e:
         a.append('1')

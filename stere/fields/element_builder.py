@@ -26,6 +26,7 @@ class BaseElement(Stere):
         parent_locator: A parent object to search from. If None,
             search will occur from top of page.
     """
+
     def __init__(self, strategy, locator, parent_locator=None):
         self.strategy = strategy
         self.locator = locator

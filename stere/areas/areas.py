@@ -6,6 +6,7 @@ class Areas:
 
     Behaves like a list.
     """
+
     def __init__(self, container=None):
         self._container = container or []
 

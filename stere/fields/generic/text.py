@@ -15,4 +15,5 @@ class Text(Field):
         >>>
         >>> self.price = Text('id', 'item_price')
     """
+
     pass

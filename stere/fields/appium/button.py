@@ -6,6 +6,7 @@ from ..field import Field
 class Button(Field):
     """Convenience Class on top of Field, it implements `click()` as its performer.
     """
+
     @use_after
     @use_before
     def click(self):

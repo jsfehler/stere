@@ -48,7 +48,9 @@ class Field:
             methods are analogous:
 
             >>> Field.visible == Field.find().visible == Field.element.visible
+
     """
+
     def __init__(self, strategy, locator, *args, **kwargs):
         self.strategy = strategy
         self.locator = locator
@@ -151,6 +153,7 @@ class Field:
             >>>
             >>> pet_store = PetStore()
             >>> pet_store.inventory_list.includes("Kittens").click()
+
         """
         for item in self.element:
             if item.value == value:
@@ -174,6 +177,7 @@ class Field:
             >>>
             >>> pet_store = PetStore()
             >>> assert pet_store.price.value_contains("19.19", wait_time=6)
+
         """
         return _try_until_timeout(
             func=lambda: expected in self.value,
@@ -198,6 +202,7 @@ class Field:
             >>>
             >>> pet_store = PetStore()
             >>> assert pet_store.price.value_equals("$19.19", wait_time=6)
+
         """
         return _try_until_timeout(
             func=lambda: expected == self.value,
@@ -212,6 +217,7 @@ class Field:
 
         Raises:
             ValueError - If more than one element is found.
+
         """
         found_elements = self._element.find()
         if len(found_elements) >= 2:
@@ -223,5 +229,6 @@ class Field:
 
         Returns:
             list
+
         """
         return self._element.find()

@@ -46,7 +46,9 @@ class Repeating:
         >>> second_project = projects.children[1]
         >>> assert second_project.areas.contains(
         >>>     'description', 'Self-Driving Cars')
+
     """
+
     def __init__(self, root, repeater):
         self.root = root
         self.repeater = repeater
@@ -59,12 +61,14 @@ class Repeating:
 
         Returns:
             list
+
         """
         return []
 
     def __len__(self):
         """Calling len() returns the number of times the root was found,
         but does not actually build the children.
+
         """
         all_roots = self.root.find_all()
         return len(all_roots)
@@ -77,6 +81,7 @@ class Repeating:
 
         Returns:
             All instances of the Repeating's root
+
         """
         all_roots = self.root.find_all()
         if 0 == len(all_roots):
@@ -95,8 +100,8 @@ class Repeating:
 
         Returns:
             list-like collection of every repeater that was found.
-        """
 
+        """
         all_roots = self._all_roots()
         container = self.new_container()
 

@@ -27,8 +27,9 @@ def test_all_roots(test_page):
 
 
 def test_children(test_page):
-    """Given I have a Repeating RepeatingArea,
-    Then I can search for content inside the Repeating's children."""
+    """Given I have a Repeating RepeatingArea
+    Then I can search for content inside the Repeating's children.
+    """
     test_page.navigate()
     r = test_page.repeating
     children = r.children()

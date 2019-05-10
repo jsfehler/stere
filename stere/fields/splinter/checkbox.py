@@ -5,6 +5,7 @@ from ..field import Field
 @stere_performer('opposite', consumes_arg=False)
 class Checkbox(Field):
     """Class with specific methods for handling checkboxes."""
+
     def __init__(self, *args, default_checked=False, **kwargs):
         super().__init__(*args, **kwargs)
 

@@ -38,6 +38,7 @@ class RepeatingArea(Repeating):
     >>> assert "Banana" == inventory.areas[5].name
     >>> assert "$7.00" == inventory.areas[5].price
     """
+
     def __init__(self, **kwargs):
         if kwargs.get('root') is None:
             raise ValueError('RepeatingArea requires a Root Field.')
