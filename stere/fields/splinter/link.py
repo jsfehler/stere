@@ -8,6 +8,7 @@ class Link(Field):
 
     Uses Splinter's click method.
     """
+
     @use_after
     @use_before
     def click(self):

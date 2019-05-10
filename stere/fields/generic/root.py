@@ -19,4 +19,5 @@ class Root(Field):
         >>>     quantity=Text('css', '.collection_qty'),
         >>> )
     """
+
     pass

@@ -77,13 +77,13 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     if os.environ.get('REMOTE_RUN') == "True":
         # Sauce Labs settings
         return {
-             'browserName': browser_name,
-             'browser': browser_name,
-             'name': testrun_name,
-             'platform': 'Windows 10',
-             'version': version,
-             'tunnelIdentifier': travis_job_number,
-            }
+            'browserName': browser_name,
+            'browser': browser_name,
+            'name': testrun_name,
+            'platform': 'Windows 10',
+            'version': version,
+            'tunnelIdentifier': travis_job_number,
+        }
     else:
         return {}
 

@@ -19,6 +19,7 @@ def _get_config_option(parser, section='stere', option='', default=''):
 
     Returns:
         str: The found value, or else the default value
+
     """
     if parser.has_option(section, option):
         return parser.get(section, option)
@@ -34,7 +35,9 @@ class BrowserEnabled:
         library (str): Name of the automation library to use. Default is
             splinter.
         url_navigator (str): Name of the function that opens a page.
+
     """
+
     browser = None
 
     # Default values for automation libraries

@@ -12,6 +12,7 @@ class Input(Field):
         default_value (str): When Input.fill() is called with no arguments,
             this value will be used instead.
     """
+
     def __init__(self, *args, default_value=None, **kwargs):
         super().__init__(*args, **kwargs)
 

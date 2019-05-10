@@ -19,6 +19,7 @@ class Page(BrowserEnabled):
     The choice of which syntax to use depends on how you want to write your
     test suite.
     """
+
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the browser.
         """
