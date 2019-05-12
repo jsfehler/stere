@@ -1,4 +1,4 @@
 Appium-Python-Client==0.42
-pytest==4.4.2
+pytest==4.5.0
 pytest-cov==2.7.1
 pytest-splinter==2.0.1
