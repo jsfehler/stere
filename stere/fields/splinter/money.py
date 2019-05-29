@@ -23,19 +23,22 @@ class Money(Field):
     number_regex = r'[^0-9\.]+'
 
     def money(self, currency='USD'):
-        """Get a Money object from the Field's text.
+        """Create a Money object from the Field's text.
+
+        The returned object is an instance of moneyed.Money.
+        See: `py-moneyed <https://github.com/limist/py-moneyed>`_
 
         Arguments:
             currency (str): Name of the currency to use
 
         Returns:
-            Money
+            moneyed.Money
 
         """
         return PyMoney(amount=self.number, currency=currency)
 
     @property
     def number(self):
-        """Version of the Field's text, normalized to look like a number."""
+        """The Field's text, normalized to look like a number."""
         m = re.compile(self.number_regex, re.IGNORECASE)
         return m.sub('', self.text)
