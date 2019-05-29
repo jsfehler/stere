@@ -13,7 +13,7 @@ class Repeating:
     This can be used to identify anything that not only appears multiple times,
     but also contains things which appear multiple times.
 
-    Repeating are inherintly confusing and should only be used if something
+    Repeating are inherently confusing and should only be used if something
     appears multiple times, contains something else that appears multiple
     times, and is truly non-unique with no other way to target it.
 
