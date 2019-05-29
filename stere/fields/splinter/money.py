@@ -36,7 +36,6 @@ class Money(Field):
 
     @property
     def number(self):
-        """Version of the Field's text, normalized to look like a number.
-        """
+        """Version of the Field's text, normalized to look like a number."""
         m = re.compile(self.number_regex, re.IGNORECASE)
         return m.sub('', self.text)
