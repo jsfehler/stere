@@ -14,6 +14,7 @@ def pytest_addoption(parser):
         help="Name of the browser used",
     )
 
+
 @pytest.fixture(scope='session')
 def appium_capabilities(request):
     """Desired capabilities to use with Appium."""
