@@ -93,8 +93,6 @@ Input
 
   .. automethod:: stere.fields.Input.fill()
 
-  Fills the element with value.
-
 
 Link
 ++++
@@ -105,7 +103,17 @@ Link
 
   .. automethod:: stere.fields.Link.click()
 
-  Clicks the element.
+
+Money
++++++
+
+.. class:: stere.fields.Money()
+
+  Money has methods for handling Fields where the text is a form of currency.
+
+  .. automethod:: stere.fields.Money.money()
+
+  .. autoattribute:: stere.fields.Money.number
 
 
 Locator Strategies
