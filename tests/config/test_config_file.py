@@ -17,8 +17,7 @@ def invalid_ini():
 
 
 def test_field_with_invalid_config(request, invalid_ini):
-    """Ensure library specific Fields don't work with a different library.
-    """
+    """Ensure library specific Fields don't work with a different library."""
     def fin():
         os.remove('stere.ini')
 
@@ -37,8 +36,7 @@ def test_field_with_invalid_config(request, invalid_ini):
 
 
 def test_stategy_with_invalid_config(request, invalid_ini):
-    """Ensure library specific stategies don't work with a different library.
-    """
+    """Library specific stategies shouldn't work with a different library."""
     def fin():
         os.remove('stere.ini')
 

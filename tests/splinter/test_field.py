@@ -77,9 +77,7 @@ def test_field_repr():
 
 
 def test_field_empty_perform():
-    """
-    The default implementation of Field.perform() should return None.
-    """
+    """The default implementation of Field.perform() should return None."""
     f = Field('id', 'foobar')
     assert f.perform() is None
 

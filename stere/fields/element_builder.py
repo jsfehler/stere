@@ -37,6 +37,7 @@ class BaseElement(Stere):
         self.root = None
 
     def find(self):
+        """Use _find_all() or _find_all_in_parent() to find an element."""
         if self.root is None and self.parent_locator is None:
             return self._find_all()
 
