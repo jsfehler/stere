@@ -48,7 +48,7 @@ class Area:
         self._workflow = None
 
     def workflow(self, value):
-        """Sets the current workflow for an Area.
+        """Set the current workflow for an Area.
 
         Designed for chaining before a call to perform().
 

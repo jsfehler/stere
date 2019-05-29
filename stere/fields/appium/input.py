@@ -21,7 +21,7 @@ class Input(Field):
     @use_after
     @use_before
     def send_keys(self, value=None):
-        """Uses Appium's fill method.
+        """Use Appium's fill method.
 
         Arguments:
             value (str): The text to enter into the input.

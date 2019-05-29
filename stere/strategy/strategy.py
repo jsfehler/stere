@@ -2,8 +2,14 @@ strategies = {}
 
 
 def strategy(strategy_name):
-    """Decorator that registers a strategy name and
-    strategy Class.
+    """Register a strategy name and strategy Class.
+
+    Use as a decorator.
+
+    Example:
+        @strategy('id')
+        class FindById:
+            ...
 
     Strategy Classes are used to build Elements Objects.
 

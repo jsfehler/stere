@@ -109,8 +109,7 @@ class RepeatingArea(Repeating):
         return container
 
     def area_with(self, field_name, field_value):
-        """Searches the RepeatingArea for a single Area where the Field's value
-        matches the expected value and then returns the entire Area object.
+        """Find an Area where the Field's value matches an expected value.
 
         Arguments:
             field_name (str): The name of the Field object.

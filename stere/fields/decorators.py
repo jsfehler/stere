@@ -2,11 +2,10 @@ from functools import wraps
 
 
 def stere_performer(method_name, consumes_arg=False):
-    """Wrapper for classes that contain a method which should be used by
-    Area.perform().
+    """Wrap a class to associate method_name with the perform() method.
 
     Associating a method with perform allows the class to be fully used
-    by Area objects.
+    by Area objects via Area.perform().
 
     Arguments:
         method_name (str): The name of the method to perform

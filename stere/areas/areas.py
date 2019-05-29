@@ -29,7 +29,7 @@ class Areas:
         self._container.append(item)
 
     def containing(self, field_name, field_value):
-        """Searches for Areas where the Field's value
+        """Search for Areas where the Field's value
         matches the expected value and then returns an Areas object with all
         matches.
 

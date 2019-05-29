@@ -10,7 +10,7 @@ class Button(Field):
     @use_after
     @use_before
     def click(self):
-        """Uses Appium's click method.
+        """Use Appium's click method.
 
         Example:
 

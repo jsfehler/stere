@@ -21,7 +21,7 @@ class Input(Field):
     @use_after
     @use_before
     def fill(self, value=None):
-        """Uses Splinter's fill method.
+        """Use Splinter's fill method.
 
         Arguments:
             value (str): The text to enter into the input.

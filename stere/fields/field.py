@@ -87,12 +87,12 @@ class Field:
 
     @property
     def element(self):
-        """Tries to find the element, the returns the results.
+        """Try to find the element, then return the results.
         """
         return self._element.find()
 
     def null_action(self):
-        """An empty method used as the performer for Field.
+        """Empty method used as the performer for Field.
 
         Allows the base Field object to be used in an Area.
         """

@@ -22,7 +22,7 @@ class Dropdown(Field):
 
     @property
     def options(self):
-        """Searches for all the elements that are an option in the dropdown.
+        """Search for all the elements that are an option in the dropdown.
 
         Returns:
             list
@@ -34,7 +34,7 @@ class Dropdown(Field):
     @use_after
     @use_before
     def select(self, value):
-        """Searches for an option by its html content, then clicks the one
+        """Search for an option by its html content, then clicks the one
         that matches.
 
         Arguments:

@@ -10,7 +10,7 @@ class Button(Field):
     @use_after
     @use_before
     def click(self):
-        """Uses Splinter's click method.
+        """Use Splinter's click method.
 
         Example:
 
