@@ -7,6 +7,7 @@ from stere.fields import (
     Field,
     Input,
     Link,
+    Money,
     Root,
     Text,
 )
@@ -133,3 +134,5 @@ class DummyPage(Page):
         # Field for something on the page we know isn't unique.
         self.purposefully_non_unique_field = Field(
             'css', '.test_repeating_area_root')
+
+        self.money_field = Money('id', 'moneyMoney')
