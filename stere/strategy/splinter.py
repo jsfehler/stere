@@ -6,7 +6,7 @@ from .strategy import strategy
 
 class SplinterBase:
     def is_present(self, *args, **kwargs):
-        """Checks if an element is present in the DOM.
+        """Check if an element is present in the DOM.
 
         Takes the same arguments as Splinter's
         `is_element_present_by_xpath`
@@ -15,7 +15,7 @@ class SplinterBase:
         return func(self.locator, *args, **kwargs)
 
     def is_not_present(self, *args, **kwargs):
-        """Checks if an element is not present in the DOM.
+        """Check if an element is not present in the DOM.
 
         Takes the same arguments as Splinter's
         `is_element_not_present_by_xpath`
@@ -25,7 +25,7 @@ class SplinterBase:
         return func(self.locator, *args, **kwargs)
 
     def is_visible(self, wait_time=2):
-        """Checks if an element is present in the DOM and visible.
+        """Check if an element is present in the DOM and visible.
 
         Arguments:
             wait_time (int): The number of seconds to wait
@@ -38,7 +38,7 @@ class SplinterBase:
         return False
 
     def is_not_visible(self, wait_time=2):
-        """Checks if an element is present in the DOM but not visible.
+        """Check if an element is present in the DOM but not visible.
 
         Arguments:
             wait_time (int): The number of seconds to wait
@@ -119,7 +119,7 @@ class FindByDataStarAttribute(SplinterBase):
 
 
 def add_data_star_strategy(data_star_attribute):
-    """Adds a new splinter strategy that finds by data_star_attribute.
+    """Add a new splinter strategy that finds by data_star_attribute.
 
     Arguments:
         data_star_attribute (str): The data-* attribute to use in the new

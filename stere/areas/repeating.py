@@ -66,8 +66,9 @@ class Repeating:
         return []
 
     def __len__(self):
-        """Calling len() returns the number of times the root was found,
-        but does not actually build the children.
+        """Return the number of times the root was found.
+
+        Does not actually build the children.
 
         """
         all_roots = self.root.find_all()
