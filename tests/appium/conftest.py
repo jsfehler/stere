@@ -14,14 +14,6 @@ def pytest_addoption(parser):
         help="Name of the browser used",
     )
 
-    parser.addoption(
-        "--sauce-remote-url",
-        action="store",
-        default="",
-        help="Remote URL for Sauce Labs",
-    )
-
-
 @pytest.fixture(scope='session')
 def appium_capabilities(request):
     """Desired capabilities to use with Appium."""
