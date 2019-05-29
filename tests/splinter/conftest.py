@@ -19,13 +19,6 @@ def pytest_addoption(parser):
         help="Name of the browser used",
     )
 
-    parser.addoption(
-        "--sauce-remote-url",
-        action="store",
-        default="",
-        help="Remote URL for Sauce Labs",
-    )
-
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
