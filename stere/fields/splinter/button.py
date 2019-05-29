@@ -4,7 +4,9 @@ from ..field import Field
 
 @stere_performer('click', consumes_arg=False)
 class Button(Field):
-    """Convenience Class on top of Field, it implements `click()` as its performer.
+    """Convenience Class on top of Field.
+
+    Implements `click()` as its performer.
     """
 
     @use_after

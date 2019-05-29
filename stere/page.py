@@ -21,8 +21,7 @@ class Page(BrowserEnabled):
     """
 
     def __getattr__(self, val):
-        """If an attribute doesn't exist, try getting it from the browser.
-        """
+        """If an attribute doesn't exist, try getting it from the browser."""
         return getattr(self.browser, val)
 
     def __enter__(self):
@@ -30,6 +29,7 @@ class Page(BrowserEnabled):
         return self
 
     def __exit__(self, *args):
+        """Page Objects can be used as context managers."""
         pass
 
     def navigate(self):

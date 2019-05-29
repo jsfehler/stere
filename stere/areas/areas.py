@@ -11,15 +11,24 @@ class Areas:
         self._container = container or []
 
     def __getattr__(self, item):
+        """__getattr__ checks the internal container."""
         return getattr(self._container, item)
 
     def __len__(self):
+        """__len__ checks the internal container."""
         return len(self._container)
 
     def __getitem__(self, item):
+        """__getitem__ checks the internal container."""
         return self._container[item]
 
     def append(self, item):
+        """Add a new Area to the container.
+
+        Raises:
+            TypeError: If a non-Area object is given.
+
+        """
         if not isinstance(item, Area):
             raise TypeError(
                 f"{item} is not an Area. "

@@ -63,6 +63,12 @@ class RepeatingArea(Repeating):
         self.repeater_name = self.repeater.__name__
 
     def new_container(self):
+        """Get a new instance of the container this class uses.
+
+        Returns:
+            Areas
+
+        """
         return Areas()
 
     @property

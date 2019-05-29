@@ -91,8 +91,7 @@ def test_area_perform_multiple_args(test_page):
 
 
 def test_area_perform_kwargs(test_page):
-    """When perform is called with kwargs, the parameters should be respected.
-    """
+    """When perform is called with kwargs, parameters should be respected."""
     test_page.navigate()
     test_page.many_input_area.perform(
         first_name='Fooman',

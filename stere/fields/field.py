@@ -81,14 +81,14 @@ class Field:
             return getattr(self.find(), val)
 
     def __repr__(self):
+        """Provide a string representation of this class."""
         return (
             f'{self.__class__.__name__} - '
             f'Strategy: {self.strategy}, Locator: {self.locator}')
 
     @property
     def element(self):
-        """Try to find the element, then return the results.
-        """
+        """Tries to find the element, then returns the results."""
         return self._element.find()
 
     def null_action(self):

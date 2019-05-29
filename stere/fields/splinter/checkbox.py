@@ -44,11 +44,13 @@ class Checkbox(Field):
     @use_after
     @use_before
     def check(self):
+        """Use Splinter's check method."""
         self.find().check()
 
     @use_after
     @use_before
     def uncheck(self):
+        """Use Splinter's uncheck method."""
         self.find().uncheck()
 
     def opposite(self):

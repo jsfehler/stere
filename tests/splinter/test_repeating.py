@@ -11,8 +11,7 @@ LOGGER.setLevel(logging.WARNING)
 
 
 def test_repeater_name(test_page):
-    """The repeater_name attribute should be the class name of the repeater.
-    """
+    """The repeater_name attribute should be the class name of the repeater."""
     test_page.navigate()
     r = test_page.repeating
 

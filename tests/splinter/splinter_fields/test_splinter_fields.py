@@ -55,8 +55,7 @@ def test_checkbox_opposite_default_unchecked(test_page):
 
 
 def test_field_name(test_page):
-    """Fields should report their intended class name, not 'Performer'
-    """
+    """Fields should report their intended class name, not 'Performer'."""
     with pytest.raises(TypeError) as e:
         test_page.button[0]
 

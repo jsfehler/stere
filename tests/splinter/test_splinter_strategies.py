@@ -36,7 +36,7 @@ def test_unregistered_strategy():
 
 
 def test_unexpected_strategy():
-    """Given Stere's default splinter strategies,
+    """Given Stere's default splinter strategies
     When an unexpected strategy is found
     Then this test should fail
     """
@@ -54,7 +54,7 @@ def test_unexpected_strategy():
 
 
 def test_strategy_attribute_correct():
-    """The strategy attribute on each Strategy class should be correct"""
+    """The strategy attribute on each Strategy class should be correct."""
     assert 'css' == FindByCss.strategy
     assert 'id' == FindById.strategy
     assert 'name' == FindByName.strategy
@@ -132,9 +132,7 @@ def test_is_not_present_args(test_page):
 
 
 def test_button_data_star_strategy(browser, request, test_page):
-    """
-    When I define a Field using a data-* strategy, it is found.
-    """
+    """When I define a Field using a data-* strategy, it is found."""
     test_page.navigate()
     test_page.button_alt_strategy.click()
 
