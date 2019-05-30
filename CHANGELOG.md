@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.8.0] - 2019-05-30
+### Added
+- Added Money Field in Splinter integration. [py-moneyed](https://github.com/limist/py-moneyed) is used to provide functionality.
+
 ## [0.7.0] - 2019-03-14
 ### Added
 - Splinter and Appium Input Fields can now take a default_value parameter
