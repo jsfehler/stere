@@ -11,7 +11,7 @@ def read(filename):
 
 setup(
     name="stere",
-    version="0.7.0",
+    version="0.8.0",
     description="A nice way of implementing the Page Object pattern.",
     long_description=read('README.rst'),
     author="Joshua Fehler",
@@ -19,6 +19,9 @@ setup(
     license="MIT",
     url="https://github.com/jsfehler/stere",
     packages=find_packages(),
+    install_requires=[
+        'py-moneyed==0.8.0',
+    ],
     classifiers=(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
