@@ -1,5 +1,5 @@
 Appium-Python-Client==0.44
 py-moneyed==0.8.0
-pytest==4.6.2
+pytest==4.6.3
 pytest-cov==2.7.1
 pytest-splinter==2.0.1
