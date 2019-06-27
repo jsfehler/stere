@@ -21,12 +21,24 @@ def dummy_button():
     return Dummy('id', 'test_button')
 
 
-def test_button_call(test_page):
+def test_button_call(browser, request, test_page):
     """When a Button is called
     Then the Button's perform method is called
     """
     test_page.navigate()
     test_page.button()
+
+    # Clicking changes the button's container background colour
+    browsers = {
+        'firefox': 'rgb(255, 0, 0)',
+        'chrome': 'rgba(255, 0, 0, 1)',
+    }
+
+    # This works because value_of_css_property is gotten from splinter,
+    # which gets it from Selenium
+    actual = test_page.button_container.find()._element.value_of_css_property(
+        'background-color')
+    assert browsers[request.config.option.browser_name] == actual
 
 
 def test_button(browser, request, test_page):
