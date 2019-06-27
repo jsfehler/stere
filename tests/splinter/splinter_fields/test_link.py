@@ -23,9 +23,21 @@ def dummy_link():
     return Dummy('id', 'test_link')
 
 
-def test_link(browser, test_page):
+def test_link_call(browser, test_page):
+    """When a Link is called
+    Then the Link's perform method is called
     """
-    When a link is clicked
+    test_page.navigate()
+    test_page.link()
+
+    time.sleep(2)
+
+    # The result of clicking should land the user on google.ca
+    assert 'https://www.google.ca' in browser.url
+
+
+def test_link(browser, test_page):
+    """When a link is clicked
     Then the link's action occurs
     """
     test_page.navigate()
@@ -38,8 +50,7 @@ def test_link(browser, test_page):
 
 
 def test_perform_return_value(test_page):
-    """
-    When Link's perform() method is called
+    """When Link's perform() method is called
     And Link does not consume an argument
     Then Link's performer method should return False
     """
