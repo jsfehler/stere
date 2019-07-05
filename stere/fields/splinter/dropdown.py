@@ -21,6 +21,7 @@ class Dropdown(Field):
             self.option = kwargs.get('option')
 
     def __getitem__(self, index):
+        """Accessing by index will select the option matching the index."""
         return self.options[index].click()
 
     @property
