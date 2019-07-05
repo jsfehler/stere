@@ -20,6 +20,9 @@ class Dropdown(Field):
         else:
             self.option = kwargs.get('option')
 
+    def __getitem__(self, index):
+        return self.options[index].click()
+
     @property
     def options(self):
         """Search for all the elements that are an option in the dropdown.
