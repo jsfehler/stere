@@ -51,7 +51,6 @@ def test_css_dropdown(browser, test_page):
 
     time.sleep(2)
 
-    # The result of clicking should land the user on google.ca
     assert 'test_page.html#dog' in browser.url
 
 
@@ -64,3 +63,18 @@ def test_dropdown_invalid(test_page):
     contents = ["Apple", "Banana", "Cranberry"]
     expected_message = f'Grape was not found. Found values are: {contents}'
     assert expected_message == str(e.value)
+
+
+def test_dropdown_getitem(browser, test_page):
+    """When I index a dropdown
+    Then I get the dropdown item in the desired position
+    """
+    test_page.navigate()
+
+    test_page.dropdown_area.dropdown[1]
+    test_page.dropdown_area.submit.click()
+
+    time.sleep(2)
+
+    # The result of clicking should land the user on google.ca
+    assert 'search?q=banana' in str.lower(browser.url)
