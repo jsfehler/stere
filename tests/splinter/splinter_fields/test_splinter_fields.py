@@ -56,7 +56,7 @@ def test_checkbox_opposite_default_unchecked(test_page):
 
 def test_field_name(py_version, test_page):
     """Fields should report their intended class name, not 'Performer'."""
-    if py_version == 6:
+    if py_version in [6, 7]:
         error_msg = 'object does not support indexing'
     else:
         error_msg = 'object is not subscriptable'

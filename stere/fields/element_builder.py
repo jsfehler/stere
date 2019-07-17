@@ -8,7 +8,7 @@ def build_element(desired_strategy, locator, parent_locator=None):
 
     if desired_strategy in known:
         bases = (BaseElement, strategies[desired_strategy])
-        element_class = type('Element', bases, dict())
+        element_class = type('Element', bases, {})
         return element_class(desired_strategy, locator, parent_locator)
 
     raise ValueError(
