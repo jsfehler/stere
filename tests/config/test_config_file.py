@@ -1,6 +1,5 @@
 import configparser
 import os
-import sys
 
 import pytest
 
@@ -16,7 +15,7 @@ def invalid_ini():
     return parser
 
 
-def test_field_with_invalid_config(request, invalid_ini):
+def test_field_with_invalid_config(request, py_version, invalid_ini):
     """Ensure library specific Fields don't work with a different library."""
     def fin():
         os.remove('stere.ini')
@@ -27,15 +26,15 @@ def test_field_with_invalid_config(request, invalid_ini):
         from stere.fields import Button  # NOQA: F401
 
     # ImportError message is different between py36 and py37
-    if sys.version_info[1] == 6:
+    if py_version == 6:
         msg = "cannot import name 'Button'"
 
-    elif sys.version_info[1] == 7:
+    else:
         msg = "cannot import name 'Button' from 'stere.fields'"
     assert msg in str(e.value)
 
 
-def test_stategy_with_invalid_config(request, invalid_ini):
+def test_stategy_with_invalid_config(request, py_version, invalid_ini):
     """Library specific stategies shouldn't work with a different library."""
     def fin():
         os.remove('stere.ini')
@@ -46,9 +45,9 @@ def test_stategy_with_invalid_config(request, invalid_ini):
         from stere.strategy import FindByCss  # NOQA: F401
 
     # ImportError message is different between py36 and py37
-    if sys.version_info[1] == 6:
+    if py_version == 6:
         msg = "cannot import name 'FindByCss'"
 
-    elif sys.version_info[1] == 7:
+    else:
         msg = "cannot import name 'FindByCss' from 'stere.strategy'"
     assert msg in str(e.value)
