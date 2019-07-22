@@ -1,5 +1,5 @@
 pydocstyle<4
-flake8==3.7.7
+flake8==3.7.8
 flake8-blind-except==0.1.1
 flake8-broken-line==0.1.0
 flake8-builtins==1.4.1
