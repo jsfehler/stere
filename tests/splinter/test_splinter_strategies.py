@@ -157,3 +157,39 @@ def test_data_star_staregy_is_present(browser, test_page):
 def test_data_star_staregy_is_not_present(browser, test_page):
     test_page.navigate()
     assert test_page.missing_button.is_not_present(wait_time=3)
+
+
+def test_is_clickable(test_page):
+    """
+    When I wait for something to be click on the page
+    Then is_clickable() returns True if it becomes visible.
+    """
+    test_page.navigate()
+    assert test_page.button.is_clickable(wait_time=1)
+
+
+def test_is_clickable_element_not_found(test_page):
+    """
+    When I wait for something to be click on the page
+    Then is_clickable() returns True if it becomes visible.
+    """
+    test_page.navigate()
+    assert not test_page.missing_button.is_clickable(wait_time=1)
+
+
+def test_is_not_clickable(test_page):
+    """
+    When I wait for something to be click on the page
+    Then is_clickable() returns True if it becomes visible.
+    """
+    test_page.navigate()
+    assert test_page.missing_button.is_not_clickable(wait_time=1)
+
+
+def test_is_not_clickable_element_found(test_page):
+    """
+    When I wait for something to be click on the page
+    Then is_clickable() returns True if it becomes visible.
+    """
+    test_page.navigate()
+    assert not test_page.button.is_not_clickable(wait_time=1)
