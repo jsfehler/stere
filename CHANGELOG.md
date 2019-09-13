@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## [0.9.0] - 2019-09-12
+### Added
+- .is_clickable() and .is_not_clickable() are now available for splinter Fields.
+
 ## [0.8.0] - 2019-05-30
 ### Added
 - Added Money Field in Splinter integration. [py-moneyed](https://github.com/limist/py-moneyed) is used to provide functionality.
