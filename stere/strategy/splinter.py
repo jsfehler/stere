@@ -7,9 +7,13 @@ from .strategy import strategy
 def _retry(fn, retry_time: int) -> bool:
     """Retry a function for a specific amount of time.
 
+    Returns:
+        True if the function returns a truthy value, else False
+
     Arguments:
         fn: Function to retry
         retry_time: Number of seconds to retry
+
     """
     end_time = time.time() + retry_time
 
@@ -20,7 +24,7 @@ def _retry(fn, retry_time: int) -> bool:
 
 
 class SplinterBase:
-    def is_clickable(self, wait_time=2) -> bool:
+    def is_clickable(self, wait_time: int = 2) -> bool:
         """Check if an element is present in the DOM and clickable.
 
         Arguments:
@@ -31,7 +35,7 @@ class SplinterBase:
             wait_time,
         )
 
-    def is_not_clickable(self, wait_time=2) -> bool:
+    def is_not_clickable(self, wait_time: int = 2) -> bool:
         """Check if an element is present in the DOM and clickable.
 
         Arguments:
@@ -61,7 +65,7 @@ class SplinterBase:
             self.browser, f'is_element_not_present_by_{self.strategy}')
         return func(self.locator, *args, **kwargs)
 
-    def is_visible(self, wait_time=2) -> bool:
+    def is_visible(self, wait_time: int = 2) -> bool:
         """Check if an element is present in the DOM and visible.
 
         Arguments:
@@ -72,7 +76,7 @@ class SplinterBase:
             wait_time,
         )
 
-    def is_not_visible(self, wait_time=2) -> bool:
+    def is_not_visible(self, wait_time: int = 2) -> bool:
         """Check if an element is present in the DOM but not visible.
 
         Arguments:
