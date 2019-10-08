@@ -50,9 +50,9 @@ class RepeatingArea(Repeating):
 
         self.items = {}
         for k, v in kwargs.items():
-            if not isinstance(v, Field):
+            if not isinstance(v, Field) and not isinstance(v, Area):
                 raise ValueError(
-                    'RepeatingArea arguments can only be Field objects.',
+                    'RepeatingArea arguments can only be a Field or Area.',
                 )
             if k != 'root':
                 self.items[k] = v
@@ -108,7 +108,14 @@ class RepeatingArea(Repeating):
         for item in all_roots:
             copy_items = copy.deepcopy(self.items)
             for field_name in copy_items.keys():
-                copy_items[field_name]._element.parent_locator = item
+                child = copy_items[field_name]
+                if isinstance(child, Field):
+                    child._element.parent_locator = item
+                elif isinstance(child, Area):
+                    if child.root:
+                        child.root._element.parent_locator = item
+                    else:
+                        child._element.parent_locator = item
 
             new_area = self.repeater(**copy_items)
             container.append(new_area)

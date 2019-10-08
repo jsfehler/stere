@@ -65,6 +65,11 @@ class DummyPage(Page):
             root=Root('css', '.test_repeating_area_root_a'),
             link=Link('xpath', './/a'),
             text=Text('css', '.test_repeating_area_test'),
+            nested=Area(
+                root=Root('css', '.test_repeating_area_nested'),
+                ax=Field('css', '.ax'),
+                bx=Field('css', '.bx'),
+            ),
         )
 
         # A Repeating Area that won't find anything.

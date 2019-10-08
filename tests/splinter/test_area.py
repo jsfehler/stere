@@ -28,7 +28,7 @@ def test_area_used_reserved_keyword():
 
 
 def test_area_non_field_kwarg():
-    expected_message = 'Areas must only be initialized with field objects.'
+    expected_message = 'Areas must only be initialized with Field or Area.'
 
     with pytest.raises(ValueError) as e:
         dummy_invalid.InvalidDummyPageE()

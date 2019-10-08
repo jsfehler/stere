@@ -43,7 +43,7 @@ def test_non_field_kwarg():
     Then a ValueError is thrown
     And it should inform the user that only Field objects can be used
     """
-    expected_message = 'RepeatingArea arguments can only be Field objects.'
+    expected_message = 'RepeatingArea arguments can only be a Field or Area.'
 
     with pytest.raises(ValueError) as e:
         dummy_invalid.InvalidDummyPageC()
@@ -98,6 +98,19 @@ def test_repeating_area(test_page):
     listings = test_page.repeating_area.areas
     assert listings[0].link.text == "Repeating Link 1"
     assert listings[1].link.text == "Repeating Link 2"
+
+
+def test_repeating_area_with_area(test_page):
+    """When a RepeatingArea has an Area inside it
+    Then the Area should have the correct root
+    """
+    test_page.navigate()
+
+    listings = test_page.repeating_area.areas
+    assert listings[0].nested.ax.text == "AX1"
+    assert listings[0].nested.bx.text == "BX1"
+    assert listings[1].nested.bx.text == "BX2"
+    assert listings[1].nested.ax.text == "AX2"
 
 
 def test_repeating_area_includes(test_page):
