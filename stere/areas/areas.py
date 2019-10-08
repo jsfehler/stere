@@ -1,4 +1,5 @@
 from .area import Area
+from ..utils import rgetattr
 
 
 class Areas:
@@ -68,7 +69,7 @@ class Areas:
         """
         containing = Areas()
         for area in self:
-            field = getattr(area, field_name)
+            field = rgetattr(area, field_name)
 
             if field.value == field_value:
                 containing.append(area)
@@ -101,7 +102,7 @@ class Areas:
 
         """
         for area in self:
-            field = getattr(area, field_name)
+            field = rgetattr(area, field_name)
 
             if field.value == field_value:
                 return True
