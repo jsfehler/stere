@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.10.0] - 2019-10-09
+### Changed
+- An Area can now be placed inside a RepeatingArea
+- Areas.containing now accepts nested values
+- Areas.contain now accepts nested values
+
 ## [0.9.0] - 2019-09-12
 ### Added
 - .is_clickable() and .is_not_clickable() are now available for splinter Fields.
