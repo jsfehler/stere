@@ -1,3 +1,5 @@
+import urllib.parse
+
 from .browserenabled import BrowserEnabled
 
 
@@ -31,6 +33,11 @@ class Page(BrowserEnabled):
     def __exit__(self, *args):
         """Page Objects can be used as context managers."""
         pass
+
+    @property
+    def page_url(self) -> str:
+        """Get a full URL from stere's base_url and a Page's url_suffix."""
+        return urllib.parse.urljoin(self.base_url, self.url_suffix)
 
     def navigate(self):
         """When the base Stere object has been given the `url_navigator`
