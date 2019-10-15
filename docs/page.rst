@@ -3,6 +3,8 @@ Pages
 
 .. autoclass:: stere.Page()
 
+  .. autoattribute:: stere.Page.page_url
+
   .. automethod:: stere.Page.navigate()
 
 

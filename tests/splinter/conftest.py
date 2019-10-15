@@ -85,6 +85,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
 def setup_stere(browser):
     Stere.browser = browser
     Stere.url_navigator = "visit"
+    Stere.base_url = 'https://jsfehler.github.io/stere/'
 
 
 @pytest.fixture(scope='function')

@@ -39,6 +39,8 @@ class BrowserEnabled:
     """
 
     browser = None
+    base_url = ''
+    url_suffix = ''
 
     # Default values for automation libraries
     library_defaults = {

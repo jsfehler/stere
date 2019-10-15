@@ -62,6 +62,26 @@ Here's an example with `Splinter <https://github.com/cobrateam/splinter>`_:
 As long as the base Stere object has the browser set, the browser's
 functionality is passed down to everything else.
 
+Stere.base_url
+~~~~~~~~~~~~~~
+
+Optionally, an attribute called base_url can be provided a string that will
+be used as the base for all urls returned by `Page.page_url`
+
+.. code-block:: python
+
+    from stere import Stere
+    from splinter import Browser
+
+    Stere.browser = Browser()
+    Stere.base_url = 'http://foobar.com/'
+
+    class MyPage(Page):
+        def __init__(self):
+            self.url_suffix = 'mysuffix'
+
+    >>> MyPage().page_url == 'http://foobar.com/mysuffix'
+
 Stere.url_navigator
 ~~~~~~~~~~~~~~~~~~~
 
