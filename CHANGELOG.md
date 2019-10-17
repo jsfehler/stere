@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.11.0] - 2019-10-17
+### Added
+- Page.page_url now built from Stere.base_url and Page.url_suffix
+
 ## [0.10.0] - 2019-10-09
 ### Changed
 - An Area can now be placed inside a RepeatingArea
