@@ -36,7 +36,10 @@ class Page(BrowserEnabled):
 
     @property
     def page_url(self) -> str:
-        """Get a full URL from stere's base_url and a Page's url_suffix."""
+        """Get a full URL from stere's base_url and a Page's url_suffix.
+
+        Uses urllib.parse.urljoin to combine the two.
+        """
         return urllib.parse.urljoin(self.base_url, self.url_suffix)
 
     def navigate(self):
