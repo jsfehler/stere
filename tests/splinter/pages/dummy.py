@@ -60,7 +60,7 @@ class DummyPage(Page):
 
         self.repeating_area = RepeatingArea(
             root=Root('css', '.test_repeating_area_root_a'),
-            link=Link('xpath', './/a'),
+            link=Link('xpath', './a'),
             text=Text('css', '.test_repeating_area_test'),
             nested=Area(
                 root=Root('css', '.test_repeating_area_nested'),

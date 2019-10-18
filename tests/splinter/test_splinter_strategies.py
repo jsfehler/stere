@@ -122,6 +122,16 @@ def test_is_present_args(test_page):
     assert test_page.added_container_by_id.is_present(wait_time=12)
 
 
+def test_is_present_repeating_area(test_page):
+    """
+    Given I have a Field inside a RepeatingArea
+    When I send an argument to is_present
+    Then it is used by the correct function
+    """
+    test_page.navigate()
+    assert test_page.repeating_area.areas[0].link.is_present()
+
+
 def test_is_not_present_args(test_page):
     """
     When I send an argument to is_not_present
