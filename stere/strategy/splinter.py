@@ -46,24 +46,27 @@ class SplinterBase:
             wait_time,
         )
 
-    def is_present(self, *args, **kwargs):
+    def is_present(self, wait_time: int = 2) -> bool:
         """Check if an element is present in the DOM.
 
-        Takes the same arguments as Splinter's
-        `is_element_present_by_xpath`
+        Arguments:
+            wait_time (int): The number of seconds to wait
         """
-        func = getattr(self.browser, f'is_element_present_by_{self.strategy}')
-        return func(self.locator, *args, **kwargs)
+        return _retry(
+            lambda: self.find(),
+            wait_time,
+        )
 
-    def is_not_present(self, *args, **kwargs):
+    def is_not_present(self, wait_time: int = 2) -> bool:
         """Check if an element is not present in the DOM.
 
-        Takes the same arguments as Splinter's
-        `is_element_not_present_by_xpath`
+        Arguments:
+            wait_time (int): The number of seconds to wait
         """
-        func = getattr(
-            self.browser, f'is_element_not_present_by_{self.strategy}')
-        return func(self.locator, *args, **kwargs)
+        return _retry(
+            lambda: not self.find(),
+            wait_time,
+        )
 
     def is_visible(self, wait_time: int = 2) -> bool:
         """Check if an element is present in the DOM and visible.

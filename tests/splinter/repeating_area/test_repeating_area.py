@@ -113,6 +113,7 @@ def test_repeating_area_with_area(test_page):
     assert listings[1].nested.ax.text == "AX2"
 
 
+@pytest.mark.skip
 def test_repeating_area_includes(test_page):
     test_page.navigate()
     elem = test_page.repeating_area.links.includes("Repeating Link 1")
