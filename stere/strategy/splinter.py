@@ -139,24 +139,6 @@ class FindByValue(SplinterBase):
 class FindByDataStarAttribute(SplinterBase):
     """Strategy to find an element by an arbitrary data-* attribute."""
 
-    def is_present(self, *args, **kwargs):
-        """Check if an element is present in the DOM.
-
-        Takes the same arguments as Splinter's
-        `is_element_present_by_xpath`
-        """
-        return self.browser.is_element_present_by_xpath(
-            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
-
-    def is_not_present(self, *args, **kwargs):
-        """Check if an element is not present in the DOM.
-
-        Takes the same arguments as Splinter's
-        `is_element_not_present_by_xpath`
-        """
-        return self.browser.is_element_not_present_by_xpath(
-            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
-
     def _find_all(self):
         """Find from page root."""
         return self.browser.find_by_xpath(
