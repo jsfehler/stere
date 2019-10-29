@@ -147,7 +147,7 @@ class FindByDataStarAttribute(SplinterBase):
     def _find_all_in_parent(self):
         """Find from inside parent element."""
         return self.parent_locator.find_by_xpath(
-            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
+            f'./*[@{self._data_star_attribute}="{self.locator}"]')
 
 
 def add_data_star_strategy(data_star_attribute):
