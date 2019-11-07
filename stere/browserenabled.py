@@ -43,6 +43,7 @@ class BrowserEnabled:
     browser = None
     base_url = ''
     url_suffix = ''
+    retry_time = 5
 
     # Default values for automation libraries
     library_defaults = {
@@ -66,4 +67,7 @@ class BrowserEnabled:
         )
         url_suffix = _get_config_option(
             parser, option='url_suffix', default=url_suffix,
+        )
+        retry_time = _get_config_option(
+            parser, option='retry_time', default=retry_time,
         )

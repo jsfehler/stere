@@ -1,10 +1,13 @@
 import copy
 import time
+import typing
+
+from stere import Stere
 
 from .strategy import strategy
 
 
-def _retry(fn, retry_time: int) -> bool:
+def _retry(fn, retry_time: typing.Optional[int] = None) -> bool:
     """Retry a function for a specific amount of time.
 
     Returns:
@@ -12,9 +15,11 @@ def _retry(fn, retry_time: int) -> bool:
 
     Arguments:
         fn: Function to retry
-        retry_time: Number of seconds to retry
+        retry_time: Number of seconds to retry. If not specified,
+            Stere.retry_time will be used.
 
     """
+    retry_time = retry_time or Stere.retry_time
     end_time = time.time() + retry_time
 
     while time.time() < end_time:
@@ -24,66 +29,72 @@ def _retry(fn, retry_time: int) -> bool:
 
 
 class SplinterBase:
-    def is_clickable(self, wait_time: int = 2) -> bool:
+    def is_clickable(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM and clickable.
 
         Arguments:
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to wait. If not specified,
+                Stere.retry_time will be used.
         """
         return _retry(
             lambda: self.find() and self.find()._element.is_enabled(),
             wait_time,
         )
 
-    def is_not_clickable(self, wait_time: int = 2) -> bool:
+    def is_not_clickable(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM and clickable.
 
         Arguments:
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to wait. If not specified,
+                Stere.retry_time will be used.
         """
         return _retry(
             lambda: not self.find() or (self.find() and not self.find()._element.is_enabled()),  # NOQA: E501
             wait_time,
         )
 
-    def is_present(self, wait_time: int = 2) -> bool:
+    def is_present(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM.
 
         Arguments:
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to wait. If not specified,
+                Stere.retry_time will be used.
         """
         return _retry(
             lambda: self.find(),
             wait_time,
         )
 
-    def is_not_present(self, wait_time: int = 2) -> bool:
+    def is_not_present(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is not present in the DOM.
 
         Arguments:
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to wait. If not specified,
+                Stere.retry_time will be used.
         """
         return _retry(
             lambda: not self.find(),
             wait_time,
         )
 
-    def is_visible(self, wait_time: int = 2) -> bool:
+    def is_visible(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM and visible.
 
         Arguments:
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to wait. If not specified,
+                Stere.retry_time will be used.
         """
         return _retry(
             lambda: self.find() and self.find().visible,
             wait_time,
         )
 
-    def is_not_visible(self, wait_time: int = 2) -> bool:
+    def is_not_visible(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM but not visible.
 
         Arguments:
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to wait. If not specified,
+                Stere.retry_time will be used.
         """
         return _retry(
             lambda: not self.find() or (self.find() and not self.find().visible),  # NOQA: E501

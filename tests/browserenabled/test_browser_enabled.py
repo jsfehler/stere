@@ -31,6 +31,13 @@ def test_browserenabled_url_suffix(browser_enabled):
 
 def test_browserenabled_default_url_navigator(browser_enabled):
     """Given stere has not been configured at all
-    Then the url navigator attribute should be the default for splinter.
+    Then the url_navigator attribute should be the default for splinter.
     """
     assert browser_enabled.url_navigator == 'visit'
+
+
+def test_browserenabled_default_retry_time(browser_enabled):
+    """Given stere has not been configured at all
+    Then the retry_time attribute should have a default value of 5.
+    """
+    assert browser_enabled.retry_time == 5
