@@ -3,21 +3,7 @@ import time
 from .decorators import stere_performer
 from .element_builder import build_element
 
-
-def _try_until_timeout(func=None, wait_time=0):
-    """Try to get a True value from a function and return it. Once the
-    timeout is hit, then return False instead.
-
-    Arguments:
-        func (function): The function to try to execute
-        wait_time (int): Number of seconds to wait
-    """
-    end_time = time.time() + wait_time
-    while time.time() < end_time:
-        if func():
-            return True
-
-    return False
+from ..utils import _retry
 
 
 @stere_performer('null_action', consumes_arg=False)
@@ -179,9 +165,9 @@ class Field:
             >>> assert pet_store.price.value_contains("19.19", wait_time=6)
 
         """
-        return _try_until_timeout(
+        return _retry(
             func=lambda: expected in self.value,
-            wait_time=wait_time,
+            retry_time=wait_time,
         )
 
     def value_equals(self, expected, wait_time=2):
@@ -204,9 +190,9 @@ class Field:
             >>> assert pet_store.price.value_equals("$19.19", wait_time=6)
 
         """
-        return _try_until_timeout(
+        return _retry(
             func=lambda: expected == self.value,
-            wait_time=wait_time,
+            retry_time=wait_time,
         )
 
     def find(self):
