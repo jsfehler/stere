@@ -1,11 +1,7 @@
 import copy
-import time
 import typing
 
-from stere import Stere
-
 from .strategy import strategy
-
 from ..utils import _retry
 
 

@@ -1,8 +1,5 @@
-import time
-
 from .decorators import stere_performer
 from .element_builder import build_element
-
 from ..utils import _retry
 
 
