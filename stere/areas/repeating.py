@@ -1,4 +1,7 @@
 import copy
+import typing
+
+from ..utils import _retry
 
 
 class Repeating:
@@ -114,3 +117,18 @@ class Repeating:
             container.append(copy_items)
 
         return container
+
+    def has_children(self, retry_time: typing.Optional[int] = None) -> bool:
+        """Check if any children can be found.
+
+        Arguments:
+            retry_time: Number of seconds to check for.
+
+        Returns:
+            bool
+
+        """
+        return _retry(
+            lambda: len(self.children()) > 0,
+            retry_time=retry_time,
+        )

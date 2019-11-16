@@ -60,3 +60,10 @@ def test_all_roots_not_found(test_page):
             'Could not find any RepeatingArea using the root: '
             '.repeatingRepeating',
         )
+
+
+def test_has_children(test_page):
+    test_page.navigate()
+
+    r = test_page.repeating
+    assert r.has_children()
