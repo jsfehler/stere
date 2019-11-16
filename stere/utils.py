@@ -1,6 +1,6 @@
-from functools import reduce
 import time
 import typing
+from functools import reduce
 
 from stere import Stere
 
