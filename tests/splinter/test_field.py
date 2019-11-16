@@ -19,7 +19,7 @@ def test_retry():
 
     result = _retry(
         lambda: True if time.time() >= (now + 6) else False,
-        wait_time=8,
+        retry_time=8,
     )
 
     assert result
@@ -34,7 +34,7 @@ def test_retry_fails():
 
     result = _retry(
         lambda: True if time.time() == (now + 6) else False,
-        wait_time=4,
+        retry_time=4,
     )
 
     assert not result
