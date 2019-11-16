@@ -129,6 +129,6 @@ class Repeating:
 
         """
         return _retry(
-            func=lambda: len(self.children) > 0,
+            lambda: len(self.children) > 0,
             retry_time=retry_time,
         )

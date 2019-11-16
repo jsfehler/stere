@@ -163,7 +163,7 @@ class Field:
 
         """
         return _retry(
-            func=lambda: expected in self.value,
+            lambda: expected in self.value,
             retry_time=wait_time,
         )
 
@@ -188,7 +188,7 @@ class Field:
 
         """
         return _retry(
-            func=lambda: expected == self.value,
+            lambda: expected == self.value,
             retry_time=wait_time,
         )
 

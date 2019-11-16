@@ -6,7 +6,7 @@ import pytest
 from selenium.webdriver.remote.remote_connection import LOGGER
 
 from stere.fields import Field
-from stere.fields.field import _retry
+from stere.utils import _retry
 
 LOGGER.setLevel(logging.WARNING)
 
@@ -18,7 +18,7 @@ def test_retry():
     now = time.time()
 
     result = _retry(
-        func=lambda: True if time.time() >= (now + 6) else False,
+        lambda: True if time.time() >= (now + 6) else False,
         wait_time=8,
     )
 
@@ -33,7 +33,7 @@ def test_retry_fails():
     now = time.time()
 
     result = _retry(
-        func=lambda: True if time.time() == (now + 6) else False,
+        lambda: True if time.time() == (now + 6) else False,
         wait_time=4,
     )
 
