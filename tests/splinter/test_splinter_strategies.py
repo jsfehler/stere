@@ -6,8 +6,8 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 
 from stere.fields import Field
 from stere.strategy.splinter import (
+    FindByAttribute,
     FindByCss,
-    FindByDataStarAttribute,
     FindById,
     FindByName,
     FindByTag,
@@ -43,7 +43,7 @@ def test_unexpected_strategy():
     assert strategies == {
         'css': FindByCss,
         # data-test-id is present because of unit tests
-        'data-test-id': FindByDataStarAttribute,
+        'data-test-id': FindByAttribute,
         'xpath': FindByXPath,
         'tag': FindByTag,
         'name': FindByName,

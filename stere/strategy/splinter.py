@@ -124,18 +124,18 @@ class FindByValue(SplinterBase):
     strategy = 'value'
 
 
-class FindByDataStarAttribute(SplinterBase):
-    """Strategy to find an element by an arbitrary data-* attribute."""
+class FindByAttribute(SplinterBase):
+    """Strategy to find an element by an arbitrary attribute."""
 
     def _find_all(self):
         """Find from page root."""
         return self.browser.find_by_xpath(
-            f'.//*[@{self._data_star_attribute}="{self.locator}"]')
+            f'//*[@{self._attribute}="{self.locator}"]')
 
     def _find_all_in_parent(self):
         """Find from inside parent element."""
         return self.parent_locator.find_by_xpath(
-            f'./*[@{self._data_star_attribute}="{self.locator}"]')
+            f'.//*[@{self._attribute}="{self.locator}"]')
 
 
 def add_data_star_strategy(data_star_attribute):
@@ -145,6 +145,6 @@ def add_data_star_strategy(data_star_attribute):
         data_star_attribute (str): The data-* attribute to use in the new
             strategy.
     """
-    find_by_data_star = copy.deepcopy(FindByDataStarAttribute)
-    find_by_data_star._data_star_attribute = data_star_attribute
+    find_by_data_star = copy.deepcopy(FindByAttribute)
+    find_by_data_star._attribute = data_star_attribute
     return strategy(data_star_attribute)(find_by_data_star)
