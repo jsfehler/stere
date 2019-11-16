@@ -2,9 +2,21 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.13.0] - 2019-11-16
+### Added
+- Field.is_<x> and Field.is_not_<x> methods now use Stere.retry_time if not specified.
+- Stere.retry_time can be set through the stere.ini file.
+- Repeating and RepeatingArea now have the has_children() method.
+
+### Changed
+- FindByDataStarAttribute renamed to FindByAttribute
+
+### Fixed
+- Field.is_present() and Field.is_not_present() now work correctly with FindByAttribute
+
 ## [0.12.0] - 2019-10-21
 ### Fixed
-- Field.is_present() and Field.is_not_presnet() now work with Fields inside a RepeatingArea
+- Field.is_present() and Field.is_not_present() now work with Fields inside a RepeatingArea
 
 ## [0.11.0] - 2019-10-17
 ### Added
