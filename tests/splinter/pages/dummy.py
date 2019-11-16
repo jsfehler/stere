@@ -98,14 +98,16 @@ class DummyPage(Page):
 
         # Same Field, different selectors
         self.removed_container_by_xpath = Field(
-            'xpath', '//div[@id="removed_container"]')
+            'xpath', '//div[@id="removed_container"]',
+        )
         self.removed_container_by_css = Field('css', '#removed_container')
 
         # Will be hidden after 10 seconds
         self.to_hide_container_by_id = Field('id', 'to_hide_container')
         self.to_hide_container_by_xpath = Field(
             'xpath',
-            '//div[@id="to_hide_container"]')
+            '//div[@id="to_hide_container"]',
+        )
         self.to_hide_container_by_css = Field('css', '#to_hide_container')
 
         self.area_with_root = Area(
@@ -119,22 +121,30 @@ class DummyPage(Page):
         )
 
         self.many_input_area = Area(
-            first_name=Input('id', 'test_input_first_name',
-                             workflows=['workflow_test']),
+            first_name=Input(
+                'id',
+                'test_input_first_name',
+                workflows=['workflow_test'],
+            ),
             last_name=Input('id', 'test_input_last_name'),
             email=Input('id', 'test_input_email'),
             age=Input('id', 'test_input_age'),
-            submit=Button('id', 'test_many_input_submit',
-                          workflows=['workflow_test']),
+            submit=Button(
+                'id',
+                'test_many_input_submit',
+                workflows=['workflow_test'],
+            ),
         )
         self.many_input_result = Text('id', 'many_input_result')
 
         self.checkbox = Checkbox('id', 'test_checkbox')
         self.checkbox_checked = Checkbox(
-            'id', 'test_checkbox_checked', default_checked=True)
+            'id', 'test_checkbox_checked', default_checked=True,
+        )
 
         # Field for something on the page we know isn't unique.
         self.purposefully_non_unique_field = Field(
-            'css', '.test_repeating_area_root')
+            'css', '.test_repeating_area_root',
+        )
 
         self.money_field = Money('id', 'moneyMoney')
