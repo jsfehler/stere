@@ -80,6 +80,9 @@ class Repeating:
     def _all_roots(self):
         """Search for all instances of the root.
 
+        Only intended for use inside Repeating.children().
+        Otherwise use self.root.find_all().
+
         Raises:
             ValueError: If no instances of the root were found.
 
@@ -129,6 +132,6 @@ class Repeating:
 
         """
         return _retry(
-            lambda: len(self.children()) > 0,
+            lambda: len(self) > 0,
             retry_time=retry_time,
         )
