@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.14.0] - 2019-11-19
+### Fixed
+- Repeating.has_children no longer fails if no children found.
+- Repeating.has_children no longer builds a list of children containers, just checks roots. 
+
 ## [0.13.0] - 2019-11-16
 ### Added
 - Field.is_<x> and Field.is_not_<x> methods now use Stere.retry_time if not specified.
