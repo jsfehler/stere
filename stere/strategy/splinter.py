@@ -19,16 +19,21 @@ class SplinterBase:
         )
 
     def is_not_clickable(self, wait_time: typing.Optional[int] = None) -> bool:
-        """Check if an element is present in the DOM and clickable.
+        """Check if an element is not clickable in the DOM.
 
         Arguments:
             wait_time (int): The number of seconds to wait. If not specified,
                 Stere.retry_time will be used.
         """
-        return _retry(
-            lambda: not self.find() or (self.find() and not self.find()._element.is_enabled()),  # NOQA: E501
-            wait_time,
-        )
+        def search():
+            result = self.find(wait_time=0)
+            if not result:
+                return True
+            if result and not result._element.is_enabled():
+                return True
+            return False
+
+        return _retry(search, wait_time)
 
     def is_present(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM.
@@ -50,7 +55,7 @@ class SplinterBase:
                 Stere.retry_time will be used.
         """
         return _retry(
-            lambda: not self.find(),
+            lambda: not self.find(wait_time=0),
             wait_time,
         )
 
@@ -67,26 +72,31 @@ class SplinterBase:
         )
 
     def is_not_visible(self, wait_time: typing.Optional[int] = None) -> bool:
-        """Check if an element is present in the DOM but not visible.
+        """Check if an element is not visible in the DOM.
 
         Arguments:
             wait_time (int): The number of seconds to wait. If not specified,
                 Stere.retry_time will be used.
         """
-        return _retry(
-            lambda: not self.find() or (self.find() and not self.find().visible),  # NOQA: E501
-            wait_time,
-        )
+        def search():
+            result = self.find(wait_time=0)
+            if not result:
+                return True
+            if result and not result.visible:
+                return True
+            return False
 
-    def _find_all(self):
+        return _retry(search, wait_time)
+
+    def _find_all(self, wait_time=None):
         """Find from page root."""
         func = getattr(self.browser, f'find_by_{self.strategy}')
-        return func(self.locator)
+        return func(self.locator, wait_time=wait_time)
 
-    def _find_all_in_parent(self):
+    def _find_all_in_parent(self, wait_time=None):
         """Find from inside a parent element."""
         func = getattr(self.parent_locator, f'find_by_{self.strategy}')
-        return func(self.locator)
+        return func(self.locator, wait_time=wait_time)
 
 
 @strategy('css')
@@ -127,15 +137,17 @@ class FindByValue(SplinterBase):
 class FindByAttribute(SplinterBase):
     """Strategy to find an element by an arbitrary attribute."""
 
-    def _find_all(self):
+    def _find_all(self, wait_time=None):
         """Find from page root."""
         return self.browser.find_by_xpath(
-            f'//*[@{self._attribute}="{self.locator}"]')
+            f'//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
+        )
 
-    def _find_all_in_parent(self):
+    def _find_all_in_parent(self, wait_time=None):
         """Find from inside parent element."""
         return self.parent_locator.find_by_xpath(
-            f'.//*[@{self._attribute}="{self.locator}"]')
+            f'.//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
+        )
 
 
 def add_data_star_strategy(data_star_attribute):
