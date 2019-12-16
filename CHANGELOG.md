@@ -2,10 +2,14 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.15.0] - 2019-12-15
+### Changed
+- Speed up is_not_<x> methods. Requires splinter >=0.13.0.
+
 ## [0.14.0] - 2019-11-19
 ### Fixed
 - Repeating.has_children no longer fails if no children found.
-- Repeating.has_children no longer builds a list of children containers, just checks roots. 
+- Repeating.has_children no longer builds a list of children containers, just checks roots.
 
 ## [0.13.0] - 2019-11-16
 ### Added
