@@ -36,11 +36,11 @@ class BaseElement(Stere):
         # when .find() is called.
         self.root = None
 
-    def find(self):
+    def find(self, wait_time=None):
         """Use _find_all() or _find_all_in_parent() to find an element."""
         if self.root is None and self.parent_locator is None:
-            return self._find_all()
+            return self._find_all(wait_time=wait_time)
 
         if self.root:
             self.parent_locator = self.root.find()
-        return self._find_all_in_parent()
+        return self._find_all_in_parent(wait_time=wait_time)
