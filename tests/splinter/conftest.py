@@ -77,7 +77,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
                 'platform': 'Windows 10',
                 'version': version,
                 'tunnelIdentifier': travis_job_number,
-            }
+            },
         }
     else:
         return {}
