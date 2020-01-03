@@ -1,6 +1,6 @@
 Appium-Python-Client==0.48
 py-moneyed==0.8.0
-pytest==5.3.0
+pytest==5.3.2
 pytest-cov==2.8.1
 -e git+git://github.com/jsfehler/pytest-splinter.git@splinter_next#egg=pytest-splinter
 pytest-xdist==1.31.0
