@@ -1,3 +1,5 @@
+import typing
+
 from .decorators import stere_performer
 from .element_builder import build_element
 from ..utils import _retry
@@ -142,12 +144,13 @@ class Field:
             if item.value == value:
                 return item
 
-    def value_contains(self, expected, wait_time=2):
+    def value_contains(self, expected, wait_time: typing.Optional[int] = None):
         """Check if the value of the Field contains an expected value.
 
         Arguments:
             expected (str): The expected value of the Field
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to search.
+                Default is Stere.retry_time.
 
         Returns:
             bool: True if the value was found, else False
@@ -167,12 +170,13 @@ class Field:
             retry_time=wait_time,
         )
 
-    def value_equals(self, expected, wait_time=2):
+    def value_equals(self, expected, wait_time: typing.Optional[int] = None):
         """Check if the value of the Field equals an expected value.
 
         Arguments:
             expected (str): The expected value of the Field
-            wait_time (int): The number of seconds to wait
+            wait_time (int): The number of seconds to search.
+                Default is Stere.retry_time.
 
         Returns:
             bool: True if the value was found, else False
