@@ -21,7 +21,7 @@ matrix:
     addons:
       sauce_connect:
         username: jsfehler
-  - python: 3.6
+  - python: 3.7
     env: TOX_ENV=flake8
 install:
 - pip install tox coveralls
