@@ -33,7 +33,7 @@ class Dropdown(Field):
 
         """
         self.option._element.parent_locator = self.find()
-        return [item for item in self.option.find_all()]
+        return list(self.option.find_all())
 
     @use_after
     @use_before
