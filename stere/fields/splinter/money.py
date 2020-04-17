@@ -22,7 +22,7 @@ class Money(Field):
 
     number_regex = r'[^0-9\.]+'
 
-    def money(self, currency='USD'):
+    def money(self, currency: str = 'USD') -> PyMoney:
         """Create a Money object from the Field's text.
 
         The returned object is an instance of moneyed.Money.
@@ -38,7 +38,7 @@ class Money(Field):
         return PyMoney(amount=self.number, currency=currency)
 
     @property
-    def number(self):
+    def number(self) -> str:
         """The Field's text, normalized to look like a number."""
         m = re.compile(self.number_regex, re.IGNORECASE)
         return m.sub('', self.text)

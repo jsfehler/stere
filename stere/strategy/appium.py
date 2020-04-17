@@ -1,13 +1,15 @@
+import typing
+
 from .strategy import strategy
 
 
 class AppiumBase:
-    def _find_all(self, wait_time=None):
+    def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from page root."""
         func = getattr(self.browser, f'find_elements_by_{self.strategy}')
         return func(self.locator)
 
-    def _find_all_in_parent(self, wait_time=None):
+    def _find_all_in_parent(self, wait_time: typing.Optional[int] = None):
         """Find from inside a parent element."""
         func = getattr(
             self.parent_locator, f'find_elements_by_{self.strategy}')

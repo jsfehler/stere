@@ -12,7 +12,9 @@ def rgetattr(obj, attr, *args):
     return reduce(_getattr, [obj] + attr.split('.'))
 
 
-def _retry(fn, retry_time: typing.Optional[int] = None) -> bool:
+def _retry(
+    fn: typing.Callable, retry_time: typing.Optional[int] = None,
+) -> bool:
     """Retry a function for a specific amount of time.
 
     Returns:

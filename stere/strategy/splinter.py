@@ -88,12 +88,12 @@ class SplinterBase:
 
         return _retry(search, wait_time)
 
-    def _find_all(self, wait_time=None):
+    def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from page root."""
         func = getattr(self.browser, f'find_by_{self.strategy}')
         return func(self.locator, wait_time=wait_time)
 
-    def _find_all_in_parent(self, wait_time=None):
+    def _find_all_in_parent(self, wait_time: typing.Optional[int] = None):
         """Find from inside a parent element."""
         func = getattr(self.parent_locator, f'find_by_{self.strategy}')
         return func(self.locator, wait_time=wait_time)

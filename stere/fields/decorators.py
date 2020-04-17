@@ -1,7 +1,11 @@
+import typing
 from functools import wraps
 
 
-def stere_performer(method_name, consumes_arg=False):
+def stere_performer(
+    method_name: str,
+    consumes_arg: bool = False,
+) -> typing.Callable:
     """Wrap a class to associate method_name with the perform() method.
 
     Associating a method with perform allows the class to be fully used
@@ -53,7 +57,7 @@ def stere_performer(method_name, consumes_arg=False):
     return wrapper
 
 
-def use_before(func, *args, **kwargs):
+def use_before(func: typing.Callable) -> typing.Callable:
     """When added to a method in a Field, the Field's before() method will be
     called before the decorated method is called.
 
@@ -80,7 +84,7 @@ def use_before(func, *args, **kwargs):
     return wrapper
 
 
-def use_after(func, *args, **kwargs):
+def use_after(func: typing.Callable) -> typing.Callable:
     """When added to a method in a Field, the Field's after() method will be
     called after the decorated method is called.
 
@@ -97,7 +101,7 @@ def use_after(func, *args, **kwargs):
         >>> tf = TransformingButton()
         >>> tf.transform_and()
         >>>
-        >>> 'Decepticons, transform and...'
+        >>> "Decepticons, transform and..."
         >>> "rise up!"
     """
     @wraps(func)

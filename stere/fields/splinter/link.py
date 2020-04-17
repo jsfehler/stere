@@ -11,7 +11,7 @@ class Link(Field):
 
     @use_after
     @use_before
-    def click(self):
+    def click(self) -> None:
         """Use Splinter's click method.
 
         Example:

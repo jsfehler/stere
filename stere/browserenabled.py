@@ -1,8 +1,9 @@
 import configparser
 import os
+import typing
 
 
-def _parse_config():
+def _parse_config() -> configparser.ConfigParser:
     parser = configparser.ConfigParser()
     cwd = os.getcwd()
     file_path = f'{cwd}/stere.ini'
@@ -10,7 +11,12 @@ def _parse_config():
     return parser
 
 
-def _get_config_option(parser, section='stere', option='', default=''):
+def _get_config_option(
+    parser: configparser.ConfigParser,
+    section: str = 'stere',
+    option: str = '',
+    default: typing.Optional[typing.Any] = '',
+) -> typing.Any:
     """Get an option from a config section, if it exists.
 
     Arguments:
