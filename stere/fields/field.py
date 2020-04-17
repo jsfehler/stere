@@ -36,7 +36,7 @@ class Field:
 
     """
 
-    def __init__(self, strategy, locator, *args, **kwargs):
+    def __init__(self, strategy: str, locator: str, *args, **kwargs):
         self.strategy = strategy
         self.locator = locator
         self._element = build_element(strategy, locator)
@@ -116,7 +116,7 @@ class Field:
         """
         pass
 
-    def includes(self, value):
+    def includes(self, value: str):
         """Will search every element found by the Field for a value property
         that matches the given value.
         If an element with a matching value is found, it's then returned.
@@ -144,7 +144,9 @@ class Field:
             if item.value == value:
                 return item
 
-    def value_contains(self, expected, wait_time: typing.Optional[int] = None):
+    def value_contains(
+        self, expected: str, wait_time: typing.Optional[int] = None,
+    ) -> bool:
         """Check if the value of the Field contains an expected value.
 
         Arguments:

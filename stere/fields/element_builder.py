@@ -1,3 +1,5 @@
+import typing
+
 from stere import Stere
 from stere.strategy import strategies
 
@@ -27,7 +29,7 @@ class BaseElement(Stere):
             search will occur from top of page.
     """
 
-    def __init__(self, strategy, locator, parent_locator=None):
+    def __init__(self, strategy: str, locator: str, parent_locator=None):
         self.strategy = strategy
         self.locator = locator
         self.parent_locator = parent_locator
@@ -36,7 +38,7 @@ class BaseElement(Stere):
         # when .find() is called.
         self.root = None
 
-    def find(self, wait_time=None):
+    def find(self, wait_time: typing.Optional[int] = None):
         """Use _find_all() or _find_all_in_parent() to find an element."""
         if self.root is None and self.parent_locator is None:
             return self._find_all(wait_time=wait_time)

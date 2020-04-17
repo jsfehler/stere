@@ -1,7 +1,7 @@
 strategies = {}
 
 
-def strategy(strategy_name):
+def strategy(strategy_name: str):
     """Register a strategy name and strategy Class.
 
     Use as a decorator.

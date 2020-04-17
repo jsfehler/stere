@@ -1,3 +1,5 @@
+import typing
+
 from ..decorators import stere_performer, use_after, use_before
 from ..field import Field
 
@@ -20,7 +22,7 @@ class Input(Field):
 
     @use_after
     @use_before
-    def fill(self, value=None):
+    def fill(self, value: typing.Optional[str] = None) -> None:
         """Use Splinter's fill method.
 
         Arguments:

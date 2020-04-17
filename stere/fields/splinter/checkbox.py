@@ -11,7 +11,7 @@ class Checkbox(Field):
 
         self.default_checked = default_checked
 
-    def set_to(self, state):
+    def set_to(self, state: bool) -> None:
         """Set a checkbox to the desired state.
 
         Arguments:
@@ -28,7 +28,7 @@ class Checkbox(Field):
         else:
             self.uncheck()
 
-    def toggle(self):
+    def toggle(self) -> None:
         """If the checkbox is checked, uncheck it.
         If the checkbox is unchecked, check it.
 
@@ -43,17 +43,17 @@ class Checkbox(Field):
 
     @use_after
     @use_before
-    def check(self):
+    def check(self) -> None:
         """Use Splinter's check method."""
         self.find().check()
 
     @use_after
     @use_before
-    def uncheck(self):
+    def uncheck(self) -> None:
         """Use Splinter's uncheck method."""
         self.find().uncheck()
 
-    def opposite(self):
+    def opposite(self) -> bool:
         """Switches the checkbox to the opposite of its default state.
         Uses the `default_checked` attribute to decide this.
 

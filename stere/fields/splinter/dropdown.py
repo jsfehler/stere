@@ -42,7 +42,7 @@ class Dropdown(Field):
 
     @use_after
     @use_before
-    def select(self, value, retry_time: typing.Optional[int] = None):
+    def select(self, value: str, retry_time: typing.Optional[int] = None):
         """Search for an option by its html content, then clicks the one
         that matches.
 
@@ -68,7 +68,7 @@ class Dropdown(Field):
         raise ValueError(
             f'{value} was not found. Found values are: {found_options}')
 
-    def _select(self, value):
+    def _select(self, value: str) -> typing.List[str]:
         found_options = []
 
         for option in self.options:
