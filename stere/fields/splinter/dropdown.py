@@ -1,3 +1,8 @@
+import time
+import typing
+
+from stere import Stere
+
 from .button import Button
 from ..decorators import stere_performer, use_after, use_before
 from ..field import Field
@@ -37,23 +42,39 @@ class Dropdown(Field):
 
     @use_after
     @use_before
-    def select(self, value):
+    def select(self, value, retry_time: typing.Optional[int] = None):
         """Search for an option by its html content, then clicks the one
         that matches.
 
         Arguments:
             value (str): The option value to select.
+            retry_time (int): The amount of time to try to find the value.
+                Default is Stere.retry_time.
 
         Raises:
             ValueError: The provided value could not be found in the dropdown.
 
         """
+        retry_time = retry_time or Stere.retry_time
+        end_time = time.time() + retry_time
+
         found_options = []
+
+        while time.time() < end_time:
+            found_options = self._select(value)
+            if not len(found_options):
+                return
+
+        raise ValueError(
+            f'{value} was not found. Found values are: {found_options}')
+
+    def _select(self, value):
+        found_options = []
+
         for option in self.options:
             found_options.append(option.html)
             if option.html == value:
                 option.click()
-                break
-        else:
-            raise ValueError(
-                f'{value} was not found. Found values are: {found_options}')
+                return []
+
+        return found_options
