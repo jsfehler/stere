@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.16.0] - 2020-04-20
+### Changed
+- Field.value_contains and Field.value_equals use Stere.retry_time as a default value
+- Splinter Dropdown.select() retries if value is not found
+
+
 ## [0.15.0] - 2019-12-15
 ### Changed
 - Speed up is_not_<x> methods. Requires splinter >=0.13.0.
