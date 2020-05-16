@@ -1,4 +1,4 @@
-Appium-Python-Client==0.50
+Appium-Python-Client==1.0.0
 py-moneyed==0.8.0
 pytest==5.4.1
 pytest-cov==2.8.1
