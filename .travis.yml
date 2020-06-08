@@ -26,9 +26,9 @@ matrix:
 install:
 - pip install tox coveralls
 script:
-- if [ $TOX_ENV == "py36-remote" ]; then tox -e $TOX_ENV -- --sauce-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
-- if [ $TOX_ENV == "py37-remote" ]; then tox -e $TOX_ENV -- --sauce-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
-- if [ $TOX_ENV == "py38-remote" ]; then tox -e $TOX_ENV -- --sauce-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@localhost:4445/wd/hub; fi
+- if [ $TOX_ENV == "py36-remote" ]; then tox -e $TOX_ENV -- --sauce-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com/wd/hub; fi
+- if [ $TOX_ENV == "py37-remote" ]; then tox -e $TOX_ENV -- --sauce-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com/wd/hub; fi
+- if [ $TOX_ENV == "py38-remote" ]; then tox -e $TOX_ENV -- --sauce-remote-url=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com/wd/hub; fi
 - if [ $TOX_ENV == "flake8" ]; then tox -e $TOX_ENV; fi
 before_cache:
 - rm -rf $HOME/.cache/pip/log
