@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.17.0] - 2020-09-02
+### Fixed
+- Fields inside an Area with a root now pass wait_time to the root Field.
+
+
 ## [0.16.0] - 2020-04-20
 ### Changed
 - Field.value_contains and Field.value_equals use Stere.retry_time as a default value
