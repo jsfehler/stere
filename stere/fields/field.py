@@ -198,7 +198,7 @@ class Field:
             retry_time=wait_time,
         )
 
-    def find(self):
+    def find(self, wait_time: typing.Optional[int] = None):
         """Find the first matching element.
 
         Returns:
@@ -208,16 +208,16 @@ class Field:
             ValueError - If more than one element is found.
 
         """
-        found_elements = self._element.find()
+        found_elements = self._element.find(wait_time)
         if len(found_elements) >= 2:
             raise ValueError("Expected one element, found multiple")
         return found_elements[0]
 
-    def find_all(self):
+    def find_all(self, wait_time: typing.Optional[int] = None):
         """Find all matching elements.
 
         Returns:
             list
 
         """
-        return self._element.find()
+        return self._element.find(wait_time)

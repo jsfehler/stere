@@ -44,5 +44,5 @@ class BaseElement(Stere):
             return self._find_all(wait_time=wait_time)
 
         if self.root:
-            self.parent_locator = self.root.find()
+            self.parent_locator = self.root.find(wait_time=wait_time)
         return self._find_all_in_parent(wait_time=wait_time)
