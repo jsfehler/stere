@@ -26,7 +26,8 @@ def _retry(
             Stere.retry_time will be used.
 
     """
-    retry_time = retry_time or Stere.retry_time
+    if retry_time is None:
+        retry_time = Stere.retry_time
     end_time = time.time() + retry_time
 
     while time.time() < end_time:

@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.18.0] - 2020-09-02
+### Fixed
+- Fixed slow Field.is_not_<x> methods.
 
 ## [0.17.0] - 2020-09-02
 ### Fixed
