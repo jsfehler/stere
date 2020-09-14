@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.18.0] - 2020-09-14
+### Changed
+-  Button and Link Fields wait for visible/clickable status before clicking
+
+
 ## [0.17.0] - 2020-09-02
 ### Fixed
 - Fields inside an Area with a root now pass wait_time to the root Field.

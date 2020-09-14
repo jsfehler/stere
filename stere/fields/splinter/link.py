@@ -1,23 +1,16 @@
-from ..decorators import stere_performer, use_after, use_before
-from ..field import Field
+from .clickable import Clickable
+from ..decorators import stere_performer
 
 
 @stere_performer('click', consumes_arg=False)
-class Link(Field):
+class Link(Clickable):
     """Convenience Class on top of Field.
 
-    Uses Splinter's click method.
+    Implements `click()` as its performer.
+
+    Example:
+
+        >>> purchase = Link('id', 'buy_link')
+        >>> purchase.click()
+
     """
-
-    @use_after
-    @use_before
-    def click(self) -> None:
-        """Use Splinter's click method.
-
-        Example:
-
-            >>> login = Link('id', 'loginLink')
-            >>> login.click()
-
-        """
-        self.find().click()
