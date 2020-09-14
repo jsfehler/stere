@@ -1,5 +1,5 @@
-from ..decorators import stere_performer, use_after, use_before
 from .clickable import Clickable
+from ..decorators import stere_performer
 
 
 @stere_performer('click', consumes_arg=False)
