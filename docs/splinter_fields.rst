@@ -7,6 +7,8 @@ Each implements a specific performer method.
 
 All Fields designed for Splinter also inherit the following convenience methods:
 
+  .. automethod:: stere.strategy.splinter.SplinterBase.is_clickable()
+  .. automethod:: stere.strategy.splinter.SplinterBase.is_not_clickable()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_present()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_not_present()
   .. automethod:: stere.strategy.splinter.SplinterBase.is_visible()
