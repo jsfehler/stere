@@ -10,7 +10,7 @@ class Link(Clickable):
 
     Example:
 
-        >>> purchase = Link('id', 'buy_button')
+        >>> purchase = Link('id', 'buy_link')
         >>> purchase.click()
 
     """
