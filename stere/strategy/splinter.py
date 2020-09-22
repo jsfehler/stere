@@ -1,6 +1,8 @@
 import copy
 import typing
 
+from selenium.common.exceptions import StaleElementReferenceException
+
 from .strategy import strategy
 from ..utils import _retry
 
@@ -66,10 +68,22 @@ class SplinterBase:
             wait_time (int): The number of seconds to wait. If not specified,
                 Stere.retry_time will be used.
         """
-        return _retry(
-            lambda: self.find() and self.find().visible,
-            wait_time,
-        )
+        def search():
+            elem = self.find()
+            if elem:
+                try:
+                    result = elem.visible
+                # StaleElementReferenceException occurs if element is found
+                # but changes before visible is checked
+                except StaleElementReferenceException:
+                    return False
+
+                if result:
+                    return True
+
+            return False
+
+        return _retry(search, wait_time)
 
     def is_not_visible(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is not visible in the DOM.
@@ -79,11 +93,20 @@ class SplinterBase:
                 Stere.retry_time will be used.
         """
         def search():
-            result = self.find(wait_time=0)
-            if not result:
+            elem = self.find(wait_time=0)
+            if elem:
+                try:
+                    result = elem.visible
+                # StaleElementReferenceException occurs if element is found
+                # but changes before visible is checked
+                except StaleElementReferenceException:
+                    return False
+
+                if not result:
+                    return True
+            else:
                 return True
-            if result and not result.visible:
-                return True
+
             return False
 
         return _retry(search, wait_time)
