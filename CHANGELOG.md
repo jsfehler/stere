@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.19.0] - 2020-09-22
+### Changed
+-  is_visible / is_not_visible methods try to handle stale element exceptions by retrying search
+
 ## [0.18.0] - 2020-09-14
 ### Changed
 -  Button and Link Fields wait for visible/clickable status before clicking
