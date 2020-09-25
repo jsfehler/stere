@@ -112,6 +112,26 @@ def test_field_getattr_should_not_exist(test_page):
         assert test_page.button.foobar()
 
 
+def test_field_getattr_find_fails(test_page):
+    """
+    When I try to access an attribute that does not exist from a Field
+    And the element is not found
+    Then an error is raised
+    And the correct error message is displayed
+    """
+    test_page.navigate()
+
+    with pytest.raises(AttributeError) as e:
+        test_page.missing_button.does_not_exist
+
+    msg = (
+        'Failed to get element attribute.'
+        'Could not find element with data-test-id: not_on_the_page'
+    )
+
+    assert msg  == str(e.value)
+
+
 def test_non_unique_field_find(test_page):
     """
     When I try to use find() on a Field that is found multiple times

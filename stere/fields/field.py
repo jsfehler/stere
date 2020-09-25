@@ -1,5 +1,9 @@
 import typing
 
+import splinter
+
+from stere import Stere
+
 from .decorators import stere_performer
 from .element_builder import build_element
 from ..utils import _retry
@@ -63,7 +67,16 @@ class Field:
                 raise AttributeError
 
             # Try getting the attribute from the found element.
-            return getattr(self.find(), val)
+            try:
+                elem = self.find(Stere.retry_time)
+            except splinter.exceptions.ElementDoesNotExist as e:
+                msg = (
+                    'Failed to get element attribute.'
+                    f'Could not find element with {self.strategy}: {self.locator}'
+                )
+                raise AttributeError(msg) from e
+
+            return getattr(elem, val)
 
     def __repr__(self):
         """Provide a string representation of this class."""
