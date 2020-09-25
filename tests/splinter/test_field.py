@@ -129,7 +129,7 @@ def test_field_getattr_find_fails(test_page):
         'Could not find element with data-test-id: not_on_the_page'
     )
 
-    assert msg  == str(e.value)
+    assert msg == str(e.value)
 
 
 def test_non_unique_field_find(test_page):
