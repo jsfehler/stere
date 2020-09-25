@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.20.0] - 2020-09-25
+### Changed
+-  Stere.retry_time is used when searching for an attribute inside an element.
+-  Nicer error message is thrown when an element is not found while doing an attribute lookup
+
 ## [0.19.0] - 2020-09-22
 ### Changed
 -  is_visible / is_not_visible methods try to handle stale element exceptions by retrying search
