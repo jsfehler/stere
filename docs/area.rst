@@ -20,8 +20,6 @@ The following Area objects are available:
 
   .. autoattribute:: stere.areas.RepeatingArea.areas()
 
-  .. automethod:: stere.areas.RepeatingArea.area_with()
-
 
 .. autoclass:: stere.areas.Areas()
 
