@@ -72,7 +72,7 @@ class Field:
             except splinter.exceptions.ElementDoesNotExist as e:
                 msg = (
                     'Failed to get element attribute.'
-                    f'Could not find element with {self.strategy}: {self.locator}'
+                    f'Could not find element with {self.strategy}: {self.locator}'  # NOQA E501
                 )
                 raise AttributeError(msg) from e
 
