@@ -1,5 +1,4 @@
 import copy
-import warnings
 
 from .area import Area
 from .areas import Areas
@@ -120,41 +119,3 @@ class RepeatingArea(Repeating):
             new_area = self.repeater(**copy_items)
             container.append(new_area)
         return container
-
-    def area_with(self, field_name, field_value):
-        """Find an Area where the Field's value matches an expected value.
-
-        Arguments:
-            field_name (str): The name of the Field object.
-            field_value (str): The value of the Field object.
-
-        Returns:
-            Area: The Area object that matches the search.
-
-        Example:
-
-            >>> class Inventory(Page):
-            >>>     def __init__(self):
-            >>>         self.items = RepeatingArea(
-            >>>             root=Root('xpath', '//my_xpath_string'),
-            >>>             description=Text('xpath', '//my_xpath_string')
-            >>>         )
-            >>>
-            >>> def test_stuff():
-            >>>     inventory = Inventory()
-            >>>     found_area = inventory.items.area_with(
-            >>>         "description", "Bananas")
-
-        """
-        warnings.warn(
-            'RepeatingArea.areas_with() is deprecated.'
-            ' Use RepeatingArea.areas.containing() instead.',
-            FutureWarning,
-        )
-        for area in self.areas:
-            field = getattr(area, field_name)
-
-            if field.value == field_value:
-                return area
-
-        raise ValueError(f'Could not find {field_value} in any {field_name}.')
