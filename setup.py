@@ -22,6 +22,9 @@ setup(
     install_requires=[
         'py-moneyed==0.8.0',
     ],
+    extras_require={
+        'splinter': ['splinter==0.14.0'],
+    },
     classifiers=(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
