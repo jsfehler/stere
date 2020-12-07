@@ -85,6 +85,34 @@ class DummyPage(Page):
             ),
         )
 
+        # Area with a RepeatingArea inside
+        self.area_repeating_area = Area(
+            root=Root('xpath', '/html/body/div[10]'),
+            it_repeats=RepeatingArea(
+                root=Root('css', '.test_repeating_area_root_a'),
+                link=Link('xpath', './a'),
+                text=Text('css', '.test_repeating_area_test'),
+            ),
+        )
+
+        # Area with an Area inside
+        self.area_in_area = Area(
+            root=Root('xpath', '/html/body/div[9]'),
+            inner_area=Area(
+                root=Root('id', 'area_root'),
+                link=Link('xpath', './a'),
+
+            ),
+        )
+
+        # Area with an Area inside, no root
+        self.area_in_area_no_root = Area(
+            root=Root('xpath', 'html/body/div[9]'),
+            inner_area=Area(
+                link=Link('xpath', './/div[@id="area_root"]/a'),
+            ),
+        )
+
         # Will only be visible on the page after 10 seconds
         self.added_container_by_id = Field('id', 'added_container')
 

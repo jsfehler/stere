@@ -1,4 +1,5 @@
 from ..fields import Field
+from .repeating import Repeating
 
 
 class Area:
@@ -33,14 +34,34 @@ class Area:
 
         self.items = {}
         for key, value in kwargs.items():
-            if not isinstance(value, Field) and not isinstance(value, Area):
+            if (
+                not isinstance(value, Field)
+                and not isinstance(value, Area)
+                and not isinstance(value, Repeating)
+            ):
                 raise ValueError(
-                    'Areas must only be initialized with Field or Area.',
+                    (
+                        'Areas must only be initialized with: '
+                        'Field, Area, Repeating types'
+                    ),
                 )
             self.items[key] = value
             # Sets the root for the element, if provided.
             if self.root is not None and value is not self.root:
-                self.items[key]._element.root = self.root
+                # Field sets their _element's root
+                if isinstance(value, Field):
+                    value._element.root = self.root
+                # If Area has a root, give that a root.
+                # If not, set every Field's _element's root
+                elif isinstance(value, Area):
+                    if value.root is not None:
+                        value.root._element.root = self.root
+                    else:
+                        for k, v in value.items.items():
+                            v._element.root = self.root
+                # Repeating sets its root Field's root.
+                elif isinstance(value, Repeating):
+                    value.root._element.root = self.root
 
             # Field can be called directly.
             setattr(self, key, value)

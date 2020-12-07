@@ -28,7 +28,7 @@ def test_area_used_reserved_keyword():
 
 
 def test_area_non_field_kwarg():
-    expected_message = 'Areas must only be initialized with Field or Area.'
+    expected_message = 'Areas must only be initialized with: Field, Area, Repeating types'
 
     with pytest.raises(ValueError) as e:
         dummy_invalid.InvalidDummyPageE()
@@ -119,3 +119,28 @@ def test_area_use_workflow(test_page):
 
     expected = 'Fooman, , , ,'
     assert expected == test_page.many_input_result.text
+
+
+def test_area_with_repeating_area(test_page):
+    """RepeatingArea inside an Area"""
+    test_page.navigate()
+
+    listings = test_page.area_repeating_area.it_repeats.areas
+    assert listings[0].link.text == "Repeating Link 1"
+    assert listings[1].link.text == "Repeating Link 2"
+
+
+def test_area_with_area(test_page):
+    """Area inside Area"""
+    test_page.navigate()
+
+    t = test_page.area_in_area.inner_area.link.text
+    assert "I'm just a link in a div." == t
+
+
+def test_area_with_area_no_root(test_page):
+    """Area inside Area"""
+    test_page.navigate()
+
+    t = test_page.area_in_area_no_root.inner_area.link.text
+    assert "I'm just a link in a div." == t
