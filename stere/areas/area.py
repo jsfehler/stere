@@ -34,11 +34,7 @@ class Area:
 
         self.items = {}
         for key, value in kwargs.items():
-            if (
-                not isinstance(value, Field)
-                and not isinstance(value, Area)
-                and not isinstance(value, Repeating)
-            ):
+            if not isinstance(value, (Field, Area, Repeating)):
                 raise ValueError(
                     (
                         'Areas must only be initialized with: '
@@ -57,7 +53,7 @@ class Area:
                     if value.root is not None:
                         value.root._element.root = self.root
                     else:
-                        for k, v in value.items.items():
+                        for _k, v in value.items.items():
                             v._element.root = self.root
                 # Repeating sets its root Field's root.
                 elif isinstance(value, Repeating):
