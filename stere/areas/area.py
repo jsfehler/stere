@@ -1,5 +1,5 @@
-from ..fields import Field
 from .repeating import Repeating
+from ..fields import Field
 
 
 class Area:
