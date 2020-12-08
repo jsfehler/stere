@@ -28,7 +28,9 @@ def test_area_used_reserved_keyword():
 
 
 def test_area_non_field_kwarg():
-    expected_message = 'Areas must only be initialized with: Field, Area, Repeating types'
+    expected_message = (
+        'Areas must only be initialized with: Field, Area, Repeating types'
+    )
 
     with pytest.raises(ValueError) as e:
         dummy_invalid.InvalidDummyPageE()
@@ -122,7 +124,7 @@ def test_area_use_workflow(test_page):
 
 
 def test_area_with_repeating_area(test_page):
-    """RepeatingArea inside an Area"""
+    """When RepeatingArea is inside an Area, Area root is inherited."""
     test_page.navigate()
 
     listings = test_page.area_repeating_area.it_repeats.areas
