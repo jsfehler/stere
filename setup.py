@@ -20,7 +20,7 @@ setup(
     url="https://github.com/jsfehler/stere",
     packages=find_packages(),
     install_requires=[
-        'py-moneyed==0.8.0',
+        'py-moneyed==1.0',
     ],
     extras_require={
         'splinter': ['splinter==0.14.0'],
