@@ -89,14 +89,14 @@ class Field:
         """Tries to find the element, then returns the results."""
         return self._element.find()
 
-    def null_action(self):
+    def null_action(self) -> None:
         """Empty method used as the performer for Field.
 
         Allows the base Field object to be used in an Area.
         """
         pass
 
-    def before(self):
+    def before(self) -> None:
         """Called automatically before methods with the `@use_before`
         decorator are called.
 
@@ -118,7 +118,7 @@ class Field:
         """
         pass
 
-    def after(self):
+    def after(self) -> None:
         """Called automatically before methods with the `@use_after`
         decorator are called.
 

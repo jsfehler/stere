@@ -15,7 +15,7 @@ class Areas:
         """__getattr__ checks the internal container."""
         return getattr(self._container, item)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """__len__ checks the internal container."""
         return len(self._container)
 
@@ -23,7 +23,7 @@ class Areas:
         """__getitem__ checks the internal container."""
         return self._container[item]
 
-    def append(self, item):
+    def append(self, item: Area) -> None:
         """Add a new Area to the container.
 
         Raises:
@@ -38,7 +38,7 @@ class Areas:
 
         self._container.append(item)
 
-    def containing(self, field_name, field_value):
+    def containing(self, field_name: str, field_value: str):
         """Search for Areas where the Field's value
         matches the expected value and then returns an Areas object with all
         matches.
@@ -76,7 +76,7 @@ class Areas:
 
         return containing
 
-    def contain(self, field_name, field_value):
+    def contain(self, field_name: str, field_value: str) -> bool:
         """Check if a Field in any Area contains a specific value.
 
         Arguments:

@@ -57,7 +57,7 @@ class Repeating:
         self.repeater = repeater
         self.repeater_name = type(self.repeater).__name__
 
-    def new_container(self):
+    def new_container(self) -> typing.List:
         """Must return an object to contain results from Repeater.children()
 
         By default a list is returned.
@@ -68,7 +68,7 @@ class Repeating:
         """
         return []
 
-    def __len__(self):
+    def __len__(self) -> int:
         """Return the number of times the root was found.
 
         Does not actually build the children.
@@ -98,7 +98,7 @@ class Repeating:
             )
         return all_roots
 
-    def children(self):
+    def children(self) -> typing.List:
         """Find all instances of the root,
         then return a collection containing children built from those roots.
 

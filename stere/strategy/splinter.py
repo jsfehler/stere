@@ -160,20 +160,20 @@ class FindByValue(SplinterBase):
 class FindByAttribute(SplinterBase):
     """Strategy to find an element by an arbitrary attribute."""
 
-    def _find_all(self, wait_time=None):
+    def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from page root."""
         return self.browser.find_by_xpath(
             f'//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
         )
 
-    def _find_all_in_parent(self, wait_time=None):
+    def _find_all_in_parent(self, wait_time: typing.Optional[int] = None):
         """Find from inside parent element."""
         return self.parent_locator.find_by_xpath(
             f'.//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
         )
 
 
-def add_data_star_strategy(data_star_attribute):
+def add_data_star_strategy(data_star_attribute: str):
     """Add a new splinter strategy that finds by data_star_attribute.
 
     Arguments:

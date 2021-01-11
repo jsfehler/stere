@@ -61,7 +61,7 @@ class RepeatingArea(Repeating):
         self.repeater = Area
         self.repeater_name = self.repeater.__name__
 
-    def new_container(self):
+    def new_container(self) -> Areas:
         """Get a new instance of the container this class uses.
 
         Returns:
@@ -71,7 +71,7 @@ class RepeatingArea(Repeating):
         return Areas()
 
     @property
-    def areas(self):
+    def areas(self) -> Areas:
         """Find all instances of the root,
         then return a list of Areas: one for each root.
 
@@ -87,7 +87,7 @@ class RepeatingArea(Repeating):
         """
         return self.children()
 
-    def children(self):
+    def children(self) -> Areas:
         """Find all instances of the root,
         then return a list of Areas: one for each root.
 
