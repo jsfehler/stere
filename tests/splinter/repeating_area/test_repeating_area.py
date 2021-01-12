@@ -10,19 +10,6 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_missing_root():
-    """When no root argument is provided
-    Then a ValueError should be thrown
-    And it should inform the user that RepeatingArea needs a root
-    """
-    expected_message = 'RepeatingArea requires a Root Field.'
-
-    with pytest.raises(ValueError) as e:
-        dummy_invalid.InvalidDummyPageA()
-
-    assert str(e.value) == expected_message
-
-
 def test_used_reserved_keyword():
     """When the word items is used as an argument
     Then a ValueError should be thrown
