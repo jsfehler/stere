@@ -85,6 +85,15 @@ class DummyPage(Page):
             ),
         )
 
+        # Functionally identical to RepeatingArea, a Repeating with an Area
+        self.repeating_with_area = Repeating(
+            root=Root('css', '.test_repeating_area_root_a'),
+            repeater=Area(
+                link=Link('xpath', './a'),
+                text=Text('css', '.test_repeating_area_test'),
+            ),
+        )
+
         # Area with a RepeatingArea inside
         self.area_repeating_area = Area(
             root=Root('xpath', '/html/body/div[10]'),

@@ -67,3 +67,14 @@ def test_has_children(test_page):
 
     r = test_page.repeating
     assert r.has_children()
+
+
+def test_repeating_plus_area(test_page):
+    """Repeating with an Area as the repeater.
+    Should function identically to a RepeatingArea.
+    """
+    test_page.navigate()
+
+    listings = test_page.repeating_with_area.children()
+    assert listings[0].link.text == "Repeating Link 1"
+    assert listings[1].link.text == "Repeating Link 2"
