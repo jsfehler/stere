@@ -7,16 +7,6 @@ from stere.fields import (
 )
 
 
-class InvalidDummyPageA(Page):
-    """Represents a page that shouldn't work."""
-
-    def __init__(self):
-        self.missing_root = RepeatingArea(
-            link=Link('xpath', './/a'),
-            text=Text('css', '.test_repeating_area_test'),
-        )
-
-
 class InvalidDummyPageB(Page):
     """Represents a page that shouldn't work."""
 
