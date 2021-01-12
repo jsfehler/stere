@@ -112,7 +112,7 @@ class RepeatingArea(Repeating):
                         child.root._element.parent_locator = root
                     # Has no root
                     else:
-                        for k, v in child._items.items():
+                        for _, v in child._items.items():
                             v._element.parent_locator = root
 
             new_area = self.repeater(**copy_items)
