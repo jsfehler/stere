@@ -38,18 +38,17 @@ class RepeatingArea(Repeating):
     >>> assert "$7.00" == inventory.areas[5].price
     """
 
-    def __init__(self, **kwargs):
-        if kwargs.get('root') is None:
-            raise ValueError('RepeatingArea requires a Root Field.')
-
-        self.root = kwargs['root']
+    def __init__(self, root: Field, **kwargs):
+        self.root = root
+        self.repeater = Area
+        self.repeater_name = self.repeater.__name__
 
         if kwargs.get('items') is not None:
             raise ValueError('"items" is a reserved parameter.')
 
         self.items = {}
         for k, v in kwargs.items():
-            if not isinstance(v, Field) and not isinstance(v, Area):
+            if not isinstance(v, (Field, Area)):
                 raise ValueError(
                     'RepeatingArea arguments can only be a Field or Area.',
                 )
@@ -57,9 +56,6 @@ class RepeatingArea(Repeating):
                 self.items[k] = v
                 # Field (in plural) can be accessed directly.
                 setattr(self, f'{k}s', v)
-
-        self.repeater = Area
-        self.repeater_name = self.repeater.__name__
 
     def new_container(self) -> Areas:
         """Get a new instance of the container this class uses.
