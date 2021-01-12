@@ -119,7 +119,7 @@ class Repeating:
                 copy_repeater.root._element.parent_locator = root
             except AttributeError:
                 # Repeater has no 'root' attribute, eg: It's an Area
-                for k, v in copy_repeater._items.items():
+                for _, v in copy_repeater._items.items():
                     v._element.parent_locator = root
 
             container.append(copy_repeater)
