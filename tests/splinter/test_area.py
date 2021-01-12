@@ -18,15 +18,6 @@ def test_area_root_available(test_page):
     assert test_page.area_with_root.root is not None
 
 
-def test_area_used_reserved_keyword():
-    expected_message = '"items" is a reserved parameter.'
-
-    with pytest.raises(ValueError) as e:
-        dummy_invalid.InvalidDummyPageD()
-
-    assert str(e.value) == expected_message
-
-
 def test_area_non_field_kwarg():
     expected_message = (
         'Areas must only be initialized with: Field, Area, Repeating types'

@@ -26,13 +26,12 @@ class Area:
     >>>     album.tracks.third_track.click()
     """
 
-    def __init__(self, **kwargs):
-        if kwargs.get('items') is not None:
-            raise ValueError('"items" is a reserved parameter.')
+    def __init__(self, root=None, **kwargs):
+        self.root = root
 
-        self.root = kwargs.get('root')
+        # Store kwargs
+        self._items = {}
 
-        self.items = {}
         for key, value in kwargs.items():
             if not isinstance(value, (Field, Area, Repeating)):
                 raise ValueError(
@@ -41,20 +40,23 @@ class Area:
                         'Field, Area, Repeating types'
                     ),
                 )
-            self.items[key] = value
+            self._items[key] = value
+
             # Sets the root for the element, if provided.
             if self.root is not None and value is not self.root:
                 # Field sets their _element's root
                 if isinstance(value, Field):
                     value._element.root = self.root
-                # If Area has a root, give that a root.
-                # If not, set every Field's _element's root
+
                 elif isinstance(value, Area):
+                    # If Area has a root, give that a root.
                     if value.root is not None:
                         value.root._element.root = self.root
+                    # If not, set every Field's _element's root
                     else:
-                        for _k, v in value.items.items():
+                        for _k, v in value._items.items():
                             v._element.root = self.root
+
                 # Repeating sets its root Field's root.
                 elif isinstance(value, Repeating):
                     value.root._element.root = self.root
@@ -127,7 +129,7 @@ class Area:
         """
         arg_index = 0
         workflow = self._workflow
-        for field_name, field in self.items.items():
+        for field_name, field in self._items.items():
             # If the Field isn't in the current workflow, skip it entirely.
             if workflow is not None and workflow not in field.workflows:
                 continue
