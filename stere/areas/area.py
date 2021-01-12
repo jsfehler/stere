@@ -44,15 +44,15 @@ class Area:
 
             # Sets the root for the element, if provided.
             if self.root is not None and value is not self.root:
-                # Field sets their _element's root
+                # Set the Field's _element's root
                 if isinstance(value, Field):
                     value._element.root = self.root
 
                 elif isinstance(value, Area):
-                    # If Area has a root, give that a root.
+                    # Area has a root, give that root a root.
                     if value.root is not None:
                         value.root._element.root = self.root
-                    # If not, set every Field's _element's root
+                    # Area has no root, set every Field's _element's root
                     else:
                         for _k, v in value._items.items():
                             v._element.root = self.root
