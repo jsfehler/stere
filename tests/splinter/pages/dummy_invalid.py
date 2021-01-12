@@ -1,10 +1,6 @@
 from stere import Page
 from stere.areas import Area, RepeatingArea
-from stere.fields import (
-    Link,
-    Root,
-    Text,
-)
+from stere.fields import Root
 
 
 class InvalidDummyPageC(Page):
