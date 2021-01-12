@@ -7,17 +7,6 @@ from stere.fields import (
 )
 
 
-class InvalidDummyPageB(Page):
-    """Represents a page that shouldn't work."""
-
-    def __init__(self):
-        self.reserved_kwarg = RepeatingArea(
-            root=Root('css', '.test_repeating_area_root'),
-            link=Link('xpath', './/a'),
-            items=Text('css', '.test_repeating_area_test'),
-        )
-
-
 class InvalidDummyPageC(Page):
     """Represents a page that shouldn't work."""
 

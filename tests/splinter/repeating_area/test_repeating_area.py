@@ -10,19 +10,6 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 LOGGER.setLevel(logging.WARNING)
 
 
-def test_used_reserved_keyword():
-    """When the word items is used as an argument
-    Then a ValueError should be thrown
-    And it should inform the user that items is a reserved keyword
-    """
-    expected_message = '"items" is a reserved parameter.'
-
-    with pytest.raises(ValueError) as e:
-        dummy_invalid.InvalidDummyPageB()
-
-    assert str(e.value) == expected_message
-
-
 def test_non_field_kwarg():
     """When an object that does not inherit from Field is used to instantiate
     a RepeatingArea

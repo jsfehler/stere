@@ -43,17 +43,14 @@ class RepeatingArea(Repeating):
         self.repeater = Area
         self.repeater_name = self.repeater.__name__
 
-        if kwargs.get('items') is not None:
-            raise ValueError('"items" is a reserved parameter.')
-
-        self.items = {}
+        self._items = {}
         for k, v in kwargs.items():
             if not isinstance(v, (Field, Area)):
                 raise ValueError(
                     'RepeatingArea arguments can only be a Field or Area.',
                 )
             if k != 'root':
-                self.items[k] = v
+                self._items[k] = v
                 # Field (in plural) can be accessed directly.
                 setattr(self, f'{k}s', v)
 
@@ -101,7 +98,7 @@ class RepeatingArea(Repeating):
         container = self.new_container()
 
         for item in all_roots:
-            copy_items = copy.deepcopy(self.items)
+            copy_items = copy.deepcopy(self._items)
             for field_name in copy_items.keys():
                 child = copy_items[field_name]
                 if isinstance(child, Field):
