@@ -71,12 +71,12 @@ def test_repeating_area_with_area(test_page):
 def test_repeating_area_with_area_no_root(test_page):
     """When a RepeatingArea has an Area inside it
     And the Area has no root
-    Then the Area's Fields should get the root of the RepeatingArea
+    Then the found Area's Fields get a parent_locator set by the RepeatingArea
     """
     test_page.navigate()
 
     areas = test_page.repeating_area_area_no_root.areas
-    assert '.test_repeating_area_root_a' == areas[0].root.locator
+    assert areas[0].parent_locator is not None
 
 
 @pytest.mark.skip
