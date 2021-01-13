@@ -76,7 +76,7 @@ def test_repeating_area_with_area_no_root(test_page):
     test_page.navigate()
 
     areas = test_page.repeating_area_area_no_root.areas
-    assert areas[0].parent_locator is not None
+    assert areas[0].nested.ax.parent_locator is not None
 
 
 @pytest.mark.skip
