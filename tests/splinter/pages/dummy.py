@@ -69,6 +69,17 @@ class DummyPage(Page):
             ),
         )
 
+        # Identical to the above RepeatingArea, but now the Area has no root.
+        self.repeating_area_area_no_root = RepeatingArea(
+            root=Root('css', '.test_repeating_area_root_a'),
+            link=Link('xpath', './a'),
+            text=Text('css', '.test_repeating_area_test'),
+            nested=Area(
+                ax=Field('css', '.test_repeating_area_nested .ax'),
+                bx=Field('css', '.test_repeating_area_nested .bx'),
+            ),
+        )
+
         # A Repeating Area that won't find anything.
         self.repeating_area_missing = RepeatingArea(
             root=Root('css', '.test_repeating_area_root_invalid'),
