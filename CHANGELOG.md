@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.22.0] - 2021-01-13
+### Changed
+- Bumped minimum version of py-moneyed to 1.0.
+- 'items' as a keyword is now allowed in Area and RepeatingArea.
+- Missing root keyword in RepeatingArea now throws TypeError instead of ValueError
+
+### Fixed
+- Area with no root inside a RepeatingArea should now work correctly.
+- Area with no root inside a Repeating should now work correctly.
+
+
 ## [0.21.0] - 2020-12-08
 ### Changed
 -  Repeating and RepeatingArea can now be placed inside an Area.
