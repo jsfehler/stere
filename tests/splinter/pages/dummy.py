@@ -105,6 +105,17 @@ class DummyPage(Page):
             ),
         )
 
+        # Repeating with an Area with a RepeatingArea with no root
+        self.repeating_area_repeatingarea = Repeating(
+            root=Root('css', '.repeatingRepeating'),
+            repeater=Area(
+                it_repeats=RepeatingArea(
+                    root=Root('css', '.test_repeating_area_root'),
+                    text=Text('css', '.test_repeating_area_test'),
+                ),
+            ),
+        )
+
         # Area with a RepeatingArea inside
         self.area_repeating_area = Area(
             root=Root('xpath', '/html/body/div[10]'),

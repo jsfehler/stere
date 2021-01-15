@@ -84,6 +84,10 @@ class Field:
             f'{self.__class__.__name__} - '
             f'Strategy: {self.strategy}, Locator: {self.locator}')
 
+    def _set_parent_locator(self, element):
+        """Set the parent locator of this Field's element."""
+        self._element.parent_locator = element
+
     @property
     def element(self):
         """Tries to find the element, then returns the results."""

@@ -78,3 +78,15 @@ def test_repeating_plus_area(test_page):
     listings = test_page.repeating_with_area.children()
     assert listings[0].link.text == "Repeating Link 1"
     assert listings[1].link.text == "Repeating Link 2"
+
+
+def test_repeating_plus_area_with_repeatingarea(test_page):
+    """When Repeating has an Area as the repeater
+    And the Area has no root
+    And the Area has a RepeatingArea
+    Then the RepetingArea should get the root from the Repeating
+    """
+    test_page.navigate()
+
+    listings = test_page.repeating_area_repeatingarea.children()
+    assert listings[0].it_repeats.areas[0].text.text == "Repeating Area A1"

@@ -57,6 +57,10 @@ class Repeating:
         self.repeater = repeater
         self.repeater_name = type(self.repeater).__name__
 
+    def _set_parent_locator(self, element):
+        """Set the parent_locator of the root."""
+        self.root._element.parent_locator = element
+
     def new_container(self) -> typing.Any:
         """Must return an object to contain results from Repeater.children()
 
@@ -115,12 +119,7 @@ class Repeating:
         for root in all_roots:
             copy_repeater = copy.deepcopy(self.repeater)
             # Set the repeater's parent locator to the found root instance
-            try:
-                copy_repeater.root._element.parent_locator = root
-            except AttributeError:
-                # Repeater has no 'root' attribute, eg: It's an Area
-                for _, v in copy_repeater._items.items():
-                    v._element.parent_locator = root
+            copy_repeater._set_parent_locator(root)
 
             container.append(copy_repeater)
 
