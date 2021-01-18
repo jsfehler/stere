@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.23.0] - 2021-01-18
+### Fixed
+- Nesting Repeating, Area, and RepeatingArea now correctly assigns root
+
 ## [0.22.0] - 2021-01-13
 ### Changed
 - Bumped minimum version of py-moneyed to 1.0.
