@@ -66,6 +66,14 @@ class Area:
 
         self._workflow = None
 
+    def _set_parent_locator(self, element):
+        """For every item in the Area, set a parent_locator."""
+        if self.root is not None:
+            self.root._set_parent_locator(element)
+        else:
+            for _, v in self._items.items():
+                v._set_parent_locator(element)
+
     def workflow(self, value: str):
         """Set the current workflow for an Area.
 

@@ -102,18 +102,7 @@ class RepeatingArea(Repeating):
             for field_name in copy_items.keys():
                 child = copy_items[field_name]
 
-                # Every Field in the Area gets the root set here.
-                if isinstance(child, Field):
-                    child._element.parent_locator = root
-                # Area inside an Area
-                elif isinstance(child, Area):
-                    # Has root
-                    if child.root:
-                        child.root._element.parent_locator = root
-                    # Has no root
-                    else:
-                        for _, v in child._items.items():
-                            v._element.parent_locator = root
+                child._set_parent_locator(root)
 
             new_area = self.repeater(**copy_items)
             container.append(new_area)
