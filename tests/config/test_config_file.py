@@ -26,7 +26,7 @@ def test_field_with_invalid_config(request, py_version, invalid_ini):
         from stere.fields import Button  # NOQA: F401
 
     # ImportError message is different between py36 and py37
-    if py_version == 6:
+    if py_version.minor == 6:
         msg = "cannot import name 'Button'"
 
     else:
@@ -45,7 +45,7 @@ def test_stategy_with_invalid_config(request, py_version, invalid_ini):
         from stere.strategy import FindByCss  # NOQA: F401
 
     # ImportError message is different between py36 and py37
-    if py_version == 6:
+    if py_version.minor == 6:
         msg = "cannot import name 'FindByCss'"
 
     else:

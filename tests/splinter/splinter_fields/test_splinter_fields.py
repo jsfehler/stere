@@ -54,24 +54,19 @@ def test_checkbox_opposite_default_unchecked(test_page):
     assert test_page.checkbox.checked is False
 
 
-def test_field_name(py_version, test_page):
+def test_field_name(test_page):
     """Fields should report their intended class name, not 'Performer'."""
-    if py_version in [6, 7]:
-        error_msg = 'object does not support indexing'
-    else:
-        error_msg = 'object is not subscriptable'
-
     with pytest.raises(TypeError) as e:
         test_page.button[0]
 
-    assert f"'Button' {error_msg}" == str(e.value)
+    assert 'Button' in str(e.value)
 
     with pytest.raises(TypeError) as e:
         test_page.input_area.input[0]
 
-    assert f"'Input' {error_msg}" == str(e.value)
+    assert 'Input' in str(e.value)
 
     with pytest.raises(TypeError) as e:
         test_page.link[0]
 
-    assert f"'Link' {error_msg}" == str(e.value)
+    assert 'Link' in str(e.value)

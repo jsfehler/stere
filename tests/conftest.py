@@ -16,4 +16,4 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='session')
 def py_version():
-    return sys.version_info[1]
+    return sys.version_info
