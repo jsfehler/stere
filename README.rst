@@ -18,8 +18,8 @@ Stere
     :target: https://pyup.io/repos/github/jsfehler/stere
     :alt: Updates
 
-.. image:: https://travis-ci.org/jsfehler/stere.svg?branch=master
-    :target: https://travis-ci.org/jsfehler/stere
+.. image:: https://github.com/jsfehler/stere/workflows/CI/badge.svg
+    :alt: Build status
 
 .. image:: https://coveralls.io/repos/github/jsfehler/stere/badge.svg?branch=master
     :target: https://coveralls.io/github/jsfehler/stere?branch=master
