@@ -24,9 +24,6 @@ Stere
 .. image:: https://coveralls.io/repos/github/jsfehler/stere/badge.svg?branch=master
     :target: https://coveralls.io/github/jsfehler/stere?branch=master
 
-.. image:: https://api.codacy.com/project/badge/Grade/e791ab09e14c4483943a26a2fd180577
-    :target: https://www.codacy.com/app/joshua-fehler_2/stere?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jsfehler/stere&amp;utm_campaign=Badge_Grade
-
 .. image:: https://saucelabs.com/buildstatus/jsfehler
     :target: https://saucelabs.com/u/jsfehler
 
