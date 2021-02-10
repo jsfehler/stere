@@ -156,10 +156,13 @@ class FindByValue(SplinterBase):
 class FindByAttribute(SplinterBase):
     """Strategy to find an element by an arbitrary attribute."""
 
+    _attribute = ''
+
     def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from inside parent element."""
-        return self.parent_locator.find_by_xpath(
-            f'.//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
+        parent = self.parent_locator or self.browser
+        return parent.find_by_css(
+            f'[{self._attribute}="{self.locator}"]', wait_time=wait_time,
         )
 
 

@@ -6,8 +6,9 @@ from .strategy import strategy
 class AppiumBase:
     def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from inside a parent element."""
+        parent = self.parent_locator or self.browser
         func = getattr(
-            self.parent_locator, f'find_elements_by_{self.strategy}')
+            parent, f'find_elements_by_{self.strategy}')
         return func(self.locator)
 
 
