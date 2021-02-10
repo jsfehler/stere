@@ -26,6 +26,7 @@ elif Stere.library == 'splinter':
     from .splinter.input import Input
     from .splinter.link import Link
     from .splinter.money import Money
+    from .splinter.shadow_root import ShadowRoot
 
     __all__ += [
         'Button',
@@ -34,4 +35,5 @@ elif Stere.library == 'splinter':
         'Input',
         'Link',
         'Money',
+        'ShadowRoot',
     ]

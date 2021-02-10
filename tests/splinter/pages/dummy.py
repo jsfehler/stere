@@ -9,6 +9,7 @@ from stere.fields import (
     Link,
     Money,
     Root,
+    ShadowRoot,
     Text,
 )
 
@@ -207,3 +208,8 @@ class DummyPage(Page):
         )
 
         self.money_field = Money('id', 'moneyMoney')
+
+        self.shadow_root_area = Area(
+            root=ShadowRoot('css', '#has_shadow_root'),
+            data=Text('css', '#text_in_shadow_root'),
+        )
