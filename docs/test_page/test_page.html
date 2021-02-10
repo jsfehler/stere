@@ -1,6 +1,14 @@
 <html>
     <head>
         <script>
+            function addShadowRoot() {
+              var elem = document.getElementById('has_shadow_root');
+              var shadow = elem.attachShadow({mode: 'open'});
+
+              shadow.innerHTML = '<div id="text_in_shadow_root">Inside a shadow root</div>'
+
+            }
+
             function testFunction() {
               document.getElementById("test_button_div").style.backgroundColor = "red";
             }
@@ -43,6 +51,7 @@
                 addBox();
                 removeBox();
                 hideBox();
+                addShadowRoot();
             }, false);
 
         </script>
@@ -255,6 +264,8 @@
 
         <h4> Money </h4>
         <div id='moneyMoney'>$9001</div>
+
+        <div id='has_shadow_root'></div>
 
     <script>
         var form = document.forms["many_area_form"];
