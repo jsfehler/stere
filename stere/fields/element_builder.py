@@ -1,4 +1,4 @@
-import typing
+from typing import Any, Optional
 
 from stere import Stere
 from stere.strategy import strategies
@@ -36,13 +36,10 @@ class BaseElement(Stere):
 
         # A Field that should be searched for and set as the parent, but only
         # when .find() is called.
-        self.root = None
+        self.root: Optional[Any] = None
 
-    def find(self, wait_time: typing.Optional[int] = None):
-        """Use _find_all() or _find_all_in_parent() to find an element."""
-        if self.root is None and self.parent_locator is None:
-            return self._find_all(wait_time=wait_time)
-
+    def find(self, wait_time: Optional[int] = None):
+        """Use _find_all() to find an element."""
         if self.root:
             self.parent_locator = self.root.find(wait_time=wait_time)
-        return self._find_all_in_parent(wait_time=wait_time)
+        return self._find_all(wait_time=wait_time)

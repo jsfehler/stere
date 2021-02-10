@@ -112,13 +112,9 @@ class SplinterBase:
         return _retry(search, wait_time)
 
     def _find_all(self, wait_time: typing.Optional[int] = None):
-        """Find from page root."""
-        func = getattr(self.browser, f'find_by_{self.strategy}')
-        return func(self.locator, wait_time=wait_time)
-
-    def _find_all_in_parent(self, wait_time: typing.Optional[int] = None):
         """Find from inside a parent element."""
-        func = getattr(self.parent_locator, f'find_by_{self.strategy}')
+        parent = self.parent_locator or self.browser
+        func = getattr(parent, f'find_by_{self.strategy}')
         return func(self.locator, wait_time=wait_time)
 
 
@@ -160,16 +156,13 @@ class FindByValue(SplinterBase):
 class FindByAttribute(SplinterBase):
     """Strategy to find an element by an arbitrary attribute."""
 
-    def _find_all(self, wait_time: typing.Optional[int] = None):
-        """Find from page root."""
-        return self.browser.find_by_xpath(
-            f'//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
-        )
+    _attribute = ''
 
-    def _find_all_in_parent(self, wait_time: typing.Optional[int] = None):
+    def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from inside parent element."""
-        return self.parent_locator.find_by_xpath(
-            f'.//*[@{self._attribute}="{self.locator}"]', wait_time=wait_time,
+        parent = self.parent_locator or self.browser
+        return parent.find_by_css(
+            f'[{self._attribute}="{self.locator}"]', wait_time=wait_time,
         )
 
 
