@@ -37,8 +37,11 @@ def after(request, browser):
 
     def fin():
         # Send result to Sauce labs
-        res = str(not request.node.rep_call.failed).lower()
-        browser.execute_script("sauce:job-result={}".format(res))
+        try:
+            res = str(not request.node.rep_call.failed).lower()
+            browser.execute_script("sauce:job-result={}".format(res))
+        except AttributeError:
+            pass
 
     if os.getenv('REMOTE_RUN') == "True":
         request.addfinalizer(fin)
