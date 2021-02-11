@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.24.0] - 2021-02-10
+### Added
+- Support for shadow DOM in the form of the ShadowRoot Field.
+
 ## [0.23.0] - 2021-01-18
 ### Fixed
 - Nesting Repeating, Area, and RepeatingArea now correctly assigns root
