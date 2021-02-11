@@ -36,10 +36,14 @@ class BrowserEnabled:
     """Base class that stores attributes at the class level,
     shared by every object that inherits from this class.
 
+    If a stere.ini file is found, the attributes will be set from there.
+
     Attributes:
         browser (object): Pointer to what is driving the automation.
         base_url (str): Used as the url when navigating to pages.
         url_suffix (str): Appended to base_url when navigating to pages.
+        retry_time (int): The maximum amount of time in seconds to try and
+            find an element on a page.
         library (str): Name of the automation library to use. Default is
             splinter.
         url_navigator (str): Name of the function that opens a page.
@@ -47,9 +51,9 @@ class BrowserEnabled:
     """
 
     browser = None
-    base_url = ''
-    url_suffix = ''
-    retry_time = 5
+    base_url: str = ''
+    url_suffix: str = ''
+    retry_time: int = 5
 
     # Default values for automation libraries
     library_defaults = {
@@ -58,8 +62,8 @@ class BrowserEnabled:
         },
     }
 
-    library = 'splinter'
-    url_navigator = library_defaults[library]['url_navigator']
+    library: str = 'splinter'
+    url_navigator: str = library_defaults[library]['url_navigator']
 
     # If a config file exists, get settings from there.
     parser = _parse_config()
