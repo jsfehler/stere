@@ -3,7 +3,8 @@ import pytest
 
 @pytest.fixture(autouse=True)
 def skip_by_browser(request, browser_name):
-    if request.node.get_closest_marker('skip_if_browser').args[0] == browser_name:
+    browser = request.node.get_closest_marker('skip_if_browser').args[0]
+    if browser == browser_name:
         pytest.skip("Can't get shadowRoot in firefox")
 
 
