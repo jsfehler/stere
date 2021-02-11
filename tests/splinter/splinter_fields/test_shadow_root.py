@@ -5,7 +5,7 @@ import pytest
 def skip_by_browser(request):
     marker = request.node.get_closest_marker('skip_if_browser')
     if marker.args[0] == request.config.option.browser_name:
-        pytest.skip(reason=marker.args[1])
+        pytest.skip(marker.args[1])
 
 
 @pytest.mark.skip_if_browser('firefox', "Can't get shadowRoot in firefox")
