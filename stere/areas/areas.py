@@ -1,27 +1,14 @@
+from collections import UserList
+
 from .area import Area
 from ..utils import rgetattr
 
 
-class Areas:
+class Areas(UserList):
     """Searchable collection of Areas.
 
     Behaves like a list.
     """
-
-    def __init__(self, container=None):
-        self._container = container or []
-
-    def __getattr__(self, item):
-        """__getattr__ checks the internal container."""
-        return getattr(self._container, item)
-
-    def __len__(self) -> int:
-        """__len__ checks the internal container."""
-        return len(self._container)
-
-    def __getitem__(self, item):
-        """__getitem__ checks the internal container."""
-        return self._container[item]
 
     def append(self, item: Area) -> None:
         """Add a new Area to the container.
@@ -36,7 +23,7 @@ class Areas:
                 "Only Area objects can be inside Areas.",
             )
 
-        self._container.append(item)
+        self.data.append(item)
 
     def containing(self, field_name: str, field_value: str):
         """Search for Areas where the Field's value
