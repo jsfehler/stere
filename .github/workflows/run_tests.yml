@@ -70,10 +70,11 @@ jobs:
       - name: Install test dependencies
         run: pip install tox coveralls
 
+      - name: Set env
+        run: echo "USE_SAUCE_LABS=True" >> $ GITHUB_ENV
+
       # Runs a single command using the runners shell
       - name: Run tests on Sauce Labs
-        env:
-          USE_SAUCE_LABS: "True"
         run: |
           if [ ${{matrix.TOX_ENV}} == "py36-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
           if [ ${{matrix.TOX_ENV}} == "py37-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
