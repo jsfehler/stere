@@ -69,7 +69,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     # Set the Sauce Labs job name
     travis_job_number = os.getenv('TRAVIS_JOB_NUMBER')
     testrun_name = travis_job_number or browser_name
-
+    raise Exception('TEST: ' + os.environ.get('USE_SAUCE_LABS'))
     if os.environ.get('USE_SAUCE_LABS') == "True":
         # Sauce Labs settings
         return {
