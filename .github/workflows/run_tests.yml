@@ -80,10 +80,10 @@ jobs:
           if [ ${{matrix.TOX_ENV}} == "py37-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
           if [ ${{matrix.TOX_ENV}} == "py38-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
           if [ ${{matrix.TOX_ENV}} == "py39-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
-          if [ ${{matrix.TOX_ENV}} == "py36-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
-          if [ ${{matrix.TOX_ENV}} == "py37-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
-          if [ ${{matrix.TOX_ENV}} == "py38-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
-          if [ ${{matrix.TOX_ENV}} == "py39-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py36-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py37-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py38-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py39-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
           if [ ${{matrix.TOX_ENV}} == "py36-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
           if [ ${{matrix.TOX_ENV}} == "py37-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
           if [ ${{matrix.TOX_ENV}} == "py38-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
