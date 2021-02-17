@@ -43,7 +43,7 @@ def after(request, browser):
         except AttributeError:
             pass
 
-    if os.getenv('REMOTE_RUN') == "True":
+    if os.getenv('USE_SAUCE_LABS') == "True":
         request.addfinalizer(fin)
 
 
@@ -70,7 +70,7 @@ def splinter_driver_kwargs(splinter_webdriver, request):
     travis_job_number = os.getenv('TRAVIS_JOB_NUMBER')
     testrun_name = travis_job_number or browser_name
 
-    if os.environ.get('REMOTE_RUN') == "True":
+    if os.environ.get('USE_SAUCE_LABS') == "True":
         # Sauce Labs settings
         return {
             'desired_capabilities': {
