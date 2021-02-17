@@ -21,9 +21,6 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    env:
-      USE_SAUCE_LABS: "True"
-
     strategy:
       matrix:
         include:
@@ -75,6 +72,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run tests on Sauce Labs
+        env:
+          USE_SAUCE_LABS: "True"
         run: |
           if [ ${{matrix.TOX_ENV}} == "py36-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
           if [ ${{matrix.TOX_ENV}} == "py37-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
