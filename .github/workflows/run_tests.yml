@@ -93,3 +93,8 @@ jobs:
           if [ ${{matrix.TOX_ENV}} == "py38-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
           if [ ${{matrix.TOX_ENV}} == "py39-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
           if [ ${{matrix.TOX_ENV}} == "flake8" ]; then tox -e ${{matrix.TOX_ENV}}; fi
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
