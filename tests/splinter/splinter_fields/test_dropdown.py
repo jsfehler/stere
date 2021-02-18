@@ -40,7 +40,7 @@ def test_html_dropdown(browser, test_page):
     assert 'search?q=banana' in str.lower(browser.url)
 
 
-@pytest.mark.skipif(os.environ.get('REMOTE_RUN', "True"))
+@pytest.mark.skipif(os.environ.get('USE_SAUCE_LABS', "True"))
 def test_css_dropdown(browser, test_page):
     # Can't be run on Remote Firefox. mouse_over isn't supported.
     # BUG: Supported in Remote Chrome, but:

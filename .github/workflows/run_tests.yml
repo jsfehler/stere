@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -15,6 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -23,20 +24,38 @@ jobs:
     strategy:
       matrix:
         include:
-          - TOX_ENV: py36-remote
+          - TOX_ENV: py36-stere
             python-version: 3.6
-          - TOX_ENV: py37-remote
+          - TOX_ENV: py37-stere
             python-version: 3.7
-          - TOX_ENV: py38-remote
+          - TOX_ENV: py38-stere
             python-version: 3.8
-          - TOX_ENV: flake8
+          - TOX_ENV: py39-stere
+            python-version: 3.9
+          - TOX_ENV: py36-splinter
+            python-version: 3.6
+          - TOX_ENV: py37-splinter
             python-version: 3.7
+          - TOX_ENV: py38-splinter
+            python-version: 3.8
+          - TOX_ENV: py39-splinter
+            python-version: 3.9
+          - TOX_ENV: py36-appium
+            python-version: 3.6
+          - TOX_ENV: py37-appium
+            python-version: 3.7
+          - TOX_ENV: py38-appium
+            python-version: 3.8
+          - TOX_ENV: py39-appium
+            python-version: 3.9
+          - TOX_ENV: flake8
+            python-version: 3.8
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - uses: actions/setup-python@v2
         with:
           python-version: ${{matrix.python-version}}
@@ -51,12 +70,26 @@ jobs:
       - name: Install test dependencies
         run: pip install tox coveralls
 
+      - name: Set env
+        run: echo "USE_SAUCE_LABS=True" >> $GITHUB_ENV
+
+      - name: "Show environment variables"
+        run: |
+          env
+
       # Runs a single command using the runners shell
       - name: Run tests on Sauce Labs
         run: |
-          if [ ${{matrix.TOX_ENV}} == "py36-remote" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
-          if [ ${{matrix.TOX_ENV}} == "py37-remote" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
-          if [ ${{matrix.TOX_ENV}} == "py38-remote" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py36-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
+          if [ ${{matrix.TOX_ENV}} == "py37-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
+          if [ ${{matrix.TOX_ENV}} == "py38-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
+          if [ ${{matrix.TOX_ENV}} == "py39-stere" ]; then tox -e ${{matrix.TOX_ENV}}; fi
+          if [ ${{matrix.TOX_ENV}} == "py36-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py37-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py38-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py39-splinter" ]; then tox -e ${{matrix.TOX_ENV}} -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py36-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py37-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py38-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
+          if [ ${{matrix.TOX_ENV}} == "py39-appium" ]; then tox -e ${{matrix.TOX_ENV}} -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub; fi
           if [ ${{matrix.TOX_ENV}} == "flake8" ]; then tox -e ${{matrix.TOX_ENV}}; fi
-
-
