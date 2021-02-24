@@ -1,5 +1,5 @@
 import copy
-import typing
+from typing import Any, Optional
 
 from ..utils import _retry
 
@@ -61,7 +61,7 @@ class Repeating:
         """Set the parent_locator of the root."""
         self.root._element.parent_locator = element
 
-    def new_container(self) -> typing.Any:
+    def new_container(self) -> Any:
         """Must return an object to contain results from Repeater.children()
 
         By default a list is returned.
@@ -102,7 +102,7 @@ class Repeating:
             )
         return all_roots
 
-    def children(self) -> typing.Any:
+    def children(self) -> Any:
         """Find all instances of the root,
         then return a collection containing children built from those roots.
 
@@ -125,10 +125,15 @@ class Repeating:
 
         return container
 
-    def has_children(self, retry_time: typing.Optional[int] = None) -> bool:
+    def has_children(
+        self,
+        minimum: int = 1,
+        retry_time: Optional[int] = None,
+    ) -> bool:
         """Check if any children can be found.
 
         Arguments:
+            minimum: Minimum number of children that must exist.
             retry_time: Number of seconds to check for.
 
         Returns:
@@ -136,6 +141,6 @@ class Repeating:
 
         """
         return _retry(
-            lambda: len(self) > 0,
+            lambda: len(self) >= minimum,
             retry_time=retry_time,
         )
