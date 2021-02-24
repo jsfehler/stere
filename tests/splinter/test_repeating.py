@@ -69,6 +69,13 @@ def test_has_children(test_page):
     assert r.has_children()
 
 
+def test_has_children_minimum(test_page):
+    test_page.navigate()
+
+    r = test_page.repeating
+    assert r.has_children(minimum=2)
+
+
 def test_repeating_plus_area(test_page):
     """Repeating with an Area as the repeater.
     Should function identically to a RepeatingArea.
