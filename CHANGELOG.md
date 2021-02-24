@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.25.0] - 2021-02-24
+### Added
+- Repeating.has_children() now takes argument for minimum number of children that should exist.
+
 ## [0.24.0] - 2021-02-10
 ### Added
 - Support for shadow DOM in the form of the ShadowRoot Field.
