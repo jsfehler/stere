@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function evListener (ev) {
+               console.log(ev.target.response);
+            }
+
+            var req = new XMLHttpRequest();
+            req.addEventListener("load", evListener);
+
+            // Add pause for testing purposes
+            setTimeout(
+                () => {
+                    req.open("GET", "https://jsfehler.github.io/stere/test_page/test_page.html");
+                    req.send();
+                }, 3000
+            )
+        </script>
+    </head>
+</html>
