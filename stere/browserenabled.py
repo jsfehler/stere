@@ -55,6 +55,9 @@ class BrowserEnabled:
     url_suffix: str = ''
     retry_time: int = 5
 
+    xhr_spy_sleep_time = 1
+    fetch_spy_sleep_time = 1
+
     # Default values for automation libraries
     library_defaults = {
         'splinter': {
