@@ -17,7 +17,7 @@ def fetch_test_page():
 
 def test_fetch_spy(fetch_test_page):
     fetch_test_page.navigate()
-    fetch_test_page.fetch.add()
+    fetch_test_page.fetch_spy.add()
 
     # We know the page waits 3 seconds before making the request
     time.sleep(4)
