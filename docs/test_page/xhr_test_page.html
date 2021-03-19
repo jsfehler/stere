@@ -3,6 +3,8 @@
         <script type="text/javascript">
             function evListener (ev) {
                console.log(ev.target.response);
+               var elem = document.getElementById('filledText');
+               elem.innerHTML = 'Hello World';
             }
 
             var req = new XMLHttpRequest();
@@ -17,4 +19,8 @@
             )
         </script>
     </head>
+
+    <body>
+        <div id="filledText"></div>
+    </body>
 </html>
