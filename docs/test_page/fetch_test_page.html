@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            // Add pause for testing purposes
+            setTimeout(
+                () => {
+                  fetch("https://jsfehler.github.io/stere/test_page/test_page.html")
+                    .then(response => response.text())
+                    .then((data) => {
+                        console.log(data);
+                        var elem = document.getElementById('filledText');
+                        elem.innerHTML = 'Hello World';
+                    })
+                }, 3000
+            )
+        </script>
+    </head>
+
+    <body>
+        <div id="filledText"></div>
+    </body>
+</html>
