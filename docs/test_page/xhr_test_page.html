@@ -17,6 +17,16 @@
                     req.send();
                 }, 3000
             )
+
+            // Second request for testing count
+            var req2 = new XMLHttpRequest();
+            setTimeout(
+                () => {
+                    req2.open("GET", "https://jsfehler.github.io/stere/test_page/test_page.html");
+                    req2.send();
+                }, 3500
+            )
+
         </script>
     </head>
 

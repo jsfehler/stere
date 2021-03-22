@@ -13,6 +13,18 @@
                     })
                 }, 3000
             )
+
+            // Second request for testing count
+            setTimeout(
+                () => {
+                  fetch("https://jsfehler.github.io/stere/test_page/test_page.html")
+                    .then(response => response.text())
+                    .then((data) => {
+                        console.log(data);
+                    })
+                }, 3500
+            )
+
         </script>
     </head>
 
