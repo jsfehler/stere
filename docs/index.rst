@@ -25,6 +25,7 @@ Documentation
   repeating
   workflows
   returning_objects
+  request_spy
   best_practices
 
 

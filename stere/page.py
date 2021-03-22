@@ -1,5 +1,6 @@
 import urllib.parse
 
+from .browser_spy import FetchSpy, XHRSpy
 from .browserenabled import BrowserEnabled
 
 
@@ -21,6 +22,10 @@ class Page(BrowserEnabled):
     The choice of which syntax to use depends on how you want to write your
     test suite.
     """
+
+    # Allows network requests to be spied on
+    fetch_spy = FetchSpy()
+    xhr_spy = XHRSpy()
 
     def __getattr__(self, val):
         """If an attribute doesn't exist, try getting it from the browser."""
