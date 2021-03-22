@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.26.0] - 2021-03-22
+### Added
+- Network spies to assist with navigating async web apps
 
 ## [0.25.0] - 2021-02-24
 ### Added
