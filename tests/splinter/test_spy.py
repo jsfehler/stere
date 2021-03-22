@@ -27,7 +27,7 @@ def test_fetch_spy(fetch_test_page):
     assert "Hello World" == fetch_test_page.filled_text.text
 
 
-def test_xhr_fetch_total_is_accurate(fetch_test_page):
+def test_fetch_total_is_accurate(fetch_test_page):
     """
     When I check the total number of xhr requests
     Then the number is accurate.
@@ -38,7 +38,7 @@ def test_xhr_fetch_total_is_accurate(fetch_test_page):
     # We know the page waits 3 seconds before making the request
     time.sleep(4)
 
-    assert 1 == fetch_test_page.fetch_spy.total
+    assert 2 == fetch_test_page.fetch_spy.total
 
 
 def test_fetch_spy_not_added(fetch_test_page):
@@ -75,7 +75,7 @@ def test_xhr_spy_total_is_accurate(xhr_test_page):
     # We know the page waits 3 seconds before making the request
     time.sleep(4)
 
-    assert 1 == xhr_test_page.xhr_spy.total
+    assert 2 == xhr_test_page.xhr_spy.total
 
 
 def test_xhr_spy_not_added(xhr_test_page):
