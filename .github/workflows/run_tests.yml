@@ -65,3 +65,9 @@ jobs:
           tox -e ${{matrix.PY_VER}}-stere;
           tox -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub;
           tox -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub;
+
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          verbose: true
