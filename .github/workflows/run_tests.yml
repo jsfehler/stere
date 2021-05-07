@@ -66,6 +66,14 @@ jobs:
           tox -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub;
           tox -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub;
 
+      - name: Coveralls
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: run-${{ matrix.PY_VER }}
+          parallel: true
+
+
     finish:
       needs: build
       steps:
