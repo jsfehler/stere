@@ -1,9 +1,10 @@
 import typing
 
+from .element_strategy import ElementStrategy
 from .strategy import strategy
 
 
-class AppiumBase:
+class AppiumBase(ElementStrategy):
     def _find_all(self, wait_time: typing.Optional[int] = None):
         """Find from inside a parent element."""
         parent = self.parent_locator or self.browser
