@@ -15,14 +15,14 @@ Stere
     :target: https://github.com/jsfehler/stere/blob/master/LICENSE
 
 .. image:: https://pyup.io/repos/github/jsfehler/stere/shield.svg
-    :target: https://pyup.io/repos/github/jsfehler/stere
     :alt: Updates
+    :target: https://pyup.io/repos/github/jsfehler/stere
 
 .. image:: https://github.com/jsfehler/stere/workflows/CI/badge.svg
     :alt: Build status
 
-.. image:: https://coveralls.io/repos/github/jsfehler/stere/badge.svg?branch=master
-    :target: https://coveralls.io/github/jsfehler/stere?branch=master
+.. image:: https://codecov.io/gh/jsfehler/stere/branch/master/graph/badge.svg?token=C1vfu8YgWn
+    :target: https://codecov.io/gh/jsfehler/stere
 
 .. image:: https://saucelabs.com/buildstatus/jsfehler
     :target: https://saucelabs.com/u/jsfehler
