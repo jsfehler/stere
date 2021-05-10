@@ -1,6 +1,6 @@
 import pytest
 
-from stere.fields.element_builder import build_element
+from stere.fields.build_element import build_element
 
 
 def test_build_element_invalid_key():

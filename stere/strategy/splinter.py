@@ -3,11 +3,12 @@ import typing
 
 from selenium.common.exceptions import StaleElementReferenceException
 
+from .element_strategy import ElementStrategy
 from .strategy import strategy
 from ..utils import _retry
 
 
-class SplinterBase:
+class SplinterBase(ElementStrategy):
     def is_clickable(self, wait_time: typing.Optional[int] = None) -> bool:
         """Check if an element is present in the DOM and clickable.
 

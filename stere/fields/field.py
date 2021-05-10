@@ -4,8 +4,8 @@ import splinter
 
 from stere import Stere
 
+from .build_element import build_element
 from .decorators import stere_performer
-from .element_builder import build_element
 from ..utils import _retry
 
 
