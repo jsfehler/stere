@@ -19,6 +19,7 @@ Stere
     :target: https://pyup.io/repos/github/jsfehler/stere
 
 .. image:: https://github.com/jsfehler/stere/workflows/CI/badge.svg
+    :target: https://github.com/jsfehler/stere/actions/workflows/run_tests.yml
     :alt: Build status
 
 .. image:: https://codecov.io/gh/jsfehler/stere/branch/master/graph/badge.svg?token=C1vfu8YgWn
