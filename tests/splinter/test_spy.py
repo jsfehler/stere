@@ -87,3 +87,19 @@ def test_xhr_spy_not_added(xhr_test_page):
 
     with pytest.raises(TimeoutError):
         xhr_test_page.xhr_spy.wait_for_no_activity()
+
+
+@pytest.mark.xfail
+def test_xhr_spy_multiple_add(xhr_test_page):
+    """
+    When I add the XHR spy to the page multiple times
+    Then the number of total requests is still accurate.
+    """
+    xhr_test_page.navigate()
+    for _ in range(5):
+        xhr_test_page.xhr_spy.add()
+
+    # We know the page waits 3 seconds before making the request
+    time.sleep(4)
+
+    assert 2 == xhr_test_page.xhr_spy.total
