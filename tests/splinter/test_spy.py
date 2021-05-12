@@ -89,7 +89,6 @@ def test_xhr_spy_not_added(xhr_test_page):
         xhr_test_page.xhr_spy.wait_for_no_activity()
 
 
-@pytest.mark.xfail
 def test_xhr_spy_multiple_add(xhr_test_page):
     """
     When I add the XHR spy to the page multiple times
