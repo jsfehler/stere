@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.26.1] - 2021-05-12
+### Fixed
+- If XHRSpy.add() is called multiple times on the same page, the hook is only added once.
+
 ## [0.26.0] - 2021-03-22
 ### Added
 - Network spies to assist with navigating async web apps
