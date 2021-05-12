@@ -6,7 +6,7 @@ document.activeXHRrequests = 0;
 // Number of requests that have been completed.
 document.totalXHRrequests = 0;
 
-// Reset to prevent patch from stacking if applied multiple times.
+// Prevent patch from stacking if applied multiple times.
 if (!window.oldSend) {
     window.oldSend = XMLHttpRequest.prototype.send;
 
