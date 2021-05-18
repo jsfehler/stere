@@ -1,13 +1,13 @@
 # Javascript intended to be opened as a string and injected into the browser.
 js_script = """
-// Number of requests that are active.
-document.activeXHRrequests = 0;
-
-// Number of requests that have been completed.
-document.totalXHRrequests = 0;
-
 // Prevent patch from stacking if applied multiple times.
 if (!window.oldSend) {
+    // Number of requests that are active.
+    document.activeXHRrequests = 0;
+
+    // Number of requests that have been completed.
+    document.totalXHRrequests = 0;
+
     window.oldSend = XMLHttpRequest.prototype.send;
 
     // Patch a request counter onto XMLHttpRequest.send()
