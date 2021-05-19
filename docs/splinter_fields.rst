@@ -94,6 +94,7 @@ Input
       self.quantity = Dropdown('id', 'qty', default_value='555')
 
   .. automethod:: stere.fields.Input.fill()
+  .. automethod:: stere.fields.Input.highlight()
 
 
 Link
