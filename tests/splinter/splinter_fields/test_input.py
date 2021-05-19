@@ -1,5 +1,7 @@
 import pytest
 
+from selenium.webdriver.common.keys import Keys
+
 from stere.fields import Input
 
 
@@ -79,3 +81,18 @@ def test_input_call(test_page):
     i = Input('id', 'test_input_first_name', returns=10)
 
     assert 10 == i.perform('alpha')
+
+
+def test_input_highlight(test_page):
+    test_page.navigate()
+
+    test_page.input_area.input.fill('highlight me')
+    assert test_page.input_area.input.value == 'highlight me'
+
+    test_page.input_area.input.highlight()
+
+    # Clear text content with delete.
+    # Since it's highlighted, all of it should be removed.
+    test_page.input_area.input.fill(Keys.DELETE)
+
+    assert test_page.input_area.input.value == ''

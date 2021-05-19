@@ -1,4 +1,7 @@
+import platform
 import typing
+
+from selenium.webdriver.common.keys import Keys
 
 from ..decorators import stere_performer, use_after, use_before
 from ..field import Field
@@ -37,3 +40,14 @@ class Input(Field):
         if value is None and self.default_value:
             value = self.default_value
         self.find().fill(value)
+
+    def highlight(self):
+        """Highlight the text content in an input element."""
+        system = platform.system()
+
+        if system == 'Darwin':  # OSX
+            value = Keys.COMMAND + 'a'
+        else:
+            value = Keys.CONTROL + 'a'
+
+        self.type(value)
