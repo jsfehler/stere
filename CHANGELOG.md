@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.27.0] - 2021-05-19
+### Added
+- Splinter Input Field now has a highlight() method.
+
 ## [0.26.2] - 2021-05-18
 ### Fixed
 - If XHRSpy.add() is called multiple times on the same page, the active and total counters are no longer reset.
