@@ -49,7 +49,7 @@ jobs:
           tunnelIdentifier: github-action-tunnel
 
       - name: Install test dependencies
-        run: pip install tox coveralls
+        run: pip install tox
 
       - name: Set env
         run: echo "USE_SAUCE_LABS=True" >> $GITHUB_ENV
