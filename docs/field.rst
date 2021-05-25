@@ -89,6 +89,23 @@ The following code will produce the same results:
     button()
 
 
+Events
+~~~~~~
+
+Fields inherit from an EventEmitter class.
+
+By default, they emit the following events:
+
+- before: Before methods with the `@use_before` decorator are called.
+- after: After methods with the `@use_after` decorator are called.
+
+.. automethod:: stere.fields.Field.on()
+
+.. automethod:: stere.fields.Field.emit()
+
+.. autoattribute:: stere.fields.Field.events()
+
+
 Subclassing Field
 ~~~~~~~~~~~~~~~~~
 

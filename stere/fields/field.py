@@ -6,14 +6,16 @@ from stere import Stere
 
 from .build_element import build_element
 from .decorators import stere_performer
+from ..event_emitter import EventEmitter
 from ..utils import _retry
 
 
 @stere_performer('null_action', consumes_arg=False)
-class Field:
-    """Field objects represent individual pieces on a page.
+class Field(EventEmitter):
+    """The representation of individual page components.
+
     Conceptually, they're modelled after general behaviours, not specific
-    HTML elements.
+    HTML tags.
 
     Arguments:
         strategy (str): The type of strategy to use when locating an element.
@@ -41,6 +43,8 @@ class Field:
     """
 
     def __init__(self, strategy: str, locator: str, *args, **kwargs):
+        super().__init__()
+
         self.strategy = strategy
         self.locator = locator
         self._element = build_element(strategy, locator)
