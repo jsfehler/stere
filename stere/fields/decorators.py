@@ -50,8 +50,9 @@ def stere_performer(
                     performer()
                 return self.returns
 
-        # Preserve original class name
+        # Preserve original class name and doc
         Performer.__name__ = cls.__name__
+        Performer.__doc__ = cls.__doc__
         Performer.consumes_arg = consumes_arg
         return Performer
     return wrapper
