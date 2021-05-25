@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.28.0] - 2021-05-25
+### Added
+- Fields can now register and emit events.
+- Fields emit 'before' and 'after' events when performer methods are called.
+
 ## [0.27.0] - 2021-05-19
 ### Added
 - Splinter Input Field now has a highlight() method.
