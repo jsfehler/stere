@@ -45,6 +45,10 @@ class Field(EventEmitter):
     def __init__(self, strategy: str, locator: str, *args, **kwargs):
         super().__init__()
 
+        # Ensure before and after events are valid.
+        self._events_data['before'] = []
+        self._events_data['after'] = []
+
         self.strategy = strategy
         self.locator = locator
         self._element = build_element(strategy, locator)
