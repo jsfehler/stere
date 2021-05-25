@@ -59,8 +59,10 @@ def stere_performer(
 
 
 def use_before(func: typing.Callable) -> typing.Callable:
-    """When added to a method in a Field, the Field's before() method will be
-    called before the decorated method is called.
+    """When used on a method in a Field, the following will occur before
+    the decorated method is called:
+    - The Field's before() method will be called.
+    - Any listeners registered to the 'before' event will be called.
 
     Example:
 
@@ -81,13 +83,16 @@ def use_before(func: typing.Callable) -> typing.Callable:
     @wraps(func)
     def wrapper(obj, *inner_args, **inner_kwargs):
         obj.before()
+        obj.emit('before')
         return func(obj, *inner_args, **inner_kwargs)
     return wrapper
 
 
 def use_after(func: typing.Callable) -> typing.Callable:
-    """When added to a method in a Field, the Field's after() method will be
-    called after the decorated method is called.
+    """When used on a method in a Field, the following will occur after
+    the decorated method is called:
+    - The Field's after() method will be called.
+    - Any listeners registered to the 'after' event will be called.
 
     Example:
 
@@ -109,5 +114,6 @@ def use_after(func: typing.Callable) -> typing.Callable:
     def wrapper(obj, *inner_args, **inner_kwargs):
         result = func(obj, *inner_args, **inner_kwargs)
         obj.after()
+        obj.emit('after')
         return result
     return wrapper
