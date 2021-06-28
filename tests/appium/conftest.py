@@ -24,7 +24,7 @@ def appium_capabilities(request):
         'browserName': '',
         'appiumVersion': '1.9.1',
         'deviceOrientation': 'portrait',
-        'app': 'sauce-storage:stere_ios_test_app.zip',
+        'app': 'storage:filename=stere_ios_test_app.zip',
     }
 
     if browser_name == 'ios':
