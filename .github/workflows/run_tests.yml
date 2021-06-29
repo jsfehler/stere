@@ -49,22 +49,21 @@ jobs:
           tunnelIdentifier: github-action-tunnel
 
       - name: Install test dependencies
-        run: pip install tox coveralls
+        run: pip install tox coveralls requests
 
       - name: Set env
         run: echo "USE_SAUCE_LABS=True" >> $GITHUB_ENV
 
-      - name: "Show environment variables"
-        run: |
-          env
-
-      # Runs a single command using the runners shell
       - name: Run tests on Sauce Labs
+        env:
+          SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
+          SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
         run: |
+          python scripts/upload_ios_app.py;
           tox -e flake8;
           tox -e ${{matrix.PY_VER}}-stere;
-          tox -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub;
-          tox -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.saucelabs.com/wd/hub;
+          tox -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
+          tox -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v1
