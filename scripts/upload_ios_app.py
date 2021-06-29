@@ -1,21 +1,17 @@
 import os
 
 import requests
-from requests.auth import HTTPBasicAuth
 
+
+SAUCE_USERNAME = os.getenv('SAUCE_USERNAME')
+SAUCE_ACCESS_KEY = os.getenv('SAUCE_ACCESS_KEY')
+SAUCE_UPLOAD_URL = 'https://api.us-west-1.saucelabs.com/v1/storage/upload'
 
 APP_URL = (
     'https://github.com/jsfehler/stere_ios_test_app/'
     'raw/master/build/stere_ios_test_app.zip'
 )
 APP_FILENAME = 'stere_ios_test_app.zip'
-
-SAUCE_UPLOAD_URL = 'https://api.us-west-1.saucelabs.com/v1/storage/upload'
-SAUCE_HEADERS = {
-    'Content-Type': 'application/octet-stream',
-}
-SAUCE_USERNAME = os.getenv('SAUCE_USERNAME')
-SAUCE_ACCESS_KEY = os.getenv('SAUCE_ACCESS_KEY')
 
 
 def get_app():
@@ -30,14 +26,13 @@ def get_app():
 def upload_app_to_sauce():
     """Upload the test app to sauce labs."""
     with open(APP_FILENAME, 'rb') as f:
-        data = f.read()
+        response = requests.post(
+            SAUCE_UPLOAD_URL,
+            files={'payload': f, 'name': APP_FILENAME},
+            auth=(SAUCE_USERNAME, SAUCE_ACCESS_KEY),
+        )
 
-    requests.post(
-        SAUCE_UPLOAD_URL,
-        headers=SAUCE_HEADERS,
-        data=data,
-        auth=HTTPBasicAuth(SAUCE_USERNAME, SAUCE_ACCESS_KEY),
-    )
+    return response
 
 
 if __name__ == '__main__':
