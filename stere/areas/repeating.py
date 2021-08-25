@@ -1,7 +1,8 @@
 import copy
-from typing import Any, Optional, Type, TypeVar, Union
+from typing import Any, Optional, Type, TypeVar, TYPE_CHECKING, Union
 
-from .area import Area
+if TYPE_CHECKING:
+    from .area import Area
 from ..fields import Field
 from ..utils import _retry
 
@@ -57,7 +58,7 @@ class Repeating:
 
     """
 
-    def __init__(self, root: Field, repeater: Union[Type[T], Type[Area]]):
+    def __init__(self, root: Field, repeater: Union[Type[T], Type['Area']]):
         self.root = root
         self.repeater = repeater
         self.repeater_name = type(self.repeater).__name__
