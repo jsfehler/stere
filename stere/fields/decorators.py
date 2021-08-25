@@ -1,9 +1,10 @@
-from typing import Any, Callable, cast, Optional, Type, TypeVar
 from functools import wraps
+from typing import Any, Callable, Optional, Type, TypeVar, cast
 
 
 T = TypeVar('T')
 F = TypeVar('F', bound=Callable[..., Any])
+
 
 def stere_performer(
     method_name: str,
@@ -43,7 +44,7 @@ def stere_performer(
         >>> Philosophers().diogenes_area.perform()
     """
     def wrapper(cls: Type[T]) -> Type[T]:
-        class Performer(cls):  #type: ignore
+        class Performer(cls):  # type: ignore
             def perform(self, value: Optional[Any] = None) -> Any:
                 """Run the method designated as the performer"""
                 performer = getattr(self, method_name)
