@@ -36,7 +36,7 @@ class Area:
     def __init__(
         self,
         root: Optional[Field] = None,
-        **kwargs: Union[Field, T, Repeating]
+        **kwargs: Union[Field, T, Repeating],
     ):
         self.root = root
 
