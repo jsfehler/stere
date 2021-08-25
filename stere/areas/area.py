@@ -1,12 +1,19 @@
+from typing import Optional, TypeVar, Union
+
 from .repeating import Repeating
 from ..fields import Field
 
 
-class Area:
-    """A collection of unique fields.
+T = TypeVar('T', bound='Area')
 
-    The Area object takes any number of Fields as arguments.
-    Each Field must be unique on the Page and only present in one Area.
+
+class Area:
+    """A collection of unique objects on a page.
+
+    Area takes any number of the following object types:
+        - Field
+        - Area
+        - Repeating
 
     Example:
 
@@ -15,18 +22,22 @@ class Area:
     >>>
     >>> class Album(Page):
     >>>     def __init__(self):
-    >>>         self.tracks = Area(
-    >>>             first_track=Button('xpath', '//my_xpath_string'),
-    >>>             second_track=Button('xpath', '//my_xpath_string'),
-    >>>             third_track=Button('xpath', '//my_xpath_string'),
+    >>>         self.genres = Area(
+    >>>             jazz=Button('css', '.genreJazz'),
+    >>>             metal=Button('css', '.genreMetal'),
+    >>>             rock=Button('xpath', '//div[@id="genreRock"]'),
     >>>         )
     >>>
-    >>> def test_stuff():
+    >>> def test_album_genres():
     >>>     album = Album()
-    >>>     album.tracks.third_track.click()
+    >>>     album.genres.rock.click()
     """
 
-    def __init__(self, root=None, **kwargs):
+    def __init__(
+        self,
+        root: Optional[Field] = None,
+        **kwargs: Union[Field, T, Repeating],
+    ):
         self.root = root
 
         # Store kwargs
@@ -64,17 +75,21 @@ class Area:
             # Field can be called directly.
             setattr(self, key, value)
 
-        self._workflow = None
+        self._workflow: Optional[str] = None
 
-    def _set_parent_locator(self, element):
-        """For every item in the Area, set a parent_locator."""
+    def _set_parent_locator(self, element) -> None:
+        """For every item in the Area, set a parent_locator.
+
+        Arguments:
+            element: The found element belonging to the parent of this object.
+        """
         if self.root is not None:
             self.root._set_parent_locator(element)
         else:
             for _, v in self._items.items():
                 v._set_parent_locator(element)
 
-    def workflow(self, value: str):
+    def workflow(self: T, value: str) -> T:
         """Set the current workflow for an Area.
 
         Designed for chaining before a call to perform().

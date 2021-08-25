@@ -1,14 +1,20 @@
 import copy
-from typing import Any, Optional
+from typing import Any, Optional, TYPE_CHECKING, Type, TypeVar, Union
 
+if TYPE_CHECKING:
+    from .area import Area
+from ..fields import Field
 from ..utils import _retry
+
+
+T = TypeVar('T', bound='Repeating')
 
 
 class Repeating:
     """
     Arguments:
         root (Field): A non-unique root to search for.
-        repeater (Repeating): An object that inherits from Repeating.
+        repeater (Repeating | Area): The object that repeats on the page.
 
     Represents abstract non-unique collections that repeat,
     based on a common root.
@@ -52,7 +58,7 @@ class Repeating:
 
     """
 
-    def __init__(self, root, repeater):
+    def __init__(self, root: Field, repeater: Union[Type[T], Type['Area']]):
         self.root = root
         self.repeater = repeater
         self.repeater_name = type(self.repeater).__name__

@@ -1,4 +1,5 @@
 import copy
+from typing import Union
 
 from .area import Area
 from .areas import Areas
@@ -38,7 +39,7 @@ class RepeatingArea(Repeating):
     >>> assert "$7.00" == inventory.areas[5].price
     """
 
-    def __init__(self, root: Field, **kwargs):
+    def __init__(self, root: Field, **kwargs: Union[Field, Area]):
         self.root = root
         self.repeater = Area
         self.repeater_name = self.repeater.__name__
