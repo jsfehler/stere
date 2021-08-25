@@ -33,7 +33,11 @@ class Area:
     >>>     album.genres.rock.click()
     """
 
-    def __init__(self, root: Optional[Field] = None, **kwargs: Union[Field, Area, Repeating]):
+    def __init__(
+        self,
+        root: Optional[Field] = None,
+        **kwargs: Union[Field, T, Repeating]
+    ):
         self.root = root
 
         # Store kwargs

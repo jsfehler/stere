@@ -13,7 +13,7 @@ class Repeating:
     """
     Arguments:
         root (Field): A non-unique root to search for.
-        repeater (Repeating | Area): Any object that inherits from Repeating or Area.
+        repeater (Repeating | Area): The object that repeats on the page.
 
     Represents abstract non-unique collections that repeat,
     based on a common root.

@@ -1,6 +1,5 @@
-from typing import Union
-
 import copy
+from typing import Union
 
 from .area import Area
 from .areas import Areas
