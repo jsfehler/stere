@@ -1,5 +1,5 @@
 import copy
-from typing import Any, Optional, Type, TypeVar, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Type, TypeVar, Union
 
 if TYPE_CHECKING:
     from .area import Area
