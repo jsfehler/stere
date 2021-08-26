@@ -18,6 +18,8 @@ setup(
     author_email="jsfehler@gmail.com",
     license="MIT",
     url="https://github.com/jsfehler/stere",
+    package_data={'stere': ['py.typed']},
+    zip_safe=False,
     packages=find_packages(),
     install_requires=[
         'py-moneyed==1.0',
