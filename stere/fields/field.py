@@ -1,4 +1,4 @@
-import typing
+from typing import Optional
 
 import splinter
 
@@ -60,7 +60,7 @@ class Field(EventEmitter):
         """When a Field instance is called, run the perform() method."""
         return self.perform(*args, **kwargs)
 
-    def __getattr__(self, val):
+    def __getattr__(self, val: str):
         """If an attribute doesn't exist, try getting it from the element.
 
         If it still doesn't exist, do a find() on the element and see if the
@@ -86,13 +86,13 @@ class Field(EventEmitter):
 
             return getattr(elem, val)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Provide a string representation of this class."""
         return (
             f'{self.__class__.__name__} - '
             f'Strategy: {self.strategy}, Locator: {self.locator}')
 
-    def _set_parent_locator(self, element):
+    def _set_parent_locator(self, element) -> None:
         """Set the parent locator of this Field's element."""
         self._element.parent_locator = element
 
@@ -170,7 +170,7 @@ class Field(EventEmitter):
                 return item
 
     def value_contains(
-        self, expected: str, wait_time: typing.Optional[int] = None,
+        self, expected: str, wait_time: Optional[int] = None,
     ) -> bool:
         """Check if the value of the Field contains an expected value.
 
@@ -197,7 +197,9 @@ class Field(EventEmitter):
             retry_time=wait_time,
         )
 
-    def value_equals(self, expected, wait_time: typing.Optional[int] = None):
+    def value_equals(
+        self, expected: str, wait_time: Optional[int] = None,
+    ) -> bool:
         """Check if the value of the Field equals an expected value.
 
         Arguments:
@@ -223,7 +225,7 @@ class Field(EventEmitter):
             retry_time=wait_time,
         )
 
-    def find(self, wait_time: typing.Optional[int] = None):
+    def find(self, wait_time: Optional[int] = None):
         """Find the first matching element.
 
         Returns:
@@ -238,7 +240,7 @@ class Field(EventEmitter):
             raise ValueError("Expected one element, found multiple")
         return found_elements[0]
 
-    def find_all(self, wait_time: typing.Optional[int] = None):
+    def find_all(self, wait_time: Optional[int] = None):
         """Find all matching elements.
 
         Returns:

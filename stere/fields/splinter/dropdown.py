@@ -1,5 +1,5 @@
 import time
-import typing
+from typing import List, Optional
 
 from stere import Stere
 
@@ -30,7 +30,7 @@ class Dropdown(Field):
         return self.options[index].click()
 
     @property
-    def options(self):
+    def options(self) -> List:
         """Search for all the elements that are an option in the dropdown.
 
         Returns:
@@ -42,7 +42,7 @@ class Dropdown(Field):
 
     @use_after
     @use_before
-    def select(self, value: str, retry_time: typing.Optional[int] = None):
+    def select(self, value: str, retry_time: Optional[int] = None) -> None:
         """Search for an option by its html content, then clicks the one
         that matches.
 
@@ -68,7 +68,7 @@ class Dropdown(Field):
         raise ValueError(
             f'{value} was not found. Found values are: {found_options}')
 
-    def _select(self, value: str) -> typing.List[str]:
+    def _select(self, value: str) -> List[str]:
         found_options = []
 
         for option in self.options:

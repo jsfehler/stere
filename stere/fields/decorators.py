@@ -1,11 +1,15 @@
-import typing
 from functools import wraps
+from typing import Any, Callable, Optional, Type, TypeVar, cast
+
+
+T = TypeVar('T')
+F = TypeVar('F', bound=Callable[..., Any])
 
 
 def stere_performer(
     method_name: str,
     consumes_arg: bool = False,
-) -> typing.Callable:
+) -> Callable[[Type[T]], Type[T]]:
     """Wrap a class to associate method_name with the perform() method.
 
     Associating a method with perform allows the class to be fully used
@@ -39,9 +43,9 @@ def stere_performer(
         >>>
         >>> Philosophers().diogenes_area.perform()
     """
-    def wrapper(cls):
-        class Performer(cls):
-            def perform(self, value=None):
+    def wrapper(cls: Type[T]) -> Type[T]:
+        class Performer(cls):  # type: ignore
+            def perform(self, value: Optional[Any] = None) -> Any:
                 """Run the method designated as the performer"""
                 performer = getattr(self, method_name)
                 if consumes_arg:
@@ -58,7 +62,7 @@ def stere_performer(
     return wrapper
 
 
-def use_before(func: typing.Callable) -> typing.Callable:
+def use_before(func: F) -> F:
     """When used on a method in a Field, the following will occur before
     the decorated method is called:
     - The Field's before() method will be called.
@@ -81,14 +85,14 @@ def use_before(func: typing.Callable) -> typing.Callable:
         >>> "roll out!"
     """
     @wraps(func)
-    def wrapper(obj, *inner_args, **inner_kwargs):
-        obj.before()
-        obj.emit('before')
-        return func(obj, *inner_args, **inner_kwargs)
-    return wrapper
+    def wrapper(cls: Type[T], *inner_args: Any, **inner_kwargs: Any) -> Any:
+        cls.before()
+        cls.emit('before')
+        return func(cls, *inner_args, **inner_kwargs)
+    return cast(F, wrapper)
 
 
-def use_after(func: typing.Callable) -> typing.Callable:
+def use_after(func: F) -> F:
     """When used on a method in a Field, the following will occur after
     the decorated method is called:
     - The Field's after() method will be called.
@@ -111,9 +115,9 @@ def use_after(func: typing.Callable) -> typing.Callable:
         >>> "rise up!"
     """
     @wraps(func)
-    def wrapper(obj, *inner_args, **inner_kwargs):
-        result = func(obj, *inner_args, **inner_kwargs)
-        obj.after()
-        obj.emit('after')
+    def wrapper(cls: Type[T], *inner_args: Any, **inner_kwargs: Any) -> Any:
+        result = func(cls, *inner_args, **inner_kwargs)
+        cls.after()
+        cls.emit('after')
         return result
-    return wrapper
+    return cast(F, wrapper)

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from ..decorators import stere_performer, use_after, use_before
 from ..field import Field
 
@@ -13,14 +15,14 @@ class Input(Field):
             arguments, this value will be used instead.
     """
 
-    def __init__(self, *args, default_value=None, **kwargs):
+    def __init__(self, *args, default_value: Optional[str] = None, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.default_value = default_value
 
     @use_after
     @use_before
-    def send_keys(self, value=None):
+    def send_keys(self, value: Optional[str] = None) -> None:
         """Use Appium's fill method.
 
         Arguments:

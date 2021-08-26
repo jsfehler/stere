@@ -1,5 +1,5 @@
 import platform
-import typing
+from typing import Optional
 
 from selenium.webdriver.common.keys import Keys
 
@@ -18,14 +18,14 @@ class Input(Field):
             this value will be used instead.
     """
 
-    def __init__(self, *args, default_value=None, **kwargs):
+    def __init__(self, *args, default_value: Optional[str] = None, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.default_value = default_value
 
     @use_after
     @use_before
-    def fill(self, value: typing.Optional[str] = None) -> None:
+    def fill(self, value: Optional[str] = None) -> None:
         """Use Splinter's fill method.
 
         Arguments:
@@ -41,7 +41,7 @@ class Input(Field):
             value = self.default_value
         self.find().fill(value)
 
-    def highlight(self):
+    def highlight(self) -> None:
         """Highlight the text content in an input element."""
         system = platform.system()
 

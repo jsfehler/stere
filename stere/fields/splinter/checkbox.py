@@ -6,7 +6,7 @@ from ..field import Field
 class Checkbox(Field):
     """Class with specific methods for handling checkboxes."""
 
-    def __init__(self, *args, default_checked=False, **kwargs):
+    def __init__(self, *args, default_checked: bool = False, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.default_checked = default_checked
