@@ -28,7 +28,7 @@ class SplinterBase(ElementStrategy):
             wait_time (int): The number of seconds to wait. If not specified,
                 Stere.retry_time will be used.
         """
-        def search():
+        def search() -> bool:
             result = self.find(wait_time=0)
             if not result:
                 return True
@@ -69,7 +69,7 @@ class SplinterBase(ElementStrategy):
             wait_time (int): The number of seconds to wait. If not specified,
                 Stere.retry_time will be used.
         """
-        def search():
+        def search() -> bool:
             elem = self.find()
             if elem:
                 try:

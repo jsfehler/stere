@@ -1,7 +1,11 @@
 import urllib.parse
+from typing import TypeVar
 
 from .browser_spy import FetchSpy, XHRSpy
 from .browserenabled import BrowserEnabled
+
+
+T = TypeVar('T', bound='Page')
 
 
 class Page(BrowserEnabled):
@@ -31,7 +35,7 @@ class Page(BrowserEnabled):
         """If an attribute doesn't exist, try getting it from the browser."""
         return getattr(self.browser, val)
 
-    def __enter__(self):
+    def __enter__(self: T) -> T:
         """Page Objects can be used as context managers."""
         return self
 
@@ -41,16 +45,16 @@ class Page(BrowserEnabled):
 
     @property
     def page_url(self) -> str:
-        """Get a full URL from stere's base_url and a Page's url_suffix.
+        """Get a full URL from Stere's base_url and a Page's url_suffix.
 
         Uses urllib.parse.urljoin to combine the two.
         """
         return urllib.parse.urljoin(self.base_url, self.url_suffix)
 
-    def navigate(self):
+    def navigate(self: T) -> T:
         """When the base Stere object has been given the `url_navigator`
-        attribute, and a Page Object has a `page_url` attribute, the
-        `navigate()` method can be called.
+        attribute, the base_url attribute, and a Page Object
+        has a `url_suffix` attribute, the `navigate()` method can be called.
 
         This method will call the method defined in `url_navigator`,
         with `page_url` as the first parameter.
@@ -64,16 +68,17 @@ class Page(BrowserEnabled):
             >>> from stere import Page
             >>>
             >>>
-            >>> class Home(Page):
+            >>> class GuiltyGear(Page):
             >>>     def __init__(self):
-            >>>         self.page_url = 'https://en.wikipedia.org/'
+            >>>         self.url_suffix = 'Guilty_Gear'
             >>>
             >>>
             >>> Stere.browser = Browser()
             >>> Stere.url_navigator = 'visit'
+            >>> Stere.base_url = 'https://en.wikipedia.org/'
             >>>
-            >>> home_page = Home()
-            >>> home_page.navigate()
+            >>> guilty_gear_page = GuiltyGear()
+            >>> guilty_gear_page.navigate()
 
         """
         getattr(self.browser, self.url_navigator)(self.page_url)

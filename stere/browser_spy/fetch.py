@@ -1,7 +1,11 @@
 import time
+from typing import TypeVar
 
 from .fetch_script import js_script
 from ..browserenabled import BrowserEnabled
+
+
+T = TypeVar('T', bound='FetchSpy')
 
 
 class FetchSpy(BrowserEnabled):
@@ -30,7 +34,7 @@ class FetchSpy(BrowserEnabled):
 
     """
 
-    def __enter__(self):
+    def __enter__(self: T) -> T:
         """As a context manager, the spy is added on enter."""
         self.add()
         return self
@@ -39,7 +43,7 @@ class FetchSpy(BrowserEnabled):
         """Nothing happens on exit."""
         pass
 
-    def add(self):
+    def add(self) -> None:
         """Inject the spy onto the page.
 
         Tracks the active and total amount of requests.
