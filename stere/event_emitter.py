@@ -9,7 +9,7 @@ class EventEmitter:
             attached to them.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._events_data: Dict[str, List[Dict]] = {}
 
     @property
@@ -46,7 +46,7 @@ class EventEmitter:
 
         return self._events_data[event]
 
-    def emit(self, event: str):
+    def emit(self, event: str) -> None:
         """Emit an event.
 
         Every listener registered to the event will be called with the
@@ -56,6 +56,9 @@ class EventEmitter:
 
         Arguments:
             event (str): The name of the event to emit.
+
+        Raises:
+            ValueError: If the event has not been registered.
         """
         event_data = self._events_data.get(event)
         if event_data is None:
