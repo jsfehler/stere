@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.29.0] - 2021-08-27
+### Added
+- Type hints are now exposed by the package.
+
 ## [0.28.0] - 2021-05-25
 ### Added
 - Fields can now register and emit events.
