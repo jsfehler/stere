@@ -105,6 +105,12 @@ def test_text_to_dict_repeating(test_page):
     t = test_page.repeating.text_to_dict()
 
     assert t == [
-        {'link': 'Repeating Link 1', 'text': 'Repeating Area 1'},
-        {'link': 'Repeating Link 2', 'text': 'Repeating Area 2'},
+        [
+            {'link': 'Repeating Link A1', 'text': 'Repeating Area A1'},
+            {'link': 'Repeating Link A2', 'text': 'Repeating Area A2'},
+        ],
+        [
+            {'link': 'Repeating Link B1', 'text': 'Repeating Area B1'},
+            {'link': 'Repeating Link B2', 'text': 'Repeating Area B2'},
+        ],
     ]
