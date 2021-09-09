@@ -137,3 +137,26 @@ def test_area_with_area_no_root(test_page):
 
     t = test_page.area_in_area_no_root.inner_area.link.text
     assert "I'm just a link in a div." == t
+
+
+def test_text_to_dict_area(test_page):
+    test_page.navigate()
+
+    t = test_page.area_in_area.text_to_dict()
+
+    assert t == {
+        'inner_area': {'link': "I'm just a link in a div."},
+    }
+
+
+def test_text_to_dict_area_repeating_area(test_page):
+    test_page.navigate()
+
+    t = test_page.area_repeating_area.text_to_dict()
+
+    assert t == {
+        'it_repeats': [
+            {'link': 'Repeating Link 1', 'text': 'Repeating Area 1'},
+            {'link': 'Repeating Link 2', 'text': 'Repeating Area 2'},
+        ],
+    }
