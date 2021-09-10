@@ -1,5 +1,7 @@
 import copy
-from typing import Any, Optional, TYPE_CHECKING, Type, TypeVar, Union
+from typing import (
+    Any, Dict, List, Optional, TYPE_CHECKING, Type, TypeVar, Union,
+)
 
 if TYPE_CHECKING:
     from .area import Area
@@ -150,3 +152,19 @@ class Repeating:
             lambda: len(self) >= minimum,
             retry_time=retry_time,
         )
+
+    def text_to_dict(self) -> List[Dict[str, Any]]:
+        """Get the text from every child of the Repeating.
+
+        Areas give back a dict with the text of every child.
+        Repeatings give back a list of dicts with the text of every child.
+
+        Returns:
+            list[dict]: The text from every child of the Repeating.
+        """
+        rv = []
+
+        for c in self.children():
+            rv.append(c.text_to_dict())
+
+        return rv

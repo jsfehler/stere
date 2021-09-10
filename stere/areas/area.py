@@ -1,4 +1,4 @@
-from typing import Optional, TypeVar, Union
+from typing import Any, Dict, Optional, TypeVar, Union
 
 from .repeating import Repeating
 from ..fields import Field
@@ -172,3 +172,23 @@ class Area:
         self._workflow = None
 
         return result
+
+    def text_to_dict(self) -> Dict[str, Any]:
+        """Get the text from every child of the Area.
+
+        Fields give back the text of the field.
+        Areas give back a dict with the text of every child.
+        Repeatings give back a list of dicts with the text of every child.
+
+        Returns:
+            dict: A mapping of the name of the child and the found text.
+        """
+        rv: Dict[str, Any] = {}
+
+        for k, v in self._items.items():
+            if isinstance(v, Field):
+                rv[k] = v.text
+            elif isinstance(v, Area) or isinstance(v, Repeating):
+                rv[k] = v.text_to_dict()
+
+        return rv

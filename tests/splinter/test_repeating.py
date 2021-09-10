@@ -97,3 +97,20 @@ def test_repeating_plus_area_with_repeatingarea(test_page):
 
     listings = test_page.repeating_area_repeatingarea.children()
     assert listings[0].it_repeats.areas[0].text.text == "Repeating Area A1"
+
+
+def test_text_to_dict_repeating(test_page):
+    test_page.navigate()
+
+    t = test_page.repeating.text_to_dict()
+
+    assert t == [
+        [
+            {'link': 'Repeating Link A1', 'text': 'Repeating Area A1'},
+            {'link': 'Repeating Link A2', 'text': 'Repeating Area A2'},
+        ],
+        [
+            {'link': 'Repeating Link B1', 'text': 'Repeating Area B1'},
+            {'link': 'Repeating Link B2', 'text': 'Repeating Area B2'},
+        ],
+    ]
