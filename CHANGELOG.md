@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.30.0] - 2021-09-13
+### Added
+- Area.text_to_dict() and Repeating.text_to_dict() methods.
+
 ## [0.29.0] - 2021-08-27
 ### Added
 - Type hints are now exposed by the package.
