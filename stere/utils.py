@@ -1,6 +1,6 @@
 import time
-from typing import Callable, Optional
 from functools import reduce
+from typing import Callable, Optional
 
 from stere import Stere
 
