@@ -1,5 +1,5 @@
 import time
-import typing
+from typing import Callable, Optional
 from functools import reduce
 
 from stere import Stere
@@ -13,7 +13,7 @@ def rgetattr(obj, attr, *args):
 
 
 def _retry(
-    fn: typing.Callable, retry_time: typing.Optional[int] = None,
+    fn: Callable[[], bool], retry_time: Optional[int] = None,
 ) -> bool:
     """Retry a function for a specific amount of time.
 
