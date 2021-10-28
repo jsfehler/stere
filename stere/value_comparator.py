@@ -39,3 +39,7 @@ class ValueComparator:
         if other == self.result:
             return True
         return False
+
+    def __bool__(self) -> bool:
+        """Boolean comparison uses self.result."""
+        return self.result
