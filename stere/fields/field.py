@@ -8,6 +8,7 @@ from .build_element import build_element
 from .decorators import stere_performer
 from ..event_emitter import EventEmitter
 from ..utils import _retry
+from ..value_comparator import ValueComparator
 
 
 @stere_performer('null_action', consumes_arg=False)
@@ -171,7 +172,7 @@ class Field(EventEmitter):
 
     def value_contains(
         self, expected: str, wait_time: Optional[int] = None,
-    ) -> bool:
+    ) -> ValueComparator:
         """Check if the value of the Field contains an expected value.
 
         Arguments:
@@ -180,7 +181,7 @@ class Field(EventEmitter):
                 Default is Stere.retry_time.
 
         Returns:
-            bool: True if the value was found, else False
+            ValueComparator: Object with the boolean result of the comparison.
 
         Example:
 
@@ -192,14 +193,17 @@ class Field(EventEmitter):
             >>> assert pet_store.price.value_contains("19.19", wait_time=6)
 
         """
-        return _retry(
+        result = _retry(
             lambda: expected in self.value,
             retry_time=wait_time,
         )
 
+        value = ValueComparator(result, expected=expected, actual=self.value)
+        return value
+
     def value_equals(
         self, expected: str, wait_time: Optional[int] = None,
-    ) -> bool:
+    ) -> ValueComparator:
         """Check if the value of the Field equals an expected value.
 
         Arguments:
@@ -208,7 +212,7 @@ class Field(EventEmitter):
                 Default is Stere.retry_time.
 
         Returns:
-            bool: True if the value was found, else False
+            ValueComparator: Object with the boolean result of the comparison.
 
         Example:
 
@@ -220,10 +224,13 @@ class Field(EventEmitter):
             >>> assert pet_store.price.value_equals("$19.19", wait_time=6)
 
         """
-        return _retry(
+        result = _retry(
             lambda: expected == self.value,
             retry_time=wait_time,
         )
+
+        value = ValueComparator(result, expected=expected, actual=self.value)
+        return value
 
     def find(self, wait_time: Optional[int] = None):
         """Find the first matching element.
