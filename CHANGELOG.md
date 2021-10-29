@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.31.0] - 2021-10-28
+### Changed
+- Field.value_equals() and Field.value_contains() return an object that evaluates to a bool, instead of a bool.
+
 ## [0.30.0] - 2021-09-13
 ### Added
 - Area.text_to_dict() and Repeating.text_to_dict() methods.
