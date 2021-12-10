@@ -3,4 +3,4 @@ py-moneyed==2.0
 pytest==6.2.5
 pytest-cov==3.0.0
 -e git+git://github.com/jsfehler/pytest-splinter.git@splinter_next#egg=pytest-splinter
-pytest-xdist==2.4.0
+pytest-xdist==2.5.0
