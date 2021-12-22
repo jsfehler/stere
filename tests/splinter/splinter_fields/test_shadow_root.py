@@ -2,11 +2,10 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def skip_by_browser(request, splinter_webdriver):
+def skip_by_browser(request, browser_name):
     marker = request.node.get_closest_marker('skip_if_browser')
-    browser_name = request.config.option.splinter_remote_name
 
-    if marker.args[0] in [browser_name]:
+    if marker.args[0] == browser_name:
         pytest.skip(marker.args[1])
 
 

@@ -29,6 +29,9 @@ def after(request, browser):
     def fin():
         # Send result to Sauce labs
         try:
+            name = request.node.name
+            browser.execute_script("sauce:job-name={}".format(name))
+
             res = str(not request.node.rep_call.failed).lower()
             browser.execute_script("sauce:job-result={}".format(res))
         except AttributeError:
@@ -44,10 +47,18 @@ def splinter_remote_url(request):
 
 
 @pytest.fixture(scope='session')
-def splinter_driver_kwargs(splinter_webdriver, request):
-    """Webdriver kwargs."""
-    browser_name = request.config.option.splinter_remote_name
+def browser_name(request, splinter_webdriver) -> str:
+    """Get the name of the web browser used."""
+    name = splinter_webdriver
+    if name == 'remote':
+        name = request.config.option.splinter_remote_name
 
+    return name
+
+
+@pytest.fixture(scope='session')
+def splinter_driver_kwargs(splinter_webdriver, request, browser_name):
+    """Webdriver kwargs."""
     browser_versions = {
         'chrome': 'latest-1',
         'firefox': 'latest-1',
@@ -70,7 +81,6 @@ def splinter_driver_kwargs(splinter_webdriver, request):
                 'name': testrun_name,
                 'platform': 'Windows 10',
                 'version': version,
-                'tunnelIdentifier': github_run_id,
             },
         }
     else:
