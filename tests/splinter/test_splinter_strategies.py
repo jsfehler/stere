@@ -156,7 +156,8 @@ def test_button_data_star_strategy(browser, request, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
-    assert browsers[request.config.option.browser_name] == actual
+    browser_name = request.config.option.splinter_remote_name
+    assert browsers[browser_name] == actual
 
 
 def test_data_star_staregy_is_present(browser, test_page):

@@ -38,7 +38,9 @@ def test_button_call(browser, request, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
-    assert browsers[request.config.option.browser_name] == actual
+
+    browser_name = request.config.option.splinter_remote_name
+    assert browsers[browser_name] == actual
 
 
 def test_button(browser, request, test_page):
@@ -58,7 +60,9 @@ def test_button(browser, request, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
-    assert browsers[request.config.option.browser_name] == actual
+
+    browser_name = request.config.option.splinter_remote_name
+    assert browsers[browser_name] == actual
 
 
 def test_before_click(test_page, dummy_button):
