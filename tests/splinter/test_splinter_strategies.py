@@ -141,7 +141,7 @@ def test_is_not_present_args(test_page):
     assert test_page.removed_container_by_id.is_not_present(wait_time=12)
 
 
-def test_button_data_star_strategy(browser, request, test_page):
+def test_button_data_star_strategy(browser, request, browser_name, test_page):
     """When I define a Field using a data-* strategy, it is found."""
     test_page.navigate()
     test_page.button_alt_strategy.click()
@@ -156,7 +156,8 @@ def test_button_data_star_strategy(browser, request, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
-    assert browsers[request.config.option.browser_name] == actual
+
+    assert browsers[browser_name] == actual
 
 
 def test_data_star_staregy_is_present(browser, test_page):

@@ -21,7 +21,7 @@ def dummy_button():
     return Dummy('id', 'test_button')
 
 
-def test_button_call(browser, request, test_page):
+def test_button_call(browser, request, browser_name, test_page):
     """When a Button is called
     Then the Button's perform method is called
     """
@@ -38,10 +38,11 @@ def test_button_call(browser, request, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
-    assert browsers[request.config.option.browser_name] == actual
+
+    assert browsers[browser_name] == actual
 
 
-def test_button(browser, request, test_page):
+def test_button(browser, request, browser_name, test_page):
     """When a Button is clicked
     Then the correct action is sent to Splinter
     """
@@ -58,7 +59,8 @@ def test_button(browser, request, test_page):
     # which gets it from Selenium
     actual = test_page.button_container.find()._element.value_of_css_property(
         'background-color')
-    assert browsers[request.config.option.browser_name] == actual
+
+    assert browsers[browser_name] == actual
 
 
 def test_before_click(test_page, dummy_button):

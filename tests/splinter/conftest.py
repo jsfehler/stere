@@ -11,15 +11,6 @@ from stere.strategy import add_data_star_strategy
 add_data_star_strategy('data-test-id')
 
 
-def pytest_addoption(parser):
-    parser.addoption(
-        "--browser-name",
-        action="store",
-        default="",
-        help="Name of the browser used",
-    )
-
-
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     # execute all other hooks to obtain the report object
@@ -38,6 +29,9 @@ def after(request, browser):
     def fin():
         # Send result to Sauce labs
         try:
+            name = request.node.name
+            browser.execute_script("sauce:job-name={}".format(name))
+
             res = str(not request.node.rep_call.failed).lower()
             browser.execute_script("sauce:job-result={}".format(res))
         except AttributeError:
@@ -53,13 +47,21 @@ def splinter_remote_url(request):
 
 
 @pytest.fixture(scope='session')
-def splinter_driver_kwargs(splinter_webdriver, request):
-    """Webdriver kwargs."""
-    browser_name = request.config.option.browser_name
+def browser_name(request, splinter_webdriver) -> str:
+    """Get the name of the web browser used."""
+    name = splinter_webdriver
+    if name == 'remote':
+        name = request.config.option.splinter_remote_name
 
+    return name
+
+
+@pytest.fixture(scope='session')
+def splinter_driver_kwargs(splinter_webdriver, request, browser_name):
+    """Webdriver kwargs."""
     browser_versions = {
-        'chrome': '64',
-        'firefox': '60',
+        'chrome': 'latest-1',
+        'firefox': 'latest-1',
     }
 
     version = browser_versions.get(browser_name)
@@ -67,8 +69,8 @@ def splinter_driver_kwargs(splinter_webdriver, request):
         raise ValueError('Unknown browser_name provided')
 
     # Set the Sauce Labs job name
-    travis_job_number = os.getenv('TRAVIS_JOB_NUMBER')
-    testrun_name = travis_job_number or browser_name
+    github_run_id = os.getenv('GITHUB_RUN_ID')
+    testrun_name = github_run_id or browser_name
 
     if os.environ.get('USE_SAUCE_LABS') == "True":
         # Sauce Labs settings
@@ -79,7 +81,6 @@ def splinter_driver_kwargs(splinter_webdriver, request):
                 'name': testrun_name,
                 'platform': 'Windows 10',
                 'version': version,
-                'tunnelIdentifier': travis_job_number,
             },
         }
     else:

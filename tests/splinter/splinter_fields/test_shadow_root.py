@@ -2,9 +2,10 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def skip_by_browser(request):
+def skip_by_browser(request, browser_name):
     marker = request.node.get_closest_marker('skip_if_browser')
-    if marker.args[0] == request.config.option.browser_name:
+
+    if marker.args[0] == browser_name:
         pytest.skip(marker.args[1])
 
 
