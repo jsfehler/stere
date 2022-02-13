@@ -9,7 +9,7 @@ from ..field import Field
 
 @stere_performer('null_action', consumes_arg=False)
 class ShadowRoot(Field):
-    """Field that finds the shadow-root of an element.
+    """Field that uses the shadow-root of an element.
 
     Only useful as the root of an Area.
 
@@ -31,10 +31,7 @@ class ShadowRoot(Field):
 
         shadow_roots = []
         for elem in found_elements:
-            shadow_root = self.browser.execute_script(
-                'return arguments[0].shadowRoot', elem._element,
-            )
-            shadow_roots.append(WebDriverElement(shadow_root, elem))
+            shadow_roots.append(WebDriverElement(elem.shadow_root, elem))
 
         return ElementList(
             shadow_roots, find_by=self.strategy, query=self.locator,
