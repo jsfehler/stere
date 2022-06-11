@@ -34,6 +34,7 @@ def test_area_with_root(test_page):
     test_page.area_with_root.link.click()
 
 
+@pytest.mark.doit
 def test_area_with_root_alt_strategy(test_page):
     test_page.navigate()
     test_page.area_with_root_alt_strategy.link.click()
