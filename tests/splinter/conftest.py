@@ -61,7 +61,7 @@ def splinter_driver_kwargs(splinter_webdriver, request, browser_name):
     """Webdriver kwargs."""
     browser_versions = {
         'chrome': 'latest-1',
-        'firefox': '99',
+        'firefox': 'latest-1',
     }
 
     version = browser_versions.get(browser_name)
