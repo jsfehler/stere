@@ -1,10 +1,6 @@
 import logging
 import time
 
-from pages import dummy_invalid
-
-import pytest
-
 from selenium.webdriver.remote.remote_connection import LOGGER
 
 LOGGER.setLevel(logging.WARNING)
@@ -16,17 +12,6 @@ def test_area_root_available(test_page):
     """
     test_page.navigate()
     assert test_page.area_with_root.root is not None
-
-
-def test_area_non_field_kwarg():
-    expected_message = (
-        'Areas must only be initialized with: Field, Area, Repeating types'
-    )
-
-    with pytest.raises(ValueError) as e:
-        dummy_invalid.InvalidDummyPageE()
-
-    assert str(e.value) == expected_message
 
 
 def test_area_with_root(test_page):
@@ -97,11 +82,6 @@ def test_area_perform_kwargs(test_page):
 
     expected = 'Fooman, Barson, foobar@binbaz.net, 99,'
     assert expected == test_page.many_input_result.text
-
-
-def test_area_set_workflow(test_page):
-    test_page.many_input_area.workflow('Foobar')
-    assert 'Foobar' == test_page.many_input_area._workflow
 
 
 def test_area_use_workflow(test_page):

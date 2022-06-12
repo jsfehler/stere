@@ -30,11 +30,5 @@ def test_value_comparator_error_msg():
         assert True == a  # NOQA E712
 
     result = str(e.value)
-    expected = (
-        "assert True == False. Expected: 100, Actual: 101"
-        "\n"
-        "  +True"
-        "\n"
-        "  -False. Expected: 100, Actual: 101"
-    )
+    expected = "assert True == False. Expected: 100, Actual: 101"
     assert expected == result

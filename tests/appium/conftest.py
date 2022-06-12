@@ -20,23 +20,32 @@ def appium_capabilities(request):
     """Desired capabilities to use with Appium."""
     browser_name = request.config.option.browser_name
 
+    # Set the Sauce Labs job name
+    github_run_id = os.getenv('GITHUB_RUN_ID')
+    testrun_name = f"{github_run_id}: {browser_name}"
+
+    sauce_options = {
+        'appiumVersion': '1.22.3',
+        'name': testrun_name,
+    }
+
     desired_caps = {
         'browserName': '',
-        'appiumVersion': '1.9.1',
         'deviceOrientation': 'portrait',
         'app': 'storage:filename=stere_ios_test_app.zip',
+        "sauce:options": sauce_options,
     }
 
     if browser_name == 'ios':
         platform_caps = {
             'deviceName': 'iPhone X Simulator',
-            'platformVersion': '12.0',
+            'platformVersion': '15.4',
             'platformName': 'iOS',
         }
     elif browser_name == 'android':
         platform_caps = {
             'deviceName': 'Android Emulator',
-            'platformVersion': '6.0',
+            'platformVersion': '12.0',
             'platformName': 'Android',
         }
     else:
