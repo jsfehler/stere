@@ -25,7 +25,7 @@ setup(
         'py-moneyed==1.0',
     ],
     extras_require={
-        'splinter': ['splinter==0.14.0'],
+        'splinter': ['splinter==0.18.0'],
     },
     classifiers=(
         "Programming Language :: Python :: 3.7",
