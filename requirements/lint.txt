@@ -10,5 +10,4 @@ flake8-eradicate==1.2.1
 flake8-import-order==0.18.1
 flake8-multiline-containers==0.0.18
 flake8-mutable==1.2.0
-mccabe==0.6.1
 pep8-naming==0.13.0
