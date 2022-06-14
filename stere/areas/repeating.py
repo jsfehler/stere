@@ -3,7 +3,7 @@ from typing import (
     Any, Dict, List, Optional, TYPE_CHECKING, Type, TypeVar, Union,
 )
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from .area import Area
 from ..fields import Field
 from ..utils import _retry
