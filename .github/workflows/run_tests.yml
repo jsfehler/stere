@@ -72,6 +72,7 @@ jobs:
           tox -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
 
       - name: "Upload coverage to Codecov"
+        if: ${{ matrix.PY_VER == 'py310' }}
         uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: true
