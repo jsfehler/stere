@@ -57,7 +57,17 @@ def browser_name(request, splinter_webdriver) -> str:
 
 
 @pytest.fixture(scope='session')
-def splinter_driver_kwargs(splinter_webdriver, request, browser_name):
+def current_options(chrome_options, firefox_options, browser_name):
+    if browser_name == "chrome":
+        return chrome_options
+
+    return firefox_options
+
+
+@pytest.fixture(scope='session')
+def splinter_driver_kwargs(
+    splinter_webdriver, request, browser_name, current_options,
+):
     """Webdriver kwargs."""
     browser_versions = {
         'chrome': 'latest-1',
@@ -70,21 +80,26 @@ def splinter_driver_kwargs(splinter_webdriver, request, browser_name):
 
     # Set the Sauce Labs job name
     github_run_id = os.getenv('GITHUB_RUN_ID')
-    testrun_name = github_run_id or browser_name
+    testrun_name = f"{github_run_id}: {browser_name}"
 
     if os.environ.get('USE_SAUCE_LABS') == "True":
         # Sauce Labs settings
-        return {
-            'desired_capabilities': {
-                'browserName': browser_name,
-                'browser': browser_name,
-                'name': testrun_name,
-                'platform': 'Windows 10',
-                'version': version,
-            },
+        current_options.browser_version = version
+        current_options.platform_name = "Windows 10"
+
+        sauce_options = {
+            "name": testrun_name,
+            "tunnelIdentifier": "github-action-tunnel",
+            "seleniumVersion": "4.1.0",
         }
-    else:
-        return {}
+        current_options.set_capability("sauce:options", sauce_options)
+
+        # Weird sauce labs issue
+        if browser_name == 'chrome':
+            sauce_options["browserName"] = "chrome"
+            return {"desired_capabilities": sauce_options}
+
+    return {}
 
 
 @pytest.fixture(scope='function', autouse=True)

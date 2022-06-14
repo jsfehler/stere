@@ -9,7 +9,7 @@ def test_build_element_invalid_key():
     Then a ValueError should be thrown
     """
     strategies = [
-        'css', 'xpath', 'tag', 'name', 'text', 'id', 'value', 'data-test-id',
+        'css', 'xpath', 'tag', 'name', 'text', 'id', 'value',
     ]
     expected_message = (
         f'The strategy "invalid_strategy" is not in {strategies}.'
