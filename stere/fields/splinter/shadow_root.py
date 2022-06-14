@@ -1,6 +1,5 @@
 from typing import Optional
 
-from splinter.driver.webdriver import WebDriverElement
 from splinter.element_list import ElementList
 
 from ..decorators import stere_performer
