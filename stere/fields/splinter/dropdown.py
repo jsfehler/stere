@@ -25,7 +25,7 @@ class Dropdown(Field):
         else:
             self.option = kwargs.get('option')
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> None:
         """Accessing by index will select the option matching the index."""
         return self.options[index].click()
 
