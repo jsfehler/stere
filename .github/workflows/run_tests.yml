@@ -49,10 +49,10 @@ jobs:
         run: echo "USE_SAUCE_LABS=True" >> $GITHUB_ENV
 
       - name: Run lint
-        run: tox -e flake8;
+        run: tox run -e lint;
 
       - name: Run unit tests
-        run: tox -e ${{matrix.PY_VER}}-stere;
+        run: tox run -e ${{matrix.PY_VER}}-stere;
 
       - uses: saucelabs/sauce-connect-action@v2.1.1
         if: ${{ matrix.PY_VER == 'py310' }}
@@ -68,8 +68,8 @@ jobs:
           SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
         run: |
           python scripts/upload_ios_app.py;
-          tox -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
-          tox -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
+          tox run -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
+          tox run -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
 
       - name: "Upload coverage to Codecov"
         if: ${{ matrix.PY_VER == 'py310' }}
