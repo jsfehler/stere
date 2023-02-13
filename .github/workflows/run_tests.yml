@@ -24,21 +24,21 @@ jobs:
     strategy:
       matrix:
         include:
-          - PY_VER: py37
-            python-version: 3.7
           - PY_VER: py38
             python-version: 3.8
           - PY_VER: py39
             python-version: 3.9
           - PY_VER: py310
             python-version: '3.10'
+          - PY_VER: py311
+            python-version: '3.11'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: ${{matrix.python-version}}
 
@@ -54,15 +54,15 @@ jobs:
       - name: Run unit tests
         run: tox run -e ${{matrix.PY_VER}}-stere;
 
-      - uses: saucelabs/sauce-connect-action@v2.1.1
-        if: ${{ matrix.PY_VER == 'py310' }}
+      - uses: saucelabs/sauce-connect-action@v2.3.2
+        if: ${{ matrix.PY_VER == 'py311' }}
         with:
           username: ${{secrets.SAUCE_USERNAME}}
           accessKey: ${{secrets.SAUCE_ACCESS_KEY}}
-          tunnelIdentifier: github-action-tunnel
+          tunnelName: github-action-tunnel
 
       - name: Run stere integration tests on Sauce Labs
-        if: ${{ matrix.PY_VER == 'py310' }}
+        if: ${{ matrix.PY_VER == 'py311' }}
         env:
           SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
           SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
@@ -72,8 +72,8 @@ jobs:
           tox run -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
 
       - name: "Upload coverage to Codecov"
-        if: ${{ matrix.PY_VER == 'py310' }}
-        uses: codecov/codecov-action@v1
+        if: ${{ matrix.PY_VER == 'py311' }}
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
           verbose: true
