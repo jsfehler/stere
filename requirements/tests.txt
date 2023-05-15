@@ -3,4 +3,4 @@ py-moneyed==3.0
 pytest==7.3.1
 pytest-cov==4.0.0
 pytest-splinter4==0.3.0
-pytest-xdist==3.2.1
+pytest-xdist==3.3.0
