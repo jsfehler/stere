@@ -68,7 +68,7 @@ jobs:
           SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
         run: |
           python scripts/upload_ios_app.py;
-          tox run -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
+          tox run -e ${{matrix.PY_VER}}-splinter -- --splinter-webdriver=remote --sauce-remote-url=https://ondemand.us-west-1.saucelabs.com/wd/hub;
           tox run -e ${{matrix.PY_VER}}-appium -- --sauce-remote-url=http://${{secrets.SAUCE_USERNAME}}:${{secrets.SAUCE_ACCESS_KEY}}@ondemand.us-west-1.saucelabs.com/wd/hub;
 
       - name: "Upload coverage to Codecov"

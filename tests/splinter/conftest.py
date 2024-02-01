@@ -82,22 +82,23 @@ def splinter_driver_kwargs(
     github_run_id = os.getenv('GITHUB_RUN_ID')
     testrun_name = f"{github_run_id}: {browser_name}"
 
-    if os.environ.get('USE_SAUCE_LABS') == "True":
+    if os.environ.get('USE_SAUCE_LABS') == 'True':
         # Sauce Labs settings
         current_options.browser_version = version
-        current_options.platform_name = "Windows 10"
+        current_options.platform_name = 'Windows 10'
 
         sauce_options = {
-            "name": testrun_name,
-            "tunnelIdentifier": "github-action-tunnel",
-            "seleniumVersion": "4.1.0",
+            'username': os.environ['SAUCE_USERNAME'],
+            'accessKey': os.environ['SAUCE_ACCESS_KEY'],
+            'name': testrun_name,
+            'tunnelIdentifier': 'github-action-tunnel',
+            'seleniumVersion': '4.1.0',
         }
-        current_options.set_capability("sauce:options", sauce_options)
+        current_options.set_capability('sauce:options', sauce_options)
 
         # Weird sauce labs issue
         if browser_name == 'chrome':
-            sauce_options["browserName"] = "chrome"
-            return {"desired_capabilities": sauce_options}
+            sauce_options['browserName'] = 'chrome'
 
     return {}
 
