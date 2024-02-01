@@ -47,9 +47,9 @@ jobs:
 
       - name: Set env
         run: |
-          echo "USE_SAUCE_LABS=True" >> $GITHUB_ENV
-          echo "SAUCE_USERNAME=${{secrets.SAUCE_USERNAME}}" >> $GITHUB_ENV
-          echo "SAUCE_ACCESS_KEY=${{secrets.SAUCE_ACCESS_KEY}}" >> $GITHUB_ENV
+          echo "USE_SAUCE_LABS=True" >> $GITHUB_ENV;
+          echo "SAUCE_USERNAME=${{secrets.SAUCE_USERNAME}}" >> $GITHUB_ENV;
+          echo "SAUCE_ACCESS_KEY=${{secrets.SAUCE_ACCESS_KEY}}" >> $GITHUB_ENV;
 
       - name: Run lint
         run: tox run -e lint;
