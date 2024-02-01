@@ -25,13 +25,13 @@ setup(
         'py-moneyed==1.0',
     ],
     extras_require={
-        'splinter': ['splinter==0.18.0'],
+        'splinter': ['splinter==0.20.1'],
     },
     classifiers=(
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Development Status :: 4 - Beta",
