@@ -89,15 +89,14 @@ def splinter_driver_kwargs(
 
         sauce_options = {
             "name": testrun_name,
-            "tunnelIdentifier": "github-action-tunnel",
-            "seleniumVersion": "4.1.0",
+            "tunnelName": "github-action-tunnel",
+            "seleniumVersion": "4.15.2",
         }
         current_options.set_capability("sauce:options", sauce_options)
 
         # Weird sauce labs issue
         if browser_name == 'chrome':
             sauce_options["browserName"] = "chrome"
-            return {"desired_capabilities": sauce_options}
 
     return {}
 
